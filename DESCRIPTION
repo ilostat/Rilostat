@@ -2,7 +2,7 @@ Package: Rilostat
 Type: Package
 Title: Tools for ILO Open Data via ILOSTAT bulk download facility or SDMX web service
 Date: 2017-07-18
-Version: 0.0.9000
+Version: 0.0.9000.9000
 Encoding: UTF-8
 Authors@R: c(	person("ILO Department of Statistics", role = c("cph", "fnd"), email = "ilostat@ilo.org"), 
 				person("David Bescond", role = c("aut", "cre"), email = "bescond@ilo.org"),
