@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_ilostat_toc.R
 \name{get_ilostat_toc}
 \alias{get_ilostat_toc}
-\title{Read ilostat table of contents}
+\title{Read Ilostat Table of Contents}
 \usage{
 get_ilostat_toc(segment = getOption("ilostat_segment", "indicator"),
   lang = getOption("ilostat_lang", "en"),

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_ilostat.R
 \name{get_ilostat}
 \alias{get_ilostat}
-\title{Read ilostat data}
+\title{Read Ilostat Data}
 \usage{
 get_ilostat(id, segment = getOption("ilostat_segment", "indicator"),
   type = getOption("ilostat_type", "code"), lang = getOption("ilostat_lang",

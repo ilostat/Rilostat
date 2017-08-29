@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_ilostat_dic.R
 \name{get_ilostat_dic}
 \alias{get_ilostat_dic}
-\title{Read ilostat dictionary}
+\title{Read Ilostat Dictionary}
 \usage{
 get_ilostat_dic(dic, lang = getOption("ilostat_lang", "en"))
 }

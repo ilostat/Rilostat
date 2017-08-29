@@ -3,7 +3,7 @@
 \name{ilostat}
 \alias{ilostat}
 \alias{ilostat}
-\title{Get more support}
+\title{Get more Support}
 \usage{
 ilostat(id = NULL)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/sdmx_ilostat.R
 \name{sdmx_ilostat}
 \alias{sdmx_ilostat}
-\title{Read ilostat data / metadata via ilo sdmx api}
+\title{Read Ilostat Data, Metadata via ILO DSMX api}
 \usage{
 sdmx_ilostat(dsd, sdmx_resource = getOption("ilostat_sdmx_resource",
   "codelist"), sdmx_format = getOption("ilostat_sdmx_format", "compact_2_1"),
