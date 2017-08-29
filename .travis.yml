@@ -1,0 +1,32 @@
+# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+
+language: R
+sudo: false
+cache: packages
+
+
+warnings_are_errors: false
+
+notifications:
+  email:
+    - bescond@ilo.org
+
+r_packages:
+  - Cairo
+  
+r_github_packages:
+  - jimhester/covr
+
+
+env:
+  global:
+  - WARNINGS_ARE_ERRORS=1
+  - r_build_args: "--no-resave-data"
+  - r_check_args: "--as-cran"    
+  - GITHUB_REPO: ilostat/Rilostat
+
+before_install:
+- pip install --user codecov
+
+after_success:
+  - Rscript -e 'covr::codecov()'
