@@ -1,8 +1,8 @@
 Package: Rilostat
 Type: Package
-Title: Tools for ILO Open Data via ILOSTAT bulk download facility or SDMX web service
-Date: 2017-07-18
-Version: 0.1.9000
+Title: ILO Open Data via Ilostat Bulk Download Facility or SDMX Web Service
+Date: 2017-08-29
+Version: 0.1
 Encoding: UTF-8
 Authors@R: c(	person("ILO Department of Statistics", role = c("cph", "fnd"), email = "ilostat@ilo.org"), 
 				person("David Bescond", role = c("aut", "cre"), email = "bescond@ilo.org"),
@@ -44,7 +44,5 @@ Suggests:
 LazyData: true
 URL: https://github.com/ilostat/Rilostat
 BugReports: https://github.com/ilostat/Rilostat/issues
-VignetteBuilder: knitr
-NeedsCompilation: no
 Repository: CRAN
 RoxygenNote: 6.0.1

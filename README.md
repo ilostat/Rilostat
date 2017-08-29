@@ -41,7 +41,7 @@ make various data visualizations, all in a programmatic and replicable manner, w
 
 #### Acknowledgements
 
-The developer of this package drew extensive inspiration from the [eurostat R package](https://cran.r-project.org/web/packages/eurostat/) and its related documentation:  
+The developer of this package drew extensive inspiration from the [eurostat R package](https://CRAN.R-project.org/package=pkgname) and its related documentation:  
   - [Retrieval and Analysis of Eurostat Open Data with the eurostat Package](https://journal.r-project.org/archive/2017/RJ-2017-019/RJ-2017-019.pdf) - [Leo Lahti](https://github.com/antagomir), [Przemyslaw Biecek](https://github.com/pbiecek), [Markus Kainu](https://github.com/muuankarski) and [Janne Huovari](https://github.com/jhuovari). R Journal 9(1), 385-392, 2017.
 
 ## <a name="installation"></a>Installation
