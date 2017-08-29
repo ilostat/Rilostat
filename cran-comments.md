@@ -1,3 +1,11 @@
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Remove VignetteBuilder as no vignette.
+* Use canonical URL for CRAN packages.
+* Title field in title case, remove redundance 'Tools for'.
+* Date field update.  
+
 ## Test environments
 * local OS X install, R 3.4.1
 * ubuntu 12.04 (on travis-ci), R 3.4.1
@@ -21,3 +29,4 @@ This is a new release, so there are no reverse dependencies.
 * FAILURE SUMMARY
 
 * All revdep maintainers were notified of the release on RELEASE DATE.
+
