@@ -1,4 +1,4 @@
-#' @title Get more support
+#' @title Get more Support
 #'
 #' @description On regular basis new tutorial and examples are building and available through this function.
 #'

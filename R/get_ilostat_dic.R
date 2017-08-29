@@ -1,4 +1,4 @@
-#' @title Read ilostat dictionary
+#' @title Read Ilostat Dictionary
 #' @description Downloads one ilostat dictionary from ilostat \url{www.ilo.org/ilostat} via bulk download facility 
 #' \url{http://www.ilo.org/ilostat-files/WEB_bulk_download/html/bulk_main.html}.
 #' @details For a given coded variable from ilostat \url{www.ilo.org/ilostat}.

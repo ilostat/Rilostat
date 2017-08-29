@@ -1,4 +1,4 @@
-#' @title Read ilostat data
+#' @title Read Ilostat Data
 #' @description Download datasets from ilostat \url{www.ilo.org/ilostat} via bulk download facility 
 #' \url{http://www.ilo.org/ilostat-files/WEB_bulk_download/html/bulk_main.html}.
 #' @param id A code name for the dataset of interest.

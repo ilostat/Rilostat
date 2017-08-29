@@ -1,4 +1,4 @@
-#' @title Read ilostat data / metadata via ilo sdmx api
+#' @title Read Ilostat Data, Metadata via ILO DSMX api
 #' @description query codelist, data and metadata via ilo sdmx api
 #' @param dsd A datastructure definition, see \code{examples} section,  
 #' @param sdmx_resource : a character, type of info to be returned from the sdmx api: \code{'codelist'} (default), 

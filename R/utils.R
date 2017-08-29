@@ -1,4 +1,4 @@
-#' @title back end usefull function
+#' @title Usefull Function
 #' @name ilostat
 NULL
 

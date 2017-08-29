@@ -1,4 +1,4 @@
-#' @title Read ilostat table of contents
+#' @title Read Ilostat Table of Contents
 #' @description Download one table of contents from ilostat \url{www.ilo.org/ilostat} via bulk download facility 
 #' \url{http://www.ilo.org/ilostat-files/WEB_bulk_download/html/bulk_main.html}.
 #' @param segment A character, way to get datasets by: \code{"indicator"} (default) or \code{"ref_area"}, 
