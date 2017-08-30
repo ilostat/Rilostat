@@ -1,6 +1,11 @@
 ## Resubmission
 This is a resubmission. In this version I have:
 
+* fixed LICENCE COPYRIGHT 
+
+## Resubmission
+This is a resubmission. In this version I have:
+
 * Remove VignetteBuilder as no vignette.
 * Use canonical URL for CRAN packages.
 * Title field in title case, remove redundance 'Tools for'.
