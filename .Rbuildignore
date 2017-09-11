@@ -1,0 +1,27 @@
+# Extra material related but not to be included in the package
+# inst/extras
+README.Rmd
+
+# pkgdown
+docs
+# Git related
+./.git*
+# Travis scripts
+.travis.yml
+# Misc
+./.*~
+./*~
+^.*\.Rproj$
+^\.Rproj\.user$
+^packrat/
+^\.Rprofile$
+^NEWS.md$
+^cran-comments\.md$
+^data-raw$
+^revdep$
+^README\.Rmd$
+^README-.*\.png$
+^appveyor\.yml$
+^CONDUCT\.md$
+^\.travis\.yml$
+^codecov\.yml$
