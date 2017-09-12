@@ -396,29 +396,27 @@ sdmx_ilostat_codelist	<- function(dsd,
 		
 		Label <- c(label = xml_text(xml_find_all(y,".//com:Name",ns)[xml_attr(xml_find_all(y,".//com:Name",ns),"lang")%in%lang]))
 		
-		if(stringr::str_detect(dsd, 'CL_COUNTRY')){
-								
-		  AnnotationSORT <- 	xml_text(xml_find_all(y,".//com:AnnotationText",ns)[xml_attr(xml_find_all(y,".//com:AnnotationText",ns),"lang")%in%lang][1])
+		Annotation <- NULL
+		if(length(xml_find_all(y,".//com:Annotation",ns))>1){
+		  for (i in 1:length(xml_text(xml_find_all(y,".//com:AnnotationTitle",ns)))){
 		
-          names(AnnotationSORT) <- xml_text(xml_find_all(y,".//com:AnnotationTitle",ns))[1]
-								
-		  Annotation <- xml_text(xml_find_all(xml_find_all(y,".//com:Annotation",ns)[-1],".//com:AnnotationText",ns))
+			if(is.na(xml_text(xml_find_all(xml_find_all(y,".//com:Annotation",ns)[i] ,".//com:AnnotationText",ns))[xml_attr(xml_find_all(y,".//com:AnnotationText",ns),"lang")%in%lang][1]) ){
+			
+			  Annotation[[ xml_text(xml_find_all(xml_find_all(y,".//com:Annotation",ns)[i] ,".//com:AnnotationTitle",ns)) ]] <- xml_text(xml_find_all(xml_find_all(y,".//com:Annotation",ns)[i] ,".//com:AnnotationText",ns))
+						
+			} else {
+			
+			  Annotation[[ xml_text(xml_find_all(xml_find_all(y,".//com:Annotation",ns)[i] ,".//com:AnnotationTitle",ns)) ]] <- xml_text(xml_find_all(xml_find_all(y,".//com:Annotation",ns)[i] ,".//com:AnnotationText",ns))[xml_attr(xml_find_all(y,".//com:AnnotationText",ns),"lang")%in%lang][1]
+			
+		    }
+	
+		  }
 		  
-		  names(Annotation) <- xml_text(xml_find_all(y,".//com:AnnotationTitle",ns)[-1])
-  								  
-		  Annotation <- c(AnnotationSORT,Annotation )
-								
-		} else {
-		  
-		  Annotation <- xml_text(xml_find_all(xml_find_all(y,".//com:Annotation",ns),".//com:AnnotationText",ns))
-		  
-		  names(Annotation) <- xml_text(xml_find_all(y,".//com:AnnotationTitle",ns))
-  								
 		}
-											
+			
 		Description <- c(description = xml_text(xml_find_all(y,".//com:Description",ns)[xml_attr(xml_find_all(y,".//com:Description",ns),"lang")%in%lang]))
 
-		c(Code, Label, Annotation, Description)
+		c(Code, Label, Annotation, Description) %>% t %>% as_data_frame
 								
 	  }
 	) %>% 

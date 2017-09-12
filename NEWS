@@ -1,9 +1,10 @@
 # Rilostat 0.2
 
-* fix .onload warnings
-* review import packages version
-
+* fixed .onload warnings
+* reviewed import packages version
+* fixed sdmx codelist annotation multilang issues
 * revised import package list and version
+* fixed tuto mapper error
 
 # Rilostat 0.1
 
