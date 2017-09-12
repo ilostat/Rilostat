@@ -21,4 +21,3 @@ This is a new release, so there are no reverse dependencies.
 * FAILURE SUMMARY
 
 * All revdep maintainers were notified of the release on RELEASE DATE.
-
