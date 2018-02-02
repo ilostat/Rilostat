@@ -162,8 +162,19 @@ sdmx_ilostat_data <- function (	dsd,
 		
 		if(!quiet){
 		
-		  message("Query with dsd = '", dsd, "': Error message return.")
-		  message('check : ', mypath 	)
+		  if(stringr::str_detect(X[1], 'HTTP error 413')){
+		  
+		    message("'Error message dsd exceeding threshold 300000, please apply filters to generate a smaller dataset.")
+			
+		  }
+		  
+		  if(stringr::str_detect(X[1], 'HTTP error 400')){
+		  
+		   message("'Error message dsd is invalid.")
+		   
+		  }
+		  
+		message('check : ', mypath 	)
 		
 		}
 		
@@ -301,7 +312,19 @@ sdmx_ilostat_count <- function( dsd,
     
 	if(!quiet){
 	  
-	  message("Query with dsd = '", dsd, "' Error message return.")
+	  if(stringr::str_detect(X[1], 'HTTP error 413')){
+		  
+		    message("'Error message dsd exceeding threshold 300000, please apply filters to generate a smaller dataset.")
+			
+		  }
+		  
+		  if(stringr::str_detect(X[1], 'HTTP error 400')){
+		  
+		   message("'Error message dsd is invalid.")
+		   
+		  }
+		  
+		message('check : ', mypath 	)
     
 	}
 	
@@ -506,13 +529,19 @@ sdmx_ilostat_conceptRef <- function(dsd
 	  
 	)
 
-  if(substr(X[1], 1, 5)%in%"Error"){ # error test
+	if(substr(X[1], 1, 5)%in%"Error"){ 
+		
+		if(!quiet){
+
+		   message("'Error message dsd is invalid.")
+
+		message('check : ', mypath 	)
+		
+		}
+		
+		return(NULL)
 	
-	message("Query with dsd = '", dsd, "' Error message return.")
-	
-	return(NULL)
-  
-  }
+	}
   
     # extract namespace of the xml doc
   ns <- xml_ns(X)	

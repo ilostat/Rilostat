@@ -74,9 +74,22 @@ get_ilostat_toc <- function(segment = getOption('ilostat_segment', 'indicator'),
 							filters = getOption('ilostat_filter', 'none'),
 							fixed = getOption('ilostat_fixed', TRUE)) {
   
+  if(stringr::str_detect(tolower(segment), 'model')){
+	
+	lang <- 'en' 
+	segment <- 'modelled_estimates'
+  
+  }
+  
   set_ilostat_toc(segment, lang)
   
   y <- get(paste0(".ilostatTOC", segment, lang), envir = .ilostatEnv) 
+  
+  if(segment == 'modelled_estimates'){
+  
+    y <- filter(y, file_type %in% 'dta')
+  
+  }
   
   if(!is_tibble(y)){
   

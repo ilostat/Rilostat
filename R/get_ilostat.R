@@ -163,6 +163,13 @@ get_ilostat <- function(id,
     ref_id <- unique(id)
   
   }
+  
+    if(stringr::str_detect(tolower(segment), 'model')){
+	
+	lang <- 'en' 
+	segment <- 'modelled_estimates'
+  
+  }
 
   dat <- NULL
 
@@ -205,7 +212,7 @@ get_ilostat_dat <- function(id,
 							){
 
   # check id validity and return last update
-  test = "ifelse(substr(last.update, 6,8) %in% '/20', last.update %>% strptime('%d/%m/%Y  %H:%M:%S') %>% format('%Y%m%dT%H%M%S'), last.update)"
+  test = "ifelse(substr(last.update, 6,8) %in% '/20', last.update %>% strptime('%d/%m/%Y  %H:%M') %>% format('%Y%m%dT%H%M'), last.update)"
   last_toc_update <- get_ilostat_toc(segment, lang) %>% 
 					filter_(paste0("id %in% '", id, "'")) %>% 
 					distinct_(.dots = c('last.update')) %>% 
@@ -518,22 +525,36 @@ get_ilostat_raw <- function(id,
 							cache_format, 
 							quiet) {
 
-  base <- paste0(ilostat_url(), segment, "/", id, ".csv.gz")	   
+  if(stringr::str_detect(tolower(segment), 'model')){
+  
+	base <- paste0(ilostat_url(), segment, "/", id, ".dta")	   
+  
+    dat <- NULL
+  
+    try(dat <- read_dta(base))
+
 	
-  tfile <- cache_file %>% stringr::str_replace(paste0(stringr::fixed('.'), cache_format), ".csv.gz")
+  } else {  
+	
+	base <- paste0(ilostat_url(), segment, "/", id, ".csv.gz")	   
+
+    tfile <- cache_file %>% stringr::str_replace(paste0(stringr::fixed('.'), cache_format), ".csv.gz")
    
-  # download and read file
-  utils::download.file(base, tfile, quiet = quiet)
+    # download and read file
+    utils::download.file(base, tfile, quiet = quiet)
   
-  if(!cache_format %in% 'csv.gz'){
+    if(!cache_format %in% 'csv.gz'){
   
-    on.exit(unlink(tfile))
+      on.exit(unlink(tfile))
+  
+    }
+  
+    dat <- NULL
+  
+    try(dat <- read_csv(gzfile(tfile), col_types = cols(.default = col_character(), obs_value = col_double()), progress = FALSE))
   
   }
   
-  dat <- NULL
-  
-  try(dat <- read_csv(gzfile(tfile), col_types = cols(.default = col_character(), obs_value = col_double()), progress = FALSE))
   
   # check validity
   if (!is_tibble(dat)) {

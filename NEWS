@@ -1,3 +1,8 @@
+# Rilostat 0.3
+
+* add segment 'modelled_estimates' for new dta files
+* sdmx_ilostat return threshold error
+
 # Rilostat 0.2
 
 * fixed .onload warnings
