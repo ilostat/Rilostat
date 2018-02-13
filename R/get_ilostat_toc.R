@@ -87,7 +87,7 @@ get_ilostat_toc <- function(segment = getOption('ilostat_segment', 'indicator'),
   
   if(segment == 'modelled_estimates'){
   
-    y <- filter(y, file_type %in% 'dta')
+    y <- filter_(y, "file_type %in% 'dta'")
   
   }
   

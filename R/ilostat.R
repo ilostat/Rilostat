@@ -38,6 +38,7 @@
 #' @importFrom dplyr select_
 #' @importFrom dplyr select
 #' @importFrom dplyr filter_
+#' @importFrom dplyr filter
 #' @importFrom dplyr contains
 #' @importFrom dplyr distinct
 #' @importFrom dplyr distinct_

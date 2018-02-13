@@ -129,7 +129,7 @@ sdmx_ilostat <- function(	dsd,
   
   } else if(tolower(sdmx_resource) == 'conceptref'){
 	
-	y <- sdmx_ilostat_conceptRef(dsd)
+	y <- sdmx_ilostat_conceptRef(dsd, quiet)
   
   }
 
@@ -507,8 +507,8 @@ sdmx_ilostat_dataflow <- function(  dsd,
 }
 
 
-sdmx_ilostat_conceptRef <- function(dsd
-									){		
+sdmx_ilostat_conceptRef <- function(dsd,
+									quiet){		
 
   mypath <- paste0(
 	          
