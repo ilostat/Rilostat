@@ -20,7 +20,7 @@
 #'      \item{\code{id}} : The codename of dataset of theme, will be used by the get_ilostat and get_ilostat_raw functions,
 #'      \item{\code{indicator or ref_area}} : The indicator or ref_area code of dataset,
 #'      \item{\code{indicator.label or ref_area.label}} : The indicator or ref_area name of dataset,
-#'      \item{\code{freq}}  : The freqency code of dataset,
+#'      \item{\code{freq}}  : The frequency code of dataset,
 #'      \item{\code{freq.label}} : Is freq name of dataset,
 #'      \item{\code{size}} : Size of the csv.gz files,
 #'      \item{\code{data.start}} : First time period of the dataset, 
