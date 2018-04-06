@@ -61,7 +61,7 @@
 #' 
 #'   The bulk download facility is the fastest method to download whole datasets.
 #'   It is also often the only way as the sdmx API has limitation of maximum 
-#'   200 000 records at the same time and whole datasets usually exceeds that. 
+#'   300 000 records at the same time and whole datasets usually exceeds that. 
 #'
 #'   By default datasets from the bulk download facility are cached as they are
 #'   often rather large. 
@@ -259,7 +259,7 @@ get_ilostat_dat <- function(id,
   
   }
   
-  # if cache = FALSE or update or new: dowload else read from cache
+  # if cache = FALSE or update or new: download else read from cache
   if (!cache || cache_update || !file.exists(cache_file) ){
       
 	  dat <- get_ilostat_raw(id, segment, cache_file, cache_dir, cache_format, quiet)
