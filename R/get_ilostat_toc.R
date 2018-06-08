@@ -33,6 +33,8 @@
 #' The values in column 'id' should be used to download a selected dataset.
 #' @details The TOC in English by ref_area is downloaded from \url{http://www.ilo.org/ilostat-files/WEB_bulk_download/ref_area/table_of_contents_en.csv}. 
 #' The values in column 'id' should be used to download a selected dataset.
+#' @details The TOC in English by modelled_estimates is downloaded from \url{http://www.ilo.org/ilostat-files/WEB_bulk_download/modelled_estimates/table_of_contents_en.csv}. 
+#' The values in column 'id' should be used to download a selected dataset.
 #' @references
 #' See citation("Rilostat")
 #' ilostat bulk download facility user guidelines \url{http://www.ilo.org/ilostat-files/WEB_bulk_download/ILOSTAT_BulkDownload_Guidelines.pdf} 
@@ -87,7 +89,7 @@ get_ilostat_toc <- function(segment = getOption('ilostat_segment', 'indicator'),
   
   if(segment == 'modelled_estimates'){
   
-    y <- filter_(y, "file_type %in% 'dta'")
+    y <- filter_(y, "stringr:::str_detect(file_type,'dta')")
   
   }
   
