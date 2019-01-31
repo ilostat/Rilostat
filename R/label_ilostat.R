@@ -73,7 +73,7 @@ label_ilostat <- function(	x,
 	          
       y_code <- x[, code, drop = FALSE]            
 	  
-	  y <- as_data_frame(cbind(y_code, y))
+	  y <- as_tibble(cbind(y_code, y))
 	  
 	  ref_cols <- ilostat_cols_ref[ilostat_cols_ref %in% colnames(y)]
 	  
@@ -133,7 +133,7 @@ label_ilostat <- function(	x,
 
   if (is.data.frame(y) && length(y) > 1) {
     
-	y <- as_data_frame(y)
+	y <- as_tibble(y)
   
   }  
   

@@ -41,7 +41,7 @@ clean_ilostat_cache <- function(cache_dir = getOption("ilostat_cache_dir", file.
     
 	if(cache_update){
 
-      cache_files <-  cache_files %>% as_data_frame
+      cache_files <-  cache_files %>% as_tibble
   
       cache_files$segment <- stringr::str_split(cache_files$value, '-', n = 2, simplify = TRUE)[,1] 
   

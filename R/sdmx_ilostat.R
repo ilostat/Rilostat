@@ -221,7 +221,7 @@ sdmx_ilostat_data <- function (	dsd,
 				
 				left_join(
 				
-				xml_attrs(y) %>% as.list %>% as_data_frame %>% mutate("tmpvars" = 1),
+				xml_attrs(y) %>% as.list %>% as_tibble %>% mutate("tmpvars" = 1),
 				
 				xml_attrs(xml_find_all(y, ".//Obs", ns)) %>% lapply(as.list) %>% bind_rows %>% mutate("tmpvars" = 1)  , 
 				
@@ -439,12 +439,12 @@ sdmx_ilostat_codelist	<- function(dsd,
 			
 		Description <- c(description = xml_text(xml_find_all(y,".//com:Description",ns)[xml_attr(xml_find_all(y,".//com:Description",ns),"lang")%in%lang]))
 
-		c(Code, Label, Annotation, Description) %>% t %>% as_data_frame
+		c(Code, Label, Annotation, Description) %>% t %>% as_tibble
 								
 	  }
 	) %>% 
 	
-	as_data_frame 
+	as_tibble 
 }
 
 sdmx_ilostat_dataflow <- function(  dsd,
