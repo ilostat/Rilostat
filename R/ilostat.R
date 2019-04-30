@@ -16,7 +16,6 @@
 #' R Tools for ilostat Open Data
 #'
 #' @name ilostat
-#'
 #' @param id a character, file that to use if \code{NULL} return the list of all available file. 
 #'
 #' @author David Bescond \email{bescond@ilo.org}
@@ -35,18 +34,16 @@
 #' @importFrom plyr ldply
 #' @importFrom plyr mapvalues
 #' @importFrom dplyr %>%
-#' @importFrom dplyr select
-#' @importFrom dplyr filter_
+#' @importFrom dplyr select_at
 #' @importFrom dplyr filter
 #' @importFrom dplyr contains
+#' @importFrom dplyr vars
 #' @importFrom dplyr distinct
-#' @importFrom dplyr distinct_
 #' @importFrom dplyr bind_rows
 #' @importFrom dplyr left_join
 #' @importFrom dplyr mutate
-#' @importFrom dplyr mutate_
-#' @importFrom dplyr summarise_
-#' @importFrom dplyr group_by_
+#' @importFrom dplyr summarise
+#' @importFrom dplyr group_by_at
 #' @importFrom dplyr ungroup
 #' @importFrom haven read_dta
 #' @importFrom haven read_sav
@@ -54,7 +51,6 @@
 #' @importFrom haven write_dta
 #' @importFrom haven write_sav
 #' @importFrom haven write_sas
-#' @importFrom stringr str_replace_all
 #' @importFrom stringr str_replace
 #' @importFrom stringr str_c
 #' @importFrom stringr str_sub
@@ -84,13 +80,12 @@
 #'
 #' ilostat() 
 #'
-#' # get the basic first vignette:
+#' # get the first vignette:
 #' 
-#' ilostat('GettingStarted') 
+#' ilostat('RilostatStart') 
 #' 
 #' }
 #' @export
-
 ilostat <- function(id = NULL)
 {
 
@@ -140,7 +135,7 @@ ilostat <- function(id = NULL)
   
     id <- tolower(id)
   
-    y <- y %>% filter_(.dots = paste0("tolower(id) %in% '", id, "'"))
+    y <- y %>% filter(tolower(id) %in% !!id)
   
     if(nrow(y) == 0 || nrow(y) > 1){
 

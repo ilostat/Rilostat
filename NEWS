@@ -1,7 +1,8 @@
-# Rilostat 0.2.2
+# Rilostat 1.0
 
 * sdmx_ilostat work with csv and json format
 * use dplyr > 8
+* add vignettes
 
 # Rilostat 0.2.1
 

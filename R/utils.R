@@ -21,7 +21,7 @@ if (length(setdiff(pkgs, rownames(installed.packages()))) > 0) {
 	
 	if(answer == 2) {
 	  test_packages_for_ilostat <- 'NORUN'
-	  message('application could not be run as all requests packages have not been installed !!')
+	  message('application could not be run as all requests packages have not been installed !')
 	return(NULL)
 	}
   }

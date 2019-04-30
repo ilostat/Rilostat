@@ -2,7 +2,7 @@
 % Please edit documentation in R/sdmx_ilostat.R
 \name{sdmx_ilostat}
 \alias{sdmx_ilostat}
-\title{Read Ilostat Data, Metadata via ILO DSMX api}
+\title{Read Ilostat Data, Metadata via ILO SDMX api}
 \usage{
 sdmx_ilostat(dsd, sdmx_resource = getOption("ilostat_sdmx_resource",
   "codelist"), sdmx_format = getOption("ilostat_sdmx_format",
@@ -18,7 +18,7 @@ sdmx_ilostat(dsd, sdmx_resource = getOption("ilostat_sdmx_resource",
 
 \item{sdmx_format}{: for data only, a character, format of info to be returned from the sdmx api: \code{'structurespecificdata'} (default) also available \code{'csv'}.}
 
-\item{lang}{a character, code for language. Available are \code{"en"} (default), 
+\item{lang}{a character for language. Available are \code{"en"} (default), 
 \code{"fr"} and \code{"es"}. Can be set also with options(ilostat_lang = 'fr'),}
 
 \item{count}{a logical, count data records only if \code{resource = 'data'}, \code{FALSE} (default),}

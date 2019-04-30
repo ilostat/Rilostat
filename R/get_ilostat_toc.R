@@ -89,7 +89,7 @@ get_ilostat_toc <- function(segment = getOption('ilostat_segment', 'indicator'),
   
   if(segment == 'modelled_estimates'){
   
-    y <- filter_(y, "stringr:::str_detect(file_type,'dta')")
+    y <- filter(y, eval(parse(text = "stringr:::str_detect(file_type,'dta')")))
   
   }
   
@@ -113,7 +113,7 @@ get_ilostat_toc <- function(segment = getOption('ilostat_segment', 'indicator'),
 	
 	y$titles <- paste0(y[[2]], y[[3]], y[[4]], y[[5]], y[[11]], y[[12]], y[[13]], y[[14]])
 	
-	y <- filter_(y, newsearch)[names(y) != 'titles'] 
+	y <- filter(y, eval(parse(text = newsearch)))[names(y) != 'titles'] 
    
   }
    
@@ -125,7 +125,7 @@ get_ilostat_toc <- function(segment = getOption('ilostat_segment', 'indicator'),
 	  
     if(!is.null(filters)){
         
-	  y <- filter_(y, filters)
+	  y <- filter(y, eval(parse(text = filters)))
 	  
     }
   }	

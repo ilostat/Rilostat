@@ -6,7 +6,7 @@ output:
   rmarkdown::html_vignette:
   toc: true
 vignette:  >
-  %\VignetteIndexEntry{GettingStarted}
+  %\VignetteIndexEntry{RilostaStart}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 editor_options: 
@@ -37,7 +37,7 @@ More advanced users can take advantage of ILOSTAT's well-structured [bulk downlo
 The ilostat R package (`'Rilostat'`) was designed to give data users the ability to access the ILOSTAT database, search for data, rearrange the information as needed, download it in the desired format, and 
 make various data visualizations, all in a programmatic and replicable manner, with the possibility of quickly re-running the queries as required.
 
-## Main features of the ilostat R package
+#### Main features of the ilostat R package
 
   - Provides access to all annual, quarterly, and monthly data available via the ILOSTAT [bulk download facility](http://www.ilo.org/ilostat/faces/oracle/webcenter/portalapp/pagehierarchy/Page30.jspx) ([user guide](http://www.ilo.org/ilostat-files/WEB_bulk_download/ILOSTAT_BulkDownload_Guidelines.pdf))
   
@@ -54,7 +54,7 @@ make various data visualizations, all in a programmatic and replicable manner, w
   - Provides access to the ILOSTAT catalogue of related descriptive metadata ([user guide](http://www.ilo.org/ilostat/content/conn/ILOSTATContentServer/path/Contribution%20Folders/statistics/web_pages/static_pages/technical_page/ilostat_appl/SDMX_User_Guide.pdf))
 
 
-## Acknowledgements
+#### Acknowledgements
 
 The developer of this package drew extensive inspiration from the [eurostat R package](https://cran.r-project.org/web/packages/eurostat) and its related documentation:
 
@@ -201,10 +201,10 @@ The function `get_ilostat()` explores ILOSTAT's datasets and returns datasets by
 area (segment `ref_area`). The id of each dataset is made up by the code of the segment chosen (indicator code or reference area code) and 
 the code of the data frequency required (annual, quarterly or monthly), joined by an underscore.
 
-## Get a single dataset:
+#### Get a single dataset:
 
 As stated above, you can easily access the single dataset of your choice through the `get_ilostat()` function, by indicating the 
-code of the dataset desired (indicator_frequency or referencearea_frequency).
+code of the dataset desired (indicator_frequency or ref_area_frequency).
 
 
 If you want to access annual data for indicator code UNE_2UNE_SEX_AGE_NB, you should type:
@@ -234,7 +234,7 @@ knitr::kable(head(dat[1:3, c(2:6,8:9)]),caption = "Table 2b. Extract, 'Armenia, 
 
 <BR>
 
-## Get multiple datasets:
+#### Get multiple datasets:
 
 It is also possible to download multiple datasets at once, simply by setting the dataset's id as a vector of ids or a tibble that lists 
 ids in a specific column:
@@ -388,7 +388,7 @@ dat <- get_ilostat(id = 'UNE_2EAP_SEX_AGE_RT_A', filters = list(ref_area = c('BR
 													detail = 'dataonly')
 ```
 ```{r, eval=FALSE}
-options(ilostat_cache_dir = 'C:/temp')
+# options(ilostat_cache_dir = 'C:/temp')
 dat <- get_ilostat(id = 'UNE_2EAP_SEX_AGE_RT_A', filters = list(
 													ref_area = c('BRA', 'ZAF'), 
 													sex = 'F', 
@@ -443,7 +443,7 @@ require(dplyr, quiet = TRUE)
 
 <BR>
 
-```{r, out.width = "100%"}
+```{r, echo=FALSE, out.width = "100%"}
 knitr::include_graphics("./g1_ts.png")
 ```
 <BR>
@@ -490,7 +490,7 @@ if(!require(dplyr)){install.packages('dplyr')}
 ```
 
 <BR>
-```{r, out.width = "100%"}
+```{r, echo=FALSE, out.width = "100%"}
 knitr::include_graphics("./g1_eco.png")
 ```
 
@@ -501,7 +501,7 @@ knitr::include_graphics("./g1_eco.png")
 
 You can use this type of graph, for instance, to visually convey the share of the employed population working in agriculture, industry and services, all three compared, and even more revealing, compare this across countries.  
 
-In the example below, we used three different indicators of labour underutilization (unemployment, time-related underemployment and discouraged job-seekers) to study how they are inter-related in  selected countries. These three population groups are all mutually exclusive, but theyare all part of the broad category of labour underutilization. Unemployment represents all persons not in employment, available for employment and actively seeking employment, while discouraged job-seekers are those persons not in employment and available for employment who do not actively look for employment for specific reasons having to do with the situation in the labour market, and time-related underemployment refers to persons in employment who would like to work more hours and are available to work more hours than their current working time. The graph below brings to light the differences across countries in the labour underutilization composition, by showing where unemployment is the biggest concern, as opposed to time-related underemployment or discouragement. 
+In the example below, we used three different indicators of labour underutilization (unemployment, time-related underemployment and discouraged job-seekers) to study how they are inter-related in  selected countries. These three population groups are all mutually exclusive, but they are all part of the broad category of labour underutilization. Unemployment represents all persons not in employment, available for employment and actively seeking employment, while discouraged job-seekers are those persons not in employment and available for employment who do not actively look for employment for specific reasons having to do with the situation in the labour market, and time-related underemployment refers to persons in employment who would like to work more hours and are available to work more hours than their current working time. The graph below brings to light the differences across countries in the labour underutilization composition, by showing where unemployment is the biggest concern, as opposed to time-related underemployment or discouragement. 
 
 ```{r, eval=FALSE}
 require(Rilostat)
@@ -550,7 +550,7 @@ text(df$x[ind], df$y[ind], df$geo[ind], adj = c(0.5,-1), cex=1.5)
 ```
 
 <BR>
-```{r, out.width = "100%"}
+```{r, echo=FALSE, out.width = "100%"}
 knitr::include_graphics("./g1_tri.png")
 ```
 
@@ -609,7 +609,7 @@ dat %>%
 ```
 
 <BR>
-```{r, out.width = "100%"}
+```{r, echo=FALSE, out.width = "100%"}
 knitr::include_graphics("./g1_map.png")
 ```
 

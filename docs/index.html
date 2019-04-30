@@ -55,7 +55,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/GettingStarted.html">Getting started with the ilostat R package</a>
+      <a href="articles/RilostatStart.html">Getting started with the ilostat R package</a>
     </li>
   </ul>
 </li>
@@ -87,16 +87,16 @@
 <!-- [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ilostat/Rilostat?branch=master&svg=true)](https://ci.appveyor.com/project/ilostat/Rilostat) -->
 <!-- [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/Rilostat)](https://cran.r-project.org/package=Rilostat) -->
 <p><br></p>
-<div id="ilostat-r-package" class="section level2">
-<h2 class="hasAnchor">
-<a href="#ilostat-r-package" class="anchor"></a>ilostat R package</h2>
+<div id="ilostat-r-package" class="section level1">
+<div class="page-header"><h1 class="hasAnchor">
+<a href="#ilostat-r-package" class="anchor"></a>ilostat R package</h1></div>
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <p>The <a href="https://www.ilo.org">ILO</a>’s main online database, <a href="https://www.ilo.org/ilostat">ILOSTAT</a>, maintained by the <a href="https://www.ilo.org/stats">Department of Statistics</a>, is the world’s largest repository of labour market statistics. It covers all countries and regions and a wide range of labour-related topics, including employment, unemployment, wages, working time and labour productivity, to name a few. It includes time series going back as far as 1938; annual, quarterly and monthly labour statistics; country-level, regional and global estimates; and even projections of the main labour market indicators.</p>
 <p>ILOSTAT’s website provides immediate access to all its data and related metadata through different ways. Basic users can simply view the desired data online or download it in Excel or csv formats. More advanced users can take advantage of ILOSTAT’s well-structured <a href="http://www.ilo.org/ilostat/faces/oracle/webcenter/portalapp/pagehierarchy/Page30.jspx">bulk download facility</a> (<a href="http://www.ilo.org/ilostat-files/WEB_bulk_download/ILOSTAT_BulkDownload_Guidelines.pdf">user guide</a>), or the SDMX web service (<a href="http://www.ilo.org/ilostat/content/conn/ILOSTATContentServer/path/Contribution%20Folders/statistics/web_pages/static_pages/technical_page/ilostat_appl/SDMX_User_Guide.pdf">user guide</a>).</p>
 <p>The ilostat R package (<code>'Rilostat'</code>) was designed to give data users the ability to access the ILOSTAT database, search for data, rearrange the information as needed, download it in the desired format, and make various data visualizations, all in a programmatic and replicable manner, with the possibility of quickly re-running the queries as required.</p>
-<div id="main-features-of-the-ilostat-r-package" class="section level4">
-<h4 class="hasAnchor">
-<a href="#main-features-of-the-ilostat-r-package" class="anchor"></a>Main features of the ilostat R package</h4>
+<div id="main-features-of-the-ilostat-r-package" class="section level2">
+<h2 class="hasAnchor">
+<a href="#main-features-of-the-ilostat-r-package" class="anchor"></a>Main features of the ilostat R package</h2>
 <ul>
 <li>Provides access to all annual, quarterly, and monthly data available via the ILOSTAT <a href="http://www.ilo.org/ilostat/faces/oracle/webcenter/portalapp/pagehierarchy/Page30.jspx">bulk download facility</a> (<a href="http://www.ilo.org/ilostat-files/WEB_bulk_download/ILOSTAT_BulkDownload_Guidelines.pdf">user guide</a>)</li>
 <li>Allows to search for and download data and related metadata in English, French and Spanish</li>
@@ -108,16 +108,16 @@
 <li>Provides access to the ILOSTAT catalogue of related descriptive metadata (<a href="http://www.ilo.org/ilostat/content/conn/ILOSTATContentServer/path/Contribution%20Folders/statistics/web_pages/static_pages/technical_page/ilostat_appl/SDMX_User_Guide.pdf">user guide</a>)</li>
 </ul>
 </div>
-<div id="acknowledgements" class="section level4">
-<h4 class="hasAnchor">
-<a href="#acknowledgements" class="anchor"></a>Acknowledgements</h4>
+<div id="acknowledgements" class="section level2">
+<h2 class="hasAnchor">
+<a href="#acknowledgements" class="anchor"></a>Acknowledgements</h2>
 <p>The developer of this package drew extensive inspiration from the <a href="https://CRAN.R-project.org/package=eurostat">eurostat R package</a> and its related documentation:<br>
 - <a href="https://journal.r-project.org/archive/2017/RJ-2017-019/RJ-2017-019.pdf">Retrieval and Analysis of Eurostat Open Data with the eurostat Package</a> - <a href="https://github.com/antagomir">Leo Lahti</a>, <a href="https://github.com/pbiecek">Przemyslaw Biecek</a>, <a href="https://github.com/muuankarski">Markus Kainu</a> and <a href="https://github.com/jhuovari">Janne Huovari</a>. R Journal 9(1), 385-392, 2017.</p>
 </div>
 </div>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a><a name="installation"></a>Installation</h2>
+<div id="installation" class="section level1">
+<h1 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h1>
 <p>Download and install <a href="https://cran.r-project.org/">R from CRAN</a>, install <a href="http://www.rstudio.com/ide/download/">RStudio’s IDE</a>, a powerful user interface for R. Then use command:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="st">"Rilostat"</span>)</a></code></pre></div>
 <p>To install the development version, use the following command:</p>
@@ -129,19 +129,23 @@
 <p>We do not expect to update the ilostat R package too often, but based on questions and remarks from ILOSTAT data users, we will progressively create more examples, tutorials, demos and apps. We will publicly share all of this via the function:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="reference/ilostat.html">ilostat</a></span>()</a>
 <a class="sourceLine" id="cb4-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw"><a href="reference/ilostat.html">ilostat</a></span>(<span class="st">'GettingStarted'</span>)</a></code></pre></div>
-<div id="contribute" class="section level3">
-<h3 class="hasAnchor">
-<a href="#contribute" class="anchor"></a>Contribute</h3>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw"><a href="reference/ilostat.html">ilostat</a></span>(<span class="st">'StartRilostat'</span>)</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/vignette">vignette</a></span>(<span class="dt">package =</span> <span class="st">"Rilostat"</span>)</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/vignette">vignette</a></span>(<span class="st">'StartRilostat'</span>)</a></code></pre></div>
+<div id="contribute" class="section level2">
+<h2 class="hasAnchor">
+<a href="#contribute" class="anchor"></a>Contribute</h2>
 <p>Contributions are very welcome:</p>
 <ul>
 <li><p><a href="https://github.com/ilostat/Rilostat/issues">Use issue tracker</a> for feedback and bug reports.</p></li>
 <li><p><a href="https://github.com/ilostat/Rilostat">Star us on the Github page</a></p></li>
 </ul>
 </div>
-<div id="permission-to-reproduce-ilo-publication-and-data" class="section level3">
-<h3 class="hasAnchor">
-<a href="#permission-to-reproduce-ilo-publication-and-data" class="anchor"></a>Permission to reproduce ILO publication and data</h3>
+<div id="permission-to-reproduce-ilo-publication-and-data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#permission-to-reproduce-ilo-publication-and-data" class="anchor"></a>Permission to reproduce ILO publication and data</h2>
 <p>The reproduction of ILO material is generally authorized for non-commercial purposes and within established limits. However, you may need to submit a formal request in certain circumstances. for more information please consult:</p>
 <p><a href="http://www.ilo.org/global/copyright" class="uri">http://www.ilo.org/global/copyright</a></p>
 <p><a href="http://www.ilo.org/global/copyright/request-for-permission" class="uri">http://www.ilo.org/global/copyright/request-for-permission</a></p>

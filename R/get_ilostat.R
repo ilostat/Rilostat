@@ -189,7 +189,7 @@ get_ilostat <- function(id,
 	
   order_cols <- c(ref_cols, colnames(dat)[!colnames(dat) %in% ref_cols])
 	
-  dat %>% select(!! order_cols)
+  select_at(dat, .vars = order_cols)
  
 }
 
@@ -212,11 +212,14 @@ get_ilostat_dat <- function(id,
 							){
 
   # check id validity and return last update
-  test = "ifelse(substr(last.update, 6,8) %in% '/20', last.update %>% strptime('%d/%m/%Y  %H:%M') %>% format('%Y%m%dT%H%M'), last.update)"
+  ref_id <- id
+  test = "ifelse(substr(last.update, 6,8) %in% '/20', 
+												last.update %>% strptime('%d/%m/%Y  %H:%M') %>% format('%Y%m%dT%H%M'), 
+												last.update)"
   last_toc_update <- get_ilostat_toc(segment, lang) %>% 
-					filter_(paste0("id %in% '", id, "'")) %>% 
-					distinct_(.dots = c('last.update')) %>% 
-					mutate_("last.update" = test) %>%
+					filter(id %in% ref_id) %>% 
+					distinct(`last.update`) %>% 
+					mutate(`last.update` = eval(parse(text = test))) %>%
 					t %>% as.character
 					
   if(length(last_toc_update) == 0){
@@ -401,7 +404,7 @@ get_ilostat_dat <- function(id,
 	
 	order_cols <- c(ref_cols, colnames(dat)[!colnames(dat) %in% ref_cols])
 	
-	dat <- dat %>% select(!! order_cols)
+	dat <- select_at(dat, .vars = order_cols)
 	
 
 	if(cache_format == 'rds'){
@@ -459,7 +462,7 @@ get_ilostat_dat <- function(id,
 	  
     if(!is.null(filters)){
         
-	  dat <- filter_(dat, filters)
+	  dat <- filter(dat, eval(parse(text = filters)))
 	  
     }
 
@@ -472,7 +475,7 @@ get_ilostat_dat <- function(id,
 	  
 	ref_dataonly <- ref_dataonly[ref_dataonly %in% names(dat)] 
 	  
-	dat <- dat %>% select(!! ref_dataonly)
+	dat <- select_at(dat, .vars = ref_dataonly)
 	
   }
   if(detail %in% 'serieskeysonly'){
@@ -481,7 +484,7 @@ get_ilostat_dat <- function(id,
 	  
 	ref_serieskeysonly <- ref_serieskeysonly[ref_serieskeysonly %in% names(dat)] 
 	  
-	dat <- dat %>% select(!! ref_serieskeysonly) %>% distinct()
+	dat <- select_at(dat, .vars =  ref_serieskeysonly) %>% distinct()
 	
   }
   if(detail %in% 'bestsourceonly'){
@@ -494,9 +497,9 @@ get_ilostat_dat <- function(id,
 	  
 	rest_bestsourceonly <- names(dat)[!names(dat)%in% ref_bestsourceonly]
 	  
-	summa <- paste0("list(", paste0(paste0(rest_bestsourceonly, " = 'first(",rest_bestsourceonly, ")'"), collapse = ', '), ")")
+	summa <-  eval(parse(text = paste0("list(", paste0(paste0(rest_bestsourceonly, " = quo(first(",rest_bestsourceonly, "))"), collapse = ', '), ")")))
 	  
-	dat <- group_by_(dat, .dots = ref_bestsourceonly) %>% summarise_(.dots = eval(parse(text = summa))) %>% ungroup
+	dat <- group_by_at(dat, .vars = ref_bestsourceonly) %>% summarise(!!!summa) %>% ungroup
       
 	invisible(gc(reset = TRUE))	
   }

@@ -1,10 +1,10 @@
-#' @title Read Ilostat Data, Metadata via ILO DSMX api
+#' @title Read Ilostat Data, Metadata via ILO SDMX api
 #' @description query codelist, data and metadata via ilo sdmx api
 #' @param dsd A datastructure definition, see \code{examples} section,  
 #' @param sdmx_resource : a character, type of info to be returned from the sdmx api: \code{'codelist'} (default), 
 #' 		 	\code{'data'}, \code{'dataflow'}, \code{'conceptref'},
 #' @param sdmx_format : for data only, a character, format of info to be returned from the sdmx api: \code{'structurespecificdata'} (default) also available \code{'csv'}.
-#' @param lang a character, code for language. Available are \code{"en"} (default), 
+#' @param lang a character for language. Available are \code{"en"} (default), 
 #'        \code{"fr"} and \code{"es"}. Can be set also with options(ilostat_lang = 'fr'),
 #' @param count a logical, count data records only if \code{resource = 'data'}, \code{FALSE} (default), 
 #' @param quiet a logical, if \code{TRUE} , don't return message from processing, \code{FALSE} (default).
@@ -248,8 +248,8 @@ sdmx_ilostat_data <- function (	dsd,
 				
 				) %>% 
 				
-				select(-contains("tmpvars")) 
-			  
+				select_at(vars(-contains("tmpvars"))) 
+				
 			  }
 			
 			) %>% 
@@ -477,7 +477,7 @@ sdmx_ilostat_codelist	<- function(dsd,
 	  }
 	) %>% 
 	
-	as_tibble %>% filter(!code %in% '_Z')
+	as_tibble %>% filter(eval(parse(text = "!code %in% '_Z'")))
 }
 
 sdmx_ilostat_dataflow <- function(  dsd,

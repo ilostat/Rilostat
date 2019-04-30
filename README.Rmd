@@ -91,7 +91,12 @@ tutorials, demos and apps. We will publicly share all of this via the function:
 ```{r, eval=FALSE}
 ilostat()
 
-ilostat('GettingStarted')
+ilostat('StartRilostat')
+
+vignette(package = "Rilostat")
+
+vignette('StartRilostat')
+
 ```
 
 

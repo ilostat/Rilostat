@@ -33,9 +33,9 @@ R Tools for ilostat Open Data
 
 ilostat() 
 
-# get the basic first vignette:
+# get the first vignette:
 
-ilostat('GettingStarted') 
+ilostat('RilostatStart') 
 
 }
 }

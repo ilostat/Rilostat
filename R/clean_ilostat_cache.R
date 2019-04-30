@@ -55,16 +55,17 @@ clean_ilostat_cache <- function(cache_dir = getOption("ilostat_cache_dir", file.
 	
       ref_toc <- NULL
 
-      test = "ifelse(substr(last.update, 6,8) %in% '/20', last.update %>% strptime('%d/%m/%Y  %H:%M:%S') %>% format('%Y%m%dT%H%M%S'), last.update)"
+      test = "last.update = ifelse(substr(last.update, 6,8) %in% '/20', last.update %>% strptime('%d/%m/%Y  %H:%M:%S') %>% format('%Y%m%dT%H%M%S'), last.update)"
 	
       if(unique(cache_files$segment) %in% 'indicator'){
             
 		ref_toc <- bind_rows(ref_toc, 
 						get_ilostat_toc('indicator') %>%
-						select(!! c('id', 'last.update')) %>%
-						mutate_("last.update" = test)) 
-	    
-		ref_toc <- ref_toc %>% filter_("id %in% cache_files$id")
+						select_at(.vars = c("id", "last.update")) %>%
+						mutate(eval(parse(text = test)))
+						)
+						
+		ref_toc <- filter(ref_toc, eval(parse(text = "id %in% cache_files$id")))	
 	  
 	  }
 	  
@@ -73,14 +74,14 @@ clean_ilostat_cache <- function(cache_dir = getOption("ilostat_cache_dir", file.
 	    
 		ref_toc <- bind_rows(ref_toc, 
 						get_ilostat_toc('ref_area') %>%
-						select(!! c('id', 'last.update')) %>%
-						mutate_("last.update" = test)) 
-		
-		ref_toc <- ref_toc %>% filter_("id %in% cache_files$id")				
+						select_at(.vars = c("id", "last.update")) %>%
+						mutate(eval(parse(text = test))) 
+						)
+		ref_toc <- filter(ref_toc, eval(parse(text = "id %in% cache_files$id")))				
 	  
 	  }
 	  
-	  cache_files <- cache_files %>% filter_("!paste0(id, last.update) %in% paste0(ref_toc$id, ref_toc$last.update)")
+	  cache_files <- filter(cache_files, eval(parse(text = "!paste0(id, last.update) %in% paste0(ref_toc$id, ref_toc$last.update)")))
 	  
 	  if(nrow(cache_files) > 0) {
 	  
