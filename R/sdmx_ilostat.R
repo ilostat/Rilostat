@@ -3,8 +3,7 @@
 #' @param dsd A datastructure definition, see \code{examples} section,  
 #' @param sdmx_resource : a character, type of info to be returned from the sdmx api: \code{'codelist'} (default), 
 #' 		 	\code{'data'}, \code{'dataflow'}, \code{'conceptref'},
-#' @param sdmx_format : a character, format of info to be returned from the sdmx api: \code{'compact_2_1'} (default), 
-#' 		 	coming soon: \code{'generic_2_1'}, \code{'json'},
+#' @param sdmx_format : for data only, a character, format of info to be returned from the sdmx api: \code{'structurespecificdata'} (default) also available \code{'csv'}.
 #' @param lang a character, code for language. Available are \code{"en"} (default), 
 #'        \code{"fr"} and \code{"es"}. Can be set also with options(ilostat_lang = 'fr'),
 #' @param count a logical, count data records only if \code{resource = 'data'}, \code{FALSE} (default), 
@@ -16,7 +15,7 @@
 #' See citation("Rilostat")
 #' 
 #' ilostat sdmx user guidelines:
-#'  "http://www.ilo.org/ilostat/content/conn/ILOSTATContentServer/path/Contribution Folders/statistics/web_pages/static_pages/technical_page/ilostat_appl/SDMX_User_Guide.pdf"
+#'  "https://www.ilo.org/ilostat-files/Documents/SDMX_User_Guide.pdf"
 
 #' @examples 
 #' \dontrun{
@@ -26,11 +25,23 @@
 #' head(dic)
 #'
 #' # fetch country available on ILOSTAT
-#' dic <- sdmx_ilostat(dsd = "CL_COUNTRY", lang ="es")
+#' dic <- sdmx_ilostat(dsd = "CL_AREA", lang ="es")
 #' head(dic)
 #'
-#' # fetch indicator define in collection STI
-#' sdmx_ilostat(dsd = "CL_INDICATOR_STI", lang ="fr")
+#' # fetch classif ECO available on ILOSTAT
+#' dic <- sdmx_ilostat(dsd = "CL_ECO", lang ="en")
+#' head(dic)
+#'
+#' # fetch classif ECO verion available on ILOSTAT
+#' dic <- sdmx_ilostat(dsd = "CL_CLASSIF_ECO", lang ="en")
+#' head(dic)
+#'
+#' # fetch note type available on ILOSTAT
+#' dic <- sdmx_ilostat(dsd = "CL_NOTE_TYPE", lang ="en")
+#' head(dic)
+#'
+#' # fetch note "Repository" available on ILOSTAT
+#' dic <- sdmx_ilostat(dsd = "CL_NOTE_R1", lang ="en")
 #' head(dic)
 #'
 #' ########## get data
@@ -68,17 +79,9 @@
 #'                     sdmx_resource = 'data')
 #' head(dat)
 #'
-#' # check availability of time series	
-#' dat <- sdmx_ilostat(dsd = "STI_CHL_EMP_TEMP_SEX_AGE_NB/......?detail=serieskeysonly", 
-#'                     sdmx_resource = 'data')
-#' head(dat)
 #'
 #' # as from 2009
-#' sdmx_ilostat("STI_ZAF_EMP_TEMP_SEX_AGE_NB/......?startPeriod=2009-01-01&detail=serieskeysonly",
-#'                     sdmx_resource = 'data')
-#'
-#' # as from 2009
-#' dat <- sdmx_ilostat("STI_FRA_UNE_TUNE_SEX_AGE_NB/STI.FRA.M.48..", 
+#' dat <- sdmx_ilostat("STI_FRA_UNE_TUNE_SEX_AGE_NB/STI.FRA.M.5893..", 
 #'                     sdmx_resource = 'data')
 #' head(dat)
 #'
@@ -93,7 +96,7 @@
 #' ########## count data available
 #'
 #' # with multi country
-#' sdmx_ilostat("STI_FRA_UNE_TUNE_SEX_AGE_NB/STI.FRA.M.48..", 
+#' sdmx_ilostat("STI_FRA_UNE_TUNE_SEX_AGE_NB/STI.FRA.M.5893...", 
 #'                      sdmx_resource = 'data', count = TRUE)
 #'
 #' }
@@ -102,7 +105,7 @@
 
 sdmx_ilostat <- function(	dsd, 
 							sdmx_resource = getOption('ilostat_sdmx_resource', 'codelist'),
-							sdmx_format = getOption('ilostat_sdmx_format', 'compact_2_1'),
+							sdmx_format = getOption('ilostat_sdmx_format', 'structurespecificdata'),
 							lang  = getOption('ilostat_lang', 'en'), 
 							count = getOption('ilostat_sdmx_count', FALSE),
 							quiet = getOption('ilostat_quiet', FALSE)){
@@ -125,7 +128,7 @@ sdmx_ilostat <- function(	dsd,
    
   } else if(tolower(sdmx_resource) == 'dataflow'){
 	
-	y <- sdmx_ilostat_dataflow(dsd, sdmx_format, quiet)
+	y <- sdmx_ilostat_dataflow(dsd,  quiet)
   
   } else if(tolower(sdmx_resource) == 'conceptref'){
 	
@@ -144,19 +147,29 @@ sdmx_ilostat_data <- function (	dsd,
 	# add attribute format compact
 	dsd <- 	ifelse(	
 				stringr::str_detect(dsd,"[?]"), 
-				paste0(dsd, "&format=",								sdmx_format), 
+				paste0(dsd, "&format=",	sdmx_format), 
 				paste0(dsd, "?format=", sdmx_format)
 			)
 	
-	mypath <- paste0("http://www.ilo.org/ilostat/sdmx/ws/rest/data/ILO,DF_",dsd)
+	mypath <- paste0("https://www.ilo.org/sdmx/rest/data/ILO,DF_",dsd)
 	
-	X <- 	try(
+
+	if(sdmx_format %in% 'csv') {
+			
+			X <- 	try(read_csv(mypath, col_types = cols(.default = col_character()), progress = FALSE), silent = TRUE)
+	}
+	
+	if (sdmx_format %in% 'structurespecificdata'){
+	
+			X <- 	try(
 	
 				read_xml(mypath), 
 				
 				silent = TRUE
 			)
-		
+	
+	}
+	
 	# test error message
 	if(substr(X[1], 1, 5)%in%"Error"){ 
 		
@@ -168,7 +181,7 @@ sdmx_ilostat_data <- function (	dsd,
 			
 		  }
 		  
-		  if(stringr::str_detect(X[1], 'HTTP error 400')){
+		  if(stringr::str_detect(X[1], 'HTTP error 400| HTTP error 404')){
 		  
 		   message("'Error message dsd is invalid.")
 		   
@@ -182,37 +195,43 @@ sdmx_ilostat_data <- function (	dsd,
 	
 	}
 	
-	# extract namespace of the xml doc
-	ns <- xml_ns(X)		
-	
-	# test dataset exist
-	len_x <- length(xml_find_all(X, ".//message:DataSet", ns))
-	
-	if(len_x ==0){ 
-	
-		if(!quiet){
-		
-		  message("Query with dsd = '", dsd, "': Dataset does not exist.")
-		
-		}
-		
-		return(NULL)
-	
-	}
+	invisible(gc(reset = TRUE))
 	
 	if(!quiet){
 		
-	  message('data from : ', mypath )	
+		message('data from : ', mypath )	
 	}
 	
-	# return SeriesKey only
-	if(str_detect(dsd,"detail=serieskeysonly")){ 
+	if (sdmx_format %in% 'structurespecificdata'){
+	
+		# extract namespace of the xml doc
+		ns <- xml_ns(X)		
+	
+	# test dataset exist
+		len_x <- length(xml_find_all(X, ".//message:DataSet", ns))
+	
+		if(len_x ==0){ 
+	
+			if(!quiet){
+		
+			message("Query with dsd = '", dsd, "': Dataset does not exist.")
+		
+			}
+		
+			return(NULL)
+	
+		}
+	
+
+	
+		# return SeriesKey only
+		if(str_detect(dsd,"detail=serieskeysonly")){ 
 	  
-	  y <- xml_attrs(xml_find_all(X, ".//Series", ns)) %>% lapply(as.list)  %>% bind_rows  
+			y <- xml_attrs(xml_find_all(X, ".//Series", ns)) %>% lapply(as.list)  %>% bind_rows  
 	
-	} else {
+		} else {
 	
-	  # return all 
+		# return all 
 	  y <-  llply(
 			  
 			  xml_find_all(X, ".//Series", ns), 
@@ -236,11 +255,24 @@ sdmx_ilostat_data <- function (	dsd,
 			) %>% 
 			
 			bind_rows 
+		
+			rm(X)
+		
+		}
+	
 	}
 	
 	invisible(gc(reset = TRUE))
 	
-	y
+
+	
+	
+	if(sdmx_format %in% 'csv') {
+	return(X) } else {return(y)}
+	
+	
+	
+	
 }
 
 sdmx_ilostat_count <- function( dsd, 
@@ -260,9 +292,9 @@ sdmx_ilostat_count <- function( dsd,
 		   
 		   stringr::str_detect(dsd,"[?]"), 
 		   
-		   paste0(dsd, "&format=", sdmx_format), 
+		   paste0(dsd, "&format=", 'structurespecificdata'), 
 		   
-		   paste0(dsd, "?format=", sdmx_format))
+		   paste0(dsd, "?format=", 'structurespecificdata'))
   
   # set if SeriesKeysOnly is requested (NO Obs, No Attrs)
   SeriesKeysOnly 	<- grep("DETAIL=SERIESKEYSONLY", toupper(dsd))%in%1 	
@@ -298,7 +330,7 @@ sdmx_ilostat_count <- function( dsd,
   
   }
   
-  mypath <- paste0("http://www.ilo.org/ilostat/sdmx/ws/rest/data/ILO,DF_",dsd)
+  mypath <- paste0("https://www.ilo.org/sdmx/rest/data/ILO,DF_",dsd)
   
   X <- 	try(
              
@@ -366,17 +398,14 @@ sdmx_ilostat_count <- function( dsd,
 }
 
 sdmx_ilostat_codelist	<- function(dsd, 
-									# sdmx_format,
 									lang,
 									quiet){
 
   mypath <- paste0(
 	          
-			  "http://www.ilo.org/ilostat/sdmx/ws/rest/codelist/ILO/",
+			  "https://www.ilo.org/sdmx/rest/codelist/ILO/",
 			  
-			  dsd, 
-			  
-			  '?format=', 'compact_2_1'
+			  dsd
 			)
 			
   X <- try(	
@@ -399,7 +428,7 @@ sdmx_ilostat_codelist	<- function(dsd,
   
   ns <- xml_ns(X)	# extract namespace of the xml doc
 
-  if(length(xml_find_all(X, ".//str:Codelists", ns))==0){ # empty test 
+  if(length(xml_find_all(X, ".//structure:Codelists", ns))==0){ # empty test 
 		
 	message("Query with dsd = '", dsd, "' Dataset does not exist.")
 	
@@ -409,27 +438,31 @@ sdmx_ilostat_codelist	<- function(dsd,
  
   message('codelist from : ', mypath )
   
-  xml_find_all(X,".//str:Code", ns) %>%
+  xml_find_all(X,".//structure:Code", ns) %>%
 	
 	ldply( 
 	  
 	  function(y){
 		
-		Code <- c(code = xml_attr(y,"id"))
-		
-		Label <- c(label = xml_text(xml_find_all(y,".//com:Name",ns)[xml_attr(xml_find_all(y,".//com:Name",ns),"lang")%in%lang]))
+		MyCode <- c(code = xml_attr(y,"id"))
+		MyLabel <- c(label = xml_text(xml_find_all(y,".//common:Name",ns)[xml_attr(xml_find_all(y,".//common:Name",ns),"lang")%in%lang]))
 		
 		Annotation <- NULL
-		if(length(xml_find_all(y,".//com:Annotation",ns))>1){
-		  for (i in 1:length(xml_text(xml_find_all(y,".//com:AnnotationTitle",ns)))){
+		if(length(xml_find_all(y,".//common:Annotations",ns))>0){
+		  for (i in 1:length(xml_text(xml_find_all(y,".//common:AnnotationType",ns)))){
 		
-			if(is.na(xml_text(xml_find_all(xml_find_all(y,".//com:Annotation",ns)[i] ,".//com:AnnotationText",ns))[xml_attr(xml_find_all(y,".//com:AnnotationText",ns),"lang")%in%lang][1]) ){
-			
-			  Annotation[[ xml_text(xml_find_all(xml_find_all(y,".//com:Annotation",ns)[i] ,".//com:AnnotationTitle",ns)) ]] <- xml_text(xml_find_all(xml_find_all(y,".//com:Annotation",ns)[i] ,".//com:AnnotationText",ns))
-						
+			if(is.na(xml_text(xml_find_all(xml_find_all(y,".//common:Annotation",ns)[i] ,".//common:AnnotationText",ns))[xml_attr(xml_find_all(y,".//common:AnnotationText",ns),"lang")%in%lang][1]) ){
+				
+				test <- xml_text(xml_find_all(xml_find_all(y,".//common:Annotation",ns)[i] ,".//common:AnnotationText",ns))
+				if(length(test) !=0 ){
+					Annotation[[ xml_text(xml_find_all(xml_find_all(y,".//common:Annotation",ns)[i] ,".//common:AnnotationType",ns)) ]] <- xml_text(xml_find_all(xml_find_all(y,".//common:Annotation",ns)[i] ,".//common:AnnotationText",ns))
+				} else {
+					Annotation[[ xml_text(xml_find_all(xml_find_all(y,".//common:Annotation",ns)[i] ,".//common:AnnotationType",ns)) ]] <- NA
+				
+				}
 			} else {
 			
-			  Annotation[[ xml_text(xml_find_all(xml_find_all(y,".//com:Annotation",ns)[i] ,".//com:AnnotationTitle",ns)) ]] <- xml_text(xml_find_all(xml_find_all(y,".//com:Annotation",ns)[i] ,".//com:AnnotationText",ns))[xml_attr(xml_find_all(y,".//com:AnnotationText",ns),"lang")%in%lang][1]
+			  Annotation[[ xml_text(xml_find_all(xml_find_all(y,".//common:Annotation",ns)[i] ,".//common:AnnotationType",ns)) ]] <- xml_text(xml_find_all(xml_find_all(y,".//common:Annotation",ns)[i] ,".//common:AnnotationText",ns))[xml_attr(xml_find_all(y,".//common:AnnotationText",ns),"lang")%in%lang][1]
 			
 		    }
 	
@@ -437,26 +470,23 @@ sdmx_ilostat_codelist	<- function(dsd,
 		  
 		}
 			
-		Description <- c(description = xml_text(xml_find_all(y,".//com:Description",ns)[xml_attr(xml_find_all(y,".//com:Description",ns),"lang")%in%lang]))
+		Description <- c(description = xml_text(xml_find_all(y,".//common:Description",ns)[xml_attr(xml_find_all(y,".//common:Description",ns),"lang")%in%lang]))
 
-		c(Code, Label, Annotation, Description) %>% t %>% as_tibble
+		c(MyCode, MyLabel, Annotation, Description) %>% t %>% as_tibble
 								
 	  }
 	) %>% 
 	
-	as_tibble 
+	as_tibble %>% filter(!code %in% '_Z')
 }
 
 sdmx_ilostat_dataflow <- function(  dsd,
-									sdmx_format,
 									quiet){
   mypath <- paste0(
 	          
-			  "http://www.ilo.org/ilostat/sdmx/ws/rest/dataflow/ILO/DF_",
+			  "https://www.ilo.org/sdmx/rest/dataflow/ILO/DF_",
 			  
-			  dsd, 
-			  
-			  '?format=', sdmx_format
+			  dsd
 			)
   
   X <- 	try(
@@ -484,7 +514,7 @@ sdmx_ilostat_dataflow <- function(  dsd,
   ns <- xml_ns(X)		
 
   # test dataset exist
-  if(length(xml_find_all(X, ".//str:Dataflow", ns))==0){ 
+  if(length(xml_find_all(X, ".//structure:Dataflow", ns))==0){ 
 
 	if(!quiet){
 		  
@@ -502,7 +532,7 @@ sdmx_ilostat_dataflow <- function(  dsd,
 
   }  
   
-  xml_attr(xml_find_all(X, ".//str:Dataflow", ns), 'id')
+  xml_attr(xml_find_all(X, ".//structure:Dataflow", ns), 'id')
 
 }
 
@@ -512,11 +542,9 @@ sdmx_ilostat_conceptRef <- function(dsd,
 
   mypath <- paste0(
 	          
-			  "http://www.ilo.org/ilostat/sdmx/ws/rest/datastructure/ILO/",
+			  "https://www.ilo.org/sdmx/rest/datastructure/ILO/",
 			  
-			  dsd, 
-			  
-			  '?format=', 'generic_2_1'
+			  dsd
 			)
   
   X <- try(	
@@ -547,7 +575,7 @@ sdmx_ilostat_conceptRef <- function(dsd,
   ns <- xml_ns(X)	
 
   # test dataset exist
-  if(length(xml_find_all(X, ".//str:DimensionList", ns))==0){ 
+  if(length(xml_find_all(X, ".//structure:DimensionList", ns))==0){ 
   
 	message("Query with dsd = '", dsd, "' Dataset does not exist.")
 
@@ -555,7 +583,7 @@ sdmx_ilostat_conceptRef <- function(dsd,
   
   } else {
   
-    y <-  xml_attr(xml_find_all(xml_find_all(X, ".//str:DimensionList", ns), ".//str:Dimension", ns), 'id') 
+    y <-  xml_attr(xml_find_all(xml_find_all(X, ".//structure:DimensionList", ns), ".//structure:Dimension", ns), 'id') 
 	
   }
 

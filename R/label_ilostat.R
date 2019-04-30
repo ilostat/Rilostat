@@ -79,7 +79,7 @@ label_ilostat <- function(	x,
 	  
 	  order_cols <- c(ref_cols, colnames(y)[!colnames(y) %in% ref_cols])
 	  
-	  y <- select_(y, .dots = order_cols)
+	  y <- y %>% select( !! order_cols)
 	
     }
 	

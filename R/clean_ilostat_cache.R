@@ -61,7 +61,7 @@ clean_ilostat_cache <- function(cache_dir = getOption("ilostat_cache_dir", file.
             
 		ref_toc <- bind_rows(ref_toc, 
 						get_ilostat_toc('indicator') %>%
-						select_(.dots = c('id', 'last.update')) %>%
+						select(!! c('id', 'last.update')) %>%
 						mutate_("last.update" = test)) 
 	    
 		ref_toc <- ref_toc %>% filter_("id %in% cache_files$id")
@@ -73,7 +73,7 @@ clean_ilostat_cache <- function(cache_dir = getOption("ilostat_cache_dir", file.
 	    
 		ref_toc <- bind_rows(ref_toc, 
 						get_ilostat_toc('ref_area') %>%
-						select_(.dots = c('id', 'last.update')) %>%
+						select(!! c('id', 'last.update')) %>%
 						mutate_("last.update" = test)) 
 		
 		ref_toc <- ref_toc %>% filter_("id %in% cache_files$id")				

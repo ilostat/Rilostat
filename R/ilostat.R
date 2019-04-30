@@ -24,7 +24,7 @@
 #' See citation("Rilostat")
 #'
 #' ilostat bulk download facility user guidelines 
-#' \url{http://www.ilo.org/ilostat-files/WEB_bulk_download/ILOSTAT_BulkDownload_Guidelines.pdf}
+#' \url{https://www.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf}
 #'
 #' @keywords package
 #' @importFrom readr read_csv
@@ -35,7 +35,6 @@
 #' @importFrom plyr ldply
 #' @importFrom plyr mapvalues
 #' @importFrom dplyr %>%
-#' @importFrom dplyr select_
 #' @importFrom dplyr select
 #' @importFrom dplyr filter_
 #' @importFrom dplyr filter

@@ -1,4 +1,9 @@
-# Rilostat 0.21
+# Rilostat 0.2.2
+
+* sdmx_ilostat work with csv and json format
+* use dplyr > 8
+
+# Rilostat 0.2.1
 
 * add segment 'modelled_estimates' for new dta files
 * sdmx_ilostat return threshold error

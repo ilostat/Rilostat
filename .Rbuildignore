@@ -1,3 +1,5 @@
+^Meta$
+^doc$
 # Extra material related but not to be included in the package
 # inst/extras
 README.Rmd
@@ -16,6 +18,7 @@ docs
 ^packrat/
 ^\.Rprofile$
 ^NEWS.md$
+^NEWS$
 ^cran-comments\.md$
 ^data-raw$
 ^revdep$

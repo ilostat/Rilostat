@@ -4,8 +4,8 @@
 \alias{label_ilostat}
 \title{Get Ilostat Codes}
 \usage{
-label_ilostat(x, dic = NULL, code = NULL, lang = getOption("ilostat_lang",
-  "en"))
+label_ilostat(x, dic = NULL, code = NULL,
+  lang = getOption("ilostat_lang", "en"))
 }
 \arguments{
 \item{x}{A character or a factor vector or a data_frame to labelled.}

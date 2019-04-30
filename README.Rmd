@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 
 <br>
 
-## ilostat R package
+# ilostat R package
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -40,7 +40,7 @@ More advanced users can take advantage of ILOSTAT's well-structured [bulk downlo
 The ilostat R package (`'Rilostat'`) was designed to give data users the ability to access the ILOSTAT database, search for data, rearrange the information as needed, download it in the desired format, and 
 make various data visualizations, all in a programmatic and replicable manner, with the possibility of quickly re-running the queries as required.
 
-#### Main features of the ilostat R package 
+## Main features of the ilostat R package 
 
 - Provides access to all annual, quarterly, and monthly data available via the ILOSTAT [bulk download facility](http://www.ilo.org/ilostat/faces/oracle/webcenter/portalapp/pagehierarchy/Page30.jspx) ([user guide](http://www.ilo.org/ilostat-files/WEB_bulk_download/ILOSTAT_BulkDownload_Guidelines.pdf))
 - Allows to search for and download data and related metadata in English, French and Spanish
@@ -50,12 +50,12 @@ make various data visualizations, all in a programmatic and replicable manner, w
 - Allows for `grep`-style searching for data descriptions and names
 - Provides access to the ILOSTAT catalogue of related descriptive metadata ([user guide](http://www.ilo.org/ilostat/content/conn/ILOSTATContentServer/path/Contribution%20Folders/statistics/web_pages/static_pages/technical_page/ilostat_appl/SDMX_User_Guide.pdf))
 
-#### Acknowledgements
+## Acknowledgements
 
 The developer of this package drew extensive inspiration from the [eurostat R package](https://CRAN.R-project.org/package=eurostat) and its related documentation:  
   - [Retrieval and Analysis of Eurostat Open Data with the eurostat Package](https://journal.r-project.org/archive/2017/RJ-2017-019/RJ-2017-019.pdf) - [Leo Lahti](https://github.com/antagomir), [Przemyslaw Biecek](https://github.com/pbiecek), [Markus Kainu](https://github.com/muuankarski) and [Janne Huovari](https://github.com/jhuovari). R Journal 9(1), 385-392, 2017.
 
-## <a name="installation"></a>Installation
+# Installation
 
 Download and install [R from CRAN](https://cran.r-project.org/), install [RStudio's IDE](http://www.rstudio.com/ide/download/), a powerful user interface for R.
 Then use command:
@@ -95,7 +95,7 @@ ilostat('GettingStarted')
 ```
 
 
-### Contribute
+## Contribute
 
 Contributions are very welcome:
 
@@ -103,7 +103,7 @@ Contributions are very welcome:
   
   * [Star us on the Github page](https://github.com/ilostat/Rilostat)
   
-### Permission to reproduce ILO publication and data
+## Permission to reproduce ILO publication and data
 
 The reproduction of ILO material is generally authorized for non-commercial purposes and within established limits. 
 However, you may need to submit a formal request in certain circumstances. for more information please consult:

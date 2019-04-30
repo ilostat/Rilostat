@@ -189,7 +189,7 @@ get_ilostat <- function(id,
 	
   order_cols <- c(ref_cols, colnames(dat)[!colnames(dat) %in% ref_cols])
 	
-  select_(dat, .dots = order_cols)
+  dat %>% select(!! order_cols)
  
 }
 
@@ -401,7 +401,7 @@ get_ilostat_dat <- function(id,
 	
 	order_cols <- c(ref_cols, colnames(dat)[!colnames(dat) %in% ref_cols])
 	
-	dat <- select_(dat, .dots = order_cols)
+	dat <- dat %>% select(!! order_cols)
 	
 
 	if(cache_format == 'rds'){
@@ -472,7 +472,7 @@ get_ilostat_dat <- function(id,
 	  
 	ref_dataonly <- ref_dataonly[ref_dataonly %in% names(dat)] 
 	  
-	dat <- select_(dat, .dots = ref_dataonly)
+	dat <- dat %>% select(!! ref_dataonly)
 	
   }
   if(detail %in% 'serieskeysonly'){
@@ -481,7 +481,7 @@ get_ilostat_dat <- function(id,
 	  
 	ref_serieskeysonly <- ref_serieskeysonly[ref_serieskeysonly %in% names(dat)] 
 	  
-	dat <- select_(dat, .dots = ref_serieskeysonly) %>% distinct()
+	dat <- dat %>% select(!! ref_serieskeysonly) %>% distinct()
 	
   }
   if(detail %in% 'bestsourceonly'){

@@ -55,6 +55,9 @@ The values in column 'id' should be used to download a selected dataset.
 
 The TOC in English by ref_area is downloaded from \url{http://www.ilo.org/ilostat-files/WEB_bulk_download/ref_area/table_of_contents_en.csv}. 
 The values in column 'id' should be used to download a selected dataset.
+
+The TOC in English by modelled_estimates is downloaded from \url{http://www.ilo.org/ilostat-files/WEB_bulk_download/modelled_estimates/table_of_contents_en.csv}. 
+The values in column 'id' should be used to download a selected dataset.
 }
 \examples{
 \dontrun{
@@ -67,7 +70,7 @@ The values in column 'id' should be used to download a selected dataset.
 ## search on toc
   	toc <- get_ilostat_toc(search = 'education')
   	head(toc)
-  	toc <- get_ilostat_toc(lang = 'fr', search = 'éducation')
+  	toc <- get_ilostat_toc(lang = 'fr', search = 'Ã©ducation')
   	head(toc)
   	toc <- get_ilostat_toc(segment = 'ref_area', lang = 'fr', search = 'Albanie')
   	toc
