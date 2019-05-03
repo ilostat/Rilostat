@@ -19,10 +19,10 @@
 #' \url{http://www.ilo.org/ilostat-files/WEB_bulk_download/html/bulk_main.html}
 #' @examples
 #' \dontrun{
-#' 	       tmp <- get_ilostat_dic("indicator")
-#' 	       head(tmp)
-#' 	       tmp <- get_ilostat_dic("classif1", lang = "fr")
-#' 	       head(tmp)
+#'  tmp <- get_ilostat_dic("indicator")
+#'  head(tmp)
+#'  tmp <- get_ilostat_dic("classif1", lang = "fr")
+#'  head(tmp)
 #' }
 #' @export
 

@@ -21,82 +21,82 @@
 #' \dontrun{
 #' ########## get codelist
 #' # fetch collection define on ILOSTAT
-#' dic <- sdmx_ilostat(dsd = "CL_COLLECTION", lang ="en")
-#' head(dic)
+#'  dic <- sdmx_ilostat(dsd = "CL_COLLECTION", lang ="en")
+#'  head(dic)
 #'
 #' # fetch country available on ILOSTAT
-#' dic <- sdmx_ilostat(dsd = "CL_AREA", lang ="es")
-#' head(dic)
+#'  dic <- sdmx_ilostat(dsd = "CL_AREA", lang ="es")
+#'  head(dic)
 #'
 #' # fetch classif ECO available on ILOSTAT
-#' dic <- sdmx_ilostat(dsd = "CL_ECO", lang ="en")
-#' head(dic)
+#'  dic <- sdmx_ilostat(dsd = "CL_ECO", lang ="en")
+#'  head(dic)
 #'
 #' # fetch classif ECO verion available on ILOSTAT
-#' dic <- sdmx_ilostat(dsd = "CL_CLASSIF_ECO", lang ="en")
-#' head(dic)
+#'  dic <- sdmx_ilostat(dsd = "CL_CLASSIF_ECO", lang ="en")
+#'  head(dic)
 #'
 #' # fetch note type available on ILOSTAT
-#' dic <- sdmx_ilostat(dsd = "CL_NOTE_TYPE", lang ="en")
-#' head(dic)
+#'  dic <- sdmx_ilostat(dsd = "CL_NOTE_TYPE", lang ="en")
+#'  head(dic)
 #'
 #' # fetch note "Repository" available on ILOSTAT
-#' dic <- sdmx_ilostat(dsd = "CL_NOTE_R1", lang ="en")
-#' head(dic)
+#'  dic <- sdmx_ilostat(dsd = "CL_NOTE_R1", lang ="en")
+#'  head(dic)
 #'
 #' ########## get data
 #'
 #' ### with attribute
-#' dat <- sdmx_ilostat(dsd = 'STI_ALB_EMP_TEMP_SEX_AGE_NB', 
+#'  dat <- sdmx_ilostat(dsd = 'STI_ALB_EMP_TEMP_SEX_AGE_NB', 
 #'                     sdmx_resource = 'data')
-#' head(dat)
+#'  head(dat)
 #'
 #' # without attribute
-#' dat <- sdmx_ilostat(dsd = "STI_DEU_EMP_TEMP_SEX_AGE_NB?detail=dataonly", 
+#'  dat <- sdmx_ilostat(dsd = "STI_DEU_EMP_TEMP_SEX_AGE_NB?detail=dataonly", 
 #'                     sdmx_resource = 'data')
 #'
 #' # of last N data
-#' dat <- sdmx_ilostat(dsd = "STI_ITA_EMP_TEMP_SEX_AGE_NB?lastNObservations=1",
+#'  dat <- sdmx_ilostat(dsd = "STI_ITA_EMP_TEMP_SEX_AGE_NB?lastNObservations=1",
 #'                     sdmx_resource = 'data')
-#' head(dat)
+#'  head(dat)
 #'
 #' # of first N data
-#' dat <- sdmx_ilostat(dsd = "STI_ARG_EMP_TEMP_SEX_AGE_NB?firstNObservations=2", 
+#'  dat <- sdmx_ilostat(dsd = "STI_ARG_EMP_TEMP_SEX_AGE_NB?firstNObservations=2", 
 #'                     sdmx_resource = 'data')
-#' head(dat)
+#'  head(dat)
 #'
 #' ######## with multi country and advanced filters
 #'
 #' # to get the order of the filter first get the conceptref of the DSD
 #'
-#' filter_position <- sdmx_ilostat(dsd = 'STI_ALL_EMP_TEMP_SEX_AGE_NB', 
-#' 					   sdmx_resource = 'conceptref')
-#' filter_position
+#'  filter_position <- sdmx_ilostat(dsd = 'STI_ALL_EMP_TEMP_SEX_AGE_NB', 
+#'  				   sdmx_resource = 'conceptref')
+#'  filter_position
 #'
 #' # COUNTRY and FREQ are in second and third position of the filters
 #'
-#' dat <- sdmx_ilostat(dsd = "STI_ALL_EMP_TEMP_SEX_AGE_NB/.FRA+DEU.M....", 
+#'  dat <- sdmx_ilostat(dsd = "STI_ALL_EMP_TEMP_SEX_AGE_NB/.FRA+DEU.M....", 
 #'                     sdmx_resource = 'data')
-#' head(dat)
+#'  head(dat)
 #'
 #'
 #' # as from 2009
-#' dat <- sdmx_ilostat("STI_FRA_UNE_TUNE_SEX_AGE_NB/STI.FRA.M.5893..", 
+#'  dat <- sdmx_ilostat("STI_FRA_UNE_TUNE_SEX_AGE_NB/STI.FRA.M.5893..", 
 #'                     sdmx_resource = 'data')
-#' head(dat)
+#'  head(dat)
 #'
 #' ########## dataflow available
 #'
-#' flow <- sdmx_ilostat("STI_TTO_MULTI", sdmx_resource = 'dataflow')
+#'  flow <- sdmx_ilostat("STI_TTO_MULTI", sdmx_resource = 'dataflow')
 #'
-#' flow <- sdmx_ilostat("KI_ALL_EMP_MULTI", sdmx_resource = 'dataflow')
+#'  flow <- sdmx_ilostat("KI_ALL_EMP_MULTI", sdmx_resource = 'dataflow')
 #'
-#' flow <- sdmx_ilostat("YI_FRA_UNE_MULTI", sdmx_resource = 'dataflow')
+#'  flow <- sdmx_ilostat("YI_FRA_UNE_MULTI", sdmx_resource = 'dataflow')
 #'
 #' ########## count data available
 #'
 #' # with multi country
-#' sdmx_ilostat("STI_FRA_UNE_TUNE_SEX_AGE_NB/STI.FRA.M.5893...", 
+#'  sdmx_ilostat("STI_FRA_UNE_TUNE_SEX_AGE_NB/STI.FRA.M.5893...", 
 #'                      sdmx_resource = 'data', count = TRUE)
 #'
 #' }

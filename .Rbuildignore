@@ -17,8 +17,13 @@ docs
 ^\.Rproj\.user$
 ^packrat/
 ^\.Rprofile$
+^NEWS.Rmd$
 ^NEWS.md$
+^NEWS.html$
 ^NEWS$
+^vignettes\RilostatVisu.Rmd$
+^vignettes\RilostatVisu.html$
+^vignettes\RilostatVisu_files\$
 ^cran-comments\.md$
 ^data-raw$
 ^revdep$

@@ -21,10 +21,10 @@
 #' \url{http://www.ilo.org/ilostat-files/WEB_bulk_download/ILOSTAT_BulkDownload_Guidelines.pdf}
 #' @examples
 #' \dontrun{
-#' 	 dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A", cache = FALSE)
-#'   dat_lab <- label_ilostat(dat)
-#'   head(dat_lab)
-#'   clean_ilostat_cache() 
+#'  dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A", cache = FALSE)
+#'  dat_lab <- label_ilostat(dat)
+#'  head(dat_lab)
+#'  clean_ilostat_cache() 
 #' }
 #' @export
 label_ilostat <- function(	x, 

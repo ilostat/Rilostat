@@ -34,10 +34,10 @@ A character or a factor vector of codes returns a corresponding vector of defini
 }
 \examples{
 \dontrun{
-	 dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A", cache = FALSE)
-  dat_lab <- label_ilostat(dat)
-  head(dat_lab)
-  clean_ilostat_cache() 
+ dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A", cache = FALSE)
+ dat_lab <- label_ilostat(dat)
+ head(dat_lab)
+ clean_ilostat_cache() 
 }
 }
 \references{

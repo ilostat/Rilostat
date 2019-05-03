@@ -62,29 +62,29 @@ The values in column 'id' should be used to download a selected dataset.
 \examples{
 \dontrun{
 ## default segment by indicator, default lang English
-		toc <- get_ilostat_toc()
-		head(toc)
-		toc <- get_ilostat_toc(segment = 'ref_area', lang = 'fr')
-		head(toc)
+ toc <- get_ilostat_toc()
+ head(toc)
+ toc <- get_ilostat_toc(segment = 'ref_area', lang = 'fr')
+ head(toc)
 ##
 ## search on toc
-  	toc <- get_ilostat_toc(search = 'education')
-  	head(toc)
-  	toc <- get_ilostat_toc(lang = 'fr', search = 'Ã©ducation')
-  	head(toc)
-  	toc <- get_ilostat_toc(segment = 'ref_area', lang = 'fr', search = 'Albanie')
-  	toc
-  	toc <- get_ilostat_toc(segment = 'ref_area', lang = 'es', search = 'Trimestral')
-  	head(toc)
+ toc <- get_ilostat_toc(search = 'education')
+ head(toc)
+ toc <- get_ilostat_toc(lang = 'fr', search = 'Ã©ducation')
+ head(toc)
+ toc <- get_ilostat_toc(segment = 'ref_area', lang = 'fr', search = 'Albanie')
+ toc
+ toc <- get_ilostat_toc(segment = 'ref_area', lang = 'es', search = 'Trimestral')
+ head(toc)
 ##
 ## search multi on toc
-     toc <- get_ilostat_toc(segment = 'ref_area', lang = 'fr', 
+ toc <- get_ilostat_toc(segment = 'ref_area', lang = 'fr', 
              search = 'Albanie|France', fixed = FALSE)
-	head(toc)
-		toc <- get_ilostat_toc(search = 'youth|adult', fixed = FALSE)
-	head(toc)
-		toc <- get_ilostat_toc(search = c('youth','adult'), fixed = FALSE)
-	head(toc)
+ head(toc)
+ toc <- get_ilostat_toc(search = 'youth|adult', fixed = FALSE)
+ head(toc)
+ toc <- get_ilostat_toc(search = c('youth','adult'), fixed = FALSE)
+ head(toc)
 ##
 }
 }

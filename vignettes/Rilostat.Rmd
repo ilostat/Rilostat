@@ -1,5 +1,5 @@
 ---
-title: "Getting started with the ilostat R package"
+title: "Introduction to ilostat R package"
 author: "ILO Department of Statistics"
 date: "`r Sys.Date()`"
 output: 

@@ -118,29 +118,29 @@ Download datasets from ilostat \url{www.ilo.org/ilostat} via bulk download facil
 \examples{
 \dontrun{
 ############# get simple dataset
-	dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A")
+ dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A")
  head(dat)
-	dat <- get_ilostat("NZL_Q", segment = "ref_area")
+ dat <- get_ilostat("NZL_Q", segment = "ref_area")
  head(dat)
 
-	dir.create(file.path(tempdir(), "r_cache"))
-	dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A", 
+ dir.create(file.path(tempdir(), "r_cache"))
+ dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A", 
                   cache_dir = file.path(tempdir(), "r_cache"))
  head(dat)
 
  clean_ilostat_cache(cache_dir = file.path(tempdir(), "r_cache")) 
 
  options(ilostat_update = TRUE)
-	dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A")
-	head(dat)
-	options(ilostat_update = FALSE)
+ dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A")
+ head(dat)
+ options(ilostat_update = FALSE)
  options(ilostat_cache_dir = file.path(tempdir(), "r_cache"))
-	dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A")
+ dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A")
 
  clean_ilostat_cache() 
 
 ############# get multiple datasets
-	dat <- get_ilostat(c("CPI_ACPI_COI_RT_M", 'CPI_ACPI_COI_RT_Q'), cache = FALSE)
+ dat <- get_ilostat(c("CPI_ACPI_COI_RT_M", 'CPI_ACPI_COI_RT_Q'), cache = FALSE)
  head(dat)
  toc <- get_ilostat_toc(search = 'CPI_')
  head(toc)
@@ -148,10 +148,10 @@ Download datasets from ilostat \url{www.ilo.org/ilostat} via bulk download facil
 
 ############# get datasets with filters
  dat <- get_ilostat(id = c("UNE_2UNE_SEX_AGE_NB_A", 'EMP_2EMP_SEX_AGE_NB_A'), 
-			filters = list(	ref_area = "FRA", 
-			classif1 = "AGE_YTHADULT_YGE15", 
-			time = "2016",
-			sex = c("T", 'SEX_F')), quiet = TRUE)
+ 		filters = list(	ref_area = "FRA", 
+ 		classif1 = "AGE_YTHADULT_YGE15", 
+ 		time = "2016",
+ 		sex = c("T", 'SEX_F')), quiet = TRUE)
  head(dat)
  clean_ilostat_cache() 
 

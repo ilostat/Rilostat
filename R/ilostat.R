@@ -78,11 +78,11 @@
 #'
 #' # check which documentation have been recently added:
 #'
-#' ilostat() 
+#'  ilostat() 
 #'
 #' # get the first vignette:
 #' 
-#' ilostat('RilostatStart') 
+#'  ilostat('RilostatStart') 
 #' 
 #' }
 #' @export

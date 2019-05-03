@@ -77,6 +77,9 @@ http://www.ilo.org/ilostat-files/WEB_bulk_download/html/bulk_main.html." />
   </a>
 </li>
 <li>
+  <a href="../articles/Rilostat.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -87,9 +90,12 @@ http://www.ilo.org/ilostat-files/WEB_bulk_download/html/bulk_main.html." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/RilostatStart.html">Getting started with the ilostat R package</a>
+      <a href="../articles/RilostatVisu.html">Data visualisation with ilostat R package</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -202,29 +208,29 @@ ilostat bulk download facility user guidelines <a href='http://www.ilo.org/ilost
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='co'>## default segment by indicator, default lang English</span>
-                <span class='no'>toc</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat_toc</span>()
-                <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>toc</span>)
-                <span class='no'>toc</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat_toc</span>(<span class='kw'>segment</span> <span class='kw'>=</span> <span class='st'>'ref_area'</span>, <span class='kw'>lang</span> <span class='kw'>=</span> <span class='st'>'fr'</span>)
-                <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>toc</span>)
+ <span class='no'>toc</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat_toc</span>()
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>toc</span>)
+ <span class='no'>toc</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat_toc</span>(<span class='kw'>segment</span> <span class='kw'>=</span> <span class='st'>'ref_area'</span>, <span class='kw'>lang</span> <span class='kw'>=</span> <span class='st'>'fr'</span>)
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>toc</span>)
 <span class='co'>##</span>
 <span class='co'>## search on toc</span>
-        <span class='no'>toc</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat_toc</span>(<span class='kw'>search</span> <span class='kw'>=</span> <span class='st'>'education'</span>)
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>toc</span>)
-        <span class='no'>toc</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat_toc</span>(<span class='kw'>lang</span> <span class='kw'>=</span> <span class='st'>'fr'</span>, <span class='kw'>search</span> <span class='kw'>=</span> <span class='st'>'Ã©ducation'</span>)
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>toc</span>)
-        <span class='no'>toc</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat_toc</span>(<span class='kw'>segment</span> <span class='kw'>=</span> <span class='st'>'ref_area'</span>, <span class='kw'>lang</span> <span class='kw'>=</span> <span class='st'>'fr'</span>, <span class='kw'>search</span> <span class='kw'>=</span> <span class='st'>'Albanie'</span>)
-        <span class='no'>toc</span>
-        <span class='no'>toc</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat_toc</span>(<span class='kw'>segment</span> <span class='kw'>=</span> <span class='st'>'ref_area'</span>, <span class='kw'>lang</span> <span class='kw'>=</span> <span class='st'>'es'</span>, <span class='kw'>search</span> <span class='kw'>=</span> <span class='st'>'Trimestral'</span>)
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>toc</span>)
+ <span class='no'>toc</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat_toc</span>(<span class='kw'>search</span> <span class='kw'>=</span> <span class='st'>'education'</span>)
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>toc</span>)
+ <span class='no'>toc</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat_toc</span>(<span class='kw'>lang</span> <span class='kw'>=</span> <span class='st'>'fr'</span>, <span class='kw'>search</span> <span class='kw'>=</span> <span class='st'>'Ã©ducation'</span>)
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>toc</span>)
+ <span class='no'>toc</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat_toc</span>(<span class='kw'>segment</span> <span class='kw'>=</span> <span class='st'>'ref_area'</span>, <span class='kw'>lang</span> <span class='kw'>=</span> <span class='st'>'fr'</span>, <span class='kw'>search</span> <span class='kw'>=</span> <span class='st'>'Albanie'</span>)
+ <span class='no'>toc</span>
+ <span class='no'>toc</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat_toc</span>(<span class='kw'>segment</span> <span class='kw'>=</span> <span class='st'>'ref_area'</span>, <span class='kw'>lang</span> <span class='kw'>=</span> <span class='st'>'es'</span>, <span class='kw'>search</span> <span class='kw'>=</span> <span class='st'>'Trimestral'</span>)
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>toc</span>)
 <span class='co'>##</span>
 <span class='co'>## search multi on toc</span>
-     <span class='no'>toc</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat_toc</span>(<span class='kw'>segment</span> <span class='kw'>=</span> <span class='st'>'ref_area'</span>, <span class='kw'>lang</span> <span class='kw'>=</span> <span class='st'>'fr'</span>,
+ <span class='no'>toc</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat_toc</span>(<span class='kw'>segment</span> <span class='kw'>=</span> <span class='st'>'ref_area'</span>, <span class='kw'>lang</span> <span class='kw'>=</span> <span class='st'>'fr'</span>,
              <span class='kw'>search</span> <span class='kw'>=</span> <span class='st'>'Albanie|France'</span>, <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>toc</span>)
-                <span class='no'>toc</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat_toc</span>(<span class='kw'>search</span> <span class='kw'>=</span> <span class='st'>'youth|adult'</span>, <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>toc</span>)
-                <span class='no'>toc</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat_toc</span>(<span class='kw'>search</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>'youth'</span>,<span class='st'>'adult'</span>), <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-        <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>toc</span>)
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>toc</span>)
+ <span class='no'>toc</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat_toc</span>(<span class='kw'>search</span> <span class='kw'>=</span> <span class='st'>'youth|adult'</span>, <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>toc</span>)
+ <span class='no'>toc</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat_toc</span>(<span class='kw'>search</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>'youth'</span>,<span class='st'>'adult'</span>), <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+ <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>toc</span>)
 <span class='co'>##</span>
 <span class='co'># }</span></pre>
   </div>

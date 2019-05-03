@@ -63,15 +63,6 @@ if(!require(devtools)){install.packages('devtools')}
 install_github("ilostat/Rilostat")
 ```
 
-The ilostat R package (`'Rilostat'`) includes the following functions:
-
-
-```r
-require(ilostat)
-as.data.frame(ls("package:Rilostat"))
-
-```
-
 
 
 We do not expect to update the ilostat R package too often, but based on questions and remarks from ILOSTAT 

@@ -43,29 +43,29 @@
 #' @examples
 #' \dontrun{
 #' ## default segment by indicator, default lang English
-#' 		toc <- get_ilostat_toc()
-#' 		head(toc)
-#' 		toc <- get_ilostat_toc(segment = 'ref_area', lang = 'fr')
-#' 		head(toc)
+#'  toc <- get_ilostat_toc()
+#'  head(toc)
+#'  toc <- get_ilostat_toc(segment = 'ref_area', lang = 'fr')
+#'  head(toc)
 #' ##
 #' ## search on toc
-#'   	toc <- get_ilostat_toc(search = 'education')
-#'   	head(toc)
-#'   	toc <- get_ilostat_toc(lang = 'fr', search = 'éducation')
-#'   	head(toc)
-#'   	toc <- get_ilostat_toc(segment = 'ref_area', lang = 'fr', search = 'Albanie')
-#'   	toc
-#'   	toc <- get_ilostat_toc(segment = 'ref_area', lang = 'es', search = 'Trimestral')
-#'   	head(toc)
+#'  toc <- get_ilostat_toc(search = 'education')
+#'  head(toc)
+#'  toc <- get_ilostat_toc(lang = 'fr', search = 'éducation')
+#'  head(toc)
+#'  toc <- get_ilostat_toc(segment = 'ref_area', lang = 'fr', search = 'Albanie')
+#'  toc
+#'  toc <- get_ilostat_toc(segment = 'ref_area', lang = 'es', search = 'Trimestral')
+#'  head(toc)
 #' ##
 #' ## search multi on toc
-#'      toc <- get_ilostat_toc(segment = 'ref_area', lang = 'fr', 
+#'  toc <- get_ilostat_toc(segment = 'ref_area', lang = 'fr', 
 #'              search = 'Albanie|France', fixed = FALSE)
-#'		head(toc)
-#' 		toc <- get_ilostat_toc(search = 'youth|adult', fixed = FALSE)
-#'		head(toc)
-#' 		toc <- get_ilostat_toc(search = c('youth','adult'), fixed = FALSE)
-#'		head(toc)
+#'  head(toc)
+#'  toc <- get_ilostat_toc(search = 'youth|adult', fixed = FALSE)
+#'  head(toc)
+#'  toc <- get_ilostat_toc(search = c('youth','adult'), fixed = FALSE)
+#'  head(toc)
 #' ##
 #' }
 #' @export
@@ -95,7 +95,7 @@ get_ilostat_toc <- function(segment = getOption('ilostat_segment', 'indicator'),
   
   if(!is_tibble(y)){
   
-  	  stop("the toc file : ", ilostat_url(),segment, "/", "table_of_contents_",lang,".csv does not exist")
+      stop("the toc file : ", ilostat_url(),segment, "/", "table_of_contents_",lang,".csv does not exist")
   
   }
   

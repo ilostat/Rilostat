@@ -26,10 +26,10 @@ For a given coded variable from ilostat \url{www.ilo.org/ilostat}.
 }
 \examples{
 \dontrun{
-	       tmp <- get_ilostat_dic("indicator")
-	       head(tmp)
-	       tmp <- get_ilostat_dic("classif1", lang = "fr")
-	       head(tmp)
+ tmp <- get_ilostat_dic("indicator")
+ head(tmp)
+ tmp <- get_ilostat_dic("classif1", lang = "fr")
+ head(tmp)
 }
 }
 \references{
