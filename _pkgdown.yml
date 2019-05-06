@@ -1,0 +1,46 @@
+url: https://dplyr.tidyverse.org
+title: Rilostat
+
+home:
+  strip_header: true
+
+  links:
+  - text: Learn more
+    href: http://r4ds.had.co.nz/transform.html
+
+
+template:
+  bootswatch: spacelab
+
+reference:
+  - title: Essential functionality
+    contents:
+    - get_ilostat_toc
+    - get_ilostat
+    - get_ilostat_dic
+    - label_ilostat
+    - clean_ilostat_cache
+    - ilostat
+    - sdmx_ilostat
+
+navbar:
+  title: ~
+  type: default
+  left:
+    - text: Intro
+      href: articles/Rilostat.html
+    - text: Functions
+      href: reference/index.html
+    - text: Articles
+      menu:
+      - text: Rilostat Visualization
+        href: articles/RilostatVisu.html
+      - text: widget Visualization
+        href: articles/widget.html
+    - text: News
+      href: news/index.html
+  right:
+  - icon: fa-github fa-lg
+    href: https://github.com/ilostat/Rilostat
+development:
+  mode: auto

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://dplyr.tidyverse.org/index.html</loc>
+  </url>
+  <url>
+    <loc>https://dplyr.tidyverse.org/reference/clean_ilostat_cache.html</loc>
+  </url>
+  <url>
+    <loc>https://dplyr.tidyverse.org/reference/get_ilostat.html</loc>
+  </url>
+  <url>
+    <loc>https://dplyr.tidyverse.org/reference/get_ilostat_dic.html</loc>
+  </url>
+  <url>
+    <loc>https://dplyr.tidyverse.org/reference/get_ilostat_toc.html</loc>
+  </url>
+  <url>
+    <loc>https://dplyr.tidyverse.org/reference/ilostat.html</loc>
+  </url>
+  <url>
+    <loc>https://dplyr.tidyverse.org/reference/label_ilostat.html</loc>
+  </url>
+  <url>
+    <loc>https://dplyr.tidyverse.org/reference/sdmx_ilostat.html</loc>
+  </url>
+  <url>
+    <loc>https://dplyr.tidyverse.org/articles/Rilostat.html</loc>
+  </url>
+</urlset>

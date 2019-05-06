@@ -2,7 +2,7 @@
 % Please edit documentation in R/label_ilostat.R
 \name{label_ilostat}
 \alias{label_ilostat}
-\title{Get Ilostat Codes}
+\title{Switch Ilostat codes and labels}
 \usage{
 label_ilostat(x, dic = NULL, code = NULL,
   lang = getOption("ilostat_lang", "en"))
