@@ -1,16 +1,10 @@
-url: https://dplyr.tidyverse.org
-title: Rilostat
+url: https://ilostat.github.io/Rilostat/
 
 home:
   strip_header: true
-
   links:
   - text: Learn more
     href: http://r4ds.had.co.nz/transform.html
-
-
-template:
-  bootswatch: spacelab
 
 reference:
   - title: Essential functionality

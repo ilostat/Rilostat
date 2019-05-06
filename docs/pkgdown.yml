@@ -4,6 +4,6 @@ pkgdown_sha: ~
 articles:
   Rilostat: Rilostat.html
 urls:
-  reference: https://dplyr.tidyverse.org/reference
-  article: https://dplyr.tidyverse.org/articles
+  reference: https://ilostat.github.io/Rilostat//reference
+  article: https://ilostat.github.io/Rilostat//articles
 
