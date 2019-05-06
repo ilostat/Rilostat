@@ -35,8 +35,6 @@ navbar:
       menu:
       - text: Rilostat Visualization
         href: articles/RilostatVisu.html
-      - text: widget Visualization
-        href: articles/widget.html
     - text: News
       href: news/index.html
   right:
