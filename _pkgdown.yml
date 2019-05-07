@@ -4,7 +4,7 @@ home:
   strip_header: true
   links:
   - text: Learn more
-    href: http://r4ds.had.co.nz/transform.html
+    href: https://ilostat.blog/data/bulk/
 
 reference:
   - title: Essential functionality
@@ -25,14 +25,13 @@ navbar:
       href: articles/Rilostat.html
     - text: Functions
       href: reference/index.html
-    - text: Articles
-      menu:
-      - text: Rilostat Visualization
-        href: articles/RilostatVisu.html
+    - text: Visualization
+      href: articles/RilostatVisu.html   
     - text: News
       href: news/index.html
   right:
-  - icon: fa-github fa-lg
-    href: https://github.com/ilostat/Rilostat
+    - icon: fa-github fa-lg
+      href: https://github.com/ilostat/Rilostat
+
 development:
   mode: auto
