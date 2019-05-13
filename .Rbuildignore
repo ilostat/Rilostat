@@ -32,3 +32,4 @@ docs
 ^CONDUCT\.md$
 ^\.travis\.yml$
 ^codecov\.yml$
+^CRAN-RELEASE$

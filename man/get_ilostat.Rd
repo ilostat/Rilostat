@@ -61,7 +61,7 @@ best source only at the series key levels, see details.
     only queries from the ilostat bulk download facility. 
 Can be set also with options(ilostat_cache = FALSE),}
 
-\item{cache_update}{a logical whether to update cache. Check cache update with \code{'last.update'} store on the cache file name 
+\item{cache_update}{a logical whether to update cache. Check cache update with last.update attribute store on the cache file name 
  and the one from the table of contents. Can be set also with
 options(ilostat_cache_update = FALSE). Default is \code{TRUE},}
 
