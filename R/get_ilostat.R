@@ -33,7 +33,7 @@
 #' @param cache a logical whether to do caching. Default is \code{TRUE}. Affects
 #' 			only queries from the ilostat bulk download facility. 
 #'			Can be set also with options(ilostat_cache = FALSE),
-#' @param cache_update a logical whether to update cache. Check cache update with \code{last.update} store on the cache file name 
+#' @param cache_update a logical whether to update cache. Check cache update with \code{'last.update'} store on the cache file name 
 #' 			and the one from the table of contents. Can be set also with
 #'        	options(ilostat_cache_update = FALSE). Default is \code{TRUE},  
 #' @param cache_dir a path to a cache directory. The directory has to exist.
@@ -213,13 +213,15 @@ get_ilostat_dat <- function(id,
 
   # check id validity and return last update
   ref_id <- id
-  test = "ifelse(substr(last.update, 6,8) %in% '/20', 
-												last.update %>% strptime('%d/%m/%Y  %H:%M') %>% format('%Y%m%dT%H%M'), 
-												last.update)"
+  #test = "ifelse(substr(last.update, 6,8) %in% '/20', 
+  #												last.update %>% strptime('%d/%m/%Y  %H:%M') %>% format('%Y%m%dT%H%M'), 
+  #												last.update)"
   last_toc_update <- get_ilostat_toc(segment, lang) %>% 
 					filter(id %in% ref_id) %>% 
 					distinct(`last.update`) %>% 
-					mutate(`last.update` = eval(parse(text = test))) %>%
+					mutate(`last.update` = ifelse(substr(`last.update`, 6,8) %in% '/20', 
+												`last.update` %>% strptime('%d/%m/%Y  %H:%M') %>% format('%Y%m%dT%H%M'), 
+												`last.update`)) %>%
 					t %>% as.character
 					
   if(length(last_toc_update) == 0){
