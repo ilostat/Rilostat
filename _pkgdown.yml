@@ -25,8 +25,10 @@ navbar:
       href: articles/Rilostat.html
     - text: Functions
       href: reference/index.html
-    - text: Visualization
-      href: articles/RilostatVisu.html   
+    - text: Vignettes
+      menu:
+      - text: Visualisation
+        href: articles/RilostatVisu.html   
     - text: News
       href: news/index.html
   right:
@@ -35,3 +37,9 @@ navbar:
 
 development:
   mode: auto
+
+template:
+  params:
+    docsearch:
+      api_key: 5bb9805eecd1b1c2d12958ea75a8e9e8
+      index_name: rilostat

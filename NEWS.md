@@ -8,7 +8,8 @@ output:
 
 * sdmx_ilostat work with csv and json format
 * use dplyr > 8
-* add vignettes
+* add vignettes intro
+* add pkgdown [website](https://ilostat.github.io/Rilostat/) 
 
 # Rilostat 0.2.1
 
