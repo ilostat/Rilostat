@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Introduction to ilostat R package • Rilostat</title>
+<title>Bulk download in ILOSTAT: • Rilostat</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
 <link href="../docsearch.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Introduction to ilostat R package">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Bulk download in ILOSTAT:">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -61,7 +61,7 @@
       <a href="../articles/RilostatVisu.html">Visualisation</a>
     </li>
     <li>
-      <a href="../articles/SearchBulk.html">Bulkdownload</a>
+      <a href="../articles/SearchBulk.html">Search Data</a>
     </li>
   </ul>
 </li>
@@ -94,7 +94,7 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Introduction to ilostat R package</h1>
+      <h1>Bulk download in ILOSTAT:</h1>
                         <h4 class="author">ILO Department of Statistics</h4>
             
             <h4 class="date">2019-05-14</h4>
@@ -329,7 +329,7 @@
 </table>
 <p>You can also manipulate ILOSTAT’s table of contents’ dataframe using the basic R filter. If you are already familiar with ILOSTAT data and the way it is structured, you can easily filter what you want.</p>
 <p>For example, if you know beforehand you want data only from ILOSTAT’s Short Term Indicators dataset (code “STI”) and you are only interested in monthly data (code “M”) you can simply do:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">toc &lt;-<span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span>(), collection <span class="op">==</span><span class="st"> 'STI'</span>, freq <span class="op">==</span><span class="st"> 'M'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">toc &lt;-<span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(<span class="kw"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span>(), collection <span class="op">==</span><span class="st"> 'STI'</span>, freq <span class="op">==</span><span class="st"> 'M'</span>)</a></code></pre></div>
 <p><br></p>
 <table class="table">
 <caption>Table 1e. Extract, ‘Table of contents by indicator filtered for Monthly Short term indicators’</caption>
@@ -483,7 +483,7 @@
 <p>It is also possible to download multiple datasets at once, simply by setting the dataset’s id as a vector of ids or a tibble that lists ids in a specific column:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="dt">id =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">'AFG_A'</span>, <span class="st">'TTO_A'</span>), <span class="dt">segment =</span> <span class="st">'ref_area'</span>) </a>
 <a class="sourceLine" id="cb12-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(dat, ref_area)</a></code></pre></div>
+<a class="sourceLine" id="cb12-3" data-line-number="3">dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/tally">count</a></span>(dat, ref_area)</a></code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##   ref_area      n
 ##   &lt;chr&gt;     &lt;int&gt;
@@ -494,7 +494,7 @@
 <a class="sourceLine" id="cb14-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb14-3" data-line-number="3">dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="dt">id =</span> toc, <span class="dt">segment =</span> <span class="st">'indicator'</span>, <span class="dt">quiet =</span> <span class="ot">TRUE</span>) </a>
 <a class="sourceLine" id="cb14-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb14-5" data-line-number="5">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(dat, indicator)</a></code></pre></div>
+<a class="sourceLine" id="cb14-5" data-line-number="5">dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/tally">count</a></span>(dat, indicator)</a></code></pre></div>
 <pre><code>## # A tibble: 5 x 2
 ##   indicator            n
 ##   &lt;chr&gt;            &lt;int&gt;
@@ -625,7 +625,7 @@
 <a class="sourceLine" id="cb20-3" data-line-number="3">                                                    <span class="dt">ref_area =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">'BRA'</span>, <span class="st">'ZAF'</span>), </a>
 <a class="sourceLine" id="cb20-4" data-line-number="4">                                                    <span class="dt">sex =</span> <span class="st">'T'</span>, </a>
 <a class="sourceLine" id="cb20-5" data-line-number="5">                                                    <span class="dt">classif1 =</span> <span class="st">'AGE_YTHADULT_Y15-24'</span>))</a>
-<a class="sourceLine" id="cb20-6" data-line-number="6">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(dat, ref_area, sex, classif1)</a></code></pre></div>
+<a class="sourceLine" id="cb20-6" data-line-number="6">dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/tally">count</a></span>(dat, ref_area, sex, classif1)</a></code></pre></div>
 <pre><code>## # A tibble: 2 x 4
 ##   ref_area sex   classif1                n
 ##   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;               &lt;int&gt;
@@ -721,7 +721,7 @@
 </table>
 <p>In order to delete files from the cache just run:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw"><a href="../reference/clean_ilostat_cache.html">clean_ilostat_cache</a></span>()</a></code></pre></div>
-<pre><code>## Deleted ilostat files from C:\Users\bescond\AppData\Local\Temp\RtmpgJxW7E/ilostat</code></pre>
+<pre><code>## Deleted ilostat files from C:\Users\bescond\AppData\Local\Temp\RtmpQxkPQN/ilostat</code></pre>
 </div>
 <div id="plot-data" class="section level1">
 <h1 class="hasAnchor">

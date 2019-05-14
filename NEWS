@@ -4,7 +4,7 @@ output:
     keep_md: yes
 ---
 
-# Rilostat 1.0
+# Rilostat 1.0.0
 
 * sdmx_ilostat new path
 * use dplyr > 8

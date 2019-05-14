@@ -1,12 +1,12 @@
 ---
-title: "Introduction to ilostat R package"
+title: "Bulk download in ILOSTAT:"
 author: "ILO Department of Statistics"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     toc: true
 vignette:  >
-  %\VignetteIndexEntry{RilostaStart}
+  %\VignetteIndexEntry{Rilostat}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 editor_options: 

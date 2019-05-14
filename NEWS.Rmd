@@ -4,9 +4,9 @@ output:
     keep_md: yes
 ---
 
-# Rilostat 1.0
+# Rilostat 1.0.0
 
-* sdmx_ilostat work with csv and json format
+* sdmx_ilostat new path
 * use dplyr > 8
 * add vignettes intro
 * add pkgdown [website](https://ilostat.github.io/Rilostat/) 

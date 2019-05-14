@@ -29,7 +29,7 @@ navbar:
       menu:
       - text: Visualisation
         href: articles/RilostatVisu.html   
-      - text: Bulkdownload
+      - text: Search Data
         href: articles/SearchBulk.html   
     - text: News
       href: news/index.html
