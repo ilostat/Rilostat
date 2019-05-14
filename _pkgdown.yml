@@ -45,3 +45,6 @@ template:
     docsearch:
       api_key: 5bb9805eecd1b1c2d12958ea75a8e9e8
       index_name: rilostat
+    bootswatch: cerulean
+    ganalytics: UA-140141628-1
+
