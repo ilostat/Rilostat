@@ -597,8 +597,8 @@ dat %>%
 		  title = 'Youth unemployment rate in 2017 (ILO modelled estimates, Nov. 2018)', 
 		  geo = list(	
 					showframe = FALSE,  
-					showcoastlines = TRUE, 
-					projection = list(type = 'Mercator'), 
+					showcoastlines = TRUE,
+					projection = list(type = 'natural earth'), 
 					showcountries = TRUE, 
 					resolution = 110) # or 50
 			) 

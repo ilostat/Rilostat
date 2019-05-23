@@ -35,7 +35,7 @@ clean_ilostat_cache <- function(cache_dir = getOption("ilostat_cache_dir", file.
   
   if (length(cache_files) == 0) {
     
-	message("The cache folder ", cache_dir, " is empty.")
+	if(!quiet) message("The cache folder ", cache_dir, " is empty.")
   
   } else {
     
@@ -89,12 +89,12 @@ clean_ilostat_cache <- function(cache_dir = getOption("ilostat_cache_dir", file.
 	  
 	    unlink(cache_files)
     
-	    message("Deleted outdated ilostat files from ", cache_dir)    
+	    if(!quiet) message("Deleted outdated ilostat files from ", cache_dir)    
         
 	  
 	  } else {
 	  
-	    message("Cache folder ", cache_dir, " is up to date.")
+		if(!quiet)  message("Cache folder ", cache_dir, " is up to date.")
   
 	  
 	  }
@@ -102,9 +102,9 @@ clean_ilostat_cache <- function(cache_dir = getOption("ilostat_cache_dir", file.
 	} else {
   
 	
-	unlink(cache_files)
+		unlink(cache_files)
     
-	message("Deleted ilostat files from ", cache_dir)    
+		if(!quiet) message("Deleted ilostat files from ", cache_dir)    
     
 	}
   

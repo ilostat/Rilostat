@@ -123,30 +123,38 @@ Similarly, the code names of the files by reference area refer to the country
 The table below show the contents of the [indicator] directories. 
 
 ```{r}
-  knitr::kable(tibble(
-	Files = c(	"table_of_contents_en", "table_of_contents_fr", "table_of_contents_sp", 
+  knitr::kable(
+    tibble(
+	Files = c("table_of_contents_en", "table_of_contents_fr", "table_of_contents_sp", 
 				"EAP_TEAP_SEX_AGE_NB_A.csv.gz", "EMP_DWAP_NOC_RT_A.csv.gz", "..."),	
 	Contents = c(	"Table of contents in EN", "Table of contents in FR", 
 					"Table of contents in SP", 
 					"Dataset with annual labour force by sex and age", 
 					"Dataset with annual employment-to-population ratio", 
-				"...")), caption = "Contents of the [indicator] directory, approximately 500 datasets") %>%
+				"...")) , caption = "Contents of the indicator directory, approximately 500 datasets") %>%
   kable_styling(full_width = F) %>% 
   column_spec(1, bold = T, width = "20em")
 ```
 <BR>
+
 The table below show the contents of the [ref_area] directories. 
 
 
 ```{r}
   knitr::kable(tibble(
-	Files = c(	"table_of_contents_en", "table_of_contents_fr", "table_of_contents_sp", 
-				"ABW_A.csv.gz", "ABW_M.csv.gz", "..."),
-	Contents = c(	"Table of contents in EN", "Table of contents in FR", 
+	Files = c("table_of_contents_en", 
+	           "table_of_contents_fr", 
+	          "table_of_contents_sp", 
+				    "ABW_A.csv.gz", 
+				    "ABW_M.csv.gz", 
+				    "..."),
+	Contents = c(
+	        "Table of contents in EN", 
+	        "Table of contents in FR", 
 					"Table of contents in SP", 
 					"Dataset containing all annual data available for Aruba", 
 					"Dataset containing all monthly data available for Aruba", 	
-					"...")), caption = "Contents of the [ref_area] directory, approximately 700 datasets") %>%
+					"...")) , caption = "Contents of the ref_area directory, approximately 700 datasets") %>%
   kable_styling(full_width = F) %>% 
   column_spec(1, bold = T, width = "20em")
 ```

@@ -12,7 +12,7 @@ output:
 
 <br>
 
-# ilostat R package
+## ilostat R package
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
