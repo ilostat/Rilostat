@@ -527,22 +527,11 @@ get_ilostat_raw <- function(id,
 							cache_format, 
 							quiet) {
 
-  if(stringr::str_detect(tolower(segment), 'model')){
-  
-	base <- paste0(ilostat_url(), segment, "/", id, ".dta")	   
-  
-    dat <- NULL
-  
-    try(dat <- read_dta(base))
-
-	
-  } else {  
-	
 	base <- paste0(ilostat_url(), segment, "/", id, ".csv.gz")	   
 
     tfile <- cache_file %>% stringr::str_replace(paste0(stringr::fixed('.'), cache_format), ".csv.gz")
    
-    # download and read file
+    ### download and read file
     utils::download.file(base, tfile, quiet = quiet)
   
     if(!cache_format %in% 'csv.gz'){
@@ -555,7 +544,7 @@ get_ilostat_raw <- function(id,
   
     try(dat <- read_csv(gzfile(tfile), col_types = cols(.default = col_character(), obs_value = col_double()), progress = FALSE))
   
-  }
+  
   
   
   # check validity
