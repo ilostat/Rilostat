@@ -82,7 +82,7 @@
 #'
 #' # get the first vignette:
 #' 
-#'  ilostat('RilostatStart') 
+#'  ilostat('GettingStarted') 
 #' 
 #' }
 #' @export

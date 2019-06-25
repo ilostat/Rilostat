@@ -470,7 +470,7 @@ get_ilostat_dat <- function(id,
   
   if(detail %in% 'dataonly'){
 	
-	ref_dataonly <- ilostat_cols_ref[1:16]
+	ref_dataonly <- ilostat_cols_ref[1:14]
 	  
 	ref_dataonly <- ref_dataonly[ref_dataonly %in% names(dat)] 
 	  
@@ -479,7 +479,7 @@ get_ilostat_dat <- function(id,
   }
   if(detail %in% 'serieskeysonly'){
 	
-	ref_serieskeysonly <- ilostat_cols_ref[1:14]
+	ref_serieskeysonly <- ilostat_cols_ref[1:12]
 	  
 	ref_serieskeysonly <- ref_serieskeysonly[ref_serieskeysonly %in% names(dat)] 
 	  
@@ -488,7 +488,7 @@ get_ilostat_dat <- function(id,
   }
   if(detail %in% 'bestsourceonly'){
 	
-	ref_bestsourceonly <- ilostat_cols_ref[1:15]
+	ref_bestsourceonly <- ilostat_cols_ref[1:13]
 	  
 	ref_bestsourceonly <- ref_bestsourceonly[ref_bestsourceonly %in% names(dat)] 
 	  
