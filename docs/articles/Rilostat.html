@@ -97,7 +97,7 @@
       <h1>Bulk download in ILOSTAT:</h1>
                         <h4 class="author">ILO Department of Statistics</h4>
             
-            <h4 class="date">2019-05-14</h4>
+            <h4 class="date">2019-06-25</h4>
       
       
       <div class="hidden name"><code>Rilostat.Rmd</code></div>
@@ -109,20 +109,20 @@
 <div id="the-ilostat-r-package-in-a-few-words" class="section level1">
 <h1 class="hasAnchor">
 <a href="#the-ilostat-r-package-in-a-few-words" class="anchor"></a>The ilostat R package in a few words</h1>
-<p>This R package provides tools to access, download and work with the data contained in <a href="https://www.ilo.org/ilostat">ILOSTAT</a>, the ILO Department of Statistics’ online database. ILOSTAT’s data and related metadata are also directly available through ILOSTAT’s website.</p>
+<p>This R package provides tools to access, download and work with the data contained in <a href="https://ilostat.ilo.org">ILOSTAT</a>, the ILO Department of Statistics’ online database. ILOSTAT’s data and related metadata are also directly available through ILOSTAT’s website.</p>
 <p>For more information on ILOSTAT’s R package, including contact details and source code, refer to its <a href="https://github.com/ilostat/Rilostat">github page</a>.</p>
 </div>
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
-<p>The <a href="https://www.ilo.org">ILO</a>’s main online database, <a href="https://www.ilo.org/ilostat">ILOSTAT</a>, maintained by the <a href="https://www.ilo.org/stats">Department of Statistics</a>, is the world’s largest repository of labour market statistics. It covers all countries and regions and a wide range of labour-related topics, including employment, unemployment, wages, working time and labour productivity, to name a few. It includes time series going back as far as 1938; annual, quarterly and monthly labour statistics; country-level, regional and global estimates; and even projections of the main labour market indicators.</p>
-<p>ILOSTAT’s website provides immediate access to all its data and related metadata through different ways. Basic users can simply view the desired data online or download it in Excel or csv formats. More advanced users can take advantage of ILOSTAT’s well-structured <a href="http://www.ilo.org/ilostat/faces/oracle/webcenter/portalapp/pagehierarchy/Page30.jspx">bulk download facility</a> (<a href="https://www.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf">user guide</a>), or the SDMX web service (<a href="http://www.ilo.org/ilostat/content/conn/ILOSTATContentServer/path/Contribution%20Folders/statistics/web_pages/static_pages/technical_page/ilostat_appl/SDMX_User_Guide.pdf">user guide</a>).</p>
+<p>The <a href="https://www.ilo.org">ILO</a>’s main online database, <a href="https://ilostat.ilo.org">ILOSTAT</a>, maintained by the Department of Statistics, is the world’s largest repository of labour market statistics. It covers all countries and regions and a wide range of labour-related topics, including employment, unemployment, wages, working time and labour productivity, to name a few. It includes time series going back as far as 1938; annual, quarterly and monthly labour statistics; country-level, regional and global estimates; and even projections of the main labour market indicators.</p>
+<p>ILOSTAT’s website provides immediate access to all its data and related metadata through different ways. Basic users can simply view the desired data online or download it in Excel or csv formats. More advanced users can take advantage of ILOSTAT’s well-structured <a href="https://ilostat.ilo.org/data/bulk">bulk download facility</a> (<a href="https://www.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf">user guide</a>), or the SDMX web service (<a href="https://www.ilo.org/ilostat-files/Documents/SDMX_User_Guide.pdf">user guide</a>).</p>
 <p>The ilostat R package (<code>'Rilostat'</code>) was designed to give data users the ability to access the ILOSTAT database, search for data, rearrange the information as needed, download it in the desired format, and make various data visualizations, all in a programmatic and replicable manner, with the possibility of quickly re-running the queries as required.</p>
 <div id="main-features-of-the-ilostat-r-package" class="section level4">
 <h4 class="hasAnchor">
 <a href="#main-features-of-the-ilostat-r-package" class="anchor"></a>Main features of the ilostat R package</h4>
 <ul>
-<li><p>Provides access to all annual, quarterly, and monthly data available via the ILOSTAT <a href="http://www.ilo.org/ilostat/faces/oracle/webcenter/portalapp/pagehierarchy/Page30.jspx">bulk download facility</a> (<a href="https://www.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf">user guide</a>)</p></li>
+<li><p>Provides access to all annual, quarterly, and monthly data available via the ILOSTAT <a href="https://ilostat.ilo.org/data/bulk">bulk download facility</a> (<a href="https://www.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf">user guide</a>)</p></li>
 <li><p>Allows to search for and download data and related metadata in English, French and Spanish</p></li>
 <li><p>Gives the ability to return <code>POSIXct</code> dates for easy integration into plotting and time-series analysis techniques</p></li>
 <li><p>Returns data in long format for direct integration with packages like <code>ggplot2</code> and <code>dplyr</code></p></li>
@@ -180,23 +180,23 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">GDP_211P_NOC_NB_A</td>
-<td align="left">GDP_211P_NOC_NB</td>
-<td align="left">Output per worker (GDP constant 2011 international $ in PPP) – ILO modelled estimates, November 2018</td>
+<td align="left">SDG_0111_SEX_AGE_RT_A</td>
+<td align="left">SDG_0111_SEX_AGE_RT</td>
+<td align="left">SDG indicator 1.1.1 - Working poverty rate (percentage of employed living below US$1.90 PPP) (%)</td>
 <td align="left">A</td>
 <td align="left">Annual</td>
 </tr>
 <tr class="even">
-<td align="left">GDP_205U_NOC_NB_A</td>
-<td align="left">GDP_205U_NOC_NB</td>
-<td align="left">Output per worker (GDP constant 2010 US $) – ILO modelled estimates, November 2018</td>
+<td align="left">SDG_0131_SEX_SOC_RT_A</td>
+<td align="left">SDG_0131_SEX_SOC_RT</td>
+<td align="left">SDG indicator 1.3.1 - Proportion of population covered by social protection floors/systems (%)</td>
 <td align="left">A</td>
 <td align="left">Annual</td>
 </tr>
 <tr class="odd">
-<td align="left">POP_2LDR_NOC_RT_A</td>
-<td align="left">POP_2LDR_NOC_RT</td>
-<td align="left">Labour dependency ratio – ILO modelled estimates, November 2018</td>
+<td align="left">SDG_0552_OCU_RT_A</td>
+<td align="left">SDG_0552_OCU_RT</td>
+<td align="left">SDG indicator 5.5.2 - Female share of employment in managerial positions (%)</td>
 <td align="left">A</td>
 <td align="left">Annual</td>
 </tr>
@@ -228,10 +228,10 @@
 <td align="left">Aruba</td>
 <td align="left">A</td>
 <td align="left">Anual</td>
-<td align="left">54.28 KB</td>
+<td align="left">54.04 KB</td>
 <td align="left">1960</td>
 <td align="left">2018</td>
-<td align="left">12/03/2019 12:03:07</td>
+<td align="left">07/06/2019 15:43:07</td>
 </tr>
 <tr class="even">
 <td align="left">ABW_M</td>
@@ -239,7 +239,7 @@
 <td align="left">Aruba</td>
 <td align="left">M</td>
 <td align="left">Mensual</td>
-<td align="left">14.14 KB</td>
+<td align="left">13.92 KB</td>
 <td align="left">1984M02</td>
 <td align="left">2019M01</td>
 <td align="left">14/04/2019 09:38:34</td>
@@ -250,10 +250,10 @@
 <td align="left">Afganistán</td>
 <td align="left">A</td>
 <td align="left">Anual</td>
-<td align="left">450.97 KB</td>
+<td align="left">451.68 KB</td>
 <td align="left">1970</td>
 <td align="left">2030</td>
-<td align="left">13/05/2019 11:19:34</td>
+<td align="left">23/06/2019 07:49:31</td>
 </tr>
 </tbody>
 </table>
@@ -279,7 +279,7 @@
 <td align="left">Collective bargaining coverage rate (%)</td>
 <td align="left">A</td>
 <td align="left">Annual</td>
-<td align="left">3.92 KB</td>
+<td align="left">3.77 KB</td>
 <td align="left">2000</td>
 <td align="left">2016</td>
 </tr></tbody>
@@ -309,10 +309,10 @@
 <td align="left">Albania</td>
 <td align="left">A</td>
 <td align="left">Annual</td>
-<td align="left">1.02 MB</td>
+<td align="left">1.06 MB</td>
 <td align="left">1960</td>
 <td align="left">2030</td>
-<td align="left">13/05/2019 11:19:34</td>
+<td align="left">23/06/2019 07:49:46</td>
 </tr>
 <tr class="even">
 <td align="left">FRA_A</td>
@@ -320,16 +320,16 @@
 <td align="left">France</td>
 <td align="left">A</td>
 <td align="left">Annual</td>
-<td align="left">3.07 MB</td>
+<td align="left">3.37 MB</td>
 <td align="left">1956</td>
 <td align="left">2030</td>
-<td align="left">13/05/2019 11:19:34</td>
+<td align="left">23/06/2019 07:49:55</td>
 </tr>
 </tbody>
 </table>
 <p>You can also manipulate ILOSTAT’s table of contents’ dataframe using the basic R filter. If you are already familiar with ILOSTAT data and the way it is structured, you can easily filter what you want.</p>
 <p>For example, if you know beforehand you want data only from ILOSTAT’s Short Term Indicators dataset (code “STI”) and you are only interested in monthly data (code “M”) you can simply do:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">toc &lt;-<span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/filter">filter</a></span>(<span class="kw"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span>(), collection <span class="op">==</span><span class="st"> 'STI'</span>, freq <span class="op">==</span><span class="st"> 'M'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">toc &lt;-<span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span>(), collection <span class="op">==</span><span class="st"> 'STI'</span>, freq <span class="op">==</span><span class="st"> 'M'</span>)</a></code></pre></div>
 <p><br></p>
 <table class="table">
 <caption>Table 1e. Extract, ‘Table of contents by indicator filtered for Monthly Short term indicators’</caption>
@@ -451,7 +451,7 @@
 <td align="left">XA:1931</td>
 <td align="left">GDP_211P_NOC_NB</td>
 <td align="left">NA</td>
-<td align="left">NOC_VALUE</td>
+<td align="left">NA</td>
 <td align="left">1991</td>
 <td align="right">8195.842</td>
 </tr>
@@ -460,7 +460,7 @@
 <td align="left">XA:1931</td>
 <td align="left">GDP_211P_NOC_NB</td>
 <td align="left">NA</td>
-<td align="left">NOC_VALUE</td>
+<td align="left">NA</td>
 <td align="left">1992</td>
 <td align="right">4871.177</td>
 </tr>
@@ -469,7 +469,7 @@
 <td align="left">XA:1931</td>
 <td align="left">GDP_211P_NOC_NB</td>
 <td align="left">NA</td>
-<td align="left">NOC_VALUE</td>
+<td align="left">NA</td>
 <td align="left">1993</td>
 <td align="right">4722.154</td>
 </tr>
@@ -483,26 +483,26 @@
 <p>It is also possible to download multiple datasets at once, simply by setting the dataset’s id as a vector of ids or a tibble that lists ids in a specific column:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="dt">id =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">'AFG_A'</span>, <span class="st">'TTO_A'</span>), <span class="dt">segment =</span> <span class="st">'ref_area'</span>) </a>
 <a class="sourceLine" id="cb12-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3">dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/tally">count</a></span>(dat, ref_area)</a></code></pre></div>
+<a class="sourceLine" id="cb12-3" data-line-number="3">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(dat, ref_area)</a></code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##   ref_area      n
 ##   &lt;chr&gt;     &lt;int&gt;
-## 1 AFG       59548
-## 2 TTO      113491</code></pre>
+## 1 AFG       60136
+## 2 TTO      119279</code></pre>
 <p><br></p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">toc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span>(<span class="dt">search =</span> <span class="st">'CPI_'</span>)</a>
 <a class="sourceLine" id="cb14-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb14-3" data-line-number="3">dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="dt">id =</span> toc, <span class="dt">segment =</span> <span class="st">'indicator'</span>, <span class="dt">quiet =</span> <span class="ot">TRUE</span>) </a>
 <a class="sourceLine" id="cb14-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb14-5" data-line-number="5">dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/tally">count</a></span>(dat, indicator)</a></code></pre></div>
+<a class="sourceLine" id="cb14-5" data-line-number="5">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(dat, indicator)</a></code></pre></div>
 <pre><code>## # A tibble: 5 x 2
 ##   indicator            n
 ##   &lt;chr&gt;            &lt;int&gt;
 ## 1 CPI_ACPI_COI_RT 184570
 ## 2 CPI_MCPI_COI_RT 159458
-## 3 CPI_NCPD_COI_RT  84038
-## 4 CPI_NCYR_COI_RT 107944
-## 5 CPI_NWGT_COI_DT  26026</code></pre>
+## 3 CPI_NCPD_COI_RT  84324
+## 4 CPI_NCYR_COI_RT 108221
+## 5 CPI_NWGT_COI_DT  26050</code></pre>
 </div>
 </div>
 <div id="time-format" class="section level1">
@@ -575,31 +575,31 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">BRA</td>
-<td align="left">BA:3047</td>
+<td align="left">CAN</td>
+<td align="left">BA:147</td>
 <td align="left">TRU_TTRU_SEX_AGE_NB</td>
 <td align="left">SEX_T</td>
 <td align="left">AGE_YTHADULT_YGE15</td>
-<td align="left">2002-03-01</td>
-<td align="right">828.170</td>
+<td align="left">1997-01-01</td>
+<td align="right">284.115</td>
 </tr>
 <tr class="even">
-<td align="left">BRA</td>
-<td align="left">BA:3047</td>
+<td align="left">CAN</td>
+<td align="left">BA:147</td>
 <td align="left">TRU_TTRU_SEX_AGE_NB</td>
 <td align="left">SEX_T</td>
-<td align="left">AGE_YTHADULT_YGE15</td>
-<td align="left">2002-04-01</td>
-<td align="right">729.023</td>
+<td align="left">AGE_YTHADULT_Y15-64</td>
+<td align="left">1997-01-01</td>
+<td align="right">283.241</td>
 </tr>
 <tr class="odd">
-<td align="left">BRA</td>
-<td align="left">BA:3047</td>
+<td align="left">CAN</td>
+<td align="left">BA:147</td>
 <td align="left">TRU_TTRU_SEX_AGE_NB</td>
 <td align="left">SEX_T</td>
-<td align="left">AGE_YTHADULT_YGE15</td>
-<td align="left">2002-05-01</td>
-<td align="right">692.274</td>
+<td align="left">AGE_YTHADULT_Y15-24</td>
+<td align="left">1997-01-01</td>
+<td align="right">90.463</td>
 </tr>
 </tbody>
 </table>
@@ -625,14 +625,14 @@
 <a class="sourceLine" id="cb20-3" data-line-number="3">                                                    <span class="dt">ref_area =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">'BRA'</span>, <span class="st">'ZAF'</span>), </a>
 <a class="sourceLine" id="cb20-4" data-line-number="4">                                                    <span class="dt">sex =</span> <span class="st">'T'</span>, </a>
 <a class="sourceLine" id="cb20-5" data-line-number="5">                                                    <span class="dt">classif1 =</span> <span class="st">'AGE_YTHADULT_Y15-24'</span>))</a>
-<a class="sourceLine" id="cb20-6" data-line-number="6">dplyr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/dplyr/topics/tally">count</a></span>(dat, ref_area, sex, classif1)</a></code></pre></div>
+<a class="sourceLine" id="cb20-6" data-line-number="6">dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(dat, ref_area, sex, classif1)</a></code></pre></div>
 <pre><code>## # A tibble: 2 x 4
 ##   ref_area sex   classif1                n
 ##   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;               &lt;int&gt;
-## 1 BRA      SEX_T AGE_YTHADULT_Y15-24    33
-## 2 ZAF      SEX_T AGE_YTHADULT_Y15-24    33</code></pre>
+## 1 BRA      SEX_T AGE_YTHADULT_Y15-24    34
+## 2 ZAF      SEX_T AGE_YTHADULT_Y15-24    34</code></pre>
 <p><br></p>
-<p>The argument <code>detail</code> set a default filter of aggregation. For instance, <code>detail = 'serieskeysonly'</code> will return distinct combinations of collection/ref_area/source/indicator/sex/classif1/classif2, whereas <code>detail = 'dataonly'</code> will remove the columns obs_status/note_classif/note_indicator/note_source from the dataset and <code>detail = 'serieskeysonly'</code> will select the best source (based on the lowest source sort id) at the collection/ref_area/./indicator/sex/classif1/classif2/time levels.</p>
+<p>The argument <code>detail</code> set a default filter of aggregation. For instance, <code>detail = 'serieskeysonly'</code> will return distinct combinations of ref_area/source/indicator/sex/classif1/classif2, whereas <code>detail = 'dataonly'</code> will remove the columns obs_status/note_classif/note_indicator/note_source from the dataset and <code>detail = 'serieskeysonly'</code> will select the best source (based on the lowest source sort id) at the ref_area/./indicator/sex/classif1/classif2/time levels.</p>
 <p><br></p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">ilostat_cache_dir =</span> <span class="st">'C:/temp'</span>)</a>
 <a class="sourceLine" id="cb22-2" data-line-number="2">dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="dt">id =</span> <span class="st">'UNE_2EAP_SEX_AGE_RT_A'</span>, <span class="dt">filters =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(</a>
@@ -644,7 +644,6 @@
 <table class="table">
 <caption>Table 4a. Extract, Youth male unemployment rate in Brazil and South Africa (ILO modelled estimates, Nov. 2018), ‘Series Key’</caption>
 <thead><tr class="header">
-<th align="left">collection</th>
 <th align="left">ref_area</th>
 <th align="left">source</th>
 <th align="left">indicator</th>
@@ -653,7 +652,6 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">ILOEST</td>
 <td align="left">BRA</td>
 <td align="left">XA:2002</td>
 <td align="left">UNE_2EAP_SEX_AGE_RT</td>
@@ -661,7 +659,6 @@
 <td align="left">AGE_YTHADULT_Y15-24</td>
 </tr>
 <tr class="even">
-<td align="left">ILOEST</td>
 <td align="left">ZAF</td>
 <td align="left">XA:2192</td>
 <td align="left">UNE_2EAP_SEX_AGE_RT</td>
@@ -721,7 +718,7 @@
 </table>
 <p>In order to delete files from the cache just run:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw"><a href="../reference/clean_ilostat_cache.html">clean_ilostat_cache</a></span>()</a></code></pre></div>
-<pre><code>## Deleted ilostat files from C:\Users\bescond\AppData\Local\Temp\RtmpQxkPQN/ilostat</code></pre>
+<pre><code>## Deleted ilostat files from C:\Users\bescond\AppData\Local\Temp\Rtmp4gRme7/ilostat</code></pre>
 </div>
 <div id="plot-data" class="section level1">
 <h1 class="hasAnchor">
@@ -874,8 +871,8 @@
 <a class="sourceLine" id="cb29-37" data-line-number="37">          <span class="dt">title =</span> <span class="st">'Youth unemployment rate in 2017 (ILO modelled estimates, Nov. 2018)'</span>, </a>
 <a class="sourceLine" id="cb29-38" data-line-number="38">          <span class="dt">geo =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(   </a>
 <a class="sourceLine" id="cb29-39" data-line-number="39">                    <span class="dt">showframe =</span> <span class="ot">FALSE</span>,  </a>
-<a class="sourceLine" id="cb29-40" data-line-number="40">                    <span class="dt">showcoastlines =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb29-41" data-line-number="41">                    <span class="dt">projection =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">type =</span> <span class="st">'Mercator'</span>), </a>
+<a class="sourceLine" id="cb29-40" data-line-number="40">                    <span class="dt">showcoastlines =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb29-41" data-line-number="41">                    <span class="dt">projection =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">type =</span> <span class="st">'natural earth'</span>), </a>
 <a class="sourceLine" id="cb29-42" data-line-number="42">                    <span class="dt">showcountries =</span> <span class="ot">TRUE</span>, </a>
 <a class="sourceLine" id="cb29-43" data-line-number="43">                    <span class="dt">resolution =</span> <span class="dv">110</span>) <span class="co"># or 50</span></a>
 <a class="sourceLine" id="cb29-44" data-line-number="44">            ) </a></code></pre></div>
@@ -890,10 +887,10 @@
 <li>ILO Department of Statistics (<code>ilostat@ilo.org</code>)</li>
 </ul>
 <p>For specific issues concerning code source, please report on <a href="https://github.com/ilostat/Rilostat/issues">github</a></p>
-<p>For questions related to the ilostat database contact (<code>ilostat@ilo.org</code>) or visit <a href="http://www.ilo.org/ilostat">ilostat website</a></p>
+<p>For questions related to the ilostat database contact (<code>ilostat@ilo.org</code>) or visit <a href="https://ilostat.ilo.org">ilostat website</a></p>
 <p>Permission to reproduce ILO publication and data: the reproduction of ILO material is generally authorized for non-commercial purposes and within established limits. However, you may need to submit a formal request in certain circumstances. for more information please refer to:</p>
-<p><a href="http://www.ilo.org/global/copyright" class="uri">http://www.ilo.org/global/copyright</a></p>
-<p><a href="http://www.ilo.org/global/copyright/request-for-permission" class="uri">http://www.ilo.org/global/copyright/request-for-permission</a></p>
+<p><a href="https://www.ilo.org/global/copyright" class="uri">https://www.ilo.org/global/copyright</a></p>
+<p><a href="https://www.ilo.org/global/copyright/request-for-permission" class="uri">https://www.ilo.org/global/copyright/request-for-permission</a></p>
 </div>
   </div>
 
