@@ -1,6 +1,6 @@
 #' @title Read Ilostat Table of Contents
-#' @description Download one table of contents from ilostat \url{www.ilo.org/ilostat} via bulk download facility 
-#' \url{http://www.ilo.org/ilostat-files/WEB_bulk_download/html/bulk_main.html}.
+#' @description Download one table of contents from ilostat \url{https://ilostat.ilo.org} via bulk download facility 
+#' \url{https://ilostat.ilo.org/data/bulk}.
 #' @param segment A character, way to get datasets by: \code{"indicator"} (default) or \code{"ref_area"}, 
 #'        Can be set also with options(ilostat_segment = 'ref_area'),
 #' @param lang a character, code for language. Available are \code{"en"} (default), 
@@ -29,15 +29,15 @@
 #'      \item{\code{...}} : Others relevant information
 #'      }
 #' @seealso \code{\link{get_ilostat}}.
-#' @details The TOC in English by indicator is downloaded from \url{http://www.ilo.org/ilostat-files/WEB_bulk_download/indicator/table_of_contents_en.csv}. 
+#' @details The TOC in English by indicator is downloaded from \url{https://www.ilo.org/ilostat-files/WEB_bulk_download/indicator/table_of_contents_en.csv}. 
 #' The values in column 'id' should be used to download a selected dataset.
-#' @details The TOC in English by ref_area is downloaded from \url{http://www.ilo.org/ilostat-files/WEB_bulk_download/ref_area/table_of_contents_en.csv}. 
+#' @details The TOC in English by ref_area is downloaded from \url{https://www.ilo.org/ilostat-files/WEB_bulk_download/ref_area/table_of_contents_en.csv}. 
 #' The values in column 'id' should be used to download a selected dataset.
-#' @details The TOC in English by modelled_estimates is downloaded from \url{http://www.ilo.org/ilostat-files/WEB_bulk_download/modelled_estimates/table_of_contents_en.csv}. 
+#' @details The TOC in English by modelled_estimates is downloaded from \url{https://www.ilo.org/ilostat-files/WEB_bulk_download/modelled_estimates/table_of_contents_en.csv}. 
 #' The values in column 'id' should be used to download a selected dataset.
 #' @references
 #' See citation("Rilostat")
-#' ilostat bulk download facility user guidelines \url{http://www.ilo.org/ilostat-files/WEB_bulk_download/ILOSTAT_BulkDownload_Guidelines.pdf} 
+#' ilostat bulk download facility user guidelines \url{https://www.ilo.org/ilostat-files/WEB_bulk_download/ILOSTAT_BulkDownload_Guidelines.pdf} 
 #' @author David Bescond \email{bescond@ilo.org}
 #' @keywords utilities database
 #' @examples

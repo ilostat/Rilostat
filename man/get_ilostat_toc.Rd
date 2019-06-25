@@ -46,17 +46,17 @@ A tibble with ten columns depending of the segment: indicator or ref_area
      }
 }
 \description{
-Download one table of contents from ilostat \url{www.ilo.org/ilostat} via bulk download facility 
-\url{http://www.ilo.org/ilostat-files/WEB_bulk_download/html/bulk_main.html}.
+Download one table of contents from ilostat \url{https://ilostat.ilo.org} via bulk download facility 
+\url{https://ilostat.ilo.org/data/bulk}.
 }
 \details{
-The TOC in English by indicator is downloaded from \url{http://www.ilo.org/ilostat-files/WEB_bulk_download/indicator/table_of_contents_en.csv}. 
+The TOC in English by indicator is downloaded from \url{https://www.ilo.org/ilostat-files/WEB_bulk_download/indicator/table_of_contents_en.csv}. 
 The values in column 'id' should be used to download a selected dataset.
 
-The TOC in English by ref_area is downloaded from \url{http://www.ilo.org/ilostat-files/WEB_bulk_download/ref_area/table_of_contents_en.csv}. 
+The TOC in English by ref_area is downloaded from \url{https://www.ilo.org/ilostat-files/WEB_bulk_download/ref_area/table_of_contents_en.csv}. 
 The values in column 'id' should be used to download a selected dataset.
 
-The TOC in English by modelled_estimates is downloaded from \url{http://www.ilo.org/ilostat-files/WEB_bulk_download/modelled_estimates/table_of_contents_en.csv}. 
+The TOC in English by modelled_estimates is downloaded from \url{https://www.ilo.org/ilostat-files/WEB_bulk_download/modelled_estimates/table_of_contents_en.csv}. 
 The values in column 'id' should be used to download a selected dataset.
 }
 \examples{
@@ -90,7 +90,7 @@ The values in column 'id' should be used to download a selected dataset.
 }
 \references{
 See citation("Rilostat")
-ilostat bulk download facility user guidelines \url{http://www.ilo.org/ilostat-files/WEB_bulk_download/ILOSTAT_BulkDownload_Guidelines.pdf}
+ilostat bulk download facility user guidelines \url{https://www.ilo.org/ilostat-files/WEB_bulk_download/ILOSTAT_BulkDownload_Guidelines.pdf}
 }
 \seealso{
 \code{\link{get_ilostat}}.

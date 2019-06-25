@@ -89,8 +89,8 @@ a tibble. One column for each dimension in the data and
         The time column for a time dimension.
 }
 \description{
-Download datasets from ilostat \url{www.ilo.org/ilostat} via bulk download facility 
-\url{http://www.ilo.org/ilostat-files/WEB_bulk_download/html/bulk_main.html}.
+Download datasets from ilostat \url{ilostat.ilo.org} via bulk download facility 
+\url{https://ilostat.ilo.org//data/bulk}.
 }
 \section{others}{
 
@@ -112,7 +112,7 @@ Download datasets from ilostat \url{www.ilo.org/ilostat} via bulk download facil
   The cache can be emptied with \code{\link{clean_ilostat_cache}}.
 
   The \code{id}, a code, for the dataset can be searched with
-  the \code{\link{get_ilostat_toc}} or from the [bulk download facility](http://www.ilo.org/ilostat-files/WEB_bulk_download/html/bulk_main.html).
+  the \code{\link{get_ilostat_toc}} or from the [bulk download facility](https://ilostat.ilo.org/data/bulk).
 }
 
 \examples{
@@ -173,7 +173,7 @@ Download datasets from ilostat \url{www.ilo.org/ilostat} via bulk download facil
 }
 \references{
 See citation("Rilostat")
-ilostat bulk download facility user guidelines \url{http://www.ilo.org/ilostat-files/WEB_bulk_download/ILOSTAT_BulkDownload_Guidelines.pdf}
+ilostat bulk download facility user guidelines \url{https://ilostat.ilo.org/data/bulk}
 }
 \seealso{
 \code{\link{get_ilostat_toc}}, \code{\link{label_ilostat}}

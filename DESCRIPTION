@@ -12,7 +12,7 @@ Authors@R: c(	person("ILO Department of Statistics", role = c("cph", "fnd"), ema
 				)
 Maintainer: David Bescond <bescond@ilo.org>
 Description: Tools to download data from the ilostat database
-    <http://www.ilo.org/ilostat> together with search and
+    <https://ilostat.ilo.org> together with search and
     manipulation utilities.
 License: BSD_2_clause + file LICENSE
 Depends:

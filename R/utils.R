@@ -4,7 +4,7 @@ NULL
 
 ilostat_url <- function() {
 
-  "http://www.ilo.org/ilostat-files/WEB_bulk_download/"
+  "https://www.ilo.org/ilostat-files/WEB_bulk_download/"
 
   }
 

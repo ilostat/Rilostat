@@ -17,13 +17,13 @@ output:
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-The [ILO](https://www.ilo.org)'s main online database, [ILOSTAT](https://www.ilo.org/ilostat), maintained by the [Department of Statistics](https://www.ilo.org/stats), 
+The [ILO](https://www.ilo.org)'s main online database, [ILOSTAT](https://ilostat.ilo.org), maintained by the Department of Statistics, 
 is the world's largest repository of labour market statistics. It covers all countries and regions and a wide range of labour-related topics, including employment, unemployment, 
 wages, working time and labour productivity, to name a few. It includes time series going back as far as 1938; annual, quarterly and monthly labour statistics; country-level, 
 regional and global estimates; and even projections of the main labour market indicators.
   
 ILOSTAT's website provides immediate access to all its data and related metadata through different ways. Basic users can simply view the desired data online or download it in Excel or csv formats. 
-More advanced users can take advantage of ILOSTAT's well-structured [bulk download facility](http://www.ilo.org/ilostat/faces/oracle/webcenter/portalapp/pagehierarchy/Page30.jspx) ([user guide](https://www.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf)), or the SDMX web service ([user guide](http://www.ilo.org/ilostat/content/conn/ILOSTATContentServer/path/Contribution%20Folders/statistics/web_pages/static_pages/technical_page/ilostat_appl/SDMX_User_Guide.pdf)).
+More advanced users can take advantage of ILOSTAT's well-structured [bulk download facility](https://ilostat.ilo.org/data/bulk) ([user guide](https://www.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf)), or the SDMX web service ([user guide](https://www.ilo.org/ilostat-files/Documents/SDMX_User_Guide.pdf)).
 
 
 The ilostat R package (`'Rilostat'`) was designed to give data users the ability to access the ILOSTAT database, search for data, rearrange the information as needed, download it in the desired format, and 
@@ -31,7 +31,7 @@ make various data visualizations, all in a programmatic and replicable manner, w
 
 ## Main features of the ilostat R package 
 
-- Provides access to all annual, quarterly, and monthly data available via the ILOSTAT [bulk download facility](http://www.ilo.org/ilostat/faces/oracle/webcenter/portalapp/pagehierarchy/Page30.jspx) ([user guide](https://www.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf))
+- Provides access to all annual, quarterly, and monthly data available via the ILOSTAT [bulk download facility](https://ilostat.ilo.org/data/bulk) ([user guide](https://www.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf))
 - Allows to search for and download data and related metadata in English, French and Spanish
 - Gives the ability to return `POSIXct` dates for easy integration into plotting and time-series analysis techniques
 - Returns data in long format for direct integration with packages like `ggplot2` and `dplyr`
@@ -49,16 +49,14 @@ The developer of this package drew extensive inspiration from the [eurostat R pa
 Download and install [R from CRAN](https://cran.r-project.org/), install [RStudio's IDE](http://www.rstudio.com/ide/download/), a powerful user interface for R.
 Then use command:
  
-
-```r
+```{r, eval=FALSE}
 install.packages("Rilostat")
 ```
 
 
 To install the development version, use the following command:
 
-
-```r
+```{r, eval=FALSE}
 if(!require(devtools)){install.packages('devtools')}
 install_github("ilostat/Rilostat")
 ```
@@ -81,8 +79,6 @@ Contributions are very welcome:
 The reproduction of ILO material is generally authorized for non-commercial purposes and within established limits. 
 However, you may need to submit a formal request in certain circumstances. for more information please consult:
 
-http://www.ilo.org/global/copyright 
+https://www.ilo.org/global/copyright 
 
-http://www.ilo.org/global/copyright/request-for-permission
-
-
+https://www.ilo.org/global/copyright/request-for-permission

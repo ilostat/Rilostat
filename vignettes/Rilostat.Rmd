@@ -18,7 +18,7 @@ chunk_output_type: console
 The ilostat R package in a few words
 ===========
 
-This R package provides tools to access, download and work with the data contained in [ILOSTAT](https://www.ilo.org/ilostat), the ILO Department of Statistics' online database. 
+This R package provides tools to access, download and work with the data contained in [ILOSTAT](https://ilostat.ilo.org), the ILO Department of Statistics' online database. 
 ILOSTAT's data and related metadata are also directly available through ILOSTAT's website.
 
 For more information on ILOSTAT's R package, including contact details and source code, refer to its [github page](https://github.com/ilostat/Rilostat).
@@ -26,20 +26,20 @@ For more information on ILOSTAT's R package, including contact details and sourc
 
 # Introduction
 
-The [ILO](https://www.ilo.org)'s main online database, [ILOSTAT](https://www.ilo.org/ilostat), maintained by the [Department of Statistics](https://www.ilo.org/stats), 
+The [ILO](https://www.ilo.org)'s main online database, [ILOSTAT](https://ilostat.ilo.org), maintained by the Department of Statistics, 
 is the world's largest repository of labour market statistics. It covers all countries and regions and a wide range of labour-related topics, including employment, unemployment, 
 wages, working time and labour productivity, to name a few. It includes time series going back as far as 1938; annual, quarterly and monthly labour statistics; country-level, 
 regional and global estimates; and even projections of the main labour market indicators.
 
 ILOSTAT's website provides immediate access to all its data and related metadata through different ways. Basic users can simply view the desired data online or download it in Excel or csv formats. 
-More advanced users can take advantage of ILOSTAT's well-structured [bulk download facility](http://www.ilo.org/ilostat/faces/oracle/webcenter/portalapp/pagehierarchy/Page30.jspx) ([user guide](https://www.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf)), or the SDMX web service  ([user guide](http://www.ilo.org/ilostat/content/conn/ILOSTATContentServer/path/Contribution%20Folders/statistics/web_pages/static_pages/technical_page/ilostat_appl/SDMX_User_Guide.pdf)).
+More advanced users can take advantage of ILOSTAT's well-structured [bulk download facility](https://ilostat.ilo.org/data/bulk) ([user guide](https://www.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf)), or the SDMX web service  ([user guide](https://www.ilo.org/ilostat-files/Documents/SDMX_User_Guide.pdf)).
 
 The ilostat R package (`'Rilostat'`) was designed to give data users the ability to access the ILOSTAT database, search for data, rearrange the information as needed, download it in the desired format, and 
 make various data visualizations, all in a programmatic and replicable manner, with the possibility of quickly re-running the queries as required.
 
 #### Main features of the ilostat R package
 
-  - Provides access to all annual, quarterly, and monthly data available via the ILOSTAT [bulk download facility](http://www.ilo.org/ilostat/faces/oracle/webcenter/portalapp/pagehierarchy/Page30.jspx) ([user guide](https://www.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf))
+  - Provides access to all annual, quarterly, and monthly data available via the ILOSTAT [bulk download facility](https://ilostat.ilo.org/data/bulk) ([user guide](https://www.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf))
   
   - Allows to search for and download data and related metadata in English, French and Spanish
   
@@ -212,7 +212,7 @@ dat <- get_ilostat(id = 'UNE_2UNE_SEX_AGE_NB_A', segment = 'indicator')
 <BR>
 
 ```{r, echo=FALSE, eval=TRUE}
-knitr::kable(head(dat[1:3,2:8]),caption = "Table 2a. Extract, 'Annual unemployment by sex and age, ILO modelled estimates, Nov. 2018'")
+knitr::kable(head(dat[1:3,1:7]),caption = "Table 2a. Extract, 'Annual unemployment by sex and age, ILO modelled estimates, Nov. 2018'")
 ```
 
 If you want to access all annual data available in ILOSTAT for Armenia:
@@ -225,7 +225,7 @@ dat <- get_ilostat(id = 'ARM_A', segment = 'ref_area')
 <BR>
 
 ```{r, echo=FALSE, eval=TRUE}
-knitr::kable(head(dat[1:3, c(2:6,8:9)]),caption = "Table 2b. Extract, 'Armenia, annual data'")
+knitr::kable(head(dat[1:3, c(1:5,7:8)]),caption = "Table 2b. Extract, 'Armenia, annual data'")
 ```
 
 <BR>
@@ -276,7 +276,7 @@ dat <- get_ilostat(id = 'UNE_TUNE_SEX_AGE_NB_Q', time_format = 'num')
 <BR>
 
 ```{r, echo=FALSE, eval=TRUE}
-knitr::kable(dat[1:3, 2:8],caption = "Table 3a. Extract, 'Quarterly unemployment by sex and age'")
+knitr::kable(dat[1:3, 1:7],caption = "Table 3a. Extract, 'Quarterly unemployment by sex and age'")
 ```
 
 The following will return monthly time-related underemployment data by sex and age, with the time dimension in POSIXct date format:
@@ -288,7 +288,7 @@ dat <- get_ilostat(id = 'TRU_TTRU_SEX_AGE_NB_M', time_format = 'date')
 <BR>
 
 ```{r, echo=FALSE, eval=TRUE}
-knitr::kable(head(dat[1:3, 2:8]),caption = "Table 3b. Extract, Monthly time-related underemployment by sex and age")
+knitr::kable(head(dat[1:3, 1:7]),caption = "Table 3b. Extract, Monthly time-related underemployment by sex and age")
 ```
 
 # Cached data
@@ -344,9 +344,9 @@ dplyr::count(dat, ref_area, sex, classif1)
 <BR>
 
 The argument `detail` set a default filter of aggregation. For instance, `detail = 'serieskeysonly'` will return distinct combinations 
-of collection/ref_area/source/indicator/sex/classif1/classif2, whereas `detail = 'dataonly'` will remove the columns 
+of ref_area/source/indicator/sex/classif1/classif2, whereas `detail = 'dataonly'` will remove the columns 
 obs_status/note_classif/note_indicator/note_source from the dataset and `detail = 'serieskeysonly'` will select the best source 
-(based on the lowest source sort id) at the collection/ref_area/./indicator/sex/classif1/classif2/time levels.
+(based on the lowest source sort id) at the ref_area/./indicator/sex/classif1/classif2/time levels.
 
 ```{r, echo =FALSE, eval=TRUE}
 # options(ilostat_cache_dir = 'C:/temp')
@@ -395,7 +395,7 @@ dat <- get_ilostat(id = 'UNE_2EAP_SEX_AGE_RT_A', filters = list(
 <BR>
 
 ```{r, echo=FALSE, eval=TRUE}
-knitr::kable(head(dat[1:3,2:8]),caption = "Table 4b. Extract, Youth female unemployment rate in Brazil and South Africa (ILO modelled estimates, Nov. 2018)")
+knitr::kable(head(dat[1:3,1:7]),caption = "Table 4b. Extract, Youth female unemployment rate in Brazil and South Africa (ILO modelled estimates, Nov. 2018)")
 ```
 
 In order to delete files from the cache just run:
@@ -622,15 +622,15 @@ For further information on the `ilostat` R package, please contact:
 
 For specific issues concerning code source, please report on [github](https://github.com/ilostat/Rilostat/issues)
 
-For questions related to the ilostat database contact (`ilostat@ilo.org`) or visit [ilostat website](http://www.ilo.org/ilostat)
+For questions related to the ilostat database contact (`ilostat@ilo.org`) or visit [ilostat website](https://ilostat.ilo.org)
 
 
 Permission to reproduce ILO publication and data: the reproduction of ILO material is generally authorized for non-commercial purposes and within established limits. 
 However, you may need to submit a formal request in certain circumstances. for more information please refer to:
 
 
-http://www.ilo.org/global/copyright 
+https://www.ilo.org/global/copyright 
 
 
-http://www.ilo.org/global/copyright/request-for-permission
+https://www.ilo.org/global/copyright/request-for-permission
 

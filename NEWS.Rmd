@@ -4,6 +4,11 @@ output:
     keep_md: yes
 ---
 
+# Rilostat 1.0.1
+
+* change ilostat path
+* remove collection field
+
 # Rilostat 1.0.0
 
 * sdmx_ilostat new path

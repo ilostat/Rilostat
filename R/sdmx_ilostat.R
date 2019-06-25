@@ -20,8 +20,8 @@
 #' @examples 
 #' \dontrun{
 #' ########## get codelist
-#' # fetch collection define on ILOSTAT
-#'  dic <- sdmx_ilostat(dsd = "CL_COLLECTION", lang ="en")
+#' # fetch indicator define on ILOSTAT
+#'  dic <- sdmx_ilostat(dsd = "CL_INDICATOR", lang ="en")
 #'  head(dic)
 #'
 #' # fetch country available on ILOSTAT

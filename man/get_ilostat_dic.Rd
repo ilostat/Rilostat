@@ -16,8 +16,8 @@ get_ilostat_dic(dic, lang = getOption("ilostat_lang", "en"))
 tibble with two columns: code names and full names.
 }
 \description{
-Downloads one ilostat dictionary from ilostat \url{www.ilo.org/ilostat} via bulk download facility 
-\url{http://www.ilo.org/ilostat-files/WEB_bulk_download/html/bulk_main.html}.
+Downloads one ilostat dictionary from ilostat \url{https://ilostat.ilo.org} via bulk download facility 
+\url{https://ilostat.ilo.org/data/bulk}.
 }
 \details{
 For a given coded variable from ilostat \url{www.ilo.org/ilostat}.
@@ -35,9 +35,9 @@ For a given coded variable from ilostat \url{www.ilo.org/ilostat}.
 \references{
 See citation("ilostat")
 ilostat bulk download facility user guidelines 
-\url{http://www.ilo.org/ilostat-files/WEB_bulk_download/ILOSTAT_BulkDownload_Guidelines.pdf}
+\url{https://www.ilo.org/ilostat-files/WEB_bulk_download/ILOSTAT_BulkDownload_Guidelines.pdf}
 ilostat bulk download facility main page 
-\url{http://www.ilo.org/ilostat-files/WEB_bulk_download/html/bulk_main.html}
+\url{https://ilostat.ilo.org/data/bulk}
 }
 \seealso{
 \code{\link{label_ilostat}}, \code{\link{get_ilostat}}.
