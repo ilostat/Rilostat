@@ -1,6 +1,6 @@
 #' @title Read Ilostat Table of Contents
 #' @description Download one table of contents from ilostat \url{https://ilostat.ilo.org} via bulk download facility 
-#' \url{https://ilostat.ilo.org/data/bulk}.
+#' \url{https://ilostat.ilo.org/data/bulk/}.
 #' @param segment A character, way to get datasets by: \code{"indicator"} (default) or \code{"ref_area"}, 
 #'        Can be set also with options(ilostat_segment = 'ref_area'),
 #' @param lang a character, code for language. Available are \code{"en"} (default), 

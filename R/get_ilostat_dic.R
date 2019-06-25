@@ -1,6 +1,6 @@
 #' @title Read Ilostat Dictionary
 #' @description Downloads one ilostat dictionary from ilostat \url{https://ilostat.ilo.org} via bulk download facility 
-#' \url{https://ilostat.ilo.org/data/bulk}.
+#' \url{https://ilostat.ilo.org/data/bulk/}.
 #' @details For a given coded variable from ilostat \url{www.ilo.org/ilostat}.
 #'    The dictionaries link codes with human-readable labels.
 #'    To translate codes to labels, use \code{\link{label_ilostat}}.
@@ -16,7 +16,7 @@
 #' ilostat bulk download facility user guidelines 
 #' \url{https://www.ilo.org/ilostat-files/WEB_bulk_download/ILOSTAT_BulkDownload_Guidelines.pdf}
 #' ilostat bulk download facility main page 
-#' \url{https://ilostat.ilo.org/data/bulk}
+#' \url{https://ilostat.ilo.org/data/bulk/}
 #' @examples
 #' \dontrun{
 #'  tmp <- get_ilostat_dic("indicator")
