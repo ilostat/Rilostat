@@ -49,14 +49,16 @@ The developer of this package drew extensive inspiration from the [eurostat R pa
 Download and install [R from CRAN](https://cran.r-project.org/), install [RStudio's IDE](http://www.rstudio.com/ide/download/), a powerful user interface for R.
 Then use command:
  
-```{r, eval=FALSE}
+
+```r
 install.packages("Rilostat")
 ```
 
 
 To install the development version, use the following command:
 
-```{r, eval=FALSE}
+
+```r
 if(!require(devtools)){install.packages('devtools')}
 install_github("ilostat/Rilostat")
 ```
@@ -82,3 +84,5 @@ However, you may need to submit a formal request in certain circumstances. for m
 https://www.ilo.org/global/copyright 
 
 https://www.ilo.org/global/copyright/request-for-permission
+
+
