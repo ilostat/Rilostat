@@ -47,7 +47,7 @@ A tibble with ten columns depending of the segment: indicator or ref_area
 }
 \description{
 Download one table of contents from ilostat \url{https://ilostat.ilo.org} via bulk download facility 
-\url{https://ilostat.ilo.org/data/bulk}.
+\url{https://ilostat.ilo.org/data/bulk/}.
 }
 \details{
 The TOC in English by indicator is downloaded from \url{https://www.ilo.org/ilostat-files/WEB_bulk_download/indicator/table_of_contents_en.csv}. 

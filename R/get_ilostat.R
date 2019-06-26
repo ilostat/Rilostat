@@ -1,5 +1,5 @@
 #' @title Read Ilostat Data
-#' @description Download datasets from ilostat \url{ilostat.ilo.org} via bulk download facility 
+#' @description Download datasets from ilostat \url{https://ilostat.ilo.org} via bulk download facility 
 #' \url{https://ilostat.ilo.org/data/bulk/}.
 #' @param id A code name for the dataset of interest.
 #'        See \code{\link{get_ilostat_toc}} or details for how to get code.
