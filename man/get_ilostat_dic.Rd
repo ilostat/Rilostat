@@ -20,7 +20,7 @@ Downloads one ilostat dictionary from ilostat \url{https://ilostat.ilo.org} via 
 \url{https://ilostat.ilo.org/data/bulk/}.
 }
 \details{
-For a given coded variable from ilostat \url{https://www.ilo.org/ilostat}.
+For a given coded variable from ilostat \url{https://ilostat.ilo.org/}.
    The dictionaries link codes with human-readable labels.
    To translate codes to labels, use \code{\link{label_ilostat}}.
 }
