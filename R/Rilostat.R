@@ -1,6 +1,90 @@
-#' @title Usefull Function
-#' @name ilostat
+#' @title Get more Support
+#'
+#' @description On regular basis new tutorial and examples are building and available through this function.
+#'
+#' @details brief description of the package
+#'
+#' \tabular{ll}{
+#' Package: \tab Rilostat\cr
+#' Type: \tab Package\cr
+#' Version: \tab See sessionInfo() or DESCRIPTION file\cr
+#' Date: \tab 2020-2025\cr
+#' License: \tab BSD_2_clause + LICENSE\cr
+#' LazyLoad: \tab yes\cr
+#' }
+#'
+#' R Tools for ilostat Open Data
+#'
+#' @name Rilostat
+#' @author David Bescond \email{bescond@ilo.org}
+#' @references
+#' See citation("Rilostat")
+#'
+#' ilostat bulk download facility user guidelines 
+#' \url{https://www.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf}
+#'
+#' @keywords package
+#' @importFrom readr read_csv
+#' @importFrom readr col_character
+#' @importFrom readr col_double
+#' @importFrom readr cols
+#' @importFrom plyr llply
+#' @importFrom plyr ldply
+#' @importFrom plyr mapvalues
+#' @importFrom dplyr %>%
+#' @importFrom dplyr select_at
+#' @importFrom dplyr filter
+#' @importFrom dplyr contains
+#' @importFrom dplyr vars
+#' @importFrom dplyr distinct
+#' @importFrom dplyr bind_rows
+#' @importFrom dplyr left_join
+#' @importFrom dplyr mutate
+#' @importFrom dplyr summarise
+#' @importFrom dplyr group_by_at
+#' @importFrom dplyr ungroup
+#' @importFrom haven read_dta
+#' @importFrom haven read_sav
+#' @importFrom haven read_sas
+#' @importFrom haven write_dta
+#' @importFrom haven write_sav
+#' @importFrom haven write_sas
+#' @importFrom stringr str_replace
+#' @importFrom stringr str_c
+#' @importFrom stringr str_sub
+#' @importFrom stringr str_detect
+#' @importFrom stringr str_split
+#' @importFrom stringr fixed
+#' @importFrom tibble data_frame
+#' @importFrom tibble is_tibble
+#' @importFrom tibble as_tibble
+#' @importFrom utils download.file
+#' @importFrom utils install.packages
+#' @importFrom utils installed.packages
+#' @importFrom utils menu
+#' @importFrom xml2 read_xml
+#' @importFrom xml2 xml_find_all
+#' @importFrom xml2 xml_attrs
+#' @importFrom xml2 xml_attr
+#' @importFrom xml2 xml_text
+#' @importFrom xml2 xml_ns
+#' @importFrom RCurl ftpUpload
+#' @importFrom data.table fwrite
+#' @importFrom data.table fread
+#' @importFrom DT datatable
+#' @examples
+#' \dontrun{
+#'
+#' # check which documentation have been recently added:
+#'
+#'  ?Rilostat 
+#' 
+#'  https://ilostat.github.io/Rilostat/ 
+#' 
+#' }
 NULL
+
+
 
 ilostat_url <- function() {
 
@@ -104,3 +188,7 @@ filters_ilostat <- function(
 		
   newfilter
 }
+
+
+
+.ilostatEnv <- new.env()

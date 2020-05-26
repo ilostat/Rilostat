@@ -4,7 +4,9 @@
 \alias{get_ilostat}
 \title{Read Ilostat Data}
 \usage{
-get_ilostat(id, segment = getOption("ilostat_segment", "indicator"),
+get_ilostat(
+  id,
+  segment = getOption("ilostat_segment", "indicator"),
   type = getOption("ilostat_type", "code"),
   lang = getOption("ilostat_lang", "en"),
   time_format = getOption("ilostat_time_format", "raw"),
@@ -17,7 +19,8 @@ get_ilostat(id, segment = getOption("ilostat_segment", "indicator"),
   cache_format = getOption("ilostat_cache_format", "rds"),
   back = getOption("ilostat_back", TRUE),
   cmd = getOption("ilostat_cmd", "none"),
-  quiet = getOption("ilostat_quiet", FALSE))
+  quiet = getOption("ilostat_quiet", FALSE)
+)
 }
 \arguments{
 \item{id}{A code name for the dataset of interest.

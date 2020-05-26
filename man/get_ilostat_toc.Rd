@@ -4,11 +4,13 @@
 \alias{get_ilostat_toc}
 \title{Read Ilostat Table of Contents}
 \usage{
-get_ilostat_toc(segment = getOption("ilostat_segment", "indicator"),
+get_ilostat_toc(
+  segment = getOption("ilostat_segment", "indicator"),
   lang = getOption("ilostat_lang", "en"),
   search = getOption("ilostat_search", "none"),
   filters = getOption("ilostat_filter", "none"),
-  fixed = getOption("ilostat_fixed", TRUE))
+  fixed = getOption("ilostat_fixed", TRUE)
+)
 }
 \arguments{
 \item{segment}{A character, way to get datasets by: \code{"indicator"} (default) or \code{"ref_area"}, 

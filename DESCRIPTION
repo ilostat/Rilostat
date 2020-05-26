@@ -1,13 +1,12 @@
 Package: Rilostat
 Type: Package
 Title: ILO Open Data via Ilostat Bulk Download Facility or SDMX Web Service
-Date: 2019-06-25
-Version: 1.0.1
+Date: 2020-05-26
+Version: 1.1
 Encoding: UTF-8
 Authors@R: c(	person("ILO Department of Statistics", role = c("cph", "fnd"), email = "ilostat@ilo.org"), 
 				person("David Bescond", role = c("aut", "cre"), email = "bescond@ilo.org", 
 				comment = c(ORCID = "0000-0002-1642-0304")),
-				person("Rosina Gammarano", role = c("ctb"), email = "gammarano@ilo.org"),
 				person("Mabelin Villarreal-Fuentes", role = c("ctb"), email = "villarreal-fuentes@ilo.org")
 				)
 Maintainer: David Bescond <bescond@ilo.org>
@@ -42,4 +41,4 @@ URL: https://ilostat.github.io/Rilostat/
 BugReports: https://github.com/ilostat/Rilostat/issues
 Repository: CRAN
 VignetteBuilder: knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0

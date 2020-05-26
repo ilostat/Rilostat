@@ -3,7 +3,7 @@
 #' @param dsd A datastructure definition, see \code{examples} section,  
 #' @param sdmx_resource : a character, type of info to be returned from the sdmx api: \code{'codelist'} (default), 
 #' 		 	\code{'data'}, \code{'dataflow'}, \code{'conceptref'},
-#' @param sdmx_format : for data only, a character, format of info to be returned from the sdmx api: \code{'structurespecificdata'} (default) also available \code{'csv'}.
+#' @param sdmx_format : for data only, a character, format of info to be returned from the sdmx api: \code{'csv'} (default) others no longer available.
 #' @param lang a character for language. Available are \code{"en"} (default), 
 #'        \code{"fr"} and \code{"es"}. Can be set also with options(ilostat_lang = 'fr'),
 #' @param count a logical, count data records only if \code{resource = 'data'}, \code{FALSE} (default), 
@@ -28,12 +28,8 @@
 #'  dic <- sdmx_ilostat(dsd = "CL_AREA", lang ="es")
 #'  head(dic)
 #'
-#' # fetch classif ECO available on ILOSTAT
+#' # fetch classif ECO version available on ILOSTAT
 #'  dic <- sdmx_ilostat(dsd = "CL_ECO", lang ="en")
-#'  head(dic)
-#'
-#' # fetch classif ECO verion available on ILOSTAT
-#'  dic <- sdmx_ilostat(dsd = "CL_CLASSIF_ECO", lang ="en")
 #'  head(dic)
 #'
 #' # fetch note type available on ILOSTAT
@@ -54,15 +50,6 @@
 #' # without attribute
 #'  dat <- sdmx_ilostat(dsd = "STI_DEU_EMP_TEMP_SEX_AGE_NB?detail=dataonly", 
 #'                     sdmx_resource = 'data')
-#'
-#' # of last N data
-#'  dat <- sdmx_ilostat(dsd = "STI_ITA_EMP_TEMP_SEX_AGE_NB?lastNObservations=1",
-#'                     sdmx_resource = 'data')
-#'  head(dat)
-#'
-#' # of first N data
-#'  dat <- sdmx_ilostat(dsd = "STI_ARG_EMP_TEMP_SEX_AGE_NB?firstNObservations=2", 
-#'                     sdmx_resource = 'data')
 #'  head(dat)
 #'
 #' ######## with multi country and advanced filters
@@ -75,13 +62,7 @@
 #'
 #' # COUNTRY and FREQ are in second and third position of the filters
 #'
-#'  dat <- sdmx_ilostat(dsd = "STI_ALL_EMP_TEMP_SEX_AGE_NB/.FRA+DEU.M....", 
-#'                     sdmx_resource = 'data')
-#'  head(dat)
-#'
-#'
-#' # as from 2009
-#'  dat <- sdmx_ilostat("STI_FRA_UNE_TUNE_SEX_AGE_NB/STI.FRA.M.5893..", 
+#'  dat <- sdmx_ilostat(dsd = "STI_ALL_EMP_TEMP_SEX_AGE_NB/.FRA+DEU.Q....", 
 #'                     sdmx_resource = 'data')
 #'  head(dat)
 #'
@@ -95,17 +76,16 @@
 #'
 #' ########## count data available
 #'
-#' # with multi country
-#'  sdmx_ilostat("STI_FRA_UNE_TUNE_SEX_AGE_NB/STI.FRA.M.5893...", 
+#'  sdmx_ilostat("STI_FRA_UNE_TUNE_SEX_AGE_NB/STI.FRA.....", 
 #'                      sdmx_resource = 'data', count = TRUE)
 #'
 #' }
 #' @export
 
 
-sdmx_ilostat <- function(	dsd, 
+sdmx_ilostat 			<- function(	dsd, 
 							sdmx_resource = getOption('ilostat_sdmx_resource', 'codelist'),
-							sdmx_format = getOption('ilostat_sdmx_format', 'structurespecificdata'),
+							sdmx_format = 'csv',
 							lang  = getOption('ilostat_lang', 'en'), 
 							count = getOption('ilostat_sdmx_count', FALSE),
 							quiet = getOption('ilostat_quiet', FALSE)){
@@ -140,7 +120,7 @@ sdmx_ilostat <- function(	dsd,
   
 }
 
-sdmx_ilostat_data <- function (	dsd,
+sdmx_ilostat_data 		<- function (	dsd,
 								sdmx_format,
 								quiet){
 
@@ -156,18 +136,7 @@ sdmx_ilostat_data <- function (	dsd,
 
 	if(sdmx_format %in% 'csv') {
 			
-			X <- 	try(read_csv(mypath, col_types = cols(.default = col_character()), progress = FALSE), silent = TRUE)
-	}
-	
-	if (sdmx_format %in% 'structurespecificdata'){
-	
-			X <- 	try(
-	
-				read_xml(mypath), 
-				
-				silent = TRUE
-			)
-	
+			X <- 	try(fread(mypath) %>% as_tibble, silent = TRUE)
 	}
 	
 	# test error message
@@ -202,80 +171,13 @@ sdmx_ilostat_data <- function (	dsd,
 		message('data from : ', mypath )	
 	}
 	
-	if (sdmx_format %in% 'structurespecificdata'){
-	
-		# extract namespace of the xml doc
-		ns <- xml_ns(X)		
-	
-	# test dataset exist
-		len_x <- length(xml_find_all(X, ".//message:DataSet", ns))
-	
-		if(len_x ==0){ 
-	
-			if(!quiet){
-		
-			message("Query with dsd = '", dsd, "': Dataset does not exist.")
-		
-			}
-		
-			return(NULL)
-	
-		}
-	
-
-	
-		# return SeriesKey only
-		if(str_detect(dsd,"detail=serieskeysonly")){ 
-	  
-			y <- xml_attrs(xml_find_all(X, ".//Series", ns)) %>% lapply(as.list)  %>% bind_rows  
-	
-		} else {
-	
-		# return all 
-	  y <-  llply(
-			  
-			  xml_find_all(X, ".//Series", ns), 
-			  
-			  function(y){ 
-				
-				left_join(
-				
-				xml_attrs(y) %>% as.list %>% as_tibble %>% mutate("tmpvars" = 1),
-				
-				xml_attrs(xml_find_all(y, ".//Obs", ns)) %>% lapply(as.list) %>% bind_rows %>% mutate("tmpvars" = 1)  , 
-				
-				by = "tmpvars"
-				
-				) %>% 
-				
-				select_at(vars(-contains("tmpvars"))) 
-				
-			  }
-			
-			) %>% 
-			
-			bind_rows 
-		
-			rm(X)
-		
-		}
-	
-	}
-	
 	invisible(gc(reset = TRUE))
 	
-
-	
-	
-	if(sdmx_format %in% 'csv') {
-	return(X) } else {return(y)}
-	
-	
-	
+	X
 	
 }
 
-sdmx_ilostat_count <- function( dsd, 
+sdmx_ilostat_count 		<- function( dsd, 
 								sdmx_format,
 								quiet){
 
@@ -292,9 +194,9 @@ sdmx_ilostat_count <- function( dsd,
 		   
 		   stringr::str_detect(dsd,"[?]"), 
 		   
-		   paste0(dsd, "&format=", 'structurespecificdata'), 
+		   paste0(dsd, "&format=", 'csv'), 
 		   
-		   paste0(dsd, "?format=", 'structurespecificdata'))
+		   paste0(dsd, "?format=", 'csv'))
   
   # set if SeriesKeysOnly is requested (NO Obs, No Attrs)
   SeriesKeysOnly 	<- grep("DETAIL=SERIESKEYSONLY", toupper(dsd))%in%1 	
@@ -332,11 +234,7 @@ sdmx_ilostat_count <- function( dsd,
   
   mypath <- paste0("https://www.ilo.org/sdmx/rest/data/ILO,DF_",dsd)
   
-  X <- 	try(
-             
-			 read_xml(mypath), 
-		   silent = TRUE
-		)
+	X <- 	try(fread(mypath) %>% as_tibble, silent = TRUE)
 
   
   # test error message
@@ -364,36 +262,7 @@ sdmx_ilostat_count <- function( dsd,
   
   } 
 	
-  # extract namespace of the xml doc
-  ns <- xml_ns(X)		
-
-  # test dataset exist
-  if(length(xml_find_all(X, ".//message:DataSet", ns))==0){ 
-	
-	if(!quiet){
-		
-	  message("Query with dsd = '", dsd, "' Dataset does not exist.")
-	
-	}
-	
-	return(NULL)
-  
-  }
-	
-  if(!quiet){
-    
-	message('data count from : ', mypath )
-  
-  }
-  
-  if(DataOnly){
-	
-	length(xml_find_all(X, ".//Obs", ns)) 
-  
-  } else {
-	
-	length(xml_find_all(X, ".//Series", ns)) 
-  }
+	nrow(X)
 
 }
 
@@ -450,14 +319,14 @@ sdmx_ilostat_codelist	<- function(dsd,
 		Annotation <- NULL
 		if(length(xml_find_all(y,".//common:Annotations",ns))>0){
 		  for (i in 1:length(xml_text(xml_find_all(y,".//common:AnnotationType",ns)))){
-		
-			if(is.na(xml_text(xml_find_all(xml_find_all(y,".//common:Annotation",ns)[i] ,".//common:AnnotationText",ns))[xml_attr(xml_find_all(y,".//common:AnnotationText",ns),"lang")%in%lang][1]) ){
+			
+				if(is.na(xml_text(xml_find_all(xml_find_all(y,".//common:Annotation",ns)[i] ,".//common:AnnotationText",ns))[xml_attr(xml_find_all(y,".//common:AnnotationText",ns),"lang")%in%lang][1]) ){
 				
 				test <- xml_text(xml_find_all(xml_find_all(y,".//common:Annotation",ns)[i] ,".//common:AnnotationText",ns))
 				if(length(test) !=0 ){
 					Annotation[[ xml_text(xml_find_all(xml_find_all(y,".//common:Annotation",ns)[i] ,".//common:AnnotationType",ns)) ]] <- xml_text(xml_find_all(xml_find_all(y,".//common:Annotation",ns)[i] ,".//common:AnnotationText",ns))
 				} else {
-					Annotation[[ xml_text(xml_find_all(xml_find_all(y,".//common:Annotation",ns)[i] ,".//common:AnnotationType",ns)) ]] <- NA
+					Annotation[[ xml_text(xml_find_all(xml_find_all(y,".//common:Annotation",ns)[i] ,".//common:AnnotationType",ns)) ]] <- xml_text(xml_find_all(xml_find_all(y,".//common:Annotation",ns)[i] ,".//common:AnnotationTitle",ns))
 				
 				}
 			} else {
@@ -472,15 +341,13 @@ sdmx_ilostat_codelist	<- function(dsd,
 			
 		Description <- c(description = xml_text(xml_find_all(y,".//common:Description",ns)[xml_attr(xml_find_all(y,".//common:Description",ns),"lang")%in%lang]))
 
-		c(MyCode, MyLabel, Annotation, Description) %>% t %>% as_tibble
+		c(MyCode, MyLabel, unlist(Annotation), Description) %>% t %>% as_tibble 
 								
 	  }
-	) %>% 
-	
-	as_tibble %>% filter(eval(parse(text = "!code %in% '_Z'")))
+	) %>% filter(eval(parse(text = "!code %in% '_Z'"))) %>% as_tibble
 }
 
-sdmx_ilostat_dataflow <- function(  dsd,
+sdmx_ilostat_dataflow 	<- function(  dsd,
 									quiet){
   mypath <- paste0(
 	          

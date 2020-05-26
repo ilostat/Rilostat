@@ -4,10 +4,11 @@
 \alias{clean_ilostat_cache}
 \title{Clean Ilostat Cache}
 \usage{
-clean_ilostat_cache(cache_dir = getOption("ilostat_cache_dir",
-  file.path(tempdir(), "ilostat")),
+clean_ilostat_cache(
+  cache_dir = getOption("ilostat_cache_dir", file.path(tempdir(), "ilostat")),
   cache_update = getOption("ilostat_cache_update", FALSE),
-  quiet = getOption("ilostat_quiet", FALSE))
+  quiet = getOption("ilostat_quiet", FALSE)
+)
 }
 \arguments{
 \item{cache_dir}{A character, path to a cache directory. The directory has to exist.

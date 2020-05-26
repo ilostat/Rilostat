@@ -4,6 +4,14 @@ output:
     keep_md: yes
 ---
 
+# Rilostat 1.1
+
+* add data explorer app
+* sdmx_ilostat new path
+* test with R 4.0
+* Rilostat replace ilostat 
+* refresh doc
+
 # Rilostat 1.0.1
 
 * change ilostat path

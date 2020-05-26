@@ -78,7 +78,7 @@ get_ilostat_toc <- function(segment = getOption('ilostat_segment', 'indicator'),
   
   if(stringr::str_detect(tolower(segment), 'model')){
 	
-	lang <- 'en' 
+	# lang <- 'en' 
 	segment <- 'modelled_estimates'
   
   }

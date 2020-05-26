@@ -4,8 +4,12 @@
 \alias{label_ilostat}
 \title{Switch Ilostat codes and labels}
 \usage{
-label_ilostat(x, dic = NULL, code = NULL,
-  lang = getOption("ilostat_lang", "en"))
+label_ilostat(
+  x,
+  dic = NULL,
+  code = NULL,
+  lang = getOption("ilostat_lang", "en")
+)
 }
 \arguments{
 \item{x}{A character or a factor vector or a data_frame to labelled.}
