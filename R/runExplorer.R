@@ -7,6 +7,12 @@
 #' @references
 #' See citation("Rilostat")
 #'
+#' @examples 
+#' \dontrun{
+#'
+#'  runExplorer()
+#'
+#' }
 #' @export
 runExplorer <- function(display.mode = "normal") {
 

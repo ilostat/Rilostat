@@ -9,6 +9,13 @@ runExplorer(display.mode = "normal")
 \description{
 open ilostat explorer app on your computer.
 }
+\examples{
+\dontrun{
+
+ runExplorer()
+
+}
+}
 \references{
 See citation("Rilostat")
 }

@@ -101,7 +101,7 @@
             
             <h4 class="date">2020-05-26</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/ilostat/Rilostat/blob/master/../vignettes/Rilostat.Rmd"><code>../vignettes/Rilostat.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ilostat/Rilostat/blob/master/../../../ILO/R/bin/x64/vignettes/Rilostat.Rmd"><code>../../../ILO/R/bin/x64/vignettes/Rilostat.Rmd</code></a></small>
       <div class="hidden name"><code>Rilostat.Rmd</code></div>
 
     </div>
@@ -331,7 +331,7 @@
 </table>
 <p>You can also manipulate ILOSTAT’s table of contents’ dataframe using the basic R filter. If you are already familiar with ILOSTAT data and the way it is structured, you can easily filter what you want.</p>
 <p>For example, if you know beforehand you want data only from ILOSTAT’s Short Term Indicators dataset (code “STI”) and you are only interested in monthly data (code “M”) you can simply do:</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">toc</span> <span class="kw">&lt;-</span>  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span>(), <span class="no">collection</span> <span class="kw">==</span> <span class="st">'STI'</span>, <span class="no">freq</span> <span class="kw">==</span> <span class="st">'M'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">toc</span> <span class="kw">&lt;-</span>  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(<span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span>(), <span class="no">collection</span> <span class="kw">==</span> <span class="st">'STI'</span>, <span class="no">freq</span> <span class="kw">==</span> <span class="st">'M'</span>)</pre></body></html></div>
 <p><br></p>
 <table class="table">
 <caption>Table 1e. Extract, ‘Table of contents by indicator filtered for Monthly Short term indicators’</caption>
@@ -485,7 +485,7 @@
 <p>It is also possible to download multiple datasets at once, simply by setting the dataset’s id as a vector of ids or a tibble that lists ids in a specific column:</p>
 <div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">dat</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="kw">id</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'AFG_A'</span>, <span class="st">'TTO_A'</span>), <span class="kw">segment</span> <span class="kw">=</span> <span class="st">'ref_area'</span>)
 
-<span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(<span class="no">dat</span>, <span class="no">ref_area</span>)</pre></body></html></div>
+<span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/tally.html">count</a></span>(<span class="no">dat</span>, <span class="no">ref_area</span>)</pre></body></html></div>
 <pre><code>## # A tibble: 2 x 2
 ##   ref_area      n
 ##   &lt;chr&gt;     &lt;int&gt;
@@ -496,7 +496,7 @@
 
 <span class="no">dat</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="kw">id</span> <span class="kw">=</span> <span class="no">toc</span>, <span class="kw">segment</span> <span class="kw">=</span> <span class="st">'indicator'</span>, <span class="kw">quiet</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 
-<span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(<span class="no">dat</span>, <span class="no">indicator</span>)</pre></body></html></div>
+<span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/tally.html">count</a></span>(<span class="no">dat</span>, <span class="no">indicator</span>)</pre></body></html></div>
 <pre><code>## # A tibble: 5 x 2
 ##   indicator            n
 ##   &lt;chr&gt;            &lt;int&gt;
@@ -627,7 +627,7 @@
                                                     <span class="kw">ref_area</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'BRA'</span>, <span class="st">'ZAF'</span>),
                                                     <span class="kw">sex</span> <span class="kw">=</span> <span class="st">'T'</span>,
                                                     <span class="kw">classif1</span> <span class="kw">=</span> <span class="st">'AGE_YTHADULT_Y15-24'</span>))
-<span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/tally.html">count</a></span>(<span class="no">dat</span>, <span class="no">ref_area</span>, <span class="no">sex</span>, <span class="no">classif1</span>)</pre></body></html></div>
+<span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/tally.html">count</a></span>(<span class="no">dat</span>, <span class="no">ref_area</span>, <span class="no">sex</span>, <span class="no">classif1</span>)</pre></body></html></div>
 <pre><code>## # A tibble: 2 x 4
 ##   ref_area sex   classif1                n
 ##   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;               &lt;int&gt;
@@ -736,7 +736,7 @@
               <span class="kw">time_format</span> <span class="kw">=</span> <span class="st">'num'</span>,
               <span class="kw">filters</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>( <span class="kw">ref_area</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'FRA'</span>, <span class="st">'USA'</span>, <span class="st">'DEU'</span>),
                               <span class="kw">timefrom</span> <span class="kw">=</span> <span class="fl">2005</span>, <span class="kw">timeto</span> <span class="kw">=</span> <span class="fl">2017</span>))  <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="no">ref_area</span>, <span class="no">time</span>, <span class="no">obs_value</span>) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span>(<span class="no">ref_area</span>, <span class="no">time</span>, <span class="no">obs_value</span>) <span class="kw">%&gt;%</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">time</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">obs_value</span>, <span class="kw">colour</span> <span class="kw">=</span> <span class="no">ref_area</span>)) +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() +
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span>(<span class="st">'Male labour force participation rate in selected countries, 2005-2017'</span>) +
@@ -758,14 +758,14 @@
                                 <span class="kw">time</span> <span class="kw">=</span> <span class="st">'1999'</span>,
                                 <span class="kw">sex</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'M'</span>, <span class="st">'F'</span>),
                                 <span class="kw">classif1</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Y15-24'</span>, <span class="st">'YGE25'</span>))) <span class="kw">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(!<span class="no">classif2</span> <span class="kw">%in%</span> <span class="st">'CLA_ECOCLA_TOTAL'</span>) <span class="kw">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>( <span class="kw">sex</span> <span class="kw">=</span>       <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="no">sex</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode_factor</a></span>(
+    <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(!<span class="no">classif2</span> <span class="kw">%in%</span> <span class="st">'CLA_ECOCLA_TOTAL'</span>) <span class="kw">%&gt;%</span>
+    <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>( <span class="kw">sex</span> <span class="kw">=</span>       <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="no">sex</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/recode.html">recode_factor</a></span>(
                                 <span class="st">'SEX_M'</span> <span class="kw">=</span> <span class="st">'Male'</span>,
                                 <span class="st">'SEX_F'</span> <span class="kw">=</span> <span class="st">'Female'</span>),
-            <span class="kw">classif1</span> <span class="kw">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="no">classif1</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode_factor</a></span>(
+            <span class="kw">classif1</span> <span class="kw">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="no">classif1</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/recode.html">recode_factor</a></span>(
                                 <span class="st">'AGE_YTHADULT_YGE25'</span> <span class="kw">=</span> <span class="st">'Adult'</span>,
                                 <span class="st">'AGE_YTHADULT_Y15-24'</span> <span class="kw">=</span> <span class="st">'Youth'</span>),
-            <span class="kw">classif2</span> <span class="kw">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="no">classif2</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode_factor</a></span>(
+            <span class="kw">classif2</span> <span class="kw">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="no">classif2</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/recode.html">recode_factor</a></span>(
                                 <span class="st">'CLA_ECOCLA_USDLT2'</span> <span class="kw">=</span> <span class="st">'&lt;US$1.9'</span>,
                                 <span class="st">'CLA_ECOCLA_USDGE2LT3'</span> <span class="kw">=</span> <span class="st">'&gt;=US$1.9 &amp; &lt;US$3.2'</span>,
                                 <span class="st">'CLA_ECOCLA_USDGE3LT5'</span> <span class="kw">=</span> <span class="st">'&gt;=US$3.2 &amp; &lt;US$5.5'</span>,
@@ -804,9 +804,9 @@
                               <span class="kw">cmd</span> <span class="kw">=</span> <span class="st">"dat %&gt;% select(ref_area, indicator, obs_value)"</span>,
                               <span class="kw">quiet</span> <span class="kw">=</span> <span class="fl">TRUE</span>) <span class="kw">%&gt;%</span>
             <span class="fu"><a href="../reference/label_ilostat.html">label_ilostat</a></span>() <span class="kw">%&gt;%</span>
-            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(<span class="no">ref_area.label</span>) <span class="kw">%&gt;%</span>
-            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">obs_value</span> <span class="kw">=</span> <span class="no">obs_value</span> / <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">obs_value</span>)) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span>() <span class="kw">%&gt;%</span>
-            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">indicator.label</span> <span class="kw">=</span> <span class="no">indicator.label</span> <span class="kw">%&gt;%</span>
+            <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span>(<span class="no">ref_area.label</span>) <span class="kw">%&gt;%</span>
+            <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>(<span class="kw">obs_value</span> <span class="kw">=</span> <span class="no">obs_value</span> / <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">obs_value</span>)) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup</a></span>() <span class="kw">%&gt;%</span>
+            <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>(<span class="kw">indicator.label</span> <span class="kw">=</span> <span class="no">indicator.label</span> <span class="kw">%&gt;%</span>
                                       <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span>(<span class="fu"><a href="https://stringr.tidyverse.org/reference/modifiers.html">fixed</a></span>(<span class="st">' by sex and age (thousands)'</span>), <span class="st">''</span>)) <span class="kw">%&gt;%</span>
             <span class="fu"><a href="https://tidyr.tidyverse.org/reference/spread.html">spread</a></span>(<span class="no">indicator.label</span>, <span class="no">obs_value</span>)
 
@@ -841,7 +841,7 @@
 <span class="no">dat</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="kw">id</span> <span class="kw">=</span> <span class="st">'UNE_2YAP_NOC_RT_A'</span>, <span class="kw">filters</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">time</span> <span class="kw">=</span> <span class="st">'2017'</span>)) <span class="kw">%&gt;%</span>
             <span class="fu"><a href="https://rdrr.io/pkg/plotly/man/reexports.html">filter</a></span>(!<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span>(<span class="no">ref_area</span>,<span class="fl">1</span>,<span class="fl">1</span>) <span class="kw">%in%</span> <span class="st">'X'</span>) <span class="kw">%&gt;%</span>
             <span class="fu"><a href="https://rdrr.io/pkg/plotly/man/reexports.html">select</a></span>(<span class="no">ref_area</span>, <span class="no">obs_value</span>) <span class="kw">%&gt;%</span>
-            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(  <span class="kw pkg">Rilostat</span><span class="kw ns">:::</span><span class="no">ilostat_ref_area_mapping</span> <span class="kw">%&gt;%</span>
+            <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/join.html">left_join</a></span>(  <span class="kw pkg">Rilostat</span><span class="kw ns">:::</span><span class="no">ilostat_ref_area_mapping</span> <span class="kw">%&gt;%</span>
                             <span class="fu"><a href="https://rdrr.io/pkg/plotly/man/reexports.html">select</a></span>(<span class="no">ref_area</span>, <span class="no">ref_area_plotly</span>)<span class="kw">%&gt;%</span>
                             <span class="fu"><a href="../reference/label_ilostat.html">label_ilostat</a></span>(<span class="kw">code</span> <span class="kw">=</span> <span class="st">'ref_area'</span>),
                         <span class="kw">by</span> <span class="kw">=</span> <span class="st">"ref_area"</span>) <span class="kw">%&gt;%</span>
