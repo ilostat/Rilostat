@@ -8,21 +8,29 @@
 
 <title>Read Ilostat Data, Metadata via ILO SDMX api — sdmx_ilostat • Rilostat</title>
 
-<!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<!-- jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -31,15 +39,15 @@
 
 <!-- docsearch -->
 <script src="../docsearch.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
 <link href="../docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Read Ilostat Data, Metadata via ILO SDMX api — sdmx_ilostat" />
 
+<meta property="og:title" content="Read Ilostat Data, Metadata via ILO SDMX api — sdmx_ilostat" />
 <meta property="og:description" content="query codelist, data and metadata via ilo sdmx api" />
-<meta name="twitter:card" content="summary" />
+
 
 
 
@@ -63,9 +71,10 @@
   gtag('config', 'UA-140141628-1');
 </script>
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -79,7 +88,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rilostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1</span>
       </span>
     </div>
 
@@ -110,7 +119,6 @@
   <a href="../news/index.html">News</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ilostat/Rilostat">
@@ -120,7 +128,7 @@
 </li>
       </ul>
       
-      <form class="navbar-form navbar-right" role="search">
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
         </div>
@@ -131,28 +139,30 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Read Ilostat Data, Metadata via ILO SDMX api</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/ilostat/Rilostat/blob/master/R/sdmx_ilostat.R'><code>R/sdmx_ilostat.R</code></a></small>
     <div class="hidden name"><code>sdmx_ilostat.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    
     <p>query codelist, data and metadata via ilo sdmx api</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>sdmx_ilostat</span>(<span class='no'>dsd</span>, <span class='kw'>sdmx_resource</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"ilostat_sdmx_resource"</span>,
-  <span class='st'>"codelist"</span>), <span class='kw'>sdmx_format</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"ilostat_sdmx_format"</span>,
-  <span class='st'>"structurespecificdata"</span>), <span class='kw'>lang</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"ilostat_lang"</span>, <span class='st'>"en"</span>),
-  <span class='kw'>count</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"ilostat_sdmx_count"</span>, <span class='fl'>FALSE</span>),
-  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/options'>getOption</a></span>(<span class='st'>"ilostat_quiet"</span>, <span class='fl'>FALSE</span>))</pre>
-    
+    <pre class="usage"><span class='fu'>sdmx_ilostat</span>(
+  <span class='no'>dsd</span>,
+  <span class='kw'>sdmx_resource</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ilostat_sdmx_resource"</span>, <span class='st'>"codelist"</span>),
+  <span class='kw'>sdmx_format</span> <span class='kw'>=</span> <span class='st'>"csv"</span>,
+  <span class='kw'>lang</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ilostat_lang"</span>, <span class='st'>"en"</span>),
+  <span class='kw'>count</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ilostat_sdmx_count"</span>, <span class='fl'>FALSE</span>),
+  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ilostat_quiet"</span>, <span class='fl'>FALSE</span>)
+)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -167,7 +177,7 @@
     </tr>
     <tr>
       <th>sdmx_format</th>
-      <td><p>: for data only, a character, format of info to be returned from the sdmx api: <code>'structurespecificdata'</code> (default) also available <code>'csv'</code>.</p></td>
+      <td><p>: for data only, a character, format of info to be returned from the sdmx api: <code>'csv'</code> (default) others no longer available.</p></td>
     </tr>
     <tr>
       <th>lang</th>
@@ -184,61 +194,47 @@
 Can be set also with options(ilostat_quiet = TRUE).</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>See citation("Rilostat")</p>
 <p>ilostat sdmx user guidelines:
  "https://www.ilo.org/ilostat-files/Documents/SDMX_User_Guide.pdf"</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
 <span class='co'>########## get codelist</span>
 <span class='co'># fetch indicator define on ILOSTAT</span>
  <span class='no'>dic</span> <span class='kw'>&lt;-</span> <span class='fu'>sdmx_ilostat</span>(<span class='kw'>dsd</span> <span class='kw'>=</span> <span class='st'>"CL_INDICATOR"</span>, <span class='kw'>lang</span> <span class='kw'>=</span><span class='st'>"en"</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>dic</span>)
+ <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>dic</span>)
 
 <span class='co'># fetch country available on ILOSTAT</span>
  <span class='no'>dic</span> <span class='kw'>&lt;-</span> <span class='fu'>sdmx_ilostat</span>(<span class='kw'>dsd</span> <span class='kw'>=</span> <span class='st'>"CL_AREA"</span>, <span class='kw'>lang</span> <span class='kw'>=</span><span class='st'>"es"</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>dic</span>)
+ <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>dic</span>)
 
-<span class='co'># fetch classif ECO available on ILOSTAT</span>
+<span class='co'># fetch classif ECO version available on ILOSTAT</span>
  <span class='no'>dic</span> <span class='kw'>&lt;-</span> <span class='fu'>sdmx_ilostat</span>(<span class='kw'>dsd</span> <span class='kw'>=</span> <span class='st'>"CL_ECO"</span>, <span class='kw'>lang</span> <span class='kw'>=</span><span class='st'>"en"</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>dic</span>)
-
-<span class='co'># fetch classif ECO verion available on ILOSTAT</span>
- <span class='no'>dic</span> <span class='kw'>&lt;-</span> <span class='fu'>sdmx_ilostat</span>(<span class='kw'>dsd</span> <span class='kw'>=</span> <span class='st'>"CL_CLASSIF_ECO"</span>, <span class='kw'>lang</span> <span class='kw'>=</span><span class='st'>"en"</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>dic</span>)
+ <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>dic</span>)
 
 <span class='co'># fetch note type available on ILOSTAT</span>
  <span class='no'>dic</span> <span class='kw'>&lt;-</span> <span class='fu'>sdmx_ilostat</span>(<span class='kw'>dsd</span> <span class='kw'>=</span> <span class='st'>"CL_NOTE_TYPE"</span>, <span class='kw'>lang</span> <span class='kw'>=</span><span class='st'>"en"</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>dic</span>)
+ <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>dic</span>)
 
 <span class='co'># fetch note "Repository" available on ILOSTAT</span>
  <span class='no'>dic</span> <span class='kw'>&lt;-</span> <span class='fu'>sdmx_ilostat</span>(<span class='kw'>dsd</span> <span class='kw'>=</span> <span class='st'>"CL_NOTE_R1"</span>, <span class='kw'>lang</span> <span class='kw'>=</span><span class='st'>"en"</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>dic</span>)
+ <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>dic</span>)
 
 <span class='co'>########## get data</span>
 
 <span class='co'>### with attribute</span>
  <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'>sdmx_ilostat</span>(<span class='kw'>dsd</span> <span class='kw'>=</span> <span class='st'>'STI_ALB_EMP_TEMP_SEX_AGE_NB'</span>,
                     <span class='kw'>sdmx_resource</span> <span class='kw'>=</span> <span class='st'>'data'</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>dat</span>)
+ <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>dat</span>)
 
 <span class='co'># without attribute</span>
  <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'>sdmx_ilostat</span>(<span class='kw'>dsd</span> <span class='kw'>=</span> <span class='st'>"STI_DEU_EMP_TEMP_SEX_AGE_NB?detail=dataonly"</span>,
                     <span class='kw'>sdmx_resource</span> <span class='kw'>=</span> <span class='st'>'data'</span>)
-
-<span class='co'># of last N data</span>
- <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'>sdmx_ilostat</span>(<span class='kw'>dsd</span> <span class='kw'>=</span> <span class='st'>"STI_ITA_EMP_TEMP_SEX_AGE_NB?lastNObservations=1"</span>,
-                    <span class='kw'>sdmx_resource</span> <span class='kw'>=</span> <span class='st'>'data'</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>dat</span>)
-
-<span class='co'># of first N data</span>
- <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'>sdmx_ilostat</span>(<span class='kw'>dsd</span> <span class='kw'>=</span> <span class='st'>"STI_ARG_EMP_TEMP_SEX_AGE_NB?firstNObservations=2"</span>,
-                    <span class='kw'>sdmx_resource</span> <span class='kw'>=</span> <span class='st'>'data'</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>dat</span>)
+ <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>dat</span>)
 
 <span class='co'>######## with multi country and advanced filters</span>
 
@@ -250,15 +246,9 @@ Can be set also with options(ilostat_quiet = TRUE).</p></td>
 
 <span class='co'># COUNTRY and FREQ are in second and third position of the filters</span>
 
- <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'>sdmx_ilostat</span>(<span class='kw'>dsd</span> <span class='kw'>=</span> <span class='st'>"STI_ALL_EMP_TEMP_SEX_AGE_NB/.FRA+DEU.M...."</span>,
+ <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'>sdmx_ilostat</span>(<span class='kw'>dsd</span> <span class='kw'>=</span> <span class='st'>"STI_ALL_EMP_TEMP_SEX_AGE_NB/.FRA+DEU.Q...."</span>,
                     <span class='kw'>sdmx_resource</span> <span class='kw'>=</span> <span class='st'>'data'</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>dat</span>)
-
-
-<span class='co'># as from 2009</span>
- <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'>sdmx_ilostat</span>(<span class='st'>"STI_FRA_UNE_TUNE_SEX_AGE_NB/STI.FRA.M.5893.."</span>,
-                    <span class='kw'>sdmx_resource</span> <span class='kw'>=</span> <span class='st'>'data'</span>)
- <span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/head'>head</a></span>(<span class='no'>dat</span>)
+ <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>dat</span>)
 
 <span class='co'>########## dataflow available</span>
 
@@ -270,26 +260,18 @@ Can be set also with options(ilostat_quiet = TRUE).</p></td>
 
 <span class='co'>########## count data available</span>
 
-<span class='co'># with multi country</span>
- <span class='fu'>sdmx_ilostat</span>(<span class='st'>"STI_FRA_UNE_TUNE_SEX_AGE_NB/STI.FRA.M.5893..."</span>,
+ <span class='fu'>sdmx_ilostat</span>(<span class='st'>"STI_FRA_UNE_TUNE_SEX_AGE_NB/STI.FRA....."</span>,
                      <span class='kw'>sdmx_resource</span> <span class='kw'>=</span> <span class='st'>'data'</span>, <span class='kw'>count</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-<span class='co'># }</span></pre>
+}</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#references">References</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>David Bescond <a href='mailto:bescond@ilo.org'>bescond@ilo.org</a></p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -297,8 +279,9 @@ Can be set also with options(ilostat_quiet = TRUE).</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
    </div>
 
@@ -321,6 +304,8 @@ Can be set also with options(ilostat_quiet = TRUE).</p></td>
 </script>
 
 
+
   </body>
 </html>
+
 
