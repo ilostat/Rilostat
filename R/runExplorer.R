@@ -1,3 +1,12 @@
+#' @title play with ilostat explorer
+#'
+#' @description open ilostat explorer app on your computer.
+#'
+#' @name runExplorer
+#' @author David Bescond \email{bescond@ilo.org}
+#' @references
+#' See citation("Rilostat")
+#'
 #' @export
 runExplorer <- function(display.mode = "normal") {
 
