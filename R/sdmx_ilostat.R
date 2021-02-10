@@ -18,7 +18,7 @@
 #'  "https://www.ilo.org/ilostat-files/Documents/SDMX_User_Guide.pdf"
 
 #' @examples 
-#' \dontrun{
+#' \donttest{
 #' ########## get codelist
 #' # fetch indicator define on ILOSTAT
 #'  dic <- sdmx_ilostat(dsd = "CL_INDICATOR", lang ="en")

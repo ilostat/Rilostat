@@ -17,7 +17,7 @@ displays the application in the mode given in its DESCRIPTION file, if any.}
 open ilostat explorer app on your computer.
 }
 \examples{
-\dontrun{
+\donttest{
 
  runExplorer()
 

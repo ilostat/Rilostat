@@ -81,7 +81,7 @@
 #'         The time column for a time dimension.  
 #' @seealso \code{\link{get_ilostat_toc}}, \code{\link{label_ilostat}}
 #' @examples 
-#' \dontrun{
+#' \donttest{
 #' ############# get simple dataset
 #'  dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A")
 #'  head(dat)

@@ -21,7 +21,7 @@ LazyLoad: \tab yes\cr
 R Tools for ilostat Open Data
 }
 \examples{
-\dontrun{
+\donttest{
 
 # check which documentation have been recently added:
 

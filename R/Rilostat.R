@@ -73,7 +73,7 @@
 #' @importFrom data.table fread
 #' @importFrom DT datatable
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'
 #' # check which documentation have been recently added:
 #'

@@ -17,7 +17,7 @@
 #' ilostat bulk download facility user guidelines 
 #' \url{https://www.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf}
 #' @examples 
-#' \dontrun{
+#' \donttest{
 #' clean_ilostat_cache() 
 #' }
 #' @export

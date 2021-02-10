@@ -20,7 +20,7 @@
 #' ilostat bulk download facility user guidelines 
 #' \url{https://www.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf}
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'  dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A", cache = FALSE)
 #'  dat_lab <- label_ilostat(dat)
 #'  head(dat_lab)

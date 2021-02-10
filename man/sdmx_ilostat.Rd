@@ -33,7 +33,7 @@ Can be set also with options(ilostat_quiet = TRUE).}
 query codelist, data and metadata via ilo sdmx api
 }
 \examples{
-\dontrun{
+\donttest{
 ########## get codelist
 # fetch indicator define on ILOSTAT
  dic <- sdmx_ilostat(dsd = "CL_INDICATOR", lang ="en")

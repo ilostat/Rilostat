@@ -29,7 +29,7 @@ Deletes all cache files from the your ilostat cache directory.
              See \code{\link{get_ilostat}} for more on cache.
 }
 \examples{
-\dontrun{
+\donttest{
 clean_ilostat_cache() 
 }
 }
