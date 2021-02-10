@@ -15,7 +15,7 @@ Description: Tools to download data from the ilostat database
     manipulation utilities.
 License: BSD_2_clause + file LICENSE
 Depends:
-    R (>= 4.0)
+    R (>= 3.6.3)
 Imports:
 	plyr,
 	dplyr (>= 1.0.4), 
