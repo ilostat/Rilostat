@@ -23,9 +23,9 @@ runExplorer <- function(display.mode = "normal") {
 	Sys.setenv(ftp_proxy="proxyos.ilo.org:8080") 
   }
   
-  myGlobal 	<- read_lines("ftp://ilostatRO:1l0st4tR0@ftp.ilo.org/Rilostat/opensource/bulkexplorer/bulkexplorer_GLOBAL.r")
-  myUi 		<- read_lines("ftp://ilostatRO:1l0st4tR0@ftp.ilo.org/Rilostat/opensource/bulkexplorer/bulkexplorer_UI.r")
-  myServer 	<- read_lines("ftp://ilostatRO:1l0st4tR0@ftp.ilo.org/Rilostat/opensource/bulkexplorer/bulkexplorer_SERVER.r")
+  myGlobal 	<- readr::read_lines("ftp://ilostatRO:1l0st4tR0@ftp.ilo.org/Rilostat/opensource/bulkexplorer/bulkexplorer_GLOBAL.r")
+  myUi 		<- readr::read_lines("ftp://ilostatRO:1l0st4tR0@ftp.ilo.org/Rilostat/opensource/bulkexplorer/bulkexplorer_UI.r")
+  myServer 	<- readr::read_lines("ftp://ilostatRO:1l0st4tR0@ftp.ilo.org/Rilostat/opensource/bulkexplorer/bulkexplorer_SERVER.r")
   
 
   shiny::runApp( list(

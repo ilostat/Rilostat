@@ -41,5 +41,4 @@ LazyData: true
 URL: https://ilostat.github.io/Rilostat/
 BugReports: https://github.com/ilostat/Rilostat/issues
 Repository: CRAN
-VignetteBuilder: knitr
 RoxygenNote: 7.1.1

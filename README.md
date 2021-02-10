@@ -46,7 +46,7 @@ The developer of this package drew extensive inspiration from the [eurostat R pa
 
 # Installation
 
-Download and install [R from CRAN](https://cran.r-project.org/), install [RStudio's IDE](http://www.rstudio.com/ide/download/), a powerful user interface for R.
+Download and install [R from CRAN](https://cran.r-project.org/), install [RStudio's IDE](https://rstudio.com/products/rstudio/), a powerful user interface for R.
 Then use command:
  
 
