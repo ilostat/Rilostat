@@ -1,14 +1,10 @@
-#' @title play with ilostat explorer
-#'
+#' @title Play with ilostat explorer
 #' @description open ilostat explorer app on your computer.
-#'
 #' @param display.mode The mode in which to display the application. 
 #' If set to the value "showcase", shows application code and metadata 
 #' from a DESCRIPTION file in the application directory alongside the application. 
 #' If set to "normal", displays the application normally. Defaults to "auto", which 
 #' displays the application in the mode given in its DESCRIPTION file, if any.
-#'
-#' @name runExplorer
 #' @author David Bescond \email{bescond@ilo.org}
 #' @references
 #' See citation("Rilostat")

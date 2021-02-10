@@ -2,7 +2,7 @@
 % Please edit documentation in R/runExplorer.R
 \name{runExplorer}
 \alias{runExplorer}
-\title{play with ilostat explorer}
+\title{Play with ilostat explorer}
 \usage{
 runExplorer(display.mode = "normal")
 }

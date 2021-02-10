@@ -14,9 +14,9 @@ reference:
     - get_ilostat_dic
     - label_ilostat
     - clean_ilostat_cache
-    - ilostat
+    - runExplorer
     - sdmx_ilostat
-
+ 
 navbar:
   title: ~
   type: default
@@ -29,8 +29,6 @@ navbar:
       menu:
       - text: Visualisation
         href: articles/RilostatVisu.html   
-      - text: Search Data
-        href: articles/SearchBulk.html   
     - text: News
       href: news/index.html
   right:

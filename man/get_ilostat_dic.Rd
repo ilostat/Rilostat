@@ -33,7 +33,7 @@ For a given coded variable from ilostat \url{https://ilostat.ilo.org/}.
 }
 }
 \references{
-See citation("ilostat")
+See citation("Rilostat")
 ilostat bulk download facility user guidelines 
 \url{https://www.ilo.org/ilostat-files/WEB_bulk_download/ILOSTAT_BulkDownload_Guidelines.pdf}
 ilostat bulk download facility main page 

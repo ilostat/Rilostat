@@ -3,6 +3,10 @@ output:
   html_document: 
     keep_md: yes
 ---
+# Rilostat 1.1.5
+
+* update vignette
+
 
 # Rilostat 1.1
 

@@ -12,7 +12,7 @@
 #' @keywords utilities database
 #' @author David Bescond \email{bescond@ilo.org}
 #' @references
-#' See citation("ilostat")
+#' See citation("Rilostat")
 #' ilostat bulk download facility user guidelines 
 #' \url{https://www.ilo.org/ilostat-files/WEB_bulk_download/ILOSTAT_BulkDownload_Guidelines.pdf}
 #' ilostat bulk download facility main page 
