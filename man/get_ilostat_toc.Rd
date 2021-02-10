@@ -59,7 +59,7 @@ The TOC in English by ref_area is downloaded from \url{https://www.ilo.org/ilost
 The values in column 'id' should be used to download a selected dataset.
 }
 \examples{
-\donttest{
+\dontrun{
 ## default segment by indicator, default lang English
  toc <- get_ilostat_toc()
  head(toc)

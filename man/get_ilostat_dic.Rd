@@ -25,7 +25,7 @@ For a given coded variable from ilostat \url{https://ilostat.ilo.org/}.
    To translate codes to labels, use \code{\link{label_ilostat}}.
 }
 \examples{
-\donttest{
+\dontrun{
  tmp <- get_ilostat_dic("indicator")
  head(tmp)
  tmp <- get_ilostat_dic("classif1", lang = "fr")

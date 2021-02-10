@@ -14,7 +14,7 @@
 #' See citation("Rilostat")
 #'
 #' @examples 
-#' \donttest{
+#' \dontrun{
 #'
 #'  runExplorer()
 #'

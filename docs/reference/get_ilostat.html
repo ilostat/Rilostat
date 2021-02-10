@@ -89,7 +89,7 @@ https://ilostat.ilo.org/data/bulk/." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rilostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.5</span>
       </span>
     </div>
 
@@ -123,7 +123,7 @@ https://ilostat.ilo.org/data/bulk/." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ilostat/Rilostat">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -156,23 +156,23 @@ https://ilostat.ilo.org/data/bulk/." />
 <a href='https://ilostat.ilo.org/data/bulk/'>https://ilostat.ilo.org/data/bulk/</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_ilostat</span>(
-  <span class='no'>id</span>,
-  <span class='kw'>segment</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ilostat_segment"</span>, <span class='st'>"indicator"</span>),
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ilostat_type"</span>, <span class='st'>"code"</span>),
-  <span class='kw'>lang</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ilostat_lang"</span>, <span class='st'>"en"</span>),
-  <span class='kw'>time_format</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ilostat_time_format"</span>, <span class='st'>"raw"</span>),
-  <span class='kw'>filters</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ilostat_filter"</span>, <span class='st'>"none"</span>),
-  <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ilostat_fixed"</span>, <span class='fl'>TRUE</span>),
-  <span class='kw'>detail</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ilostat_detail"</span>, <span class='st'>"full"</span>),
-  <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ilostat_cache"</span>, <span class='fl'>TRUE</span>),
-  <span class='kw'>cache_update</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ilostat_cache_update"</span>, <span class='fl'>TRUE</span>),
-  <span class='kw'>cache_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ilostat_cache_dir"</span>, <span class='kw'>NULL</span>),
-  <span class='kw'>cache_format</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ilostat_cache_format"</span>, <span class='st'>"rds"</span>),
-  <span class='kw'>back</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ilostat_back"</span>, <span class='fl'>TRUE</span>),
-  <span class='kw'>cmd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ilostat_cmd"</span>, <span class='st'>"none"</span>),
-  <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span>(<span class='st'>"ilostat_quiet"</span>, <span class='fl'>FALSE</span>)
-)</pre>
+    <pre class="usage"><span class='fu'>get_ilostat</span><span class='op'>(</span>
+  <span class='va'>id</span>,
+  segment <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"ilostat_segment"</span>, <span class='st'>"indicator"</span><span class='op'>)</span>,
+  type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"ilostat_type"</span>, <span class='st'>"code"</span><span class='op'>)</span>,
+  lang <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"ilostat_lang"</span>, <span class='st'>"en"</span><span class='op'>)</span>,
+  time_format <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"ilostat_time_format"</span>, <span class='st'>"raw"</span><span class='op'>)</span>,
+  filters <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"ilostat_filter"</span>, <span class='st'>"none"</span><span class='op'>)</span>,
+  fixed <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"ilostat_fixed"</span>, <span class='cn'>TRUE</span><span class='op'>)</span>,
+  detail <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"ilostat_detail"</span>, <span class='st'>"full"</span><span class='op'>)</span>,
+  cache <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"ilostat_cache"</span>, <span class='cn'>TRUE</span><span class='op'>)</span>,
+  cache_update <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"ilostat_cache_update"</span>, <span class='cn'>TRUE</span><span class='op'>)</span>,
+  cache_dir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"ilostat_cache_dir"</span>, <span class='cn'>NULL</span><span class='op'>)</span>,
+  cache_format <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"ilostat_cache_format"</span>, <span class='st'>"rds"</span><span class='op'>)</span>,
+  back <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"ilostat_back"</span>, <span class='cn'>TRUE</span><span class='op'>)</span>,
+  cmd <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"ilostat_cmd"</span>, <span class='st'>"none"</span><span class='op'>)</span>,
+  quiet <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/options.html'>getOption</a></span><span class='op'>(</span><span class='st'>"ilostat_quiet"</span>, <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -302,62 +302,66 @@ ilostat bulk download facility user guidelines <a href='https://ilostat.ilo.org/
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='get_ilostat_toc.html'>get_ilostat_toc</a></code>, <code><a href='label_ilostat.html'>label_ilostat</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>David Bescond <a href='mailto:bescond@ilo.org'>bescond@ilo.org</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'>############# get simple dataset</span>
- <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat</span>(<span class='st'>"UNE_2UNE_SEX_AGE_NB_A"</span>)
- <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>dat</span>)
- <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat</span>(<span class='st'>"NZL_Q"</span>, <span class='kw'>segment</span> <span class='kw'>=</span> <span class='st'>"ref_area"</span>)
- <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>dat</span>)
+ <span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'>get_ilostat</span><span class='op'>(</span><span class='st'>"UNE_2UNE_SEX_AGE_NB_A"</span><span class='op'>)</span>
+ <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span>
+ <span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'>get_ilostat</span><span class='op'>(</span><span class='st'>"NZL_Q"</span>, segment <span class='op'>=</span> <span class='st'>"ref_area"</span><span class='op'>)</span>
+ <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span>
 
- <span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"r_cache"</span>))
- <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat</span>(<span class='st'>"UNE_2UNE_SEX_AGE_NB_A"</span>,
-                  <span class='kw'>cache_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"r_cache"</span>))
- <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>dat</span>)
+ <span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"r_cache"</span><span class='op'>)</span><span class='op'>)</span>
+ <span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'>get_ilostat</span><span class='op'>(</span><span class='st'>"UNE_2UNE_SEX_AGE_NB_A"</span>, 
+                  cache_dir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"r_cache"</span><span class='op'>)</span><span class='op'>)</span>
+ <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span>
 
- <span class='fu'><a href='clean_ilostat_cache.html'>clean_ilostat_cache</a></span>(<span class='kw'>cache_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"r_cache"</span>))
+ <span class='fu'><a href='clean_ilostat_cache.html'>clean_ilostat_cache</a></span><span class='op'>(</span>cache_dir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"r_cache"</span><span class='op'>)</span><span class='op'>)</span> 
 
- <span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>(<span class='kw'>ilostat_update</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
- <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat</span>(<span class='st'>"UNE_2UNE_SEX_AGE_NB_A"</span>)
- <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>dat</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>(<span class='kw'>ilostat_update</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
- <span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>(<span class='kw'>ilostat_cache_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"r_cache"</span>))
- <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat</span>(<span class='st'>"UNE_2UNE_SEX_AGE_NB_A"</span>)
+ <span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span><span class='op'>(</span>ilostat_update <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+ <span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'>get_ilostat</span><span class='op'>(</span><span class='st'>"UNE_2UNE_SEX_AGE_NB_A"</span><span class='op'>)</span>
+ <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span>
+ <span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span><span class='op'>(</span>ilostat_update <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+ <span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span><span class='op'>(</span>ilostat_cache_dir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"r_cache"</span><span class='op'>)</span><span class='op'>)</span>
+ <span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'>get_ilostat</span><span class='op'>(</span><span class='st'>"UNE_2UNE_SEX_AGE_NB_A"</span><span class='op'>)</span>
 
- <span class='fu'><a href='clean_ilostat_cache.html'>clean_ilostat_cache</a></span>()
+ <span class='fu'><a href='clean_ilostat_cache.html'>clean_ilostat_cache</a></span><span class='op'>(</span><span class='op'>)</span> 
 
 <span class='co'>############# get multiple datasets</span>
- <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"CPI_ACPI_COI_RT_M"</span>, <span class='st'>'CPI_ACPI_COI_RT_Q'</span>), <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
- <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>dat</span>)
- <span class='no'>toc</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='get_ilostat_toc.html'>get_ilostat_toc</a></span>(<span class='kw'>search</span> <span class='kw'>=</span> <span class='st'>'CPI_'</span>)
- <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>toc</span>)
- <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat</span>(<span class='no'>toc</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='co'>#id as a tibble</span>
+ <span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'>get_ilostat</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"CPI_ACPI_COI_RT_M"</span>, <span class='st'>'CPI_ACPI_COI_RT_Q'</span><span class='op'>)</span>, cache <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+ <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span>
+ <span class='va'>toc</span> <span class='op'>&lt;-</span> <span class='fu'><a href='get_ilostat_toc.html'>get_ilostat_toc</a></span><span class='op'>(</span>search <span class='op'>=</span> <span class='st'>'CPI_'</span><span class='op'>)</span>
+ <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>toc</span><span class='op'>)</span>
+ <span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'>get_ilostat</span><span class='op'>(</span><span class='va'>toc</span>, cache <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='co'>#id as a tibble</span>
 
 <span class='co'>############# get datasets with filters</span>
- <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"UNE_2UNE_SEX_AGE_NB_A"</span>, <span class='st'>'EMP_2EMP_SEX_AGE_NB_A'</span>),
-                <span class='kw'>filters</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>( <span class='kw'>ref_area</span> <span class='kw'>=</span> <span class='st'>"FRA"</span>,
-                <span class='kw'>classif1</span> <span class='kw'>=</span> <span class='st'>"AGE_YTHADULT_YGE15"</span>,
-                <span class='kw'>time</span> <span class='kw'>=</span> <span class='st'>"2016"</span>,
-                <span class='kw'>sex</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"T"</span>, <span class='st'>'SEX_F'</span>)), <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
- <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>dat</span>)
- <span class='fu'><a href='clean_ilostat_cache.html'>clean_ilostat_cache</a></span>()
+ <span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'>get_ilostat</span><span class='op'>(</span>id <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"UNE_2UNE_SEX_AGE_NB_A"</span>, <span class='st'>'EMP_2EMP_SEX_AGE_NB_A'</span><span class='op'>)</span>, 
+     filters <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>  ref_area <span class='op'>=</span> <span class='st'>"FRA"</span>, 
+     classif1 <span class='op'>=</span> <span class='st'>"AGE_YTHADULT_YGE15"</span>, 
+     time <span class='op'>=</span> <span class='st'>"2016"</span>,
+     sex <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"T"</span>, <span class='st'>'SEX_F'</span><span class='op'>)</span><span class='op'>)</span>, quiet <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+ <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span>
+ <span class='fu'><a href='clean_ilostat_cache.html'>clean_ilostat_cache</a></span><span class='op'>(</span><span class='op'>)</span> 
 
 <span class='co'>############# store in other format</span>
- <span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"ilostat"</span>))
+ <span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"ilostat"</span><span class='op'>)</span><span class='op'>)</span>
 
- <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat</span>(<span class='st'>"UNE_2UNE_SEX_AGE_NB_A"</span>,
-                  <span class='kw'>cache_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"r_cache"</span>), <span class='kw'>cache_format</span> <span class='kw'>=</span> <span class='st'>'csv'</span>)
- <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat</span>(<span class='st'>"UNE_2UNE_SEX_AGE_NB_A"</span>,
-                  <span class='kw'>cache_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"r_cache"</span>), <span class='kw'>cache_format</span> <span class='kw'>=</span> <span class='st'>'dta'</span>)
+ <span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'>get_ilostat</span><span class='op'>(</span><span class='st'>"UNE_2UNE_SEX_AGE_NB_A"</span>, 
+                  cache_dir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"r_cache"</span><span class='op'>)</span>, cache_format <span class='op'>=</span> <span class='st'>'csv'</span><span class='op'>)</span>
+ <span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'>get_ilostat</span><span class='op'>(</span><span class='st'>"UNE_2UNE_SEX_AGE_NB_A"</span>, 
+                  cache_dir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"r_cache"</span><span class='op'>)</span>, cache_format <span class='op'>=</span> <span class='st'>'dta'</span><span class='op'>)</span>
 
 <span class='co'>############# advanced manipulation</span>
 
- <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ilostat</span>(<span class='st'>"UNE_2UNE_SEX_AGE_NB_A"</span>, <span class='kw'>cmd</span> <span class='kw'>=</span> <span class='st'>"dat %&gt;% count(ref_area)"</span>, <span class='kw'>quiet</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
- <span class='fu'><a href='label_ilostat.html'>label_ilostat</a></span>(<span class='no'>dat</span>, <span class='kw'>code</span> <span class='kw'>=</span> <span class='st'>'ref_area'</span>)
+ <span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'>get_ilostat</span><span class='op'>(</span><span class='st'>"UNE_2UNE_SEX_AGE_NB_A"</span>, cmd <span class='op'>=</span> <span class='st'>"dat %&gt;% count(ref_area)"</span>, quiet <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+ <span class='fu'><a href='label_ilostat.html'>label_ilostat</a></span><span class='op'>(</span><span class='va'>dat</span>, code <span class='op'>=</span> <span class='st'>'ref_area'</span><span class='op'>)</span>
 
- <span class='fu'><a href='clean_ilostat_cache.html'>clean_ilostat_cache</a></span>()
-}</div></pre>
+ <span class='fu'><a href='clean_ilostat_cache.html'>clean_ilostat_cache</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -373,7 +377,7 @@ ilostat bulk download facility user guidelines <a href='https://ilostat.ilo.org/
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

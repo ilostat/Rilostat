@@ -73,13 +73,13 @@
 #' @importFrom data.table fread
 #' @importFrom DT datatable
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'
 #' # check which documentation have been recently added:
 #'
-#'  ?Rilostat 
+#'  # help(Rilostat) 
 #' 
-#'  https://ilostat.github.io/Rilostat/ 
+#'  # https://ilostat.github.io/Rilostat/ 
 #' 
 #' }
 NULL

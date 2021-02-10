@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rilostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.5</span>
       </span>
     </div>
 
@@ -73,7 +73,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/ilostat/Rilostat">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -99,9 +99,9 @@
       <h1 data-toc-skip>Bulk download in ILOSTAT:</h1>
                         <h4 class="author">ILO Department of Statistics</h4>
             
-            <h4 class="date">2020-05-26</h4>
+            <h4 class="date">2021-02-10</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/ilostat/Rilostat/blob/master/../../../ILO/R/bin/x64/vignettes/Rilostat.Rmd"><code>../../../ILO/R/bin/x64/vignettes/Rilostat.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ilostat/Rilostat/blob/master/../vignettes/Rilostat.Rmd"><code>../vignettes/Rilostat.Rmd</code></a></small>
       <div class="hidden name"><code>Rilostat.Rmd</code></div>
 
     </div>
@@ -147,13 +147,16 @@
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h1>
 <p>To install the release version, use the following command:</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"Rilostat"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"Rilostat"</span><span class="op">)</span></code></pre></div>
 <p>To install the development version, use the following command:</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">devtools</span>)){<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">'devtools'</span>)}
-<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"ilostat/Rilostat"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/">devtools</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'devtools'</span><span class="op">)</span><span class="op">}</span>
+<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"ilostat/Rilostat"</span><span class="op">)</span></code></pre></div>
 <p>The ilostat R package (<code>'Rilostat'</code>) includes the following functions:</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">Rilostat</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span>(<span class="st">"package:Rilostat"</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://ilostat.github.io/Rilostat/">Rilostat</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="st">"package:Rilostat"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##   ls("package:Rilostat")
 ## 1    clean_ilostat_cache
 ## 2            get_ilostat
@@ -169,10 +172,18 @@
 <a href="#search-for-data" class="anchor"></a>Search for data</h1>
 <p>Unless you already know the code of the indicator or the ref_area (reference area - countries or regions) that you want to download, the first step would be to search for the data you are interested in. <code><a href="../reference/get_ilostat_toc.html">get_ilostat_toc()</a></code> provides grep style searching of all available indicators from ILOSTAT’s bulk download facility and returns the indicators matching your query. <code><a href="../reference/get_ilostat_toc.html">get_ilostat_toc(segment = 'ref_area')</a></code> returns the datasets available by ref_area (‘country’ and ‘region’).</p>
 <p>To access the table of contents of all available indicators in ILOSTAT (by indicator):</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">toc</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span>()</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">toc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><br></p>
 <table class="table">
 <caption>Table 1a. Extract, ‘Table of contents by indicator in English’</caption>
+<colgroup>
+<col width="10%">
+<col width="9%">
+<col width="69%">
+<col width="3%">
+<col width="6%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">id</th>
 <th align="left">indicator</th>
@@ -182,23 +193,23 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">SDG_0111_SEX_AGE_RT_A</td>
-<td align="left">SDG_0111_SEX_AGE_RT</td>
-<td align="left">SDG indicator 1.1.1 - Working poverty rate (percentage of employed living below US$1.90 PPP) (%)</td>
+<td align="left">HOW_2LSS_NOC_RT_A</td>
+<td align="left">HOW_2LSS_NOC_RT</td>
+<td align="left">Working hours lost due to the COVID-19 crisis – ILO modelled estimates %</td>
 <td align="left">A</td>
 <td align="left">Annual</td>
 </tr>
 <tr class="even">
-<td align="left">SDG_0131_SEX_SOC_RT_A</td>
-<td align="left">SDG_0131_SEX_SOC_RT</td>
-<td align="left">SDG indicator 1.3.1 - Proportion of population covered by social protection floors/systems (%)</td>
-<td align="left">A</td>
-<td align="left">Annual</td>
+<td align="left">HOW_2LSS_NOC_RT_Q</td>
+<td align="left">HOW_2LSS_NOC_RT</td>
+<td align="left">Working hours lost due to the COVID-19 crisis – ILO modelled estimates %</td>
+<td align="left">Q</td>
+<td align="left">Quarterly</td>
 </tr>
 <tr class="odd">
-<td align="left">SDG_0552_OCU_RT_A</td>
-<td align="left">SDG_0552_OCU_RT</td>
-<td align="left">SDG indicator 5.5.2 - Female share of employment in managerial positions (%)</td>
+<td align="left">HOW_2FTE_JOB_NB_A</td>
+<td align="left">HOW_2FTE_JOB_NB</td>
+<td align="left">Working hours lost due to the COVID-19 crisis expressed as number of FTE jobs – ILO modelled estimates (thousands)</td>
 <td align="left">A</td>
 <td align="left">Annual</td>
 </tr>
@@ -208,7 +219,8 @@
 <p>All settings are available in the 3 official languages of the ILO: English (<code>'en'</code>), French (<code>'fr'</code>) and Spanish (<code>'es'</code>). The default is <code>'en'</code>.</p>
 <p>For instance, to access the table of contents of all available datasets by reference area in ILOSTAT in Spanish:</p>
 <p><br></p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">toc</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span>(<span class="kw">segment</span> <span class="kw">=</span> <span class="st">'ref_area'</span>, <span class="kw">lang</span> <span class="kw">=</span> <span class="st">'es'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">toc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span><span class="op">(</span>segment <span class="op">=</span> <span class="st">'ref_area'</span>, lang <span class="op">=</span> <span class="st">'es'</span><span class="op">)</span></code></pre></div>
 <p><br></p>
 <table class="table">
 <caption>Table 1b. Extract, ‘Table of contents by ref_area in Spanish’</caption>
@@ -230,10 +242,10 @@
 <td align="left">Aruba</td>
 <td align="left">A</td>
 <td align="left">Anual</td>
-<td align="left">55.21 KB</td>
+<td align="left">50.97 KB</td>
 <td align="left">1960</td>
-<td align="left">2019</td>
-<td align="left">26/03/2020 09:16:51</td>
+<td align="left">2020</td>
+<td align="left">24/01/2021 07:36:35</td>
 </tr>
 <tr class="even">
 <td align="left">ABW_M</td>
@@ -241,7 +253,7 @@
 <td align="left">Aruba</td>
 <td align="left">M</td>
 <td align="left">Mensual</td>
-<td align="left">14.35 KB</td>
+<td align="left">12.15 KB</td>
 <td align="left">1984M02</td>
 <td align="left">2020M02</td>
 <td align="left">17/04/2020 02:46:07</td>
@@ -252,19 +264,30 @@
 <td align="left">Afganistán</td>
 <td align="left">A</td>
 <td align="left">Anual</td>
-<td align="left">689.13 KB</td>
+<td align="left">815.95 KB</td>
 <td align="left">1970</td>
-<td align="left">2030</td>
-<td align="left">24/05/2020 07:06:13</td>
+<td align="left">2025</td>
+<td align="left">07/02/2021 07:35:16</td>
 </tr>
 </tbody>
 </table>
 <p>You can search for words or expressions within the table of contents listing all of ILOSTAT’s indicators.</p>
 <p>For example, searching for the word “bargaining” will return the indicators containing that word somewhere in the indicator information:</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">toc</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span>(<span class="kw">search</span> <span class="kw">=</span> <span class="st">'bargaining'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">toc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span><span class="op">(</span>search <span class="op">=</span> <span class="st">'bargaining'</span><span class="op">)</span></code></pre></div>
 <p><br></p>
 <table class="table">
 <caption>Table 1c. ‘Table of contents by indicator with search word ’bargaining’’</caption>
+<colgroup>
+<col width="15%">
+<col width="13%">
+<col width="33%">
+<col width="4%">
+<col width="9%">
+<col width="6%">
+<col width="9%">
+<col width="7%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">id</th>
 <th align="left">indicator</th>
@@ -288,8 +311,9 @@
 </table>
 <p>Similarly, you can also search the list of all available datasets by reference area for a given reference area (using a country or region name or code) or even for a given data frequency (annual, quarterly or monthly). The search also allows you to look for several alternative and/or additional items at once.</p>
 <p>For instance, to look for datasets with annual data for either Albania or France:</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="no">toc</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span>(<span class="kw">segment</span> <span class="kw">=</span> <span class="st">'ref_area'</span>, <span class="kw">search</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'France|Albania'</span>, <span class="st">'Annual'</span>),
-                                            <span class="kw">fixed</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">toc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span><span class="op">(</span>segment <span class="op">=</span> <span class="st">'ref_area'</span>, search <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'France|Albania'</span>, <span class="st">'Annual'</span><span class="op">)</span>, 
+                                            fixed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p><br></p>
 <table class="table">
 <caption>Table 1d. ‘Table of contents by ref_area with search words ’France’ or ‘Albania’ and ‘Annual’’</caption>
@@ -311,10 +335,10 @@
 <td align="left">Albania</td>
 <td align="left">A</td>
 <td align="left">Annual</td>
-<td align="left">1.61 MB</td>
+<td align="left">2.48 MB</td>
 <td align="left">1960</td>
-<td align="left">2030</td>
-<td align="left">24/05/2020 07:06:25</td>
+<td align="left">2025</td>
+<td align="left">07/02/2021 07:35:16</td>
 </tr>
 <tr class="even">
 <td align="left">FRA_A</td>
@@ -322,19 +346,27 @@
 <td align="left">France</td>
 <td align="left">A</td>
 <td align="left">Annual</td>
-<td align="left">5.15 MB</td>
+<td align="left">5.1 MB</td>
 <td align="left">1956</td>
-<td align="left">2030</td>
-<td align="left">24/05/2020 07:06:32</td>
+<td align="left">2025</td>
+<td align="left">07/02/2021 07:35:31</td>
 </tr>
 </tbody>
 </table>
 <p>You can also manipulate ILOSTAT’s table of contents’ dataframe using the basic R filter. If you are already familiar with ILOSTAT data and the way it is structured, you can easily filter what you want.</p>
 <p>For example, if you know beforehand you want data only from ILOSTAT’s Short Term Indicators dataset (code “STI”) and you are only interested in monthly data (code “M”) you can simply do:</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">toc</span> <span class="kw">&lt;-</span>  <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(<span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span>(), <span class="no">collection</span> <span class="kw">==</span> <span class="st">'STI'</span>, <span class="no">freq</span> <span class="kw">==</span> <span class="st">'M'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">toc</span> <span class="op">&lt;-</span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">collection</span> <span class="op">==</span> <span class="st">'STI'</span>, <span class="va">freq</span> <span class="op">==</span> <span class="st">'M'</span><span class="op">)</span></code></pre></div>
 <p><br></p>
 <table class="table">
 <caption>Table 1e. Extract, ‘Table of contents by indicator filtered for Monthly Short term indicators’</caption>
+<colgroup>
+<col width="18%">
+<col width="17%">
+<col width="51%">
+<col width="3%">
+<col width="8%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">id</th>
 <th align="left">indicator</th>
@@ -390,7 +422,8 @@
 <a href="#get-a-single-dataset" class="anchor"></a>Get a single dataset:</h4>
 <p>As stated above, you can easily access the single dataset of your choice through the <code><a href="../reference/get_ilostat.html">get_ilostat()</a></code> function, by indicating the code of the dataset desired (indicator_frequency or ref_area_frequency).</p>
 <p>If you want to access annual data for indicator code UNE_2UNE_SEX_AGE_NB, you should type:</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">dat</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="kw">id</span> <span class="kw">=</span> <span class="st">'UNE_2UNE_SEX_AGE_NB_A'</span>, <span class="kw">segment</span> <span class="kw">=</span> <span class="st">'indicator'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'UNE_2UNE_SEX_AGE_NB_A'</span>, segment <span class="op">=</span> <span class="st">'indicator'</span><span class="op">)</span> </code></pre></div>
 <p><br></p>
 <table class="table">
 <caption>Table 2a. Extract, ‘Annual unemployment by sex and age, ILO modelled estimates, Nov. 2018’</caption>
@@ -411,7 +444,7 @@
 <td align="left">SEX_T</td>
 <td align="left">AGE_YTHADULT_YGE15</td>
 <td align="left">1991</td>
-<td align="right">368.230</td>
+<td align="right">375.257</td>
 </tr>
 <tr class="even">
 <td align="left">AFG</td>
@@ -420,7 +453,7 @@
 <td align="left">SEX_T</td>
 <td align="left">AGE_YTHADULT_Y15-24</td>
 <td align="left">1991</td>
-<td align="right">181.048</td>
+<td align="right">181.735</td>
 </tr>
 <tr class="odd">
 <td align="left">AFG</td>
@@ -429,12 +462,13 @@
 <td align="left">SEX_T</td>
 <td align="left">AGE_YTHADULT_YGE25</td>
 <td align="left">1991</td>
-<td align="right">187.182</td>
+<td align="right">193.521</td>
 </tr>
 </tbody>
 </table>
 <p>If you want to access all annual data available in ILOSTAT for Armenia:</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">dat</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="kw">id</span> <span class="kw">=</span> <span class="st">'ARM_A'</span>, <span class="kw">segment</span> <span class="kw">=</span> <span class="st">'ref_area'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'ARM_A'</span>, segment <span class="op">=</span> <span class="st">'ref_area'</span><span class="op">)</span> </code></pre></div>
 <p><br></p>
 <table class="table">
 <caption>Table 2b. Extract, ‘Armenia, annual data’</caption>
@@ -455,7 +489,7 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">1991</td>
-<td align="right">1.534209</td>
+<td align="right">1.55</td>
 </tr>
 <tr class="even">
 <td align="left">ARM</td>
@@ -464,7 +498,7 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">1992</td>
-<td align="right">1.549716</td>
+<td align="right">1.57</td>
 </tr>
 <tr class="odd">
 <td align="left">ARM</td>
@@ -473,7 +507,7 @@
 <td align="left">NA</td>
 <td align="left">NA</td>
 <td align="left">1993</td>
-<td align="right">1.656635</td>
+<td align="right">1.68</td>
 </tr>
 </tbody>
 </table>
@@ -483,28 +517,30 @@
 <h4 class="hasAnchor">
 <a href="#get-multiple-datasets" class="anchor"></a>Get multiple datasets:</h4>
 <p>It is also possible to download multiple datasets at once, simply by setting the dataset’s id as a vector of ids or a tibble that lists ids in a specific column:</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">dat</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="kw">id</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'AFG_A'</span>, <span class="st">'TTO_A'</span>), <span class="kw">segment</span> <span class="kw">=</span> <span class="st">'ref_area'</span>)
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'AFG_A'</span>, <span class="st">'TTO_A'</span><span class="op">)</span>, segment <span class="op">=</span> <span class="st">'ref_area'</span><span class="op">)</span> 
 
-<span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/tally.html">count</a></span>(<span class="no">dat</span>, <span class="no">ref_area</span>)</pre></body></html></div>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">ref_area</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 2
 ##   ref_area      n
-##   &lt;chr&gt;     &lt;int&gt;
-## 1 AFG       91888
-## 2 TTO      190649</code></pre>
+## * &lt;chr&gt;     &lt;int&gt;
+## 1 AFG      116480
+## 2 TTO      182965</code></pre>
 <p><br></p>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">toc</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span>(<span class="kw">search</span> <span class="kw">=</span> <span class="st">'CPI_'</span>)
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">toc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span><span class="op">(</span>search <span class="op">=</span> <span class="st">'CPI_'</span><span class="op">)</span>
 
-<span class="no">dat</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="kw">id</span> <span class="kw">=</span> <span class="no">toc</span>, <span class="kw">segment</span> <span class="kw">=</span> <span class="st">'indicator'</span>, <span class="kw">quiet</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="va">toc</span>, segment <span class="op">=</span> <span class="st">'indicator'</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> 
 
-<span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/tally.html">count</a></span>(<span class="no">dat</span>, <span class="no">indicator</span>)</pre></body></html></div>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">indicator</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 2
 ##   indicator            n
-##   &lt;chr&gt;            &lt;int&gt;
+## * &lt;chr&gt;            &lt;int&gt;
 ## 1 CPI_ACPI_COI_RT 166525
 ## 2 CPI_MCPI_COI_RT 143271
-## 3 CPI_NCPD_COI_RT  92229
-## 4 CPI_NCYR_COI_RT 120058
-## 5 CPI_NWGT_COI_DT  29805</code></pre>
+## 3 CPI_NCPD_COI_RT  95525
+## 4 CPI_NCYR_COI_RT 126378
+## 5 CPI_NWGT_COI_DT  31802</code></pre>
 </div>
 </div>
 <div id="time-format" class="section level1">
@@ -518,7 +554,8 @@
 </ul>
 <p>To ease the use of data for plotting or time-series analysis techniques, the function can also return POSIXct dates (using <code>time_format = 'date'</code>) or numeric dates (using <code>time_format = 'num'</code>).</p>
 <p>For instance, the following will return quarterly unemployment data by sex and age, with the time dimension in numeric format:</p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">dat</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="kw">id</span> <span class="kw">=</span> <span class="st">'UNE_TUNE_SEX_AGE_NB_Q'</span>, <span class="kw">time_format</span> <span class="kw">=</span> <span class="st">'num'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'UNE_TUNE_SEX_AGE_NB_Q'</span>, time_format <span class="op">=</span> <span class="st">'num'</span><span class="op">)</span> </code></pre></div>
 <p><br></p>
 <table class="table">
 <caption>Table 3a. Extract, ‘Quarterly unemployment by sex and age’</caption>
@@ -539,7 +576,7 @@
 <td align="left">SEX_T</td>
 <td align="left">AGE_5YRBANDS_TOTAL</td>
 <td align="right">2012</td>
-<td align="right">168.4427</td>
+<td align="right">168.443</td>
 </tr>
 <tr class="even">
 <td align="left">ALB</td>
@@ -548,7 +585,7 @@
 <td align="left">SEX_T</td>
 <td align="left">AGE_5YRBANDS_Y15-19</td>
 <td align="right">2012</td>
-<td align="right">11.8040</td>
+<td align="right">11.804</td>
 </tr>
 <tr class="odd">
 <td align="left">ALB</td>
@@ -557,12 +594,13 @@
 <td align="left">SEX_T</td>
 <td align="left">AGE_5YRBANDS_Y20-24</td>
 <td align="right">2012</td>
-<td align="right">40.1643</td>
+<td align="right">40.164</td>
 </tr>
 </tbody>
 </table>
 <p>The following will return monthly time-related underemployment data by sex and age, with the time dimension in POSIXct date format:</p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">dat</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="kw">id</span> <span class="kw">=</span> <span class="st">'TRU_TTRU_SEX_AGE_NB_M'</span>, <span class="kw">time_format</span> <span class="kw">=</span> <span class="st">'date'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'TRU_TTRU_SEX_AGE_NB_M'</span>, time_format <span class="op">=</span> <span class="st">'date'</span><span class="op">)</span> </code></pre></div>
 <p><br></p>
 <table class="table">
 <caption>Table 3b. Extract, Monthly time-related underemployment by sex and age</caption>
@@ -611,37 +649,41 @@
 <a href="#cached-data" class="anchor"></a>Cached data</h1>
 <p>The function <code><a href="../reference/get_ilostat.html">get_ilostat()</a></code> stores cached data by default at <code><a href="https://rdrr.io/r/base/file.path.html">file.path(tempdir(), "ilostat")</a></code> in <code>rds</code> binary format.</p>
 <p>However, via the <code>cache_dir</code> arguments, it is also possible to choose a different work directory to store data in, and via the <code>cache_format</code> arguments you can save it in other formats, such as <code>csv</code>, <code>dta</code>, <code>sav</code>, and <code>sas7bdat</code>.</p>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">dat</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="kw">id</span> <span class="kw">=</span> <span class="st">'TRU_TTRU_SEX_AGE_NB_M'</span>, <span class="kw">cache_dir</span> <span class="kw">=</span> <span class="st">'c:/temp'</span>, <span class="kw">cache_format</span> <span class="kw">=</span> <span class="st">'dta'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'TRU_TTRU_SEX_AGE_NB_M'</span>, cache_dir <span class="op">=</span> <span class="st">'c:/temp'</span>, cache_format <span class="op">=</span> <span class="st">'dta'</span><span class="op">)</span> </code></pre></div>
 <p>These arguments can also be set using <code><a href="https://rdrr.io/r/base/options.html">options(ilostat_cache_dir = 'C:/temp')</a></code> and <code><a href="https://rdrr.io/r/base/options.html">options(ilostat_cache_format = 'dta')</a></code>.</p>
 <p>The name of the cache file is built using <code><a href="https://rdrr.io/r/base/paste.html">paste0(segment, "-", id, "-", type,"-",time_format, "-", last_toc_update ,paste0(".", cache_format))</a></code>, with ‘last_toc_update’ being the latest update of the dataset from the table of contents.</p>
 <p>With the argument <code>back = FALSE</code>, datasets are downloaded and cached without being returned in R. This quiet setting is convenient particularly when downloading large amounts of data or datasets.</p>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="kw">id</span> <span class="kw">=</span> <span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span>(<span class="kw">search</span> <span class="kw">=</span> <span class="st">'SDG'</span>),   <span class="kw">cache_dir</span> <span class="kw">=</span> <span class="st">'c:/temp'</span>, <span class="kw">cache_format</span> <span class="kw">=</span> <span class="st">'dta'</span>,
-                                                    <span class="kw">back</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span><span class="op">(</span>search <span class="op">=</span> <span class="st">'SDG'</span><span class="op">)</span>,   cache_dir <span class="op">=</span> <span class="st">'c:/temp'</span>, cache_format <span class="op">=</span> <span class="st">'dta'</span>, 
+                                                    back <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </code></pre></div>
 </div>
 <div id="filter-data" class="section level1">
 <h1 class="hasAnchor">
 <a href="#filter-data" class="anchor"></a>Filter data</h1>
 <p>Once you have retrieved and/or cached the dataset(s) you need, advanced <code>filters</code> can help you refine your data selection and facilitate reproducible analysis. You can apply several different filters to your datasets, to filter the data by reference area, sex, classification item, etc.</p>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="kw">ilostat_cache_dir</span> <span class="kw">=</span> <span class="st">'C:/temp'</span>)
-<span class="no">dat</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="kw">id</span> <span class="kw">=</span> <span class="st">'UNE_2EAP_SEX_AGE_RT_A'</span>, <span class="kw">filters</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-                                                    <span class="kw">ref_area</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'BRA'</span>, <span class="st">'ZAF'</span>),
-                                                    <span class="kw">sex</span> <span class="kw">=</span> <span class="st">'T'</span>,
-                                                    <span class="kw">classif1</span> <span class="kw">=</span> <span class="st">'AGE_YTHADULT_Y15-24'</span>))
-<span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/tally.html">count</a></span>(<span class="no">dat</span>, <span class="no">ref_area</span>, <span class="no">sex</span>, <span class="no">classif1</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>ilostat_cache_dir <span class="op">=</span> <span class="st">'C:/temp'</span><span class="op">)</span>
+<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'UNE_2EAP_SEX_AGE_RT_A'</span>, filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+                                                    ref_area <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'BRA'</span>, <span class="st">'ZAF'</span><span class="op">)</span>, 
+                                                    sex <span class="op">=</span> <span class="st">'T'</span>, 
+                                                    classif1 <span class="op">=</span> <span class="st">'AGE_YTHADULT_Y15-24'</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">ref_area</span>, <span class="va">sex</span>, <span class="va">classif1</span><span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 4
 ##   ref_area sex   classif1                n
 ##   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;               &lt;int&gt;
-## 1 BRA      SEX_T AGE_YTHADULT_Y15-24    34
-## 2 ZAF      SEX_T AGE_YTHADULT_Y15-24    34</code></pre>
+## 1 BRA      SEX_T AGE_YTHADULT_Y15-24    29
+## 2 ZAF      SEX_T AGE_YTHADULT_Y15-24    29</code></pre>
 <p><br></p>
 <p>The argument <code>detail</code> set a default filter of aggregation. For instance, <code>detail = 'serieskeysonly'</code> will return distinct combinations of ref_area/source/indicator/sex/classif1/classif2, whereas <code>detail = 'dataonly'</code> will remove the columns obs_status/note_classif/note_indicator/note_source from the dataset and <code>detail = 'serieskeysonly'</code> will select the best source (based on the lowest source sort id) at the ref_area/./indicator/sex/classif1/classif2/time levels.</p>
 <p><br></p>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="kw">ilostat_cache_dir</span> <span class="kw">=</span> <span class="st">'C:/temp'</span>)
-<span class="no">dat</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="kw">id</span> <span class="kw">=</span> <span class="st">'UNE_2EAP_SEX_AGE_RT_A'</span>, <span class="kw">filters</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-                                                    <span class="kw">ref_area</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'BRA'</span>, <span class="st">'ZAF'</span>),
-                                                    <span class="kw">sex</span> <span class="kw">=</span> <span class="st">'M'</span>,
-                                                    <span class="kw">classif1</span> <span class="kw">=</span> <span class="st">'AGE_YTHADULT_Y15'</span>),
-                                                <span class="kw">detail</span> <span class="kw">=</span> <span class="st">'serieskeysonly'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>ilostat_cache_dir <span class="op">=</span> <span class="st">'C:/temp'</span><span class="op">)</span>
+<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'UNE_2EAP_SEX_AGE_RT_A'</span>, filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+                                                    ref_area <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'BRA'</span>, <span class="st">'ZAF'</span><span class="op">)</span>, 
+                                                    sex <span class="op">=</span> <span class="st">'M'</span>, 
+                                                    classif1 <span class="op">=</span> <span class="st">'AGE_YTHADULT_Y15'</span><span class="op">)</span>, 
+                                                detail <span class="op">=</span> <span class="st">'serieskeysonly'</span><span class="op">)</span></code></pre></div>
 <p><br></p>
 <table class="table">
 <caption>Table 4a. Extract, Youth male unemployment rate in Brazil and South Africa (ILO modelled estimates, Nov. 2018), ‘Series Key’</caption>
@@ -670,12 +712,13 @@
 </tbody>
 </table>
 <p><br></p>
-<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="co"># options(ilostat_cache_dir = 'C:/temp')</span>
-<span class="no">dat</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="kw">id</span> <span class="kw">=</span> <span class="st">'UNE_2EAP_SEX_AGE_RT_A'</span>, <span class="kw">filters</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-                                                    <span class="kw">ref_area</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'BRA'</span>, <span class="st">'ZAF'</span>),
-                                                    <span class="kw">sex</span> <span class="kw">=</span> <span class="st">'F'</span>,
-                                                    <span class="kw">classif1</span> <span class="kw">=</span> <span class="st">'AGE_YTHADULT_Y15'</span>),
-                                                <span class="kw">detail</span> <span class="kw">=</span> <span class="st">'dataonly'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># options(ilostat_cache_dir = 'C:/temp')</span>
+<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'UNE_2EAP_SEX_AGE_RT_A'</span>, filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+                                                    ref_area <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'BRA'</span>, <span class="st">'ZAF'</span><span class="op">)</span>, 
+                                                    sex <span class="op">=</span> <span class="st">'F'</span>, 
+                                                    classif1 <span class="op">=</span> <span class="st">'AGE_YTHADULT_Y15'</span><span class="op">)</span>, 
+                                                detail <span class="op">=</span> <span class="st">'dataonly'</span><span class="op">)</span></code></pre></div>
 <p><br></p>
 <table class="table">
 <caption>Table 4b. Extract, Youth female unemployment rate in Brazil and South Africa (ILO modelled estimates, Nov. 2018)</caption>
@@ -696,7 +739,7 @@
 <td align="left">SEX_F</td>
 <td align="left">AGE_YTHADULT_Y15-24</td>
 <td align="left">1991</td>
-<td align="right">14.729</td>
+<td align="right">14.64</td>
 </tr>
 <tr class="even">
 <td align="left">BRA</td>
@@ -705,7 +748,7 @@
 <td align="left">SEX_F</td>
 <td align="left">AGE_YTHADULT_Y15-24</td>
 <td align="left">1992</td>
-<td align="right">14.813</td>
+<td align="right">14.81</td>
 </tr>
 <tr class="odd">
 <td align="left">BRA</td>
@@ -714,12 +757,13 @@
 <td align="left">SEX_F</td>
 <td align="left">AGE_YTHADULT_Y15-24</td>
 <td align="left">1993</td>
-<td align="right">14.008</td>
+<td align="right">14.01</td>
 </tr>
 </tbody>
 </table>
 <p>In order to delete files from the cache just run:</p>
-<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="fu"><a href="../reference/clean_ilostat_cache.html">clean_ilostat_cache</a></span>()</pre></body></html></div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/clean_ilostat_cache.html">clean_ilostat_cache</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="plot-data" class="section level1">
 <h1 class="hasAnchor">
@@ -728,56 +772,60 @@
 <p>Now that you found the datasets you needed and filtered them to have the desired data, you can start manipulating ILOSTAT data in a reproducible manner, and even use your other favourite R packages to make some great data visualizations.</p>
 </blockquote>
 <p>For example, you can use <code>ggplot2</code> and <code>dplyr</code> to visually compare trends in male labour force participation rate in Germany, France and the United States, since 2005 (see below). This lineal graph allows us to see that the male labour force participation rate is considerably higher in the United States than in Germany and France, but it has been decreasing at a steady pace since around 2008, closing the gap in participation rates particularly with Germany, where the male labour force participation rate slightly increased in the last period observed.</p>
-<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">Rilostat</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">ggplot2</span>, <span class="kw">quiet</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">dplyr</span>, <span class="kw">quiet</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://ilostat.github.io/Rilostat/">Rilostat</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
-  <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="kw">id</span> <span class="kw">=</span> <span class="st">'EAP_DWAM_NOC_RT_A'</span>,
-              <span class="kw">time_format</span> <span class="kw">=</span> <span class="st">'num'</span>,
-              <span class="kw">filters</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>( <span class="kw">ref_area</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'FRA'</span>, <span class="st">'USA'</span>, <span class="st">'DEU'</span>),
-                              <span class="kw">timefrom</span> <span class="kw">=</span> <span class="fl">2005</span>, <span class="kw">timeto</span> <span class="kw">=</span> <span class="fl">2017</span>))  <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/select.html">select</a></span>(<span class="no">ref_area</span>, <span class="no">time</span>, <span class="no">obs_value</span>) <span class="kw">%&gt;%</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">time</span>, <span class="kw">y</span> <span class="kw">=</span> <span class="no">obs_value</span>, <span class="kw">colour</span> <span class="kw">=</span> <span class="no">ref_area</span>)) +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>() +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span>(<span class="st">'Male labour force participation rate in selected countries, 2005-2017'</span>) +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span>(<span class="kw">breaks</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="fl">2005</span>, <span class="fl">2017</span>, <span class="fl">3</span>)) +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="st">"Year"</span>, <span class="kw">y</span><span class="kw">=</span><span class="st">"Male LFPR (%)"</span>, <span class="kw">colour</span><span class="kw">=</span><span class="st">"Country:"</span>) +
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="kw">legend.position</span> <span class="kw">=</span> <span class="st">"top"</span>, <span class="kw">plot.title</span> <span class="kw">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="kw">hjust</span> <span class="kw">=</span> <span class="fl">0.5</span>))</pre></body></html></div>
+  <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'EAP_DWAP_SEX_AGE_RT_A'</span>, 
+              time_format <span class="op">=</span> <span class="st">'num'</span>, 
+              filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span> ref_area <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'FRA'</span>, <span class="st">'USA'</span>, <span class="st">'DEU'</span><span class="op">)</span>, 
+                              sex <span class="op">=</span> <span class="st">'SEX_M'</span>,
+                              classif1 <span class="op">=</span> <span class="st">'AGE_AGGREGATE_TOTAL'</span>,
+                              timefrom <span class="op">=</span> <span class="fl">2005</span>, timeto <span class="op">=</span> <span class="fl">2019</span><span class="op">)</span><span class="op">)</span>  <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">ref_area</span>, <span class="va">time</span>, <span class="va">obs_value</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">time</span>, y <span class="op">=</span> <span class="va">obs_value</span>, colour <span class="op">=</span> <span class="va">ref_area</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">'Male labour force participation rate in selected countries, 2005-2019'</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_x_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">2005</span>, <span class="fl">2017</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Year"</span>, y<span class="op">=</span><span class="st">"Male LFPR (%)"</span>, colour<span class="op">=</span><span class="st">"Country:"</span><span class="op">)</span> <span class="op">+</span>  
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"top"</span>, plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p><br></p>
 <p><img src="g1_ts.png" width="100%"><br><br></p>
 <blockquote>
 <p>You can also build interesting (and visually telling) stacked columns or bars.</p>
 </blockquote>
 <p>For example, based on ILOSTAT data, you can plot the distribution of employed persons by economic class (defined according to the household’s per capita income/consumption per day). You can even do it with several disaggregations: in the example below, we chose to show the employment distribution by economic class separately for men and women and for youth and adults. From this figure, we clearly understand that working poverty (being poor in spite of being employed) affects youth much more than adults, and women more than men.</p>
-<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">Rilostat</span>)
-<span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">ggplot2</span>)){<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">'ggplot2'</span>)}
-<span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">dplyr</span>)){<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">'dplyr'</span>)}
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://ilostat.github.io/Rilostat/">Rilostat</a></span><span class="op">)</span>
+<span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'ggplot2'</span><span class="op">)</span><span class="op">}</span>
+<span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'dplyr'</span><span class="op">)</span><span class="op">}</span>
 
-    <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="kw">id</span> <span class="kw">=</span> <span class="st">'EMP_2EMP_SEX_AGE_CLA_DT_A'</span>,
-                <span class="kw">filters</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>( <span class="kw">ref_area</span> <span class="kw">=</span> <span class="st">'ZAF'</span>,
-                                <span class="kw">time</span> <span class="kw">=</span> <span class="st">'1999'</span>,
-                                <span class="kw">sex</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'M'</span>, <span class="st">'F'</span>),
-                                <span class="kw">classif1</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'Y15-24'</span>, <span class="st">'YGE25'</span>))) <span class="kw">%&gt;%</span>
-    <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/filter.html">filter</a></span>(!<span class="no">classif2</span> <span class="kw">%in%</span> <span class="st">'CLA_ECOCLA_TOTAL'</span>) <span class="kw">%&gt;%</span>
-    <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>( <span class="kw">sex</span> <span class="kw">=</span>       <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="no">sex</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/recode.html">recode_factor</a></span>(
-                                <span class="st">'SEX_M'</span> <span class="kw">=</span> <span class="st">'Male'</span>,
-                                <span class="st">'SEX_F'</span> <span class="kw">=</span> <span class="st">'Female'</span>),
-            <span class="kw">classif1</span> <span class="kw">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="no">classif1</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/recode.html">recode_factor</a></span>(
-                                <span class="st">'AGE_YTHADULT_YGE25'</span> <span class="kw">=</span> <span class="st">'Adult'</span>,
-                                <span class="st">'AGE_YTHADULT_Y15-24'</span> <span class="kw">=</span> <span class="st">'Youth'</span>),
-            <span class="kw">classif2</span> <span class="kw">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span>(<span class="no">classif2</span>) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/recode.html">recode_factor</a></span>(
-                                <span class="st">'CLA_ECOCLA_USDLT2'</span> <span class="kw">=</span> <span class="st">'&lt;US$1.9'</span>,
-                                <span class="st">'CLA_ECOCLA_USDGE2LT3'</span> <span class="kw">=</span> <span class="st">'&gt;=US$1.9 &amp; &lt;US$3.2'</span>,
-                                <span class="st">'CLA_ECOCLA_USDGE3LT5'</span> <span class="kw">=</span> <span class="st">'&gt;=US$3.2 &amp; &lt;US$5.5'</span>,
-                                <span class="st">'CLA_ECOCLA_USDGE5'</span> <span class="kw">=</span> <span class="st">'&gt;=US$5.5'</span>)) <span class="kw">%&gt;%</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="kw">y</span><span class="kw">=</span><span class="no">obs_value</span>, <span class="kw">x</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="no">classif1</span>), <span class="kw">fill</span><span class="kw">=</span><span class="no">classif2</span>)) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span>(<span class="kw">stat</span><span class="kw">=</span><span class="st">"identity"</span>) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(~<span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="no">sex</span>)) + <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span>() +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="kw">legend.position</span><span class="kw">=</span><span class="st">"top"</span>) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span>(<span class="st">"Employment by economic class, sex and age, South Africa, 1999"</span>) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="kw">x</span><span class="kw">=</span><span class="st">"Age group"</span>, <span class="kw">y</span><span class="kw">=</span><span class="st">"Distribution of economic class (%)"</span>, <span class="kw">fill</span><span class="kw">=</span><span class="st">"Economic class : "</span>) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="kw">plot.title</span> <span class="kw">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span>(<span class="kw">hjust</span> <span class="kw">=</span> <span class="fl">0.5</span>)) +
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_fill_brewer</a></span>(<span class="kw">type</span> <span class="kw">=</span> <span class="st">"div"</span>)</pre></body></html></div>
+    <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'EMP_2EMP_SEX_AGE_CLA_DT_A'</span>, 
+                filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span> ref_area <span class="op">=</span> <span class="st">'ZAF'</span>, 
+                                time <span class="op">=</span> <span class="st">'1999'</span>, 
+                                sex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'M'</span>, <span class="st">'F'</span><span class="op">)</span>, 
+                                classif1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'Y15-24'</span>, <span class="st">'YGE25'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">classif2</span> <span class="op">%in%</span> <span class="st">'CLA_ECOCLA_TOTAL'</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span> sex <span class="op">=</span>       <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode_factor</a></span><span class="op">(</span>
+                                <span class="st">'SEX_M'</span> <span class="op">=</span> <span class="st">'Male'</span>, 
+                                <span class="st">'SEX_F'</span> <span class="op">=</span> <span class="st">'Female'</span><span class="op">)</span>, 
+            classif1 <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">classif1</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode_factor</a></span><span class="op">(</span>
+                                <span class="st">'AGE_YTHADULT_YGE25'</span> <span class="op">=</span> <span class="st">'Adult'</span>, 
+                                <span class="st">'AGE_YTHADULT_Y15-24'</span> <span class="op">=</span> <span class="st">'Youth'</span><span class="op">)</span>,
+            classif2 <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">classif2</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/recode.html">recode_factor</a></span><span class="op">(</span>
+                                <span class="st">'CLA_ECOCLA_USDLT2'</span> <span class="op">=</span> <span class="st">'&lt;US$1.9'</span>, 
+                                <span class="st">'CLA_ECOCLA_USDGE2LT3'</span> <span class="op">=</span> <span class="st">'&gt;=US$1.9 &amp; &lt;US$3.2'</span>, 
+                                <span class="st">'CLA_ECOCLA_USDGE3LT5'</span> <span class="op">=</span> <span class="st">'&gt;=US$3.2 &amp; &lt;US$5.5'</span>, 
+                                <span class="st">'CLA_ECOCLA_USDGE5'</span> <span class="op">=</span> <span class="st">'&gt;=US$5.5'</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">obs_value</span>, x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">classif1</span><span class="op">)</span>, fill<span class="op">=</span><span class="va">classif2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position<span class="op">=</span><span class="st">"top"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Employment by economic class, sex and age, South Africa, 1999"</span><span class="op">)</span> <span class="op">+</span>
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Age group"</span>, y<span class="op">=</span><span class="st">"Distribution of economic class (%)"</span>, fill<span class="op">=</span><span class="st">"Economic class : "</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
+    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_fill_brewer</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"div"</span><span class="op">)</span></code></pre></div>
 <p><br><img src="g1_eco.png" width="100%"></p>
 <p><br><br></p>
 <blockquote>
@@ -785,98 +833,104 @@
 </blockquote>
 <p>You can use this type of graph, for instance, to visually convey the share of the employed population working in agriculture, industry and services, all three compared, and even more revealing, compare this across countries.</p>
 <p>In the example below, we used three different indicators of labour underutilization (unemployment, time-related underemployment and discouraged job-seekers) to study how they are inter-related in selected countries. These three population groups are all mutually exclusive, but they are all part of the broad category of labour underutilization. Unemployment represents all persons not in employment, available for employment and actively seeking employment, while discouraged job-seekers are those persons not in employment and available for employment who do not actively look for employment for specific reasons having to do with the situation in the labour market, and time-related underemployment refers to persons in employment who would like to work more hours and are available to work more hours than their current working time. The graph below brings to light the differences across countries in the labour underutilization composition, by showing where unemployment is the biggest concern, as opposed to time-related underemployment or discouragement.</p>
-<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">Rilostat</span>)
-<span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">tidyr</span>)){<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">'tidyr'</span>)}
-<span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">dplyr</span>)){<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">'dplyr'</span>)}
-<span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">plotrix</span>)){<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">'plotrix'</span>)}
-<span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">stringr</span>)){<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">'stringr'</span>)}
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://ilostat.github.io/Rilostat/">Rilostat</a></span><span class="op">)</span>
+<span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'tidyr'</span><span class="op">)</span><span class="op">}</span>
+<span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'dplyr'</span><span class="op">)</span><span class="op">}</span>
+<span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va">plotrix</span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'plotrix'</span><span class="op">)</span><span class="op">}</span>
+<span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="http://stringr.tidyverse.org">stringr</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'stringr'</span><span class="op">)</span><span class="op">}</span>
 
-<span class="no">triangle</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="kw">id</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'EIP_WDIS_SEX_AGE_NB_A'</span>,
-                               <span class="st">'UNE_TUNE_SEX_AGE_NB_A'</span>,
-                               <span class="st">'TRU_TTRU_SEX_AGE_NB_A'</span>),
-                        <span class="kw">filters</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-                                      <span class="kw">ref_area</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'ZAF'</span>, <span class="st">'MNG'</span>, <span class="st">'CHL'</span>),
-                                      <span class="kw">source</span> <span class="kw">=</span> <span class="st">'BA'</span>,
-                                      <span class="kw">sex</span> <span class="kw">=</span> <span class="st">'SEX_T'</span>,
-                                      <span class="kw">classif1</span> <span class="kw">=</span> <span class="st">'YGE15'</span>,
-                                      <span class="kw">time</span> <span class="kw">=</span> <span class="st">'2013'</span>),
-                              <span class="kw">detail</span> <span class="kw">=</span> <span class="st">'dataonly'</span>,
-                              <span class="kw">cmd</span> <span class="kw">=</span> <span class="st">"dat %&gt;% select(ref_area, indicator, obs_value)"</span>,
-                              <span class="kw">quiet</span> <span class="kw">=</span> <span class="fl">TRUE</span>) <span class="kw">%&gt;%</span>
-            <span class="fu"><a href="../reference/label_ilostat.html">label_ilostat</a></span>() <span class="kw">%&gt;%</span>
-            <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">group_by</a></span>(<span class="no">ref_area.label</span>) <span class="kw">%&gt;%</span>
-            <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>(<span class="kw">obs_value</span> <span class="kw">=</span> <span class="no">obs_value</span> / <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(<span class="no">obs_value</span>)) <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/group_by.html">ungroup</a></span>() <span class="kw">%&gt;%</span>
-            <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/mutate.html">mutate</a></span>(<span class="kw">indicator.label</span> <span class="kw">=</span> <span class="no">indicator.label</span> <span class="kw">%&gt;%</span>
-                                      <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span>(<span class="fu"><a href="https://stringr.tidyverse.org/reference/modifiers.html">fixed</a></span>(<span class="st">' by sex and age (thousands)'</span>), <span class="st">''</span>)) <span class="kw">%&gt;%</span>
-            <span class="fu"><a href="https://tidyr.tidyverse.org/reference/spread.html">spread</a></span>(<span class="no">indicator.label</span>, <span class="no">obs_value</span>)
+<span class="va">triangle</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'EIP_WDIS_SEX_AGE_NB_A'</span>, 
+                               <span class="st">'UNE_TUNE_SEX_AGE_NB_A'</span>, 
+                               <span class="st">'TRU_TTRU_SEX_AGE_NB_A'</span><span class="op">)</span>, 
+                        filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+                                      ref_area <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'ZAF'</span>, <span class="st">'MNG'</span>, <span class="st">'CHL'</span><span class="op">)</span>, 
+                                      source <span class="op">=</span> <span class="st">'BA'</span>,
+                                      sex <span class="op">=</span> <span class="st">'SEX_T'</span>, 
+                                      classif1 <span class="op">=</span> <span class="st">'YGE15'</span>, 
+                                      time <span class="op">=</span> <span class="st">'2013'</span><span class="op">)</span>,
+                              detail <span class="op">=</span> <span class="st">'dataonly'</span>, 
+                              cmd <span class="op">=</span> <span class="st">"dat %&gt;% select(ref_area, indicator, obs_value)"</span>, 
+                              quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
+            <span class="fu"><a href="../reference/label_ilostat.html">label_ilostat</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">ref_area.label</span><span class="op">)</span> <span class="op">%&gt;%</span>
+            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>obs_value <span class="op">=</span> <span class="va">obs_value</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">obs_value</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>indicator.label <span class="op">=</span> <span class="va">indicator.label</span> <span class="op">%&gt;%</span> 
+                                      <span class="fu"><a href="https://stringr.tidyverse.org/reference/str_replace.html">str_replace</a></span><span class="op">(</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/modifiers.html">fixed</a></span><span class="op">(</span><span class="st">' by sex and age (thousands)'</span><span class="op">)</span>, <span class="st">''</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+            <span class="fu"><a href="https://tidyr.tidyverse.org/reference/spread.html">spread</a></span><span class="op">(</span><span class="va">indicator.label</span>, <span class="va">obs_value</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="kw">cex</span><span class="kw">=</span><span class="fl">0.75</span>, <span class="kw">mar</span><span class="kw">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>))
-<span class="no">positions</span> <span class="kw">&lt;-</span> <span class="kw pkg">plotrix</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/plotrix/man/triax.plot.html">triax.plot</a></span>(
-                      <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span>(<span class="no">triangle</span>[, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span>)]),
-                      <span class="kw">show.grid</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-                      <span class="kw">main</span> <span class="kw">=</span> <span class="st">'Selected labour underutilization indicators'</span>,
-                      <span class="kw">label.points</span><span class="kw">=</span> <span class="fl">FALSE</span>, <span class="kw">point.labels</span> <span class="kw">=</span> <span class="no">triangle</span>$<span class="no">ref_area.label</span>,
-                      <span class="kw">col.axis</span><span class="kw">=</span><span class="st">"gray50"</span>, <span class="kw">col.grid</span><span class="kw">=</span><span class="st">"gray90"</span>,
-                      <span class="kw">pch</span> <span class="kw">=</span> <span class="fl">19</span>, <span class="kw">cex.axis</span><span class="kw">=</span><span class="fl">1.2</span>, <span class="kw">cex.ticks</span><span class="kw">=</span><span class="fl">0.7</span>, <span class="kw">col</span><span class="kw">=</span><span class="st">"grey50"</span>)
+<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>cex<span class="op">=</span><span class="fl">0.75</span>, mar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span>
+<span class="va">positions</span> <span class="op">&lt;-</span> <span class="fu">plotrix</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/plotrix/man/triax.plot.html">triax.plot</a></span><span class="op">(</span>
+                      <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span><span class="op">(</span><span class="va">triangle</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>,
+                      show.grid <span class="op">=</span> <span class="cn">TRUE</span>,
+                      main <span class="op">=</span> <span class="st">'Selected labour underutilization indicators'</span>,
+                      label.points<span class="op">=</span> <span class="cn">FALSE</span>, point.labels <span class="op">=</span> <span class="va">triangle</span><span class="op">$</span><span class="va">ref_area.label</span>,
+                      col.axis<span class="op">=</span><span class="st">"gray50"</span>, col.grid<span class="op">=</span><span class="st">"gray90"</span>,
+                      pch <span class="op">=</span> <span class="fl">19</span>, cex.axis<span class="op">=</span><span class="fl">1.2</span>, cex.ticks<span class="op">=</span><span class="fl">0.7</span>, col<span class="op">=</span><span class="st">"grey50"</span><span class="op">)</span>
+                     
+                     
+<span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">triangle</span><span class="op">$</span><span class="va">ref_area.label</span> <span class="op">%in%</span>  <span class="va">triangle</span><span class="op">$</span><span class="va">ref_area.label</span><span class="op">)</span>
 
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">positions</span><span class="op">$</span><span class="va">xypos</span>, geo <span class="op">=</span>  <span class="va">triangle</span><span class="op">$</span><span class="va">ref_area.label</span><span class="op">)</span>
 
-<span class="no">ind</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span>(<span class="no">triangle</span>$<span class="no">ref_area.label</span> <span class="kw">%in%</span>  <span class="no">triangle</span>$<span class="no">ref_area.label</span>)
+<span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">x</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span>, <span class="va">df</span><span class="op">$</span><span class="va">y</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span>, cex<span class="op">=</span><span class="fl">2</span>, col<span class="op">=</span><span class="st">"red"</span>, pch<span class="op">=</span><span class="fl">19</span><span class="op">)</span>
 
-<span class="no">df</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="no">positions</span>$<span class="no">xypos</span>, <span class="kw">geo</span> <span class="kw">=</span>  <span class="no">triangle</span>$<span class="no">ref_area.label</span>)
-
-<span class="fu"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(<span class="no">df</span>$<span class="no">x</span>[<span class="no">ind</span>], <span class="no">df</span>$<span class="no">y</span>[<span class="no">ind</span>], <span class="kw">cex</span><span class="kw">=</span><span class="fl">2</span>, <span class="kw">col</span><span class="kw">=</span><span class="st">"red"</span>, <span class="kw">pch</span><span class="kw">=</span><span class="fl">19</span>)
-
-<span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span>(<span class="no">df</span>$<span class="no">x</span>[<span class="no">ind</span>], <span class="no">df</span>$<span class="no">y</span>[<span class="no">ind</span>], <span class="no">df</span>$<span class="no">geo</span>[<span class="no">ind</span>], <span class="kw">adj</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.5</span>,-<span class="fl">1</span>), <span class="kw">cex</span><span class="kw">=</span><span class="fl">1.5</span>)</pre></body></html></div>
+<span class="fu"><a href="https://rdrr.io/r/graphics/text.html">text</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">x</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span>, <span class="va">df</span><span class="op">$</span><span class="va">y</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span>, <span class="va">df</span><span class="op">$</span><span class="va">geo</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span>, adj <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>, cex<span class="op">=</span><span class="fl">1.5</span><span class="op">)</span> </code></pre></div>
 <p><br><img src="g1_tri.png" width="100%"></p>
 <p><br><br></p>
 <blockquote>
 <p>It is also possible to create maps showing how indicators behave across the world at a given point in time (static maps) or even through time (dynamic maps allowing the user to scroll over the available time period).</p>
 </blockquote>
 <p>For instance, below we have built a map to see differences across the world in the youth unemployment rate. For this, we have selected data from a compilation which is methodologically robust and consistent across countries to ensure international comparability: the ILO modelled estimates (from November 2017). You can change the legend settings to use the color coding that best suits your data. In our case, the colour scale used allows us to quickly see that youth unemployment rates are particularly high in Southern and Northern Africa.</p>
-<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">Rilostat</span>)
-<span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">plotly</span>)){<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">'plotly'</span>)}
-<span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">dplyr</span>)){<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">'dplyr'</span>)}
-<span class="kw">if</span>(!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="no">stringr</span>)){<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">'stringr'</span>)}
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://ilostat.github.io/Rilostat/">Rilostat</a></span><span class="op">)</span>
+<span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://plotly-r.com">plotly</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'plotly'</span><span class="op">)</span><span class="op">}</span>
+<span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'dplyr'</span><span class="op">)</span><span class="op">}</span>
+<span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="http://stringr.tidyverse.org">stringr</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'stringr'</span><span class="op">)</span><span class="op">}</span>
 
-<span class="no">dat</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span>(<span class="kw">id</span> <span class="kw">=</span> <span class="st">'UNE_2YAP_NOC_RT_A'</span>, <span class="kw">filters</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">time</span> <span class="kw">=</span> <span class="st">'2017'</span>)) <span class="kw">%&gt;%</span>
-            <span class="fu"><a href="https://rdrr.io/pkg/plotly/man/reexports.html">filter</a></span>(!<span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span>(<span class="no">ref_area</span>,<span class="fl">1</span>,<span class="fl">1</span>) <span class="kw">%in%</span> <span class="st">'X'</span>) <span class="kw">%&gt;%</span>
-            <span class="fu"><a href="https://rdrr.io/pkg/plotly/man/reexports.html">select</a></span>(<span class="no">ref_area</span>, <span class="no">obs_value</span>) <span class="kw">%&gt;%</span>
-            <span class="fu"><a href="https://rdrr.io/pkg/dplyr/man/join.html">left_join</a></span>(  <span class="kw pkg">Rilostat</span><span class="kw ns">:::</span><span class="no">ilostat_ref_area_mapping</span> <span class="kw">%&gt;%</span>
-                            <span class="fu"><a href="https://rdrr.io/pkg/plotly/man/reexports.html">select</a></span>(<span class="no">ref_area</span>, <span class="no">ref_area_plotly</span>)<span class="kw">%&gt;%</span>
-                            <span class="fu"><a href="../reference/label_ilostat.html">label_ilostat</a></span>(<span class="kw">code</span> <span class="kw">=</span> <span class="st">'ref_area'</span>),
-                        <span class="kw">by</span> <span class="kw">=</span> <span class="st">"ref_area"</span>) <span class="kw">%&gt;%</span>
-            <span class="fu"><a href="https://rdrr.io/pkg/plotly/man/reexports.html">filter</a></span>(!<span class="no">obs_value</span> <span class="kw">%in%</span> <span class="fl">NA</span>)
+<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'UNE_2EAP_SEX_AGE_RT_A'</span>, filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+                                time <span class="op">=</span> <span class="st">'2019'</span>, 
+                                sex <span class="op">=</span> <span class="st">'SEX_T'</span>, 
+                                classif1 <span class="op">=</span> <span class="st">'AGE_YTHADULT_Y15-24'</span>
+                                <span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_sub.html">str_sub</a></span><span class="op">(</span><span class="va">ref_area</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span> <span class="op">%in%</span> <span class="st">'X'</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">ref_area</span>, <span class="va">obs_value</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span>  <span class="fu">Rilostat</span><span class="fu">:::</span><span class="va">ilostat_ref_area_mapping</span> <span class="op">%&gt;%</span> 
+                            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">ref_area</span>, <span class="va">ref_area_plotly</span><span class="op">)</span><span class="op">%&gt;%</span> 
+                            <span class="fu"><a href="../reference/label_ilostat.html">label_ilostat</a></span><span class="op">(</span>code <span class="op">=</span> <span class="st">'ref_area'</span><span class="op">)</span>, 
+                        by <span class="op">=</span> <span class="st">"ref_area"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="va">obs_value</span> <span class="op">%in%</span> <span class="cn">NA</span><span class="op">)</span>
 
-
-
-<span class="no">dat</span> <span class="kw">%&gt;%</span>
-    <span class="fu"><a href="https://rdrr.io/pkg/plotly/man/plot_geo.html">plot_geo</a></span>(
-            <span class="kw">z</span> <span class="kw">=</span> ~<span class="no">obs_value</span>,
-            <span class="kw">text</span> <span class="kw">=</span> ~<span class="no">ref_area.label</span>,
-            <span class="kw">locations</span> <span class="kw">=</span> ~<span class="no">ref_area_plotly</span>
-        ) <span class="kw">%&gt;%</span>
-        <span class="fu"><a href="https://rdrr.io/pkg/plotly/man/add_trace.html">add_trace</a></span>(
-            <span class="kw">colors</span> <span class="kw">=</span> <span class="st">'Blues'</span>,
-            <span class="kw">marker</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-                        <span class="kw">line</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-                            <span class="kw">color</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/pkg/plotly/man/toRGB.html">toRGB</a></span>(<span class="st">"grey"</span>),
-                            <span class="kw">width</span> <span class="kw">=</span> <span class="fl">0.5</span>)
-                    ),
-            <span class="kw">showscale</span> <span class="kw">=</span> <span class="fl">TRUE</span>
-        ) <span class="kw">%&gt;%</span>
-        <span class="fu"><a href="https://rdrr.io/pkg/plotly/man/colorbar.html">colorbar</a></span>(
-            <span class="kw">title</span> <span class="kw">=</span> <span class="st">'%'</span>,
-            <span class="kw">len</span> <span class="kw">=</span> <span class="fl">0.5</span>
-        ) <span class="kw">%&gt;%</span>
-        <span class="fu"><a href="https://rdrr.io/pkg/plotly/man/layout.html">layout</a></span>(
-          <span class="kw">title</span> <span class="kw">=</span> <span class="st">'Youth unemployment rate in 2017 (ILO modelled estimates, Nov. 2018)'</span>,
-          <span class="kw">geo</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(
-                    <span class="kw">showframe</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
-                    <span class="kw">showcoastlines</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-                    <span class="kw">projection</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">type</span> <span class="kw">=</span> <span class="st">'natural earth'</span>),
-                    <span class="kw">showcountries</span> <span class="kw">=</span> <span class="fl">TRUE</span>,
-                    <span class="kw">resolution</span> <span class="kw">=</span> <span class="fl">110</span>) <span class="co"># or 50</span>
-            )</pre></body></html></div>
+    
+            
+<span class="va">dat</span> <span class="op">%&gt;%</span> 
+    <span class="fu"><a href="https://docs.ropensci.org/plotly/reference/plot_geo.html">plot_geo</a></span><span class="op">(</span> 
+            z <span class="op">=</span> <span class="op">~</span><span class="va">obs_value</span>, 
+            text <span class="op">=</span> <span class="op">~</span><span class="va">ref_area.label</span>, 
+            locations <span class="op">=</span> <span class="op">~</span><span class="va">ref_area_plotly</span>
+        <span class="op">)</span> <span class="op">%&gt;%</span> 
+        <span class="fu"><a href="https://docs.ropensci.org/plotly/reference/add_trace.html">add_trace</a></span><span class="op">(</span>
+            colors <span class="op">=</span> <span class="st">'Blues'</span>,
+            marker <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+                        line <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
+                            color <span class="op">=</span> <span class="fu"><a href="https://docs.ropensci.org/plotly/reference/toRGB.html">toRGB</a></span><span class="op">(</span><span class="st">"grey"</span><span class="op">)</span>, 
+                            width <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
+                    <span class="op">)</span>, 
+            showscale <span class="op">=</span> <span class="cn">TRUE</span>
+        <span class="op">)</span> <span class="op">%&gt;%</span>
+        <span class="fu"><a href="https://docs.ropensci.org/plotly/reference/colorbar.html">colorbar</a></span><span class="op">(</span>
+            title <span class="op">=</span> <span class="st">'%'</span>, 
+            len <span class="op">=</span> <span class="fl">0.5</span>
+        <span class="op">)</span> <span class="op">%&gt;%</span>
+        <span class="fu"><a href="https://docs.ropensci.org/plotly/reference/layout.html">layout</a></span><span class="op">(</span>
+          title <span class="op">=</span> <span class="st">'Youth unemployment rate in 2019 (ILO modelled estimates, Nov. 2020)'</span>, 
+          geo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>   
+                    showframe <span class="op">=</span> <span class="cn">FALSE</span>,  
+                    showcoastlines <span class="op">=</span> <span class="cn">TRUE</span>,
+                    projection <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">'natural earth'</span><span class="op">)</span>, 
+                    showcountries <span class="op">=</span> <span class="cn">TRUE</span>, 
+                    resolution <span class="op">=</span> <span class="fl">110</span><span class="op">)</span> <span class="co"># or 50</span>
+            <span class="op">)</span> </code></pre></div>
 <p><br><img src="g1_map.png" width="100%"></p>
 <p><br><br></p>
 </div>
@@ -910,7 +964,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

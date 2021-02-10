@@ -39,7 +39,7 @@
 #' @author David Bescond \email{bescond@ilo.org}
 #' @keywords utilities database
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' ## default segment by indicator, default lang English
 #'  toc <- get_ilostat_toc()
 #'  head(toc)

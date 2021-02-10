@@ -37,7 +37,7 @@ A character or a factor vector of codes returns a corresponding vector of defini
   and get data_frame with definitions instead of codes.
 }
 \examples{
-\donttest{
+\dontrun{
  dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A", cache = FALSE)
  dat_lab <- label_ilostat(dat)
  head(dat_lab)

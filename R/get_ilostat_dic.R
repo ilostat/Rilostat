@@ -18,7 +18,7 @@
 #' ilostat bulk download facility main page 
 #' \url{https://ilostat.ilo.org/data/bulk/}
 #' @examples
-#' \donttest{
+#' \dontrun{
 #'  tmp <- get_ilostat_dic("indicator")
 #'  head(tmp)
 #'  tmp <- get_ilostat_dic("classif1", lang = "fr")

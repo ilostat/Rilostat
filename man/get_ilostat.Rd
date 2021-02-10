@@ -119,7 +119,7 @@ Download datasets from ilostat \url{https://ilostat.ilo.org} via bulk download f
 }
 
 \examples{
-\donttest{
+\dontrun{
 ############# get simple dataset
  dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A")
  head(dat)
