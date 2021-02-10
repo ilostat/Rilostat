@@ -8,7 +8,7 @@ Authors@R: c(	person("ILO Department of Statistics", role = c("cph", "fnd"), ema
 				person("David Bescond", role = c("aut", "cre"), email = "bescond@ilo.org", 
 				comment = c(ORCID = "0000-0002-1642-0304")),
 				person("Mabelin Villarreal-Fuentes", role = c("ctb"), email = "villarreal-fuentes@ilo.org", 
-				comment = c(ORCID = "0000-0002-1642-0304"))
+				comment = c(ORCID = "0000-0001-5644-5760"))
 				)
 Maintainer: David Bescond <bescond@ilo.org>
 Description: Tools to download data from the ilostat database

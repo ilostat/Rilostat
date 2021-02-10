@@ -5,6 +5,7 @@
 README.Rmd
 # pkgdown
 docs
+vignettes
 # Git related
 ./.git*
 # Travis scripts
