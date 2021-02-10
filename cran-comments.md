@@ -1,2 +1,0 @@
-
-## notes on url solves

@@ -421,14 +421,16 @@ require(Rilostat)
 require(ggplot2, quiet = TRUE)
 require(dplyr, quiet = TRUE)
 
-  get_ilostat(id = 'EAP_DWAM_NOC_RT_A', 
+  get_ilostat(id = 'EAP_DWAP_SEX_AGE_RT_A', 
               time_format = 'num', 
               filters = list( ref_area = c('FRA', 'USA', 'DEU'), 
-                              timefrom = 2005, timeto = 2017))  %>% 
+                              sex = 'SEX_M',
+							  classif1 = 'AGE_AGGREGATE_TOTAL',
+							  timefrom = 2005, timeto = 2019))  %>% 
   select(ref_area, time, obs_value) %>% 
   ggplot(aes(x = time, y = obs_value, colour = ref_area)) + 
   geom_line() + 
-  ggtitle('Male labour force participation rate in selected countries, 2005-2017') + 
+  ggtitle('Male labour force participation rate in selected countries, 2005-2019') + 
   scale_x_continuous(breaks = seq(2005, 2017, 3)) +
   labs(x="Year", y="Male LFPR (%)", colour="Country:") +  
   theme(legend.position = "top", plot.title = element_text(hjust = 0.5))
@@ -563,7 +565,11 @@ if(!require(plotly)){install.packages('plotly')}
 if(!require(dplyr)){install.packages('dplyr')}
 if(!require(stringr)){install.packages('stringr')}
 
-dat <- get_ilostat(id = 'UNE_2YAP_NOC_RT_A', filters = list(time = '2017')) %>% 
+dat <- get_ilostat(id = 'UNE_2EAP_SEX_AGE_RT_A', filters = list(
+								time = '2019', 
+								sex = 'SEX_T', 
+								classif1 = 'AGE_YTHADULT_Y15-24'
+								)) %>% 
 			filter(!str_sub(ref_area,1,1) %in% 'X') %>% 
 			select(ref_area, obs_value) %>% 
 			left_join(	Rilostat:::ilostat_ref_area_mapping %>% 
@@ -594,7 +600,7 @@ dat %>%
 			len = 0.5
 		) %>%
 		layout(
-		  title = 'Youth unemployment rate in 2017 (ILO modelled estimates, Nov. 2018)', 
+		  title = 'Youth unemployment rate in 2019 (ILO modelled estimates, Nov. 2020)', 
 		  geo = list(	
 					showframe = FALSE,  
 					showcoastlines = TRUE,
