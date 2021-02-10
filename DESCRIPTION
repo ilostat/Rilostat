@@ -33,7 +33,7 @@ Suggests:
 	rmarkdown,
 	devtools,
 	plotly,
-	tidyr (>= 3.3.3),
+	ggplot2 (>= 3.3.3),
     plotrix,
 	shiny
 LazyData: true
