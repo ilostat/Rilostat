@@ -1,8 +1,8 @@
 Package: Rilostat
 Type: Package
 Title: ILO Open Data via Ilostat Bulk Download Facility or SDMX Web Service
-Date: 2021-02-10
-Version: 1.1.5
+Date: 2021-03-10
+Version: 1.1.6
 Encoding: UTF-8
 Authors@R: c(	person("ILO Department of Statistics", role = c("cph", "fnd"), email = "ilostat@ilo.org"), 
 				person("David Bescond", role = c("aut", "cre"), email = "bescond@ilo.org", 
@@ -36,7 +36,8 @@ Suggests:
 	plotly,
 	ggplot2 (>= 3.3.3),
     plotrix,
-	shiny
+	shiny,
+	curl
 LazyData: true
 URL: https://ilostat.github.io/Rilostat/
 BugReports: https://github.com/ilostat/Rilostat/issues
