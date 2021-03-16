@@ -69,7 +69,7 @@ The values in column 'id' should be used to download a selected dataset.
 ## search on toc
  toc <- get_ilostat_toc(search = 'education')
  head(toc)
- toc <- get_ilostat_toc(lang = 'fr', search = 'Ã©ducation')
+ toc <- get_ilostat_toc(lang = 'fr', search = 'æ”¼ã¸¹ducation')
  head(toc)
  toc <- get_ilostat_toc(segment = 'ref_area', lang = 'fr', search = 'Albanie')
  toc

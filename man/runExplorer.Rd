@@ -4,9 +4,28 @@
 \alias{runExplorer}
 \title{Play with ilostat explorer}
 \usage{
-runExplorer(display.mode = "normal")
+runExplorer(
+  port = getOption("shiny.port", 3838),
+  launch.browser = getOption("shiny.launch.browser", interactive()),
+  host = getOption("shiny.host", "127.0.0.1"),
+  display.mode = "normal"
+)
 }
 \arguments{
+\item{port}{The TCP port that the application should listen on. If the
+`port` is not specified, and the `shiny.port` option is set (with
+`options(shiny.port = XX)`), then that port will be used. Otherwise,
+use the 3838 port.}
+
+\item{launch.browser}{If true, the system's default web browser will be
+launched automatically after the app is started. Defaults to true in
+interactive sessions only. This value of this parameter can also be a
+function to call with the application's URL.}
+
+\item{host}{The IPv4 address that the application should listen on. Defaults
+to the `shiny.host` option, if set, or `"127.0.0.1"` if not. See
+Details.}
+
 \item{display.mode}{The mode in which to display the application. 
 If set to the value "showcase", shows application code and metadata 
 from a DESCRIPTION file in the application directory alongside the application. 

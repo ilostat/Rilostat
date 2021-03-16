@@ -34,6 +34,7 @@ runExplorer <- function(
 				display.mode = "normal") {
 
 if (!"curl" %in% installed.packages()) install.packages("curl")
+if (!"shiny" %in% installed.packages()) install.packages("shiny")
 
   production_status <- FALSE
   if(dir.exists("J:/COMMON/")){
