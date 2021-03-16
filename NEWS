@@ -4,7 +4,12 @@ output:
     keep_md: yes
 ---
 
-# Rilostat 1.2
+# Rilostat 1.1.7
+
+* fixed dependency issues
+
+
+# Rilostat 1.1.2
 
 * update vignette
 
