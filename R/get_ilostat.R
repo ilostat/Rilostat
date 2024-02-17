@@ -331,8 +331,7 @@ get_ilostat_dat <- function(id,
   
   }
   
-  invisible(gc(reset = TRUE))  
-  
+
   # process time_format
   if(tolower(time_format) %in% 'num' & str_sub(id,-1,-1) %in% c('Q', 'M')){
     
@@ -450,8 +449,7 @@ get_ilostat_dat <- function(id,
 	
   }
   
-  invisible(gc(reset = TRUE))
-  
+
   if(!back){return(NULL)}
 
   # process filters
@@ -500,7 +498,6 @@ get_ilostat_dat <- function(id,
 	  
 	dat <- group_by_at(dat, .vars = ref_bestsourceonly) %>% summarise(!!!summa, .groups = "drop")
       
-	invisible(gc(reset = TRUE))	
   }
   
  
@@ -511,8 +508,7 @@ get_ilostat_dat <- function(id,
 	
 	try(dat <- eval(parse(text = cmd)), silent = TRUE) 
 	
-	invisible(gc(reset = TRUE))
-  
+
   }	
   
   dat   	  
@@ -554,8 +550,6 @@ get_ilostat_raw <- function(id,
   
   }
   
-  invisible(gc(reset = TRUE))
-  invisible(gc(reset = TRUE))
   
   dat
 }
