@@ -1,0 +1,38 @@
+^Meta$
+^doc$
+# Extra material related but not to be included in the package
+# inst/extras
+README.Rmd
+# pkgdown
+docs
+vignettes
+# Git related
+./.git*
+# Travis scripts
+.travis.yml
+# Misc
+./.*~
+./*~
+^.*\.Rproj$
+^\.Rproj\.user$
+^packrat/
+^\.Rprofile$
+^NEWS$
+
+^NEWS.Rmd$
+^NEWS.html$
+^README.html$
+^_pkgdown.yml$
+^cran-comments\.md$
+^data-raw$
+^revdep$
+^README\.Rmd$
+^README-.*\.png$
+^appveyor\.yml$
+^CONDUCT\.md$
+^\.travis\.yml$
+^codecov\.yml$
+^CRAN-RELEASE$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
