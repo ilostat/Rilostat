@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   Rilostat: Rilostat.html
-last_built: 2024-02-17T15:05Z
+last_built: 2024-02-17T15:21Z
 urls:
   reference: https://dbescond.github.io/Rilostat/reference
   article: https://dbescond.github.io/Rilostat/articles
