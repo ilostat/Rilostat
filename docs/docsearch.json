@@ -2,21 +2,21 @@
   "index_name": "rilostat",
   "start_urls": [
     {
-      "url": "https://dbescond.github.io/Rilostat/index.html",
+      "url": "https://ilostat.github.io/Rilostat/index.html",
       "selectors_key": "homepage",
       "tags": [
         "homepage"
       ]
     },
     {
-      "url": "https://dbescond.github.io/Rilostat/reference",
+      "url": "https://ilostat.github.io/Rilostat/reference",
       "selectors_key": "reference",
       "tags": [
         "reference"
       ]
     },
     {
-      "url": "https://dbescond.github.io/Rilostat/articles",
+      "url": "https://ilostat.github.io/Rilostat/articles",
       "selectors_key": "articles",
       "tags": [
         "articles"
@@ -30,7 +30,7 @@
     "/articles/index.html"
   ],
   "sitemap_urls": [
-    "https://dbescond.github.io/Rilostat/sitemap.xml"
+    "https://ilostat.github.io/Rilostat/sitemap.xml"
   ],
   "selectors": {
     "homepage": {
