@@ -74,26 +74,15 @@ get_ilostat_toc <- function(segment = getOption('ilostat_segment', 'indicator'),
 							filters = getOption('ilostat_filter', 'none'),
 							fixed = getOption('ilostat_fixed', TRUE)) {
   
-  if(stringr::str_detect(tolower(segment), 'model')){
-	
-	# lang <- 'en' 
-	segment <- 'modelled_estimates'
-  
-  }
   
   set_ilostat_toc(segment, lang)
   
   y <- get(paste0(".ilostatTOC", segment, lang), envir = .ilostatEnv) 
   
-  if(segment == 'modelled_estimates'){
-  
-    y <- filter(y, eval(parse(text = "stringr:::str_detect(file_type,'dta')")))
-  
-  }
   
   if(!is_tibble(y)){
   
-      stop("the toc file : ", ilostat_url(),segment, "/", "table_of_contents_",lang,".csv does not exist")
+      stop("the toc file : ", ilostat_url(),segment, "/", "table_of_contents_",lang,".rds does not exist")
   
   }
   
@@ -140,13 +129,13 @@ set_ilostat_toc <- function(segment, lang) {
     
 	base <- ilostat_url()
     
-	url <- paste0(base, segment, "/", "table_of_contents_",lang,".csv")
+	url <- paste0(base, segment, "/", "table_of_contents_",lang,".rds")
     
-	.ilostatTOC <- read_csv(
+	.ilostatTOC <- read_rds(
 	
-						url(url), 
+						url 
 	
-						col_types = cols(.default = col_character(), n.records = col_double()))
+						) %>% as_tibble %>% mutate_if(is.factor, as.character)
     
 	assign(paste0(".ilostatTOC", segment, lang), .ilostatTOC, envir = .ilostatEnv)
   

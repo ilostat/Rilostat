@@ -3,7 +3,11 @@ output:
   html_document: 
     keep_md: yes
 ---
-# Rilostat 1.2
+# Rilostat 2.0.0
+
+* faster method to get data
+
+# Rilostat 1.2.0
 
 * fixed ilo new path
 * fixed sdmx new methods

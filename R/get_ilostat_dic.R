@@ -36,9 +36,9 @@ get_ilostat_dic <- function(dic,
       
 	url <- ilostat_url()		   
       
-	tname <- paste0(url, "dic/", dictlang,  ".csv")
+	tname <- paste0(url, "dic/", dictlang,  ".rds")
 	  
-	get_dic <- read_csv(url(tname), col_types = cols(.default = col_character()), progress = FALSE)
+	get_dic <- read_rds(tname) %>% as_tibble %>% mutate_if(is.factor, as.character)
       
 	assign(dictlang, get_dic, envir = .ilostatEnv)
 	  
@@ -46,7 +46,7 @@ get_ilostat_dic <- function(dic,
    
     if(!is_tibble(get_dic)){
   
-  	  stop("the dictionnary : ", ilostat_url(),dic, "_",lang,".csv does not exist")
+  	  stop("the dictionnary : ", ilostat_url(),dic, "_",lang,".rds does not exist")
   
     }
 	

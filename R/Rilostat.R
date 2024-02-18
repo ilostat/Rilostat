@@ -28,6 +28,7 @@
 #' @importFrom readr col_character
 #' @importFrom readr col_double
 #' @importFrom readr cols
+#' @importFrom readr read_rds
 #' @importFrom plyr llply
 #' @importFrom plyr ldply
 #' @importFrom plyr mapvalues
@@ -39,6 +40,7 @@
 #' @importFrom dplyr mutate
 #' @importFrom dplyr summarise
 #' @importFrom dplyr group_by_at
+#' @importFrom dplyr mutate_if
 #' @importFrom haven read_dta
 #' @importFrom haven read_sav
 #' @importFrom haven read_sas
@@ -78,8 +80,12 @@
 
 ilostat_url <- function() {
 
-  readLines("https://webapps.ilo.org/ilostat-files/Documents/rds/bulkdownloadURL.txt")
-
+	if(dir.exists('/mnt/rds/')) {
+		'/mnt/rds/'
+	} else {
+		'https://webapps.ilo.org/ilostat-files/Documents/rds/'	
+	}
+  
   }
 
 filters_ilostat <- function(

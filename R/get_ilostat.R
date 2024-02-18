@@ -291,7 +291,7 @@ get_ilostat_dat <- function(id,
  
 	if(cache_format == 'rds'){
 		
-		dat <- readRDS(cache_file)
+		dat <- read_rds(cache_file) %>% as_tibble %>% mutate_if(is.factor, as.character)
 	
 	}
 	
@@ -523,22 +523,16 @@ get_ilostat_raw <- function(id,
 							cache_format, 
 							quiet) {
 
-	base <- paste0(ilostat_url(), segment, "/", id, ".csv.gz")	   
+	base <- paste0(ilostat_url(), segment, "/", id, ".rds")	   
 
-    tfile <- cache_file %>% stringr::str_replace(paste0(stringr::fixed('.'), cache_format), ".csv.gz")
+    tfile <- cache_file %>% stringr::str_replace(paste0(stringr::fixed('.'), cache_format), ".rds")
    
     ### download and read file
     utils::download.file(base, tfile, quiet = quiet)
   
-    if(!cache_format %in% 'csv.gz'){
-  
-      on.exit(unlink(tfile))
-  
-    }
-  
     dat <- NULL
   
-    try(dat <- read_csv(gzfile(tfile), col_types = cols(.default = col_character(), obs_value = col_double()), progress = FALSE))
+    try(dat <- read_rds(tfile) %>% as_tibble %>% mutate_if(is.factor, as.character), silent = TRUE)
   
   
   
