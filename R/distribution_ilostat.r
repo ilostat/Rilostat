@@ -3,6 +3,7 @@
 #' @param x  dataset to transform into distribution. 
 #' @param var  String variable name use for the distribution default \code{"no"}, 
 #' 		could be \code{"sex"}, \code{"classif1"}, \code{"classif2"}.
+#' @param .keep if true return only new column call distribution default \code{FALSE}. 
 #' @details this function use the max of the corresponding grouping so it is 
 #' 		important to not filter any subset of the corresponding variable selected for the distribution
 #'		at this level, ie. if you remove SEX_T, the distribution by sex will only have SEX_F or SEX_M / max(SEX_M, SEX_F) * 100,
@@ -23,81 +24,29 @@
 #' \dontrun{
 #'  dat <- get_ilostat("EMP_TEMP_SEX_STE_GEO_NB_A", cache = FALSE)
 #'  dat_dist <- distribution_ilostat(dat, "classif1")
+#'  dat_plus_dist <- mutate(dat, dist = distribution_ilostat(dat,"classif1", .keep=TRUE))
 #'  head(dat_dist)
 #'  clean_ilostat_cache() 
 #' }
 #' @export
 
-distribution_ilostat <- function(x, var){
+distribution_ilostat <- function(x, var, .keep = FALSE){
 
-		
+		if(length(var) > 1){warning("var should on of character 'sex', 'classif1', 'classif2', no distribution return !!! ") ; return(x)}
+		if(!tolower(var) %in% c("sex", "classif1", "classif2")) {warning("var should on of character 'sex', 'classif1', 'classif2', no distribution return !!! ") ; return(x)}
 
-	
-		switch(tolower(var), 
-		
-		"sex"= { 		
-						 
-						message(paste0("Processing of ",str_sub(unique(x[["indicator"]])),"... distribution by sex, could take few time !"))
+			 
+						message(paste0("Processing of ",str_sub(unique(x[["indicator"]])),"... distribution by ",var,", could take few time !"))
 						
 						eval(parse(text = "ref_col <- ilostat_cols_ref[ilostat_cols_ref %in% colnames(x %>% select(ref_area:time))]"))
 						
-						ref_col <- c(ref_col[!ref_col %in% "sex"], "sex_version")
+						ref_col <- c(ref_col[!ref_col %in% var])
 								
-						run <- paste0(	"separate (x, sex,c('sex_version'), sep='_', extra = 'drop', remove = FALSE) %>% ", 
-										"mutate(sex_version = gsub('NA', NA,sex_version,  fixed = TRUE) %>% as.factor) %>% ", 
-										"group_by(",paste0(ref_col, collapse = ', '),") %>% ",
+						run <- paste0(	"group_by(x,",paste0(ref_col, collapse = ', '),") %>% ",
 										"mutate(obs_value = ifelse(!obs_value %in% c(NA, 0),obs_value / max(obs_value, na.rm = TRUE) * 100, obs_value)) %>% ",
 										"mutate(test = sum(obs_value, na.rm = TRUE) / n()) %>% ",
-										"ungroup %>% ",
-										"filter(!test %in% 100) %>% ",
-										"select(-sex_version, -test)")
+										"ungroup", 
+										ifelse(.keep, "%>% .$obs_value", "")
+										)
 							
-					eval(parse(text = run))				
-					
-				},
-		
-		
-		'classif1' = { 
-						message(paste0("Processing of ",str_sub(unique(x[["indicator"]])),"... distribution by classif1, could take few time !"))
-						
-						eval(parse(text = "ref_col <- ilostat_cols_ref[ilostat_cols_ref %in% colnames(x %>% select(ref_area:time))]"))
-						
-						ref_col <- c(ref_col[!ref_col %in% "classif1"], "classif1_version")
-								
-						run <- paste0(	"separate(x, classif1,c('CODE_CLACL1','CODE_VSCL1'), sep='_', extra = 'drop', remove = FALSE) %>% ",
-										"unite(	classif1_version,CODE_CLACL1,CODE_VSCL1, sep = '_', remove = TRUE) %>% ",
-										"mutate(classif1_version = gsub('NA_NA', NA,classif1_version, fixed = TRUE)) %>% ",
-										"group_by(",paste0(ref_col, collapse = ', '),") %>% ",
-										"mutate(obs_value = ifelse(!obs_value %in% c(NA, 0),obs_value / max(obs_value, na.rm = TRUE) * 100, obs_value)) %>% ",
-										"mutate(test = sum(obs_value, na.rm = TRUE) / n()) %>% ",
-										"ungroup %>% ",
-										"filter(!test %in% 100) %>% ",
-										"select(-classif1_version, -test)")
-							
-					eval(parse(text = run))			
-				},
-		
-		'classif2' = {
-						message(paste0("Processing of ",str_sub(unique(x[["indicator"]])),"... distribution by classif2, could take few time !"))
-						
-						eval(parse(text = "ref_col <- ilostat_cols_ref[ilostat_cols_ref %in% colnames(dat %>% select(ref_area:time))]"))
-						
-						ref_col <- c(ref_col[!ref_col %in% "classif2"], "classif2_version")
-								
-						run <- paste0(	"separate(dat, classif2,c('CODE_CLACL1','CODE_VSCL1'), sep='_', extra = 'drop', remove = FALSE) %>% ",
-										"unite(	classif2_version,CODE_CLACL1,CODE_VSCL1, sep = '_', remove = TRUE) %>% ",
-										"mutate(classif2_version = gsub('NA_NA', NA,classif2_version, fixed = TRUE)) %>% ",
-										"group_by(",paste0(ref_col, collapse = ', '),") %>% ",
-										"mutate(obs_value = ifelse(!obs_value %in% c(NA, 0),obs_value / max(obs_value, na.rm = TRUE) * 100, obs_value)) %>% ",
-										"mutate(test = sum(obs_value, na.rm = TRUE) / n()) %>% ",
-										"ungroup %>% ",
-										"filter(!test %in% 100) %>% ",
-										"select(-classif2_version, -test)")
-							
-					eval(parse(text = run))		
-				}
-		
-		)
-
-
-}
+					eval(parse(text = run))	}

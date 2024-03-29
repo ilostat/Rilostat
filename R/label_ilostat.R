@@ -27,6 +27,7 @@
 #'  clean_ilostat_cache() 
 #' }
 #' @export
+
 label_ilostat <- function(	x, 
 							dic = NULL, 
 							code = NULL, 
