@@ -127,15 +127,15 @@ set_ilostat_toc <- function(segment, lang) {
   
   if (!exists(paste0(".ilostatTOC", segment, lang), envir = .ilostatEnv)) {
     
-	base <- ilostat_url()
+	# base <- ilostat_url()
     
-	url <- paste0(base, segment, "/", "table_of_contents_",lang,".rds")
+	url <- paste0(ilostat_url() , "metadata/toc/",segment, "/?lang=",lang,"&format=rds")
     
 	.ilostatTOC <- read_rds(
 	
 						url 
 	
-						) %>% as_tibble %>% mutate_if(is.factor, as.character)
+						) # %>% as_tibble %>% mutate_if(is.factor, as.character)
     
 	assign(paste0(".ilostatTOC", segment, lang), .ilostatTOC, envir = .ilostatEnv)
   

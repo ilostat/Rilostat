@@ -4,13 +4,15 @@
 \alias{distribution_ilostat}
 \title{Switch ilostat to distribution}
 \usage{
-distribution_ilostat(x, var)
+distribution_ilostat(x, var, .keep = FALSE)
 }
 \arguments{
 \item{x}{dataset to transform into distribution.}
 
 \item{var}{String variable name use for the distribution default \code{"no"}, 
 could be \code{"sex"}, \code{"classif1"}, \code{"classif2"}.}
+
+\item{.keep}{if true return only new column call distribution default \code{FALSE}.}
 }
 \value{
 a data_frame. obs_status will no longer be a number of persons but a percentage.
@@ -32,6 +34,7 @@ this function use the max of the corresponding grouping so it is
 \dontrun{
  dat <- get_ilostat("EMP_TEMP_SEX_STE_GEO_NB_A", cache = FALSE)
  dat_dist <- distribution_ilostat(dat, "classif1")
+ dat_plus_dist <- mutate(dat, dist = distribution_ilostat(dat,"classif1", .keep=TRUE))
  head(dat_dist)
  clean_ilostat_cache() 
 }

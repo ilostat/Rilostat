@@ -3,6 +3,10 @@ output:
   html_document: 
     keep_md: yes
 ---
+# Rilostat 2.1.0
+
+* use ilosta API via https://rplumber.ilo.org/
+
 # Rilostat 2.0.0
 
 * faster method to get data

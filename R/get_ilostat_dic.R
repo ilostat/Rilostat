@@ -34,11 +34,11 @@ get_ilostat_dic <- function(dic,
     
   if (!exists(dictlang, envir = .ilostatEnv)) {
       
-	url <- ilostat_url()		   
+	# url <- ilostat_url()		   
       
-	tname <- paste0(url, "dic/", dictlang,  ".rds")
+	tname <- paste0(ilostat_url(), "metadata/dic/?var=", tolower(dic), "&lang=",tolower(lang),  "&format=rds")
 	  
-	get_dic <- read_rds(tname) %>% as_tibble %>% mutate_if(is.factor, as.character)
+	get_dic <- read_rds(tname) # %>% as_tibble %>% mutate_if(is.factor, as.character)
       
 	assign(dictlang, get_dic, envir = .ilostatEnv)
 	  

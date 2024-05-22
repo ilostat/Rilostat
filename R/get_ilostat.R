@@ -523,18 +523,24 @@ get_ilostat_raw <- function(id,
 							cache_format, 
 							quiet) {
 
-	base <- paste0(ilostat_url(), segment, "/", id, ".rds")	   
+	base <- paste0(ilostat_url(), "data/", segment, "/?id=", id, "&format=rds")	   
 
     if(str_sub(ilostat_url(),1,5) %in% "https"){
 	
-	  tfile <- cache_file %>% stringr::str_replace(paste0(stringr::fixed('.'), cache_format), ".rds")
+	 tfile <- cache_file %>% stringr::str_replace(paste0(stringr::fixed('.'), cache_format), ".rds")
    
     ### download and read file
-      utils::download.file(base, tfile, quiet = quiet)
+      #utils::download.file(base, tfile, quiet = quiet)
   
       dat <- NULL
-  
-      try(dat <- read_rds(tfile) %>% as_tibble %>% mutate_if(is.factor, as.character), silent = TRUE)
+	  message("trying URL '",base,"'")
+	  
+      try(dat <- read_rds(base) %>% as_tibble %>% mutate_if(is.factor, as.character), silent = TRUE)
+	  
+	  message("trying saving cache '",tfile,"'")
+	  
+	  try(saveRDS(dat, tfile), silent = TRUE)
+	
 	
 	} else {
 		

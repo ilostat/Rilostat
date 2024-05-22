@@ -83,9 +83,10 @@ ilostat_url <- function() {
 	if(dir.exists('/mnt/rds/')) {
 		'/mnt/rds/'
 	} else {
-		if(dir.exists('K:/ILOSTAT/Documents/rds/')) 
-		 'K:/ILOSTAT/Documents/rds/'  else   
-		 'https://webapps.ilo.org/ilostat-files/Documents/rds/'	
+		#if(dir.exists('K:/ILOSTAT/Documents/rds/')) 
+		 #'K:/ILOSTAT/Documents/rds/'  else   
+		 #'https://webapps.ilo.org/ilostat-files/Documents/rds/'	
+		'https://rplumber.ilo.org/'
 		}
   
   }
