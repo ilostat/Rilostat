@@ -15,7 +15,6 @@ reference:
     - label_ilostat
     - clean_ilostat_cache
     - distribution_ilostat
-    - sdmx_ilostat
     - Rilostat
  
 navbar:
