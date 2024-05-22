@@ -24,7 +24,6 @@ Imports:
 	readr (>= 2.1.4), 
 	tibble (>= 3.2.1), 
     haven, 
-	xml2,
 	data.table
 LazyData: true
 URL: https://ilostat.github.io/Rilostat/
