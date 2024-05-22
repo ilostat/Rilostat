@@ -1,7 +1,7 @@
 Package: Rilostat
 Type: Package
 Title: ILO Open Data via Ilostat Bulk Download Facility
-Date: 2024-02-18
+Date: 2024-05-22
 Version: 2.1.0
 Encoding: UTF-8
 Authors@R: c(	person("David Bescond", role = c("aut", "cre"), email = "bescond@ilo.org", 
