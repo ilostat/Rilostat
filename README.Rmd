@@ -37,7 +37,6 @@ make various data visualizations, all in a programmatic and replicable manner, w
 - Returns data in long format for direct integration with packages like `ggplot2` and `dplyr`
 - Gives immediate access to the most recent updates
 - Allows for `grep`-style searching for data descriptions and names
-- Provides access to the ILOSTAT catalogue of related descriptive metadata ([user guide](https://webapps.ilo.org/ilostat-files/Documents/SDMX_User_Guide.pdf))
 
 ## Acknowledgements
 
