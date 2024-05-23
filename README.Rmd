@@ -23,7 +23,7 @@ wages, working time and labour productivity, to name a few. It includes time ser
 regional and global estimates; and even projections of the main labour market indicators.
   
 ILOSTAT's website provides immediate access to all its data and related metadata through different ways. Basic users can simply view the desired data online or download it in Excel or csv formats. 
-More advanced users can take advantage of ILOSTAT's well-structured [bulk download facility](https://ilostat.ilo.org/data/bulk/) ([user guide](https://webapps.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf)), or the SDMX web service ([user guide](https://webapps.ilo.org/ilostat-files/Documents/SDMX_User_Guide.pdf)).
+More advanced users can take advantage of ILOSTAT's well-structured [bulk download facility](https://ilostat.ilo.org/data/bulk/) ([user guide](https://webapps.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf)).
 
 
 The ilostat R package (`'Rilostat'`) was designed to give data users the ability to access the ILOSTAT database, search for data, rearrange the information as needed, download it in the desired format, and 
