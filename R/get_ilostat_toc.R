@@ -129,7 +129,7 @@ set_ilostat_toc <- function(segment, lang) {
     
 	# base <- ilostat_url()
     
-	url <- paste0(ilostat_url() , "metadata/toc/",segment, "/?lang=",lang,"&format=rds")
+	url <- paste0(ilostat_url() , "metadata/toc/",segment, "/?lang=",lang,"&format=.rds&channel=rpackage")
     
 	.ilostatTOC <- read_rds(
 	

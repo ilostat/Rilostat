@@ -74,8 +74,8 @@ NULL
 
 ilostat_url <- function() {
 
-	if(dir.exists('/mnt/rds/')) {
-		'/mnt/rds/'
+	if(dir.exists('/data/rds/')) {
+		'/data/rds/'
 	} else {
 		'https://rplumber.ilo.org/'
 		}

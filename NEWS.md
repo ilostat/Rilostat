@@ -3,6 +3,11 @@ output:
   html_document: 
     keep_md: yes
 ---
+
+# Rilostat 2.2.0
+
+* add dataexplorer()
+
 # Rilostat 2.1.0
 
 * use ilosta API via https://rplumber.ilo.org/

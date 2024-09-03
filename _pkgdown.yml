@@ -15,6 +15,7 @@ reference:
     - label_ilostat
     - clean_ilostat_cache
     - distribution_ilostat
+    - dataexplorer
     - Rilostat
  
 navbar:

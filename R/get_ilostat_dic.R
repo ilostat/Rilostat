@@ -36,7 +36,7 @@ get_ilostat_dic <- function(dic,
       
 	# url <- ilostat_url()		   
       
-	tname <- paste0(ilostat_url(), "metadata/dic/?var=", tolower(dic), "&lang=",tolower(lang),  "&format=rds")
+	tname <- paste0(ilostat_url(), "metadata/dic/?var=", tolower(dic), "&lang=",tolower(lang),  "&format=rds&channel=rpackage")
 	  
 	get_dic <- read_rds(tname) # %>% as_tibble %>% mutate_if(is.factor, as.character)
       

@@ -523,7 +523,7 @@ get_ilostat_raw <- function(id,
 							cache_format, 
 							quiet) {
 
-	base <- paste0(ilostat_url(), "data/", segment, "/?id=", id, "&format=rds")	   
+	base <- paste0(ilostat_url(), "data/", segment, "/?id=", id, "&format=.rds&channel=rpackage")	   
 
     if(str_sub(ilostat_url(),1,5) %in% "https"){
 	
@@ -533,7 +533,7 @@ get_ilostat_raw <- function(id,
       #utils::download.file(base, tfile, quiet = quiet)
   
       dat <- NULL
-	  message("trying URL '",base,"'")
+	  message("trying URL '",str_replace(base, "&channel=rpackage", ""),"'")
 	  
       try(dat <- read_rds(base) %>% as_tibble %>% mutate_if(is.factor, as.character), silent = TRUE)
 	  
