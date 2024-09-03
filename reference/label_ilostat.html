@@ -9,7 +9,7 @@
 
   gtag('config', 'UA-140141628-1');
 </script></head><body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-reference-topic">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rilostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.0</span>
       </span>
     </div>
 
@@ -37,7 +37,7 @@
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Vignettes
-     
+
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu"><li>
@@ -50,25 +50,25 @@
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/ilostat/Rilostat" class="external-link">
     <span class="fa fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul><form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
         <div class="form-group">
           <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off"></div>
       </form>
-      
+
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Switch Ilostat codes and labels</h1>
-    <small class="dont-index">Source: <a href="https://github.com/ilostat/Rilostat/blob/HEAD/R/label_ilostat.R" class="external-link"><code>R/label_ilostat.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/ilostat/Rilostat/blob/master/R/label_ilostat.R" class="external-link"><code>R/label_ilostat.R</code></a></small>
     <div class="hidden name"><code>label_ilostat.Rd</code></div>
     </div>
 
@@ -87,43 +87,43 @@
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>x</dt>
+
+
+<dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
 <dd><p>A character or a factor vector or a data_frame to labelled.</p></dd>
 
 
-<dt>dic</dt>
+<dt id="arg-dic">dic<a class="anchor" aria-label="anchor" href="#arg-dic"></a></dt>
 <dd><p>A string (vector) naming ilostat dictionary or dictionaries.
-If <code>NULL</code> (default) dictionary names are taken from column names of 
+If <code>NULL</code> (default) dictionary names are taken from column names of
 the data_frame. A character or a factor vector or a data_frame to labelled,</p></dd>
 
 
-<dt>code</dt>
+<dt id="arg-code">code<a class="anchor" aria-label="anchor" href="#arg-code"></a></dt>
 <dd><p>a vector of names of the column for which code columns
 should be retained. Set to <code>"all"</code>, keep all the code.</p></dd>
 
 
-<dt>lang</dt>
-<dd><p>a character, code for language. Available are <code>"en"</code> (default), 
+<dt id="arg-lang">lang<a class="anchor" aria-label="anchor" href="#arg-lang"></a></dt>
+<dd><p>a character, code for language. Available are <code>"en"</code> (default),
 <code>"fr"</code> and <code>"es"</code>. Can be set also with options(ilostat_lang = 'fr'),</p></dd>
 
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    
-
-<p>a vector or a data_frame. The suffix ".label" is added to code column names.</p>
+    <p>a vector or a data_frame. The suffix ".label" is added to code column names.</p>
     </div>
     <div id="details">
     <h2>Details</h2>
-    <p>A character or a factor vector of codes returns a corresponding vector of definitions. 
-  <code>label_ilostat</code> labels also data_frames from <code><a href="get_ilostat.html">get_ilostat</a></code>. For vectors a dictionary 
-  "time" and "values" columns are returned as they were, so you can supply data_frame from <code><a href="get_ilostat.html">get_ilostat</a></code> 
+    <p>A character or a factor vector of codes returns a corresponding vector of definitions.
+  <code>label_ilostat</code> labels also data_frames from <code><a href="get_ilostat.html">get_ilostat</a></code>. For vectors a dictionary
+  "time" and "values" columns are returned as they were, so you can supply data_frame from <code><a href="get_ilostat.html">get_ilostat</a></code>
   and get data_frame with definitions instead of codes.</p>
     </div>
     <div id="references">
     <h2>References</h2>
     <p>See citation("Rilostat")
-ilostat bulk download facility user guidelines 
+ilostat bulk download facility user guidelines
 <a href="https://webapps.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf" class="external-link">https://webapps.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf</a></p>
     </div>
     <div id="author">
@@ -133,12 +133,12 @@ ilostat bulk download facility user guidelines
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span> <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_ilostat.html">get_ilostat</a></span><span class="op">(</span><span class="st">"UNE_2UNE_SEX_AGE_NB_A"</span>, cache <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="va">dat_lab</span> <span class="op">&lt;-</span> <span class="fu">label_ilostat</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dat_lab</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="clean_ilostat_cache.html">clean_ilostat_cache</a></span><span class="op">(</span><span class="op">)</span> </span></span>
-<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -153,16 +153,16 @@ ilostat bulk download facility user guidelines
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
       </footer></div>
 
-  
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script><script>
   docsearch({
-    
-    
+
+
     apiKey: '5bb9805eecd1b1c2d12958ea75a8e9e8',
     indexName: 'rilostat',
     inputSelector: 'input#search-input.form-control',
