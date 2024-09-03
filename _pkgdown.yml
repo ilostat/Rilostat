@@ -1,44 +1,39 @@
-url: https://ilostat.github.io/Rilostat/
-
+url: https://dbescond.github.io/Rilostat/
 home:
-  strip_header: true
+  strip_header: yes
   links:
   - text: Learn more
     href: https://ilostat.ilo.org/data/bulk/
-
 reference:
-  - title: Essential functionality
-    contents:
-    - get_ilostat_toc
-    - get_ilostat
-    - get_ilostat_dic
-    - label_ilostat
-    - clean_ilostat_cache
-    - distribution_ilostat
-    - dataexplorer
-    - Rilostat
- 
+- title: Essential functionality
+  contents:
+  - get_ilostat_toc
+  - get_ilostat
+  - get_ilostat_dic
+  - label_ilostat
+  - clean_ilostat_cache
+  - distribution_ilostat
+  - dataexplorer
+  - Rilostat
 navbar:
   title: ~
   type: default
   left:
-    - text: Intro
-      href: articles/Rilostat.html
-    - text: Functions
-      href: reference/index.html
-    - text: Vignettes
-      menu:
-      - text: Visualisation
-        href: articles/RilostatVisu.html   
-    - text: News
-      href: news/index.html
+  - text: Intro
+    href: articles/Rilostat.html
+  - text: Functions
+    href: reference/index.html
+  - text: Vignettes
+    menu:
+    - text: Visualisation
+      href: articles/RilostatVisu.html
+  - text: News
+    href: news/index.html
   right:
-    - icon: fa-github fa-lg
-      href: https://github.com/ilostat/Rilostat
-
+  - icon: fa-github fa-lg
+    href: https://github.com/ilostat/Rilostat
 development:
   mode: auto
-
 template:
   params:
     docsearch:
@@ -46,5 +41,4 @@ template:
       index_name: rilostat
     bootswatch: cerulean
     ganalytics: UA-140141628-1
-
 
