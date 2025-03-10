@@ -533,7 +533,7 @@ get_ilostat_raw <- function(id,
       #utils::download.file(base, tfile, quiet = quiet)
   
       dat <- NULL
-	  message("trying URL '",str_replace(base, "&channel=rpackage", ""),"'")
+	  message("trying URL '",paste0("https://rplumber.ilo.org/data/", segment, "/?id=", id, "&format=.rds"),"'")
 	  
       try(dat <- read_rds(base) %>% as_tibble %>% mutate_if(is.factor, as.character), silent = TRUE)
 	  
