@@ -11,7 +11,7 @@ Authors@R: c(	person("David", "Bescond", role = c("aut", "cre"), email = "bescon
 				person("ILO", "Department of Statistics", role = c("cph", "fnd"), email = "ilostat@ilo.org") 
 				)
 Maintainer: David Bescond <bescond@ilo.org>
-Description: Tools to download data from the [ilostat](https://ilostat.ilo.org) database
+Description: Tools to download data from the [ilostat](<https://ilostat.ilo.org>) database
     together with search and
     manipulation utilities.
 License: BSD_2_clause + file LICENSE
