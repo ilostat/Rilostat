@@ -102,7 +102,7 @@ of Statistics</h4>
             
             <h4 data-toc-skip class="date">2025-03-10</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/ilostat/Rilostat/blob/v2.3.0/vignettes/Rilostat.Rmd" class="external-link"><code>vignettes/Rilostat.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ilostat/Rilostat/blob/master/vignettes/Rilostat.Rmd" class="external-link"><code>vignettes/Rilostat.Rmd</code></a></small>
       <div class="hidden name"><code>Rilostat.Rmd</code></div>
 
     </div>
@@ -541,8 +541,8 @@ ref_area_frequency).</p>
 UNE_2UNE_SEX_AGE_NB, you should type:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'UNE_2UNE_SEX_AGE_NB_A'</span>, segment <span class="op">=</span> <span class="st">'indicator'</span><span class="op">)</span> </span></code></pre></div>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/UNE_2UNE_SEX_AGE_NB_A.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache '/tmp/Rtmpn4ByAn/ilostat/indicator-UNE_2UNE_SEX_AGE_NB_A-code-raw-20241209T1958.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/data/indicator/?id=UNE_2UNE_SEX_AGE_NB_A&amp;format=.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying saving cache '/tmp/RtmpUZK7Tx/ilostat/indicator-UNE_2UNE_SEX_AGE_NB_A-code-raw-20241209T1958.rds'</span></span></code></pre>
 <p><br></p>
 <table class="table">
 <caption>Table 2a. Extract, ‘Annual unemployment by sex and age, ILO
@@ -599,8 +599,8 @@ modelled estimates, Nov. 2018’</caption>
 Armenia:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'ARM_A'</span>, segment <span class="op">=</span> <span class="st">'ref_area'</span><span class="op">)</span> </span></code></pre></div>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/ref_area/ARM_A.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache '/tmp/Rtmpn4ByAn/ilostat/ref_area-ARM_A-code-raw-20250223T0710.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/data/ref_area/?id=ARM_A&amp;format=.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying saving cache '/tmp/RtmpUZK7Tx/ilostat/ref_area-ARM_A-code-raw-20250223T0710.rds'</span></span></code></pre>
 <p><br></p>
 <table class="table">
 <caption>Table 2b. Extract, ‘Armenia, annual data’</caption>
@@ -662,10 +662,10 @@ setting the dataset’s id as a vector of ids or a tibble that lists ids
 in a specific column:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'AFG_A'</span>, <span class="st">'TTO_A'</span><span class="op">)</span>, segment <span class="op">=</span> <span class="st">'ref_area'</span><span class="op">)</span> </span></code></pre></div>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/ref_area/AFG_A.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache '/tmp/Rtmpn4ByAn/ilostat/ref_area-AFG_A-code-raw-20250227T0724.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/ref_area/TTO_A.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache '/tmp/Rtmpn4ByAn/ilostat/ref_area-TTO_A-code-raw-20250309T0748.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/data/ref_area/?id=AFG_A&amp;format=.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying saving cache '/tmp/RtmpUZK7Tx/ilostat/ref_area-AFG_A-code-raw-20250227T0724.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/data/ref_area/?id=TTO_A&amp;format=.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying saving cache '/tmp/RtmpUZK7Tx/ilostat/ref_area-TTO_A-code-raw-20250309T0748.rds'</span></span></code></pre>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">ref_area</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 2 × 2</span></span></span>
@@ -678,24 +678,24 @@ in a specific column:</p>
 <code class="sourceCode R"><span><span class="va">toc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span><span class="op">(</span>search <span class="op">=</span> <span class="st">'CPI_'</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="va">toc</span>, segment <span class="op">=</span> <span class="st">'indicator'</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></code></pre></div>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/CPI_XCPI_COI_RT_A.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache '/tmp/Rtmpn4ByAn/ilostat/indicator-CPI_XCPI_COI_RT_A-code-raw-20250209T0702.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/CPI_XCPI_COI_RT_Q.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache '/tmp/Rtmpn4ByAn/ilostat/indicator-CPI_XCPI_COI_RT_Q-code-raw-20250209T0704.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/CPI_XCPI_COI_RT_M.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache '/tmp/Rtmpn4ByAn/ilostat/indicator-CPI_XCPI_COI_RT_M-code-raw-20250209T0708.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NCPD_COI_RT_Q.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache '/tmp/Rtmpn4ByAn/ilostat/indicator-CPI_NCPD_COI_RT_Q-code-raw-20250209T0704.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NCPD_COI_RT_M.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache '/tmp/Rtmpn4ByAn/ilostat/indicator-CPI_NCPD_COI_RT_M-code-raw-20250209T0708.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NCYR_COI_RT_A.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache '/tmp/Rtmpn4ByAn/ilostat/indicator-CPI_NCYR_COI_RT_A-code-raw-20250209T0702.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NCYR_COI_RT_Q.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache '/tmp/Rtmpn4ByAn/ilostat/indicator-CPI_NCYR_COI_RT_Q-code-raw-20250209T0704.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NCYR_COI_RT_M.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache '/tmp/Rtmpn4ByAn/ilostat/indicator-CPI_NCYR_COI_RT_M-code-raw-20250209T0708.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NWGT_COI_RT_A.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache '/tmp/Rtmpn4ByAn/ilostat/indicator-CPI_NWGT_COI_RT_A-code-raw-20250209T0702.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/data/indicator/?id=CPI_XCPI_COI_RT_A&amp;format=.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying saving cache '/tmp/RtmpUZK7Tx/ilostat/indicator-CPI_XCPI_COI_RT_A-code-raw-20250209T0702.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/data/indicator/?id=CPI_XCPI_COI_RT_Q&amp;format=.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying saving cache '/tmp/RtmpUZK7Tx/ilostat/indicator-CPI_XCPI_COI_RT_Q-code-raw-20250209T0704.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/data/indicator/?id=CPI_XCPI_COI_RT_M&amp;format=.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying saving cache '/tmp/RtmpUZK7Tx/ilostat/indicator-CPI_XCPI_COI_RT_M-code-raw-20250209T0708.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/data/indicator/?id=CPI_NCPD_COI_RT_Q&amp;format=.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying saving cache '/tmp/RtmpUZK7Tx/ilostat/indicator-CPI_NCPD_COI_RT_Q-code-raw-20250209T0704.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/data/indicator/?id=CPI_NCPD_COI_RT_M&amp;format=.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying saving cache '/tmp/RtmpUZK7Tx/ilostat/indicator-CPI_NCPD_COI_RT_M-code-raw-20250209T0708.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/data/indicator/?id=CPI_NCYR_COI_RT_A&amp;format=.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying saving cache '/tmp/RtmpUZK7Tx/ilostat/indicator-CPI_NCYR_COI_RT_A-code-raw-20250209T0702.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/data/indicator/?id=CPI_NCYR_COI_RT_Q&amp;format=.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying saving cache '/tmp/RtmpUZK7Tx/ilostat/indicator-CPI_NCYR_COI_RT_Q-code-raw-20250209T0704.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/data/indicator/?id=CPI_NCYR_COI_RT_M&amp;format=.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying saving cache '/tmp/RtmpUZK7Tx/ilostat/indicator-CPI_NCYR_COI_RT_M-code-raw-20250209T0708.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/data/indicator/?id=CPI_NWGT_COI_RT_A&amp;format=.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying saving cache '/tmp/RtmpUZK7Tx/ilostat/indicator-CPI_NWGT_COI_RT_A-code-raw-20250209T0702.rds'</span></span></code></pre>
 <div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">indicator</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 4 × 2</span></span></span>
@@ -731,8 +731,8 @@ techniques, the function can also return POSIXct dates (using
 by sex and age, with the time dimension in numeric format:</p>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'UNE_TUNE_SEX_AGE_NB_Q'</span>, time_format <span class="op">=</span> <span class="st">'num'</span><span class="op">)</span> </span></code></pre></div>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/UNE_TUNE_SEX_AGE_NB_Q.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache '/tmp/Rtmpn4ByAn/ilostat/indicator-UNE_TUNE_SEX_AGE_NB_Q-code-num-20250305T0712.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/data/indicator/?id=UNE_TUNE_SEX_AGE_NB_Q&amp;format=.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying saving cache '/tmp/RtmpUZK7Tx/ilostat/indicator-UNE_TUNE_SEX_AGE_NB_Q-code-num-20250305T0712.rds'</span></span></code></pre>
 <p><br></p>
 <table class="table">
 <caption>Table 3a. Extract, ‘Quarterly unemployment by sex and
@@ -789,8 +789,8 @@ age’</caption>
 by sex and age, with the time dimension in POSIXct date format:</p>
 <div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'TRU_TTRU_SEX_AGE_NB_M'</span>, time_format <span class="op">=</span> <span class="st">'date'</span><span class="op">)</span> </span></code></pre></div>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/TRU_TTRU_SEX_AGE_NB_M.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache '/tmp/Rtmpn4ByAn/ilostat/indicator-TRU_TTRU_SEX_AGE_NB_M-code-date-20250221T1008.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/data/indicator/?id=TRU_TTRU_SEX_AGE_NB_M&amp;format=.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying saving cache '/tmp/RtmpUZK7Tx/ilostat/indicator-TRU_TTRU_SEX_AGE_NB_M-code-date-20250221T1008.rds'</span></span></code></pre>
 <p><br></p>
 <table class="table">
 <caption>Table 3b. Extract, Monthly time-related underemployment by sex
@@ -886,8 +886,8 @@ classification item, etc.</p>
 <span>                                                    sex <span class="op">=</span> <span class="st">'T'</span>, </span>
 <span>                                                    classif1 <span class="op">=</span> <span class="st">'AGE_YTHADULT_Y15-24'</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">ref_area</span>, <span class="va">sex</span>, <span class="va">classif1</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/UNE_2EAP_SEX_AGE_RT_A.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache '/tmp/Rtmpn4ByAn/ilostat/indicator-UNE_2EAP_SEX_AGE_RT_A-code-raw-20241209T1958.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/data/indicator/?id=UNE_2EAP_SEX_AGE_RT_A&amp;format=.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## trying saving cache '/tmp/RtmpUZK7Tx/ilostat/indicator-UNE_2EAP_SEX_AGE_RT_A-code-raw-20241209T1958.rds'</span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 2 × 4</span></span></span>
 <span><span class="co">##   ref_area sex   classif1                n</span></span>
 <span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>

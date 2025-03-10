@@ -68,7 +68,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Switch Ilostat codes and labels</h1>
-    <small class="dont-index">Source: <a href="https://github.com/ilostat/Rilostat/blob/v2.3.0/R/label_ilostat.R" class="external-link"><code>R/label_ilostat.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/ilostat/Rilostat/blob/master/R/label_ilostat.R" class="external-link"><code>R/label_ilostat.R</code></a></small>
     <div class="hidden name"><code>label_ilostat.Rd</code></div>
     </div>
 
@@ -137,6 +137,15 @@ ilostat bulk download facility user guidelines
 <span class="r-in"><span> <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_ilostat.html">get_ilostat</a></span><span class="op">(</span><span class="st">"UNE_2UNE_SEX_AGE_NB_A"</span>, cache <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="va">dat_lab</span> <span class="op">&lt;-</span> <span class="fu">label_ilostat</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dat_lab</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span> <span class="co"># add just ref_area label</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_ilostat.html">get_ilostat</a></span><span class="op">(</span><span class="st">"UNE_TUNE_SEX_AGE_NB_A"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span></span>
+<span class="r-in"><span>  <span class="fu">mutate</span><span class="op">(</span>ref_area.label <span class="op">=</span> <span class="va">ref_area</span> <span class="op">%&gt;%</span> <span class="fu">label_ilostat</span><span class="op">(</span> <span class="st">"ref_area"</span>, code <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span>, .after <span class="op">=</span> <span class="va">ref_area</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="clean_ilostat_cache.html">clean_ilostat_cache</a></span><span class="op">(</span><span class="op">)</span> </span></span>
 <span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
