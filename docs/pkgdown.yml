@@ -1,9 +1,9 @@
 pandoc: '2.12'
-pkgdown: 2.1.0
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   Rilostat: Rilostat.html
-last_built: 2024-09-03T07:54Z
+last_built: 2025-03-10T12:37Z
 urls:
-  reference: https://ilostat.github.io/Rilostat/reference
-  article: https://ilostat.github.io/Rilostat/articles
+  reference: https://dbescond.github.io/Rilostat/reference
+  article: https://dbescond.github.io/Rilostat/articles

@@ -34,6 +34,8 @@
 #' @importFrom plyr mapvalues
 #' @importFrom dplyr %>%
 #' @importFrom dplyr select_at
+#' @importFrom dplyr select
+#' @importFrom dplyr contains
 #' @importFrom dplyr filter
 #' @importFrom dplyr distinct
 #' @importFrom dplyr bind_rows
@@ -77,7 +79,7 @@ ilostat_url <- function() {
 	if(dir.exists('/data/rds/')) {
 		'/data/rds/'
 	} else {
-		'https://rplumber.ilo.org/'
+		'https://rplumber.ilo.org/files/'
 		}
   
   }

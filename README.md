@@ -17,7 +17,7 @@ output:
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 
-The [ILO](https://www.ilo.org)'s main online database, [ILOSTAT](https://ilostat.ilo.org), maintained by the Department of Statistics, 
+The ILO's main online database, [ILOSTAT](https://ilostat.ilo.org), maintained by the Department of Statistics, 
 is the world's largest repository of labour market statistics. It covers all countries and regions and a wide range of labour-related topics, including employment, unemployment, 
 wages, working time and labour productivity, to name a few. It includes time series going back as far as 1938; annual, quarterly and monthly labour statistics; country-level, 
 regional and global estimates; and even projections of the main labour market indicators.

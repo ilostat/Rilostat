@@ -4,6 +4,10 @@ output:
     keep_md: yes
 ---
 
+# Rilostat 2.3.0
+
+* faster method to get data
+
 # Rilostat 2.2.0
 
 * add dataexplorer()

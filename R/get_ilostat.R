@@ -523,7 +523,7 @@ get_ilostat_raw <- function(id,
 							cache_format, 
 							quiet) {
 
-	base <- paste0(ilostat_url(), "data/", segment, "/?id=", id, "&format=.rds&channel=rpackage")	   
+	base <- paste0(ilostat_url(), segment, "/", id, ".rds")	   
 
     if(str_sub(ilostat_url(),1,5) %in% "https"){
 	

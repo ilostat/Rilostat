@@ -43,9 +43,10 @@ label_ilostat <- function(	x,
 	    
 		code <- ilostat_cols_ref[ilostat_cols_ref %in% names(y) & !ilostat_cols_ref %in% c('time','obs_value')] 
 	  
-	  }
+	  } else {
 	  
-	  code <- code[!stringr::str_detect(code, '.label')]
+		code <- code[!stringr::str_detect(code, '.label')]
+		}
 	
 	}
 

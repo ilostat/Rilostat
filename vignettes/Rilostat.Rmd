@@ -443,9 +443,8 @@ require(dplyr, quiet = TRUE)
 
 <BR>
 
-```{r, echo=FALSE, out.width = "100%"}
-knitr::include_graphics("./g1_ts.png")
-```
+![Male labour force participation rate in selected countries, 2005-2019](./g1_ts.png)
+
 <BR>
 <BR>
 
@@ -490,9 +489,9 @@ if(!require(dplyr)){install.packages('dplyr')}
 ```
 
 <BR>
-```{r, echo=FALSE, out.width = "100%"}
-knitr::include_graphics("./g1_eco.png")
-```
+
+![Employment by economic class, sex and age, South Africa, 1999](./g1_eco.png)
+
 
 <BR>
 <BR>
@@ -550,9 +549,9 @@ text(df$x[ind], df$y[ind], df$geo[ind], adj = c(0.5,-1), cex=1.5)
 ```
 
 <BR>
-```{r, echo=FALSE, out.width = "100%"}
-knitr::include_graphics("./g1_tri.png")
-```
+
+![Different indicators of labour underutilization](./g1_tri.png)
+
 
 <BR>
 <BR>
@@ -613,9 +612,8 @@ dat %>%
 ```
 
 <BR>
-```{r, echo=FALSE, out.width = "100%"}
-knitr::include_graphics("./g1_map.png")
-```
+
+![Youth unemployment rate in 2019 (ILO modelled estimates, Nov. 2020](./g1_map.png)
 
 <BR>
 <BR>

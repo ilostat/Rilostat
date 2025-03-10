@@ -1,3 +1,5 @@
+# _pkgdown.yml (in the docs directory)
+bootstrap: 5
 url: https://dbescond.github.io/Rilostat/
 home:
   strip_header: yes
