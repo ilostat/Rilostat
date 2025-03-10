@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">Rilostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.1</span>
       </span>
     </div>
 
@@ -141,8 +141,10 @@ ilostat bulk download facility user guidelines
 <span class="r-in"><span></span></span>
 <span class="r-in"><span> <span class="co"># add just ref_area label</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org" class="external-link">tidyverse</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_ilostat.html">get_ilostat</a></span><span class="op">(</span><span class="st">"UNE_TUNE_SEX_AGE_NB_A"</span><span class="op">)</span> <span class="op">%&gt;%</span> </span></span>
-<span class="r-in"><span>  <span class="fu">mutate</span><span class="op">(</span>ref_area.label <span class="op">=</span> <span class="va">ref_area</span> <span class="op">%&gt;%</span> <span class="fu">label_ilostat</span><span class="op">(</span> <span class="st">"ref_area"</span>, code <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span>, .after <span class="op">=</span> <span class="va">ref_area</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">mutate</span><span class="op">(</span>ref_area.label <span class="op">=</span> <span class="va">ref_area</span> <span class="op">%&gt;%</span> </span></span>
+<span class="r-in"><span>  <span class="fu">label_ilostat</span><span class="op">(</span> <span class="st">"ref_area"</span>, code <span class="op">=</span> <span class="st">"all"</span><span class="op">)</span>, .after <span class="op">=</span> <span class="va">ref_area</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
