@@ -45,8 +45,10 @@ A character or a factor vector of codes returns a corresponding vector of defini
 
  # add just ref_area label
 require(tidyverse)
+
 dat <- get_ilostat("UNE_TUNE_SEX_AGE_NB_A") \%>\% 
-	mutate(ref_area.label = ref_area \%>\% label_ilostat( "ref_area", code = "all"), .after = ref_area)
+	mutate(ref_area.label = ref_area \%>\% 
+	label_ilostat( "ref_area", code = "all"), .after = ref_area)
 
 
 

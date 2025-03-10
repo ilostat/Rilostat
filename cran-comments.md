@@ -1,0 +1,1 @@
+# truncate text issue fixed
