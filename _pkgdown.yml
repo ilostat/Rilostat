@@ -1,6 +1,5 @@
 # _pkgdown.yml (in the docs directory)
-bootstrap: 5
-url: https://dbescond.github.io/Rilostat/
+url: https://ilostat.github.io/Rilostat/
 home:
   strip_header: yes
   links:
@@ -37,6 +36,7 @@ navbar:
 development:
   mode: auto
 template:
+  bootstrap: 5
   params:
     docsearch:
       api_key: 5bb9805eecd1b1c2d12958ea75a8e9e8

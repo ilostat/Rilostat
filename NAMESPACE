@@ -2,6 +2,7 @@
 
 export(clean_ilostat_cache)
 export(dataexplorer)
+export(dataquery)
 export(distribution_ilostat)
 export(get_ilostat)
 export(get_ilostat_dic)
