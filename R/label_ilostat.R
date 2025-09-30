@@ -150,7 +150,6 @@ label_ilostat <- function(	x,
   
   }  
   
-  invisible(gc(reset = TRUE))
   
   y
 

@@ -4,20 +4,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Rilostat • Rilostat</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><!-- docsearch --><script src="../docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
-<link href="../docsearch.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Rilostat">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]--><!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-140141628-1"></script><script>
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Rilostat">
+<!-- Global site tag (gtag.js) - Google Analytics --><script async src="https://www.googletagmanager.com/gtag/js?id=UA-140141628-1"></script><script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
@@ -25,84 +19,58 @@
   gtag('config', 'UA-140141628-1');
 </script>
 </head>
-<body data-spy="scroll" data-target="#toc">
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">Rilostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.0</span>
-      </span>
-    </div>
+    <nav class="navbar navbar-expand-lg fixed-top bg-primary" data-bs-theme="default" aria-label="Site navigation"><div class="container">
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../articles/Rilostat.html">Intro</a>
-</li>
-<li>
-  <a href="../reference/index.html">Functions</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Vignettes
+    <a class="navbar-brand me-2" href="../index.html">Rilostat</a>
 
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/RilostatVisu.html">Visualisation</a>
-    </li>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.3.3</small>
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="active nav-item"><a class="nav-link" href="../articles/Rilostat.html">Intro</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Functions</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-vignettes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Vignettes</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-vignettes">
+<li><a class="dropdown-item" href="../articles/RilostatVisu.html">Visualisation</a></li>
   </ul>
 </li>
-<li>
-  <a href="../news/index.html">News</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">News</a></li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/ilostat/Rilostat" class="external-link">
-    <span class="fa fa-github fa-lg"></span>
-
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/ilostat/Rilostat"><span class="fa fa-github fa-lg"></span></a></li>
       </ul>
-<form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
-        <div class="form-group">
-          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
 </div>
-      </form>
 
-    </div>
-<!--/.nav-collapse -->
+
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
+</nav><div class="container template-article">
 
 
 
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Rilostat</h1>
-            <h3 data-toc-skip class="subtitle">Bulk download in ILOSTAT:</h3>
-                        <h4 data-toc-skip class="author">ILO Department of Statistics</h4>
+
+<div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+
+      <h1>Rilostat</h1>
+            <h3 data-toc-skip class="subtitle">Bulk download in
+ILOSTAT:</h3>
+                        <h4 data-toc-skip class="author">ILO Department
+of Statistics</h4>
             
-            <h4 data-toc-skip class="date">2025-03-10</h4>
+            <h4 data-toc-skip class="date">2025-09-30</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ilostat/Rilostat/blob/HEAD/vignettes/Rilostat.Rmd" class="external-link"><code>vignettes/Rilostat.Rmd</code></a></small>
-      <div class="hidden name"><code>Rilostat.Rmd</code></div>
-
+      <div class="d-none name"><code>Rilostat.Rmd</code></div>
     </div>
 
     
@@ -110,35 +78,67 @@
 <div class="section level2">
 <h2 id="the-ilostat-r-package-in-a-few-words">The ilostat R package in a few words<a class="anchor" aria-label="anchor" href="#the-ilostat-r-package-in-a-few-words"></a>
 </h2>
-<p>This R package provides tools to access, download and work with the data contained in <a href="https://ilostat.ilo.org" class="external-link">ILOSTAT</a>, the ILO Department of Statistics’ online database. ILOSTAT’s data and related metadata are also directly available through ILOSTAT’s website.</p>
-<p>For more information on ILOSTAT’s R package, including contact details and source code, refer to its <a href="https://github.com/ilostat/Rilostat" class="external-link">github page</a>.</p>
+<p>This R package provides tools to access, download and work with the
+data contained in <a href="https://ilostat.ilo.org" class="external-link">ILOSTAT</a>, the ILO
+Department of Statistics’ online database. ILOSTAT’s data and related
+metadata are also directly available through ILOSTAT’s website.</p>
+<p>For more information on ILOSTAT’s R package, including contact
+details and source code, refer to its <a href="https://github.com/ilostat/Rilostat" class="external-link">github page</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p>The <a href="https://www.ilo.org" class="external-link">ILO</a>’s main online database, <a href="https://ilostat.ilo.org" class="external-link">ILOSTAT</a>, maintained by the Department of Statistics, is the world’s largest repository of labour market statistics. It covers all countries and regions and a wide range of labour-related topics, including employment, unemployment, wages, working time and labour productivity, to name a few. It includes time series going back as far as 1938; annual, quarterly and monthly labour statistics; country-level, regional and global estimates; and even projections of the main labour market indicators.</p>
-<p>ILOSTAT’s website provides immediate access to all its data and related metadata through different ways. Basic users can simply view the desired data online or download it in Excel or csv formats. More advanced users can take advantage of ILOSTAT’s well-structured <a href="https://ilostat.ilo.org/data/bulk/" class="external-link">bulk download facility</a> (<a href="https://www.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf" class="external-link">user guide</a>), or the SDMX web service (<a href="https://www.ilo.org/ilostat-files/Documents/SDMX_User_Guide.pdf" class="external-link">user guide</a>).</p>
-<p>The ilostat R package (<code>'Rilostat'</code>) was designed to give data users the ability to access the ILOSTAT database, search for data, rearrange the information as needed, download it in the desired format, and make various data visualizations, all in a programmatic and replicable manner, with the possibility of quickly re-running the queries as required.</p>
+<p>The <a href="https://www.ilo.org" class="external-link">ILO</a>’s main online database, <a href="https://ilostat.ilo.org" class="external-link">ILOSTAT</a>, maintained by the Department
+of Statistics, is the world’s largest repository of labour market
+statistics. It covers all countries and regions and a wide range of
+labour-related topics, including employment, unemployment, wages,
+working time and labour productivity, to name a few. It includes time
+series going back as far as 1938; annual, quarterly and monthly labour
+statistics; country-level, regional and global estimates; and even
+projections of the main labour market indicators.</p>
+<p>ILOSTAT’s website provides immediate access to all its data and
+related metadata through different ways. Basic users can simply view the
+desired data online or download it in Excel or csv formats. More
+advanced users can take advantage of ILOSTAT’s well-structured <a href="https://ilostat.ilo.org/data/bulk/" class="external-link">bulk download facility</a> (<a href="https://www.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf" class="external-link">user
+guide</a>), or the SDMX web service (<a href="https://www.ilo.org/ilostat-files/Documents/SDMX_User_Guide.pdf" class="external-link">user
+guide</a>).</p>
+<p>The ilostat R package (<code>'Rilostat'</code>) was designed to give
+data users the ability to access the ILOSTAT database, search for data,
+rearrange the information as needed, download it in the desired format,
+and make various data visualizations, all in a programmatic and
+replicable manner, with the possibility of quickly re-running the
+queries as required.</p>
 <div class="section level5">
 <h5 id="main-features-of-the-ilostat-r-package">Main features of the ilostat R package<a class="anchor" aria-label="anchor" href="#main-features-of-the-ilostat-r-package"></a>
 </h5>
 <ul>
-<li><p>Provides access to all annual, quarterly, and monthly data available via the ILOSTAT <a href="https://ilostat.ilo.org/data/bulk/" class="external-link">bulk download facility</a> (<a href="https://www.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf" class="external-link">user guide</a>)</p></li>
-<li><p>Allows to search for and download data and related metadata in English, French and Spanish</p></li>
-<li><p>Gives the ability to return <code>POSIXct</code> dates for easy integration into plotting and time-series analysis techniques</p></li>
-<li><p>Returns data in long format for direct integration with packages like <code>ggplot2</code> and <code>dplyr</code></p></li>
+<li><p>Provides access to all annual, quarterly, and monthly data
+available via the ILOSTAT <a href="https://ilostat.ilo.org/data/bulk/" class="external-link">bulk download facility</a> (<a href="https://www.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf" class="external-link">user
+guide</a>)</p></li>
+<li><p>Allows to search for and download data and related metadata in
+English, French and Spanish</p></li>
+<li><p>Gives the ability to return <code>POSIXct</code> dates for easy
+integration into plotting and time-series analysis techniques</p></li>
+<li><p>Returns data in long format for direct integration with packages
+like <code>ggplot2</code> and <code>dplyr</code></p></li>
 <li><p>Gives immediate access to the most recent updates</p></li>
-<li><p>Allows for <code>grep</code>-style searching for data descriptions and names</p></li>
-<li><p>Provides access to the ILOSTAT catalogue of related descriptive metadata (<a href="https://www.ilo.org/ilostat-files/Documents/SDMX_User_Guide.pdf" class="external-link">user guide</a>)</p></li>
+<li><p>Allows for <code>grep</code>-style searching for data
+descriptions and names</p></li>
+<li><p>Provides access to the ILOSTAT catalogue of related descriptive
+metadata (<a href="https://www.ilo.org/ilostat-files/Documents/SDMX_User_Guide.pdf" class="external-link">user
+guide</a>)</p></li>
 </ul>
 </div>
 <div class="section level5">
 <h5 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>
 </h5>
-<p>The developer of this package drew extensive inspiration from the <a href="https://CRAN.R-project.org/package=eurostat" class="external-link">eurostat R package</a> and its related documentation:</p>
+<p>The developer of this package drew extensive inspiration from the <a href="https://CRAN.R-project.org/package=eurostat" class="external-link">eurostat R
+package</a> and its related documentation:</p>
 <ul>
 <li>
-<a href="https://journal.r-project.org/archive/2017/RJ-2017-019/RJ-2017-019.pdf" class="external-link">Retrieval and Analysis of Eurostat Open Data with the eurostat Package</a> - <a href="https://github.com/antagomir" class="external-link">Leo Lahti</a>, <a href="https://github.com/pbiecek" class="external-link">Przemyslaw Biecek</a>, <a href="https://github.com/muuankarski" class="external-link">Markus Kainu</a> and <a href="https://github.com/jhuovari" class="external-link">Janne Huovari</a>. R Journal 9(1), 385-392, 2017.</li>
+<a href="https://journal.r-project.org/archive/2017/RJ-2017-019/RJ-2017-019.pdf" class="external-link">Retrieval
+and Analysis of Eurostat Open Data with the eurostat Package</a> - <a href="https://github.com/antagomir" class="external-link">Leo Lahti</a>, <a href="https://github.com/pbiecek" class="external-link">Przemyslaw Biecek</a>, <a href="https://github.com/muuankarski" class="external-link">Markus Kainu</a> and <a href="https://github.com/jhuovari" class="external-link">Janne Huovari</a>. R Journal 9(1),
+385-392, 2017.</li>
 </ul>
 </div>
 </div>
@@ -146,17 +146,18 @@
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>To install the release version, use the following command:</p>
-<pre><code><span><span class="co">## Warning: package 'devtools' was built under R version 4.4.3</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: package 'usethis' was built under R version 4.4.3</span></span></code></pre>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<pre><code><span><span class="co">## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,</span></span>
+<span><span class="co">## logical.return = TRUE, : there is no package called 'plotrix'</span></span></code></pre>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"Rilostat"</span><span class="op">)</span></span></code></pre></div>
 <p>To install the development version, use the following command:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'devtools'</span><span class="op">)</span><span class="op">}</span></span>
 <span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ilostat/Rilostat"</span><span class="op">)</span></span></code></pre></div>
-<p>The ilostat R package (<code>'Rilostat'</code>) includes the following functions:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://ilostat.github.io/Rilostat" class="external-link">Rilostat</a></span><span class="op">)</span></span>
+<p>The ilostat R package (<code>'Rilostat'</code>) includes the
+following functions:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://ilostat.github.io/Rilostat/">Rilostat</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ls.html" class="external-link">ls</a></span><span class="op">(</span><span class="st">"package:Rilostat"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##   ls("package:Rilostat")</span></span>
 <span><span class="co">## 1    clean_ilostat_cache</span></span>
@@ -165,19 +166,33 @@
 <span><span class="co">## 4            get_ilostat</span></span>
 <span><span class="co">## 5        get_ilostat_dic</span></span>
 <span><span class="co">## 6        get_ilostat_toc</span></span>
-<span><span class="co">## 7          label_ilostat</span></span></code></pre>
-<p>We do not expect to update the ilostat R package too often, but based on questions and remarks from ILOSTAT data users, we will progressively create more examples, tutorials, demos and apps. Please visite the <a href="https://ilostat.github.io/Rilostat/" class="external-link">Rilostat package website</a>.</p>
+<span><span class="co">## 7          label_ilostat</span></span>
+<span><span class="co">## 8         runapp_ilostat</span></span></code></pre>
+<p>We do not expect to update the ilostat R package too often, but based
+on questions and remarks from ILOSTAT data users, we will progressively
+create more examples, tutorials, demos and apps. Please visite the <a href="https://ilostat.github.io/Rilostat/">Rilostat package
+website</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="search-for-data">Search for data<a class="anchor" aria-label="anchor" href="#search-for-data"></a>
 </h2>
-<p>Unless you already know the code of the indicator or the ref_area (reference area - countries or regions) that you want to download, the first step would be to search for the data you are interested in. <code><a href="../reference/get_ilostat_toc.html">get_ilostat_toc()</a></code> provides grep style searching of all available indicators from ILOSTAT’s bulk download facility and returns the indicators matching your query. <code>get_ilostat_toc(segment = 'ref_area')</code> returns the datasets available by ref_area (‘country’ and ‘region’).</p>
-<p>To access the table of contents of all available indicators in ILOSTAT (by indicator):</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<p>Unless you already know the code of the indicator or the ref_area
+(reference area - countries or regions) that you want to download, the
+first step would be to search for the data you are interested in.
+<code><a href="../reference/get_ilostat_toc.html">get_ilostat_toc()</a></code> provides grep style searching of all
+available indicators from ILOSTAT’s bulk download facility and returns
+the indicators matching your query.
+<code>get_ilostat_toc(segment = 'ref_area')</code> returns the datasets
+available by ref_area (‘country’ and ‘region’).</p>
+<p>To access the table of contents of all available indicators in
+ILOSTAT (by indicator):</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">toc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Trying TOC URL 'https://rplumber.ilo.org/files/indicator/table_of_contents_en.rds'</span></span></code></pre>
 <p><br></p>
 <table class="table">
-<caption>Table 1a. Extract, ‘Table of contents by indicator in English’</caption>
+<caption>Table 1a. Extract, ‘Table of contents by indicator in
+English’</caption>
 <colgroup>
 <col width="14%">
 <col width="12%">
@@ -196,35 +211,43 @@
 <tr class="odd">
 <td align="left">SDG_0111_SEX_AGE_RT_A</td>
 <td align="left">SDG_0111_SEX_AGE_RT</td>
-<td align="left">SDG indicator 1.1.1 - Working poverty rate (percentage of employed living below US$2.15 PPP) (%)</td>
+<td align="left">SDG indicator 1.1.1 - Working poverty rate (percentage
+of employed living below US$2.15 PPP) (%)</td>
 <td align="left">A</td>
 <td align="left">Annual</td>
 </tr>
 <tr class="even">
 <td align="left">SDG_0131_SEX_SOC_RT_A</td>
 <td align="left">SDG_0131_SEX_SOC_RT</td>
-<td align="left">SDG indicator 1.3.1 - Proportion of population covered by social protection floors/systems (%)</td>
+<td align="left">SDG indicator 1.3.1 - Proportion of population covered
+by social protection floors/systems (%)</td>
 <td align="left">A</td>
 <td align="left">Annual</td>
 </tr>
 <tr class="odd">
 <td align="left">SDG_0552_NOC_RT_A</td>
 <td align="left">SDG_0552_NOC_RT</td>
-<td align="left">SDG indicator 5.5.2 - Proportion of women in senior and middle management positions (%)</td>
+<td align="left">SDG indicator 5.5.2 - Proportion of women in senior and
+middle management positions (%)</td>
 <td align="left">A</td>
 <td align="left">Annual</td>
 </tr>
 </tbody>
 </table>
 <p><br></p>
-<p>All settings are available in the 3 official languages of the ILO: English (<code>'en'</code>), French (<code>'fr'</code>) and Spanish (<code>'es'</code>). The default is <code>'en'</code>.</p>
-<p>For instance, to access the table of contents of all available datasets by reference area in ILOSTAT in Spanish:</p>
+<p>All settings are available in the 3 official languages of the ILO:
+English (<code>'en'</code>), French (<code>'fr'</code>) and Spanish
+(<code>'es'</code>). The default is <code>'en'</code>.</p>
+<p>For instance, to access the table of contents of all available
+datasets by reference area in ILOSTAT in Spanish:</p>
 <p><br></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">toc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span><span class="op">(</span>segment <span class="op">=</span> <span class="st">'ref_area'</span>, lang <span class="op">=</span> <span class="st">'es'</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Trying TOC URL 'https://rplumber.ilo.org/files/ref_area/table_of_contents_es.rds'</span></span></code></pre>
 <p><br></p>
 <table class="table">
-<caption>Table 1b. Extract, ‘Table of contents by ref_area in Spanish’</caption>
+<caption>Table 1b. Extract, ‘Table of contents by ref_area in
+Spanish’</caption>
 <colgroup>
 <col width="6%">
 <col width="9%">
@@ -251,45 +274,49 @@
 <tr class="odd">
 <td align="left">AFG_A</td>
 <td align="left">AFG</td>
-<td align="left">Afganistan</td>
+<td align="left">Afganistán</td>
 <td align="left">A</td>
 <td align="left">Anual</td>
-<td align="right">1946</td>
+<td align="right">1978</td>
 <td align="right">2030</td>
-<td align="left">27/02/2025 07:24:14</td>
-<td align="right">355201</td>
+<td align="left">16/09/2025 15:44:30</td>
+<td align="right">358191</td>
 </tr>
 <tr class="even">
 <td align="left">AFG_Q</td>
 <td align="left">AFG</td>
-<td align="left">Afganistan</td>
+<td align="left">Afganistán</td>
 <td align="left">Q</td>
 <td align="left">Trimestral</td>
-<td align="right">1950</td>
+<td align="right">2005</td>
 <td align="right">2024</td>
-<td align="left">24/03/2023 07:41:23</td>
-<td align="right">2163</td>
+<td align="left">22/04/2025 21:03:46</td>
+<td align="right">2903</td>
 </tr>
 <tr class="odd">
 <td align="left">AFG_M</td>
 <td align="left">AFG</td>
-<td align="left">Afganistan</td>
+<td align="left">Afganistán</td>
 <td align="left">M</td>
 <td align="left">Mensual</td>
-<td align="right">1950</td>
+<td align="right">2005</td>
 <td align="right">2025</td>
-<td align="left">22/03/2023 23:03:17</td>
-<td align="right">6485</td>
+<td align="left">22/04/2025 22:09:57</td>
+<td align="right">8742</td>
 </tr>
 </tbody>
 </table>
-<p>You can search for words or expressions within the table of contents listing all of ILOSTAT’s indicators.</p>
-<p>For example, searching for the word “bargaining” will return the indicators containing that word somewhere in the indicator information:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<p>You can search for words or expressions within the table of contents
+listing all of ILOSTAT’s indicators.</p>
+<p>For example, searching for the word “bargaining” will return the
+indicators containing that word somewhere in the indicator
+information:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">toc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span><span class="op">(</span>search <span class="op">=</span> <span class="st">'bargaining'</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
 <table class="table">
-<caption>Table 1c. ‘Table of contents by indicator with search word ’bargaining’’</caption>
+<caption>Table 1c. ‘Table of contents by indicator with search word
+’bargaining’’</caption>
 <colgroup>
 <col width="8%">
 <col width="7%">
@@ -314,12 +341,13 @@
 <tr class="odd">
 <td align="left">SDG_0882_NOC_RT_A</td>
 <td align="left">SDG_0882_NOC_RT</td>
-<td align="left">SDG indicator 8.8.2 - Level of national compliance with labour rights (freedom of association and collective bargaining)</td>
+<td align="left">SDG indicator 8.8.2 - Level of national compliance with
+labour rights (freedom of association and collective bargaining)</td>
 <td align="left">A</td>
 <td align="left">Annual</td>
 <td align="right">2015</td>
 <td align="right">2023</td>
-<td align="left">06/02/2025 17:38:13</td>
+<td align="left">21/05/2025 17:24:19</td>
 </tr>
 <tr class="even">
 <td align="left">ILR_CBCT_NOC_RT_A</td>
@@ -329,18 +357,25 @@
 <td align="left">Annual</td>
 <td align="right">2000</td>
 <td align="right">2020</td>
-<td align="left">03/05/2022 16:55:20</td>
+<td align="left">03/05/2022 15:55:20</td>
 </tr>
 </tbody>
 </table>
-<p>Similarly, you can also search the list of all available datasets by reference area for a given reference area (using a country or region name or code) or even for a given data frequency (annual, quarterly or monthly). The search also allows you to look for several alternative and/or additional items at once.</p>
-<p>For instance, to look for datasets with annual data for either Albania or France:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<p>Similarly, you can also search the list of all available datasets by
+reference area for a given reference area (using a country or region
+name or code) or even for a given data frequency (annual, quarterly or
+monthly). The search also allows you to look for several alternative
+and/or additional items at once.</p>
+<p>For instance, to look for datasets with annual data for either
+Albania or France:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">toc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span><span class="op">(</span>segment <span class="op">=</span> <span class="st">'ref_area'</span>, search <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'France|Albania'</span>, <span class="st">'Annual'</span><span class="op">)</span>, </span>
 <span>                                            fixed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Trying TOC URL 'https://rplumber.ilo.org/files/ref_area/table_of_contents_en.rds'</span></span></code></pre>
 <p><br></p>
 <table class="table">
-<caption>Table 1d. ‘Table of contents by ref_area with search words ’France’ or ‘Albania’ and ‘Annual’’</caption>
+<caption>Table 1d. ‘Table of contents by ref_area with search words
+’France’ or ‘Albania’ and ‘Annual’’</caption>
 <colgroup>
 <col width="6%">
 <col width="9%">
@@ -370,10 +405,10 @@
 <td align="left">Albania</td>
 <td align="left">A</td>
 <td align="left">Annual</td>
-<td align="right">1946</td>
+<td align="right">1960</td>
 <td align="right">2030</td>
-<td align="left">02/03/2025 07:04:13</td>
-<td align="right">1184102</td>
+<td align="left">28/09/2025 07:00:16</td>
+<td align="right">1183575</td>
 </tr>
 <tr class="even">
 <td align="left">FRA_A</td>
@@ -381,20 +416,25 @@
 <td align="left">France</td>
 <td align="left">A</td>
 <td align="left">Annual</td>
-<td align="right">1946</td>
+<td align="right">1955</td>
 <td align="right">2030</td>
-<td align="left">02/03/2025 07:52:18</td>
-<td align="right">2388841</td>
+<td align="left">29/09/2025 07:02:12</td>
+<td align="right">2494892</td>
 </tr>
 </tbody>
 </table>
-<p>You can also manipulate ILOSTAT’s table of contents’ dataframe using the basic R filter. If you are already familiar with ILOSTAT data and the way it is structured, you can easily filter what you want.</p>
-<p>For example, if you know beforehand you want data only from ILOSTAT’s Short Term Indicators dataset (code “STI”) and you are only interested in monthly data (code “M”) you can simply do:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<p>You can also manipulate ILOSTAT’s table of contents’ dataframe using
+the basic R filter. If you are already familiar with ILOSTAT data and
+the way it is structured, you can easily filter what you want.</p>
+<p>For example, if you know beforehand you want data only from ILOSTAT’s
+Short Term Indicators dataset (code “STI”) and you are only interested
+in monthly data (code “M”) you can simply do:</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">toc</span> <span class="op">&lt;-</span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">collection</span> <span class="op">==</span> <span class="st">'STI'</span>, <span class="va">freq</span> <span class="op">==</span> <span class="st">'M'</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
 <table class="table">
-<caption>Table 1e. Extract, ‘Table of contents by indicator filtered for Monthly Short term indicators’</caption>
+<caption>Table 1e. Extract, ‘Table of contents by indicator filtered for
+Monthly Short term indicators’</caption>
 <colgroup>
 <col width="18%">
 <col width="17%">
@@ -420,28 +460,32 @@
 <tr class="even">
 <td align="left">POP_XWAP_SEX_AGE_EDU_NB_M</td>
 <td align="left">POP_XWAP_SEX_AGE_EDU_NB</td>
-<td align="left">Working-age population by sex, age and education (thousands)</td>
+<td align="left">Working-age population by sex, age and education
+(thousands)</td>
 <td align="left">M</td>
 <td align="left">Monthly</td>
 </tr>
 <tr class="odd">
 <td align="left">POP_XWAP_SEX_AGE_GEO_NB_M</td>
 <td align="left">POP_XWAP_SEX_AGE_GEO_NB</td>
-<td align="left">Working-age population by sex, age and rural / urban areas (thousands)</td>
+<td align="left">Working-age population by sex, age and rural / urban
+areas (thousands)</td>
 <td align="left">M</td>
 <td align="left">Monthly</td>
 </tr>
 <tr class="even">
 <td align="left">POP_XWAP_SEX_AGE_LMS_NB_M</td>
 <td align="left">POP_XWAP_SEX_AGE_LMS_NB</td>
-<td align="left">Working-age population by sex, age and labour market status (thousands)</td>
+<td align="left">Working-age population by sex, age and labour market
+status (thousands)</td>
 <td align="left">M</td>
 <td align="left">Monthly</td>
 </tr>
 <tr class="odd">
 <td align="left">POP_XWAP_SEX_EDU_NB_M</td>
 <td align="left">POP_XWAP_SEX_EDU_NB</td>
-<td align="left">Working-age population by sex and education (thousands)</td>
+<td align="left">Working-age population by sex and education
+(thousands)</td>
 <td align="left">M</td>
 <td align="left">Monthly</td>
 </tr>
@@ -451,19 +495,39 @@
 <div class="section level2">
 <h2 id="download-data">Download data<a class="anchor" aria-label="anchor" href="#download-data"></a>
 </h2>
-<p>The function <code><a href="../reference/get_ilostat.html">get_ilostat()</a></code> explores ILOSTAT’s datasets and returns datasets by indicator (default, segment <code>indicator</code>) or by reference area (segment <code>ref_area</code>). The id of each dataset is made up by the code of the segment chosen (indicator code or reference area code) and the code of the data frequency required (annual, quarterly or monthly), joined by an underscore.</p>
+<p>The function <code><a href="../reference/get_ilostat.html">get_ilostat()</a></code> explores ILOSTAT’s datasets
+and returns datasets by indicator (default, segment
+<code>indicator</code>) or by reference area (segment
+<code>ref_area</code>). The id of each dataset is made up by the code of
+the segment chosen (indicator code or reference area code) and the code
+of the data frequency required (annual, quarterly or monthly), joined by
+an underscore.</p>
 <div class="section level5">
 <h5 id="get-a-single-dataset">Get a single dataset:<a class="anchor" aria-label="anchor" href="#get-a-single-dataset"></a>
 </h5>
-<p>As stated above, you can easily access the single dataset of your choice through the <code><a href="../reference/get_ilostat.html">get_ilostat()</a></code> function, by indicating the code of the dataset desired (indicator_frequency or ref_area_frequency).</p>
-<p>If you want to access annual data for indicator code UNE_2UNE_SEX_AGE_NB, you should type:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<p>As stated above, you can easily access the single dataset of your
+choice through the <code><a href="../reference/get_ilostat.html">get_ilostat()</a></code> function, by indicating
+the code of the dataset desired (indicator_frequency or
+ref_area_frequency).</p>
+<p>If you want to access annual data for indicator code
+UNE_2UNE_SEX_AGE_NB, you should type:</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'UNE_2UNE_SEX_AGE_NB_A'</span>, segment <span class="op">=</span> <span class="st">'indicator'</span><span class="op">)</span> </span></code></pre></div>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/UNE_2UNE_SEX_AGE_NB_A.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache 'C:\Users\bescond\AppData\Local\Temp\RtmpyGyS2U/ilostat/indicator-UNE_2UNE_SEX_AGE_NB_A-code-raw-20241209T1958.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## Trying URL 'https://rplumber.ilo.org/files/indicator/UNE_2UNE_SEX_AGE_NB_A.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## No old cache files found to delete for this segment-id.</span></span></code></pre>
 <p><br></p>
 <table class="table">
-<caption>Table 2a. Extract, ‘Annual unemployment by sex and age, ILO modelled estimates, Nov. 2018’</caption>
+<caption>Table 2a. Extract, ‘Annual unemployment by sex and age, ILO
+modelled estimates, Nov. 2018’</caption>
+<colgroup>
+<col width="11%">
+<col width="10%">
+<col width="25%">
+<col width="7%">
+<col width="25%">
+<col width="6%">
+<col width="12%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">ref_area</th>
 <th align="left">source</th>
@@ -503,14 +567,24 @@
 </tr>
 </tbody>
 </table>
-<p>If you want to access all annual data available in ILOSTAT for Armenia:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<p>If you want to access all annual data available in ILOSTAT for
+Armenia:</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'ARM_A'</span>, segment <span class="op">=</span> <span class="st">'ref_area'</span><span class="op">)</span> </span></code></pre></div>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/ref_area/ARM_A.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache 'C:\Users\bescond\AppData\Local\Temp\RtmpyGyS2U/ilostat/ref_area-ARM_A-code-raw-20250223T0710.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## Trying URL 'https://rplumber.ilo.org/files/ref_area/ARM_A.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## No old cache files found to delete for this segment-id.</span></span></code></pre>
 <p><br></p>
 <table class="table">
 <caption>Table 2b. Extract, ‘Armenia, annual data’</caption>
+<colgroup>
+<col width="11%">
+<col width="10%">
+<col width="25%">
+<col width="7%">
+<col width="24%">
+<col width="6%">
+<col width="12%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">ref_area</th>
 <th align="left">source</th>
@@ -555,72 +629,95 @@
 <div class="section level5">
 <h5 id="get-multiple-datasets">Get multiple datasets:<a class="anchor" aria-label="anchor" href="#get-multiple-datasets"></a>
 </h5>
-<p>It is also possible to download multiple datasets at once, simply by setting the dataset’s id as a vector of ids or a tibble that lists ids in a specific column:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<p>It is also possible to download multiple datasets at once, simply by
+setting the dataset’s id as a vector of ids or a tibble that lists ids
+in a specific column:</p>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'AFG_A'</span>, <span class="st">'TTO_A'</span><span class="op">)</span>, segment <span class="op">=</span> <span class="st">'ref_area'</span><span class="op">)</span> </span></code></pre></div>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/ref_area/AFG_A.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache 'C:\Users\bescond\AppData\Local\Temp\RtmpyGyS2U/ilostat/ref_area-AFG_A-code-raw-20250227T0724.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/ref_area/TTO_A.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache 'C:\Users\bescond\AppData\Local\Temp\RtmpyGyS2U/ilostat/ref_area-TTO_A-code-raw-20250309T0748.rds'</span></span></code></pre>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<pre><code><span><span class="co">## Trying URL 'https://rplumber.ilo.org/files/ref_area/AFG_A.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## No old cache files found to delete for this segment-id.</span></span></code></pre>
+<pre><code><span><span class="co">## Trying URL 'https://rplumber.ilo.org/files/ref_area/TTO_A.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## No old cache files found to delete for this segment-id.</span></span></code></pre>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">ref_area</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 2 × 2</span></span></span>
 <span><span class="co">##   ref_area      n</span></span>
 <span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">1</span> AFG      <span style="text-decoration: underline;">355</span>201</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">2</span> TTO      <span style="text-decoration: underline;">394</span>249</span></span></code></pre>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span> AFG      <span style="text-decoration: underline;">358</span>191</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">2</span> TTO      <span style="text-decoration: underline;">349</span>407</span></span></code></pre>
 <p><br></p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">toc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span><span class="op">(</span>search <span class="op">=</span> <span class="st">'CPI_'</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="va">toc</span>, segment <span class="op">=</span> <span class="st">'indicator'</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></code></pre></div>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/CPI_XCPI_COI_RT_A.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache 'C:\Users\bescond\AppData\Local\Temp\RtmpyGyS2U/ilostat/indicator-CPI_XCPI_COI_RT_A-code-raw-20250209T0702.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/CPI_XCPI_COI_RT_Q.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache 'C:\Users\bescond\AppData\Local\Temp\RtmpyGyS2U/ilostat/indicator-CPI_XCPI_COI_RT_Q-code-raw-20250209T0704.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/CPI_XCPI_COI_RT_M.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache 'C:\Users\bescond\AppData\Local\Temp\RtmpyGyS2U/ilostat/indicator-CPI_XCPI_COI_RT_M-code-raw-20250209T0708.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NCPD_COI_RT_Q.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache 'C:\Users\bescond\AppData\Local\Temp\RtmpyGyS2U/ilostat/indicator-CPI_NCPD_COI_RT_Q-code-raw-20250209T0704.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NCPD_COI_RT_M.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache 'C:\Users\bescond\AppData\Local\Temp\RtmpyGyS2U/ilostat/indicator-CPI_NCPD_COI_RT_M-code-raw-20250209T0708.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NCYR_COI_RT_A.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache 'C:\Users\bescond\AppData\Local\Temp\RtmpyGyS2U/ilostat/indicator-CPI_NCYR_COI_RT_A-code-raw-20250209T0702.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NCYR_COI_RT_Q.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache 'C:\Users\bescond\AppData\Local\Temp\RtmpyGyS2U/ilostat/indicator-CPI_NCYR_COI_RT_Q-code-raw-20250209T0704.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NCYR_COI_RT_M.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache 'C:\Users\bescond\AppData\Local\Temp\RtmpyGyS2U/ilostat/indicator-CPI_NCYR_COI_RT_M-code-raw-20250209T0708.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NWGT_COI_RT_A.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache 'C:\Users\bescond\AppData\Local\Temp\RtmpyGyS2U/ilostat/indicator-CPI_NWGT_COI_RT_A-code-raw-20250209T0702.rds'</span></span></code></pre>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<pre><code><span><span class="co">## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_XCPI_COI_RT_A.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## No old cache files found to delete for this segment-id.</span></span></code></pre>
+<pre><code><span><span class="co">## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_XCPI_COI_RT_Q.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## No old cache files found to delete for this segment-id.</span></span></code></pre>
+<pre><code><span><span class="co">## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_XCPI_COI_RT_M.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## No old cache files found to delete for this segment-id.</span></span></code></pre>
+<pre><code><span><span class="co">## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NCPD_COI_RT_Q.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## No old cache files found to delete for this segment-id.</span></span></code></pre>
+<pre><code><span><span class="co">## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NCPD_COI_RT_M.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## No old cache files found to delete for this segment-id.</span></span></code></pre>
+<pre><code><span><span class="co">## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NCYR_COI_RT_A.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## No old cache files found to delete for this segment-id.</span></span></code></pre>
+<pre><code><span><span class="co">## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NCYR_COI_RT_Q.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## No old cache files found to delete for this segment-id.</span></span></code></pre>
+<pre><code><span><span class="co">## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NCYR_COI_RT_M.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## No old cache files found to delete for this segment-id.</span></span></code></pre>
+<pre><code><span><span class="co">## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NWGT_COI_RT_A.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## No old cache files found to delete for this segment-id.</span></span></code></pre>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">indicator</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 4 × 2</span></span></span>
 <span><span class="co">##   indicator            n</span></span>
 <span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">1</span> CPI_NCPD_COI_RT <span style="text-decoration: underline;">615</span>805</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">2</span> CPI_NCYR_COI_RT <span style="text-decoration: underline;">701</span>232</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">3</span> CPI_NWGT_COI_RT  <span style="text-decoration: underline;">38</span>504</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">4</span> CPI_XCPI_COI_RT <span style="text-decoration: underline;">731</span>738</span></span></code></pre>
+<span><span class="co">## <span style="color: #BCBCBC;">1</span> CPI_NCPD_COI_RT <span style="text-decoration: underline;">648</span>478</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">2</span> CPI_NCYR_COI_RT <span style="text-decoration: underline;">738</span>890</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">3</span> CPI_NWGT_COI_RT  <span style="text-decoration: underline;">39</span>284</span></span>
+<span><span class="co">## <span style="color: #BCBCBC;">4</span> CPI_XCPI_COI_RT <span style="text-decoration: underline;">774</span>473</span></span></code></pre>
 </div>
 </div>
 <div class="section level2">
 <h2 id="time-format">Time format<a class="anchor" aria-label="anchor" href="#time-format"></a>
 </h2>
-<p>The function <code><a href="../reference/get_ilostat.html">get_ilostat()</a></code> will return time period information by default in a raw time format (<code>time_format = 'raw'</code>), which is a character vector with the following syntax:</p>
+<p>The function <code><a href="../reference/get_ilostat.html">get_ilostat()</a></code> will return time period
+information by default in a raw time format
+(<code>time_format = 'raw'</code>), which is a character vector with the
+following syntax:</p>
 <ul>
 <li><p>Yearly data: <code>'YYYY'</code> where YYYY is the year.</p></li>
-<li><p>Quarterly data: <code>'YYYYqQ'</code> where YYYY is the year and Q is the quarter (the number corresponding to the quarter from 1 to 4).</p></li>
-<li><p>Monthly data: <code>'YYYYmMM'</code> where YYYY is the year and MM is the month (the number corresponding to the month from 01 to 12).</p></li>
+<li><p>Quarterly data: <code>'YYYYqQ'</code> where YYYY is the year and
+Q is the quarter (the number corresponding to the quarter from 1 to
+4).</p></li>
+<li><p>Monthly data: <code>'YYYYmMM'</code> where YYYY is the year and
+MM is the month (the number corresponding to the month from 01 to
+12).</p></li>
 </ul>
-<p>To ease the use of data for plotting or time-series analysis techniques, the function can also return POSIXct dates (using <code>time_format = 'date'</code>) or numeric dates (using <code>time_format = 'num'</code>).</p>
-<p>For instance, the following will return quarterly unemployment data by sex and age, with the time dimension in numeric format:</p>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<p>To ease the use of data for plotting or time-series analysis
+techniques, the function can also return POSIXct dates (using
+<code>time_format = 'date'</code>) or numeric dates (using
+<code>time_format = 'num'</code>).</p>
+<p>For instance, the following will return quarterly unemployment data
+by sex and age, with the time dimension in numeric format:</p>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'UNE_TUNE_SEX_AGE_NB_Q'</span>, time_format <span class="op">=</span> <span class="st">'num'</span><span class="op">)</span> </span></code></pre></div>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/UNE_TUNE_SEX_AGE_NB_Q.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache 'C:\Users\bescond\AppData\Local\Temp\RtmpyGyS2U/ilostat/indicator-UNE_TUNE_SEX_AGE_NB_Q-code-num-20250305T0712.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## Trying URL 'https://rplumber.ilo.org/files/indicator/UNE_TUNE_SEX_AGE_NB_Q.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## No old cache files found to delete for this segment-id.</span></span></code></pre>
 <p><br></p>
 <table class="table">
-<caption>Table 3a. Extract, ‘Quarterly unemployment by sex and age’</caption>
+<caption>Table 3a. Extract, ‘Quarterly unemployment by sex and
+age’</caption>
+<colgroup>
+<col width="11%">
+<col width="8%">
+<col width="25%">
+<col width="7%">
+<col width="25%">
+<col width="10%">
+<col width="12%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">ref_area</th>
 <th align="left">source</th>
@@ -660,14 +757,25 @@
 </tr>
 </tbody>
 </table>
-<p>The following will return monthly time-related underemployment data by sex and age, with the time dimension in POSIXct date format:</p>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<p>The following will return monthly time-related underemployment data
+by sex and age, with the time dimension in POSIXct date format:</p>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'TRU_TTRU_SEX_AGE_NB_M'</span>, time_format <span class="op">=</span> <span class="st">'date'</span><span class="op">)</span> </span></code></pre></div>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/TRU_TTRU_SEX_AGE_NB_M.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache 'C:\Users\bescond\AppData\Local\Temp\RtmpyGyS2U/ilostat/indicator-TRU_TTRU_SEX_AGE_NB_M-code-date-20250221T1008.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## Trying URL 'https://rplumber.ilo.org/files/indicator/TRU_TTRU_SEX_AGE_NB_M.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## No old cache files found to delete for this segment-id.</span></span></code></pre>
 <p><br></p>
 <table class="table">
-<caption>Table 3b. Extract, Monthly time-related underemployment by sex and age</caption>
+<caption>Table 3b. Extract, Monthly time-related underemployment by sex
+and age</caption>
+<colgroup>
+<col width="10%">
+<col width="8%">
+<col width="24%">
+<col width="7%">
+<col width="24%">
+<col width="13%">
+<col width="12%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">ref_area</th>
 <th align="left">source</th>
@@ -684,8 +792,8 @@
 <td align="left">TRU_TTRU_SEX_AGE_NB</td>
 <td align="left">SEX_T</td>
 <td align="left">AGE_YTHADULT_YGE15</td>
-<td align="left">2024-06-01</td>
-<td align="right">480.310</td>
+<td align="left">2024-12-01</td>
+<td align="right">564.690</td>
 </tr>
 <tr class="even">
 <td align="left">BOL</td>
@@ -693,8 +801,8 @@
 <td align="left">TRU_TTRU_SEX_AGE_NB</td>
 <td align="left">SEX_T</td>
 <td align="left">AGE_YTHADULT_Y15-24</td>
-<td align="left">2024-06-01</td>
-<td align="right">94.537</td>
+<td align="left">2024-12-01</td>
+<td align="right">149.481</td>
 </tr>
 <tr class="odd">
 <td align="left">BOL</td>
@@ -702,8 +810,8 @@
 <td align="left">TRU_TTRU_SEX_AGE_NB</td>
 <td align="left">SEX_T</td>
 <td align="left">AGE_YTHADULT_YGE25</td>
-<td align="left">2024-06-01</td>
-<td align="right">385.773</td>
+<td align="left">2024-12-01</td>
+<td align="right">415.208</td>
 </tr>
 </tbody>
 </table>
@@ -711,39 +819,64 @@
 <div class="section level2">
 <h2 id="cached-data">Cached data<a class="anchor" aria-label="anchor" href="#cached-data"></a>
 </h2>
-<p>The function <code><a href="../reference/get_ilostat.html">get_ilostat()</a></code> stores cached data by default at <code>file.path(tempdir(), "ilostat")</code> in <code>rds</code> binary format.</p>
-<p>However, via the <code>cache_dir</code> arguments, it is also possible to choose a different work directory to store data in, and via the <code>cache_format</code> arguments you can save it in other formats, such as <code>csv</code>, <code>dta</code>, <code>sav</code>, and <code>sas7bdat</code>.</p>
-<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<p>The function <code><a href="../reference/get_ilostat.html">get_ilostat()</a></code> stores cached data by default
+at <code>file.path(tempdir(), "ilostat")</code> in <code>rds</code>
+binary format.</p>
+<p>However, via the <code>cache_dir</code> arguments, it is also
+possible to choose a different work directory to store data in, and via
+the <code>cache_format</code> arguments you can save it in other
+formats, such as <code>csv</code>, <code>dta</code>, <code>sav</code>,
+and <code>sas7bdat</code>.</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'TRU_TTRU_SEX_AGE_NB_M'</span>, cache_dir <span class="op">=</span> <span class="st">'c:/temp'</span>, cache_format <span class="op">=</span> <span class="st">'dta'</span><span class="op">)</span> </span></code></pre></div>
-<p>These arguments can also be set using <code>options(ilostat_cache_dir = 'C:/temp')</code> and <code>options(ilostat_cache_format = 'dta')</code>.</p>
-<p>The name of the cache file is built using <code>paste0(segment, "-", id, "-", type,"-",time_format, "-", last_toc_update ,paste0(".", cache_format))</code>, with ‘last_toc_update’ being the latest update of the dataset from the table of contents.</p>
-<p>With the argument <code>back = FALSE</code>, datasets are downloaded and cached without being returned in R. This quiet setting is convenient particularly when downloading large amounts of data or datasets.</p>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<p>These arguments can also be set using
+<code>options(ilostat_cache_dir = 'C:/temp')</code> and
+<code>options(ilostat_cache_format = 'dta')</code>.</p>
+<p>The name of the cache file is built using
+<code>paste0(segment, "-", id, "-", type,"-",time_format, "-", last_toc_update ,paste0(".", cache_format))</code>,
+with ‘last_toc_update’ being the latest update of the dataset from the
+table of contents.</p>
+<p>With the argument <code>back = FALSE</code>, datasets are downloaded
+and cached without being returned in R. This quiet setting is convenient
+particularly when downloading large amounts of data or datasets.</p>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fu"><a href="../reference/get_ilostat_toc.html">get_ilostat_toc</a></span><span class="op">(</span>search <span class="op">=</span> <span class="st">'SDG'</span><span class="op">)</span>,   cache_dir <span class="op">=</span> <span class="st">'c:/temp'</span>, cache_format <span class="op">=</span> <span class="st">'dta'</span>, </span>
 <span>                                                    back <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="filter-data">Filter data<a class="anchor" aria-label="anchor" href="#filter-data"></a>
 </h2>
-<p>Once you have retrieved and/or cached the dataset(s) you need, advanced <code>filters</code> can help you refine your data selection and facilitate reproducible analysis. You can apply several different filters to your datasets, to filter the data by reference area, sex, classification item, etc.</p>
-<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<p>Once you have retrieved and/or cached the dataset(s) you need,
+advanced <code>filters</code> can help you refine your data selection
+and facilitate reproducible analysis. You can apply several different
+filters to your datasets, to filter the data by reference area, sex,
+classification item, etc.</p>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>ilostat_cache_dir <span class="op">=</span> <span class="st">'C:/temp'</span><span class="op">)</span></span>
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'UNE_2EAP_SEX_AGE_RT_A'</span>, filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>                                                    ref_area <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'BRA'</span>, <span class="st">'ZAF'</span><span class="op">)</span>, </span>
 <span>                                                    sex <span class="op">=</span> <span class="st">'T'</span>, </span>
 <span>                                                    classif1 <span class="op">=</span> <span class="st">'AGE_YTHADULT_Y15-24'</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">ref_area</span>, <span class="va">sex</span>, <span class="va">classif1</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## trying URL 'https://rplumber.ilo.org/files/indicator/UNE_2EAP_SEX_AGE_RT_A.rds'</span></span></code></pre>
-<pre><code><span><span class="co">## trying saving cache 'C:\Users\bescond\AppData\Local\Temp\RtmpyGyS2U/ilostat/indicator-UNE_2EAP_SEX_AGE_RT_A-code-raw-20241209T1958.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## Trying URL 'https://rplumber.ilo.org/files/indicator/UNE_2EAP_SEX_AGE_RT_A.rds'</span></span></code></pre>
+<pre><code><span><span class="co">## No old cache files found to delete for this segment-id.</span></span></code></pre>
 <pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 2 × 4</span></span></span>
 <span><span class="co">##   ref_area sex   classif1                n</span></span>
 <span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">1</span> BRA      SEX_T AGE_YTHADULT_Y15-24    36</span></span>
 <span><span class="co">## <span style="color: #BCBCBC;">2</span> ZAF      SEX_T AGE_YTHADULT_Y15-24    36</span></span></code></pre>
 <p><br></p>
-<p>The argument <code>detail</code> set a default filter of aggregation. For instance, <code>detail = 'serieskeysonly'</code> will return distinct combinations of ref_area/source/indicator/sex/classif1/classif2, whereas <code>detail = 'dataonly'</code> will remove the columns obs_status/note_classif/note_indicator/note_source from the dataset and <code>detail = 'serieskeysonly'</code> will select the best source (based on the lowest source sort id) at the ref_area/./indicator/sex/classif1/classif2/time levels.</p>
+<p>The argument <code>detail</code> set a default filter of aggregation.
+For instance, <code>detail = 'serieskeysonly'</code> will return
+distinct combinations of
+ref_area/source/indicator/sex/classif1/classif2, whereas
+<code>detail = 'dataonly'</code> will remove the columns
+obs_status/note_classif/note_indicator/note_source from the dataset and
+<code>detail = 'serieskeysonly'</code> will select the best source
+(based on the lowest source sort id) at the
+ref_area/./indicator/sex/classif1/classif2/time levels.</p>
 <p><br></p>
-<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>ilostat_cache_dir <span class="op">=</span> <span class="st">'C:/temp'</span><span class="op">)</span></span>
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'UNE_2EAP_SEX_AGE_RT_A'</span>, filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>                                                    ref_area <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'BRA'</span>, <span class="st">'ZAF'</span><span class="op">)</span>, </span>
@@ -752,7 +885,8 @@
 <span>                                                detail <span class="op">=</span> <span class="st">'serieskeysonly'</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
 <table class="table">
-<caption>Table 4a. Extract, Youth male unemployment rate in Brazil and South Africa (ILO modelled estimates, Nov. 2018), ‘Series Key’</caption>
+<caption>Table 4a. Extract, Youth male unemployment rate in Brazil and
+South Africa (ILO modelled estimates, Nov. 2018), ‘Series Key’</caption>
 <thead><tr class="header">
 <th align="left">ref_area</th>
 <th align="left">source</th>
@@ -778,7 +912,7 @@
 </tbody>
 </table>
 <p><br></p>
-<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># options(ilostat_cache_dir = 'C:/temp')</span></span>
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_ilostat.html">get_ilostat</a></span><span class="op">(</span>id <span class="op">=</span> <span class="st">'UNE_2EAP_SEX_AGE_RT_A'</span>, filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>                                                    ref_area <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'BRA'</span>, <span class="st">'ZAF'</span><span class="op">)</span>, </span>
@@ -787,7 +921,17 @@
 <span>                                                detail <span class="op">=</span> <span class="st">'dataonly'</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
 <table class="table">
-<caption>Table 4b. Extract, Youth female unemployment rate in Brazil and South Africa (ILO modelled estimates, Nov. 2018)</caption>
+<caption>Table 4b. Extract, Youth female unemployment rate in Brazil and
+South Africa (ILO modelled estimates, Nov. 2018)</caption>
+<colgroup>
+<col width="11%">
+<col width="10%">
+<col width="25%">
+<col width="7%">
+<col width="25%">
+<col width="6%">
+<col width="12%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">ref_area</th>
 <th align="left">source</th>
@@ -828,18 +972,29 @@
 </tbody>
 </table>
 <p>In order to delete files from the cache just run:</p>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/clean_ilostat_cache.html">clean_ilostat_cache</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="plot-data">Plot data<a class="anchor" aria-label="anchor" href="#plot-data"></a>
 </h2>
 <blockquote>
-<p>Now that you found the datasets you needed and filtered them to have the desired data, you can start manipulating ILOSTAT data in a reproducible manner, and even use your other favourite R packages to make some great data visualizations.</p>
+<p>Now that you found the datasets you needed and filtered them to have
+the desired data, you can start manipulating ILOSTAT data in a
+reproducible manner, and even use your other favourite R packages to
+make some great data visualizations.</p>
 </blockquote>
-<p>For example, you can use <code>ggplot2</code> and <code>dplyr</code> to visually compare trends in male labour force participation rate in Germany, France and the United States, since 2005 (see below). This lineal graph allows us to see that the male labour force participation rate is considerably higher in the United States than in Germany and France, but it has been decreasing at a steady pace since around 2008, closing the gap in participation rates particularly with Germany, where the male labour force participation rate slightly increased in the last period observed.</p>
-<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://ilostat.github.io/Rilostat" class="external-link">Rilostat</a></span><span class="op">)</span></span>
+<p>For example, you can use <code>ggplot2</code> and <code>dplyr</code>
+to visually compare trends in male labour force participation rate in
+Germany, France and the United States, since 2005 (see below). This
+lineal graph allows us to see that the male labour force participation
+rate is considerably higher in the United States than in Germany and
+France, but it has been decreasing at a steady pace since around 2008,
+closing the gap in participation rates particularly with Germany, where
+the male labour force participation rate slightly increased in the last
+period observed.</p>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://ilostat.github.io/Rilostat/">Rilostat</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
@@ -857,16 +1012,25 @@
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x<span class="op">=</span><span class="st">"Year"</span>, y<span class="op">=</span><span class="st">"Male LFPR (%)"</span>, colour<span class="op">=</span><span class="st">"Country:"</span><span class="op">)</span> <span class="op">+</span>  </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"top"</span>, plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
-<div class="figure">
-<img src="g1_ts.png" alt=""><p class="caption">Male labour force participation rate in selected countries, 2005-2019</p>
+<div class="float">
+<img src="g1_ts.png" alt="Male labour force participation rate in selected countries, 2005-2019"><div class="figcaption">Male labour force participation rate in selected
+countries, 2005-2019</div>
 </div>
 <p><br><br></p>
 <blockquote>
-<p>You can also build interesting (and visually telling) stacked columns or bars.</p>
+<p>You can also build interesting (and visually telling) stacked columns
+or bars.</p>
 </blockquote>
-<p>For example, based on ILOSTAT data, you can plot the distribution of employed persons by economic class (defined according to the household’s per capita income/consumption per day). You can even do it with several disaggregations: in the example below, we chose to show the employment distribution by economic class separately for men and women and for youth and adults. From this figure, we clearly understand that working poverty (being poor in spite of being employed) affects youth much more than adults, and women more than men.</p>
-<div class="sourceCode" id="cb62"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://ilostat.github.io/Rilostat" class="external-link">Rilostat</a></span><span class="op">)</span></span>
+<p>For example, based on ILOSTAT data, you can plot the distribution of
+employed persons by economic class (defined according to the household’s
+per capita income/consumption per day). You can even do it with several
+disaggregations: in the example below, we chose to show the employment
+distribution by economic class separately for men and women and for
+youth and adults. From this figure, we clearly understand that working
+poverty (being poor in spite of being employed) affects youth much more
+than adults, and women more than men.</p>
+<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://ilostat.github.io/Rilostat/">Rilostat</a></span><span class="op">)</span></span>
 <span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'ggplot2'</span><span class="op">)</span><span class="op">}</span></span>
 <span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'dplyr'</span><span class="op">)</span><span class="op">}</span></span>
 <span></span>
@@ -896,17 +1060,39 @@
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>hjust <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html" class="external-link">scale_fill_brewer</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"div"</span><span class="op">)</span></span></code></pre></div>
 <p><br></p>
-<div class="figure">
-<img src="g1_eco.png" alt=""><p class="caption">Employment by economic class, sex and age, South Africa, 1999</p>
+<div class="float">
+<img src="g1_eco.png" alt="Employment by economic class, sex and age, South Africa, 1999"><div class="figcaption">Employment by economic class, sex and age, South
+Africa, 1999</div>
 </div>
 <p><br><br></p>
 <blockquote>
-<p>You can also combine the ilostat package with other packages to create triangular graphs, plotting three different indicators which relate to the same topic and whose observations are mutually exclusive.</p>
+<p>You can also combine the ilostat package with other packages to
+create triangular graphs, plotting three different indicators which
+relate to the same topic and whose observations are mutually
+exclusive.</p>
 </blockquote>
-<p>You can use this type of graph, for instance, to visually convey the share of the employed population working in agriculture, industry and services, all three compared, and even more revealing, compare this across countries.</p>
-<p>In the example below, we used three different indicators of labour underutilization (unemployment, time-related underemployment and discouraged job-seekers) to study how they are inter-related in selected countries. These three population groups are all mutually exclusive, but they are all part of the broad category of labour underutilization. Unemployment represents all persons not in employment, available for employment and actively seeking employment, while discouraged job-seekers are those persons not in employment and available for employment who do not actively look for employment for specific reasons having to do with the situation in the labour market, and time-related underemployment refers to persons in employment who would like to work more hours and are available to work more hours than their current working time. The graph below brings to light the differences across countries in the labour underutilization composition, by showing where unemployment is the biggest concern, as opposed to time-related underemployment or discouragement.</p>
-<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://ilostat.github.io/Rilostat" class="external-link">Rilostat</a></span><span class="op">)</span></span>
+<p>You can use this type of graph, for instance, to visually convey the
+share of the employed population working in agriculture, industry and
+services, all three compared, and even more revealing, compare this
+across countries.</p>
+<p>In the example below, we used three different indicators of labour
+underutilization (unemployment, time-related underemployment and
+discouraged job-seekers) to study how they are inter-related in selected
+countries. These three population groups are all mutually exclusive, but
+they are all part of the broad category of labour underutilization.
+Unemployment represents all persons not in employment, available for
+employment and actively seeking employment, while discouraged
+job-seekers are those persons not in employment and available for
+employment who do not actively look for employment for specific reasons
+having to do with the situation in the labour market, and time-related
+underemployment refers to persons in employment who would like to work
+more hours and are available to work more hours than their current
+working time. The graph below brings to light the differences across
+countries in the labour underutilization composition, by showing where
+unemployment is the biggest concern, as opposed to time-related
+underemployment or discouragement.</p>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://ilostat.github.io/Rilostat/">Rilostat</a></span><span class="op">)</span></span>
 <span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'tidyr'</span><span class="op">)</span><span class="op">}</span></span>
 <span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'dplyr'</span><span class="op">)</span><span class="op">}</span></span>
 <span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dmurdoch/plotrix" class="external-link">plotrix</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'plotrix'</span><span class="op">)</span><span class="op">}</span></span>
@@ -949,16 +1135,27 @@
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">x</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span>, <span class="va">df</span><span class="op">$</span><span class="va">y</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span>, <span class="va">df</span><span class="op">$</span><span class="va">geo</span><span class="op">[</span><span class="va">ind</span><span class="op">]</span>, adj <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="op">-</span><span class="fl">1</span><span class="op">)</span>, cex<span class="op">=</span><span class="fl">1.5</span><span class="op">)</span> </span></code></pre></div>
 <p><br></p>
-<div class="figure">
-<img src="g1_tri.png" alt=""><p class="caption">Different indicators of labour underutilization</p>
+<div class="float">
+<img src="g1_tri.png" alt="Different indicators of labour underutilization"><div class="figcaption">Different indicators of labour
+underutilization</div>
 </div>
 <p><br><br></p>
 <blockquote>
-<p>It is also possible to create maps showing how indicators behave across the world at a given point in time (static maps) or even through time (dynamic maps allowing the user to scroll over the available time period).</p>
+<p>It is also possible to create maps showing how indicators behave
+across the world at a given point in time (static maps) or even through
+time (dynamic maps allowing the user to scroll over the available time
+period).</p>
 </blockquote>
-<p>For instance, below we have built a map to see differences across the world in the youth unemployment rate. For this, we have selected data from a compilation which is methodologically robust and consistent across countries to ensure international comparability: the ILO modelled estimates (from November 2017). You can change the legend settings to use the color coding that best suits your data. In our case, the colour scale used allows us to quickly see that youth unemployment rates are particularly high in Southern and Northern Africa.</p>
-<div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://ilostat.github.io/Rilostat" class="external-link">Rilostat</a></span><span class="op">)</span></span>
+<p>For instance, below we have built a map to see differences across the
+world in the youth unemployment rate. For this, we have selected data
+from a compilation which is methodologically robust and consistent
+across countries to ensure international comparability: the ILO modelled
+estimates (from November 2017). You can change the legend settings to
+use the color coding that best suits your data. In our case, the colour
+scale used allows us to quickly see that youth unemployment rates are
+particularly high in Southern and Northern Africa.</p>
+<div class="sourceCode" id="cb66"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://ilostat.github.io/Rilostat/">Rilostat</a></span><span class="op">)</span></span>
 <span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://plotly-r.com" class="external-link">plotly</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'plotly'</span><span class="op">)</span><span class="op">}</span></span>
 <span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'dplyr'</span><span class="op">)</span><span class="op">}</span></span>
 <span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://stringr.tidyverse.org" class="external-link">stringr</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'stringr'</span><span class="op">)</span><span class="op">}</span></span>
@@ -1007,62 +1204,51 @@
 <span>                    resolution <span class="op">=</span> <span class="fl">110</span><span class="op">)</span> <span class="co"># or 50</span></span>
 <span>            <span class="op">)</span> </span></code></pre></div>
 <p><br></p>
-<div class="figure">
-<img src="g1_map.png" alt=""><p class="caption">Youth unemployment rate in 2019 (ILO modelled estimates, Nov. 2020</p>
+<div class="float">
+<img src="g1_map.png" alt="Youth unemployment rate in 2019 (ILO modelled estimates, Nov. 2020"><div class="figcaption">Youth unemployment rate in 2019 (ILO modelled
+estimates, Nov. 2020</div>
 </div>
 <p><br><br></p>
 </div>
 <div class="section level2">
 <h2 id="contact-information">Contact information<a class="anchor" aria-label="anchor" href="#contact-information"></a>
 </h2>
-<p>For further information on the <code>ilostat</code> R package, please contact:</p>
+<p>For further information on the <code>ilostat</code> R package, please
+contact:</p>
 <ul>
 <li>ILO Department of Statistics (<code>ilostat@ilo.org</code>)</li>
 </ul>
 <p>For specific issues concerning code source, please report on <a href="https://github.com/ilostat/Rilostat/issues" class="external-link">github</a></p>
-<p>For questions related to the ilostat database contact (<code>ilostat@ilo.org</code>) or visit <a href="https://ilostat.ilo.org" class="external-link">ilostat website</a></p>
-<p>Permission to reproduce ILO publication and data: the reproduction of ILO material is generally authorized for non-commercial purposes and within established limits. However, you may need to submit a formal request in certain circumstances. for more information please refer to:</p>
+<p>For questions related to the ilostat database contact
+(<code>ilostat@ilo.org</code>) or visit <a href="https://ilostat.ilo.org" class="external-link">ilostat website</a></p>
+<p>Permission to reproduce ILO publication and data: the reproduction of
+ILO material is generally authorized for non-commercial purposes and
+within established limits. However, you may need to submit a formal
+request in certain circumstances. for more information please refer
+to:</p>
 <p><a href="https://www.ilo.org/global/copyright" class="external-link uri">https://www.ilo.org/global/copyright</a></p>
 <p><a href="https://www.ilo.org/global/copyright/request-for-permission" class="external-link uri">https://www.ilo.org/global/copyright/request-for-permission</a></p>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-      </div>
-
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p></p>
-<p>Developed by David Bescond, ILO Department of Statistics.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p>Developed by David Bescond, ILO Department of Statistics.</p>
 </div>
 
-<div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+<div class="pkgdown-footer-right">
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script><script>
-  docsearch({
 
 
-    apiKey: '5bb9805eecd1b1c2d12958ea75a8e9e8',
-    indexName: 'rilostat',
-    inputSelector: 'input#search-input.form-control',
-    transformData: function(hits) {
-      return hits.map(function (hit) {
-        hit.url = updateHitURL(hit);
-        return hit;
-      });
-    }
-  });
-</script>
-</body>
+
+  </body>
 </html>

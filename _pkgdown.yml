@@ -8,13 +8,13 @@ home:
 reference:
 - title: Essential functionality
   contents:
-  - get_ilostat_toc
   - get_ilostat
   - get_ilostat_dic
+  - get_ilostat_toc
   - label_ilostat
   - clean_ilostat_cache
   - distribution_ilostat
-  - dataexplorer
+  - runapp_ilostat
   - Rilostat
 navbar:
   title: ~

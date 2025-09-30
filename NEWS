@@ -1,53 +1,73 @@
----
-output: 
-  html_document: 
-    keep_md: yes
----
-# Rilostat 2.1.0
+Rilostat 2.3.3
 
-* use ilosta API via https://rplumber.ilo.org/
+- better header, better cahche clean up
 
-# Rilostat 2.0.0
+Rilostat 2.3.0
 
-* faster method to get data
+- faster method to get data
 
-# Rilostat 1.2
+Rilostat 2.2.0
 
-* update vignette
+- add dataexplorer()
 
-# Rilostat 1.1
+Rilostat 2.1.0
 
-* add data explorer app
-* sdmx_ilostat new path
-* test with R 4.0
-* Rilostat replace ilostat 
-* refresh doc
+- use ilosta API via https://rplumber.ilo.org/
 
-# Rilostat 1.0.1
+Rilostat 2.0.0
 
-* change ilostat path
-* remove collection field
+- faster method to get data
 
-# Rilostat 1.0.0
+Rilostat 1.2.0
 
-* sdmx_ilostat new path
-* use dplyr > 8
-* add vignettes intro
-* add pkgdown [website](https://ilostat.github.io/Rilostat/) 
+- fixed ilo new path
+- fixed sdmx new methods
 
-# Rilostat 0.2.1
+Rilostat 1.1.8
 
-* add segment 'modelled_estimates' for new dta files
-* sdmx_ilostat return threshold error
+- add distribution feature
 
-# Rilostat 0.2
+Rilostat 1.1.7
 
-* fixed .onload warnings
-* reviewed import packages version
-* fixed sdmx codelist annotation multilang issues
-* revised import package list and version
-* fixed tuto mapper error
+- fixed dependency issues
 
-# Rilostat 0.1
+Rilostat 1.1.5
 
-* first release
+- update vignette
+
+Rilostat 1.1
+
+- add data explorer app
+- sdmx_ilostat new path
+- test with R 4.0
+- Rilostat replace ilostat
+- refresh doc
+
+Rilostat 1.0.1
+
+- change ilostat path
+- remove collection field
+
+Rilostat 1.0.0
+
+- sdmx_ilostat new path
+- use dplyr > 8
+- add vignettes intro
+- add pkgdown website
+
+Rilostat 0.2.1
+
+- add segment ‘modelled_estimates’ for new dta files
+- sdmx_ilostat return threshold error
+
+Rilostat 0.2
+
+- fixed .onload warnings
+- reviewed import packages version
+- fixed sdmx codelist annotation multilang issues
+- revised import package list and version
+- fixed tuto mapper error
+
+Rilostat 0.1
+
+- first release

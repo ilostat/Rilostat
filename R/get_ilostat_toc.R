@@ -68,6 +68,8 @@
 #' }
 #' @export
 
+
+
 get_ilostat_toc <- function(segment = getOption('ilostat_segment', 'indicator'), 
 							lang = getOption('ilostat_lang', 'en'), 
 							search = getOption('ilostat_search', 'none'), 
@@ -117,32 +119,39 @@ get_ilostat_toc <- function(segment = getOption('ilostat_segment', 'indicator'),
     }
   }	
    
-  invisible(gc(reset = TRUE))
    
   y
 }
 
 
 set_ilostat_toc <- function(segment, lang) {
-  
-  if (!exists(paste0(".ilostatTOC", segment, lang), envir = .ilostatEnv)) {
-    
-	# base <- ilostat_url()
-    
-	url <- paste0(ilostat_url() , segment, "/table_of_contents_",lang,".rds")
-    
-	.ilostatTOC <- read_rds(
-	
-						url 
-	
-						) # %>% as_tibble %>% mutate_if(is.factor, as.character)
-    
-	assign(paste0(".ilostatTOC", segment, lang), .ilostatTOC, envir = .ilostatEnv)
-  
+  toc_name <- paste0(".ilostatTOC", segment, lang)
+
+  if (!exists(toc_name, envir = .ilostatEnv)) {
+    url <- paste0(ilostat_url(), segment, "/table_of_contents_", lang, ".rds")
+    message("Trying TOC URL '", url, "'")
+
+    # Build User-Agent
+    ua <- build_user_agent()
+
+    # Perform request
+    resp <- request(url) |>
+      req_headers(`User-Agent` = ua) |>
+      req_perform()
+
+    if (resp_status(resp) != 200) {
+      stop("Table of contents for segment '", segment, "' and lang '", lang, "' not available")
+    }
+
+    # Save and read TOC
+    tmpfile <- tempfile(fileext = ".rds")
+    writeBin(resp_body_raw(resp), tmpfile)
+
+    .ilostatTOC <- read_rds(tmpfile)
+
+    # Cache in environment
+    assign(toc_name, .ilostatTOC, envir = .ilostatEnv)
   }
-  
+
   invisible(0)
-
-  }
-
-
+}

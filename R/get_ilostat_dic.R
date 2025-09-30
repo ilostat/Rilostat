@@ -27,33 +27,42 @@
 #' @export
 
 get_ilostat_dic <- function(dic,
-							lang = getOption('ilostat_lang', 'en') 
-							) {
+                            lang = getOption("ilostat_lang", "en")) {
 
   dictlang <- paste0(tolower(dic), "_", tolower(lang))
-    
+
   if (!exists(dictlang, envir = .ilostatEnv)) {
-      
-	# url <- ilostat_url()		   
-      
-	tname <- paste0(ilostat_url(), "dic/", tolower(dic), "_", tolower(lang), ".rds")
-	  
-	get_dic <- read_rds(tname) %>% select(-contains("description"))# %>% as_tibble %>% mutate_if(is.factor, as.character)
-      
-	assign(dictlang, get_dic, envir = .ilostatEnv)
-	  
-	invisible(gc(reset = TRUE))
-   
-    if(!is_tibble(get_dic)){
-  
-  	  stop("the dictionnary : ", ilostat_url(),dic, "_",lang,".rds does not exist")
-  
+
+    # Build URL for API dictionary
+    url <- paste0(ilostat_url(), "dic/", tolower(dic), "_", tolower(lang), ".rds")
+    message("Trying dictionary URL '", url, "'")
+
+    # Build User-Agent
+    ua <- build_user_agent()
+
+    # Perform request
+    resp <- request(url) |>
+      req_headers(`User-Agent` = ua) |>
+      req_perform()
+
+    if (resp_status(resp) != 200) {
+      stop("The dictionary '", dic, "_", lang, ".rds' does not exist or is not accessible")
     }
-	
+
+    # Save temp file and read it
+    tmpfile <- tempfile(fileext = ".rds")
+    writeBin(resp_body_raw(resp), tmpfile)
+
+    get_dic <- read_rds(tmpfile) %>%
+      select(-contains("description"))
+
+    # Store in environment cache
+    assign(dictlang, get_dic, envir = .ilostatEnv)
+
+    if (!is_tibble(get_dic)) {
+      stop("The dictionary '", dic, "_", lang, ".rds' is not a valid tibble")
+    }
   }
-  
 
   get(dictlang, envir = .ilostatEnv)
-
 }
-

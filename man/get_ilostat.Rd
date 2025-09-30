@@ -47,6 +47,7 @@ filters to get just part of the table. Names of list objects are
 ilostat variable codes and values are vectors of observation codes.
 filters detect on variables, so could be partial, ie. \code{list(sex = 'T')} is
 enough but equivalent to \code{list(sex = 'SEX_T')}. Additional options:
+enough but equivalent to \code{list(sex = 'SEX_T')}. Additional options:
     \itemize{ 
         \item{\code{timefrom}} : starting year of the return dataset,
         \item{\code{timeto}} : ending year of the return dataset.

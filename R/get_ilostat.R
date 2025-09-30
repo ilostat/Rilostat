@@ -20,6 +20,7 @@
 #'			ilostat variable codes and values are vectors of observation codes.
 #'			filters detect on variables, so could be partial, ie. \code{list(sex = 'T')} is
 #'			enough but equivalent to \code{list(sex = 'SEX_T')}. Additional options:
+#'			enough but equivalent to \code{list(sex = 'SEX_T')}. Additional options:
 #' 			\itemize{ 
 #' 				\item{\code{timefrom}} : starting year of the return dataset,
 #' 				\item{\code{timeto}} : ending year of the return dataset.
@@ -266,6 +267,9 @@ get_ilostat_dat <- function(id,
       
 	  dat <- get_ilostat_raw(id, segment, cache_file, cache_dir, cache_format, quiet)
 	
+	  # delete alod cache 
+	  delete_old_cache(cache_dir, cache_file, quiet)
+  
 	  
       if (type %in% 'code') {
         
@@ -332,12 +336,13 @@ get_ilostat_dat <- function(id,
   }
   
 
+
   # process time_format
   if(tolower(time_format) %in% 'num' & str_sub(id,-1,-1) %in% c('Q', 'M')){
     
   dat$time <- paste0(
 				str_sub(dat$time,1,4), 
-				plyr::mapvalues(
+				mapvalues(
 						str_sub(dat$time, 5,-1), 
 						from = ilostat_date_convert$code, 
 						to = ilostat_date_convert[['num']], 
@@ -356,7 +361,7 @@ get_ilostat_dat <- function(id,
 	  
 	  dat$time <- paste0(
 					str_sub(dat$time,1,4), 
-					plyr::mapvalues(
+					mapvalues(
 							str_sub(dat$time, 5,-1), 
 							from = ilostat_date_convert$code, 
 							to = ilostat_date_convert[['date']], 
@@ -373,7 +378,7 @@ get_ilostat_dat <- function(id,
 	
         shift <- c("A" = 367, "Q" = 96, "M" = 32)[str_sub(id,-1,-1)]  
     
-	    dat$time <- plyr::mapvalues(
+	    dat$time <- mapvalues(
 							dat$time, 
 							from = as.character(as.Date(levels(as.factor(dat$time)))), 
 							to = as.character(as.Date(cut(as.Date(levels(as.factor(dat$time))) + shift, "month")) - 1), 
@@ -501,7 +506,7 @@ get_ilostat_dat <- function(id,
   }
   
  
-  invisible(gc(reset = TRUE))
+  
 
   # process cmd  
   if(cmd != 'none'){
@@ -517,48 +522,79 @@ get_ilostat_dat <- function(id,
 
 
 get_ilostat_raw <- function(id, 
-							segment,   
-							cache_file, 
-							cache_dir, 
-							cache_format, 
-							quiet) {
+                            segment,   
+                            cache_file, 
+                            cache_dir, 
+                            cache_format, 
+                            quiet) {
 
-	base <- paste0(ilostat_url(), segment, "/", id, ".rds")	   
+  base <- paste0(ilostat_url(), segment, "/", id, ".rds")	   
 
-    if(str_sub(ilostat_url(),1,5) %in% "https"){
-	
-	 tfile <- cache_file %>% stringr::str_replace(paste0(stringr::fixed('.'), cache_format), ".rds")
-   
-    ### download and read file
-      #utils::download.file(base, tfile, quiet = quiet)
-  
-      dat <- NULL
-	  message("trying URL '",paste0("https://rplumber.ilo.org/data/", segment, "/?id=", id, "&format=.rds"),"'")
-	  
-      try(dat <- read_rds(base) %>% as_tibble %>% mutate_if(is.factor, as.character), silent = TRUE)
-	  
-	  message("trying saving cache '",tfile,"'")
-	  
-	  try(saveRDS(dat, tfile), silent = TRUE)
-	
-	
-	} else {
-		
-	  dat <- NULL
-  
-      try(dat <- read_rds(base) %>% as_tibble %>% mutate_if(is.factor, as.character), silent = TRUE)
-	
-	}
-  
-  
+  if (str_sub(ilostat_url(), 1, 5) == "https") {
+    tfile <- cache_file %>%
+      stringr::str_replace(paste0(stringr::fixed('.'), cache_format), ".rds")
+
+    url <- paste0("https://rplumber.ilo.org/files/", segment, "/", id, ".rds")
+    message("Trying URL '", url, "'")
+
+    # Build User-Agent with platform + OS
+    ua <- build_user_agent()
+
+    # Perform request with User-Agent
+    resp <- request(url) |>
+      req_headers(`User-Agent` = ua) |>
+      req_perform()
+
+    dat <- NULL
+    if (resp_status(resp) == 200) {
+      writeBin(resp_body_raw(resp), tfile)
+      dat <- read_rds(tfile) %>%
+        as_tibble() %>%
+        mutate(across(where(is.factor), as.character))
+
+      if (!quiet) message("Cache saved at '", tfile, "'")
+    }
+
+  } else {
+    dat <- tryCatch(
+      read_rds(base) %>%
+        as_tibble() %>%
+        mutate(across(where(is.factor), as.character)),
+      error = function(e) NULL
+    )
+  }
+
   # check validity
   if (!is_tibble(dat)) {
-    
     stop("Dataset with id = '", id, "' does not exist or is not readable")
-  
   }
-  
-  
+
   dat
 }
 
+delete_old_cache <- function(cache_dir, new_file_path, quiet) {
+  
+  # Step 1: Extract the segment-id from the new file's name.
+  filename <- basename(new_file_path)
+  segment_id_pattern <- sub("([[:alnum:]]+-[[:alnum:]]+)-.*", "\\1", filename)
+  
+  # Step 2: List all files in the cache directory that match the segment-id pattern.
+  matching_files <- list.files(
+    path = cache_dir,
+    pattern = paste0("^", segment_id_pattern, "-"),
+    full.names = TRUE
+  )
+  
+  # Step 3: Exclude the new file from the list of files to be deleted.
+  files_to_delete <- setdiff(matching_files, new_file_path)
+
+  # Step 4: Delete the matched files.
+  if (length(files_to_delete) > 0) {
+    message("Deleting the following old cache files:\n", paste(files_to_delete, collapse = "\n"))
+    file.remove(files_to_delete)
+  } else {
+    message("No old cache files found to delete for this segment-id.")
+  }
+
+  invisible(files_to_delete)
+}
