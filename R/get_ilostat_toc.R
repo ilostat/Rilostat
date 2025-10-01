@@ -1,4 +1,4 @@
-#' @title Read Ilostat Table of Contents
+#' @title Read ilostat Table of Contents
 #' @description Download one table of contents from ilostat \url{https://ilostat.ilo.org} via bulk download facility 
 #' \url{https://ilostat.ilo.org/data/bulk/}.
 #' @param segment A character, way to get datasets by: \code{"indicator"} (default) or \code{"ref_area"}, 
@@ -15,6 +15,8 @@
 #'			filters detect on variables.
 #' @param fixed a logical, if \code{TRUE} (default), pattern is a string to be matched as is,
 #'        Change to \code{FALSE} if more complex regex matching is needed.
+#' @param quiet a logical, if \code{TRUE} , don't return message from processing, \code{FALSE} (default).
+#' 			Can be set also with options(ilostat_quiet = TRUE).
 #' @return A tibble with ten columns depending of the segment: indicator or ref_area
 #' 		\itemize{
 #'      \item{\code{id}} : The codename of dataset of theme, will be used by the get_ilostat and get_ilostat_raw functions,
@@ -29,13 +31,13 @@
 #'      \item{\code{...}} : Others relevant information
 #'      }
 #' @seealso \code{\link{get_ilostat}}.
-#' @details The TOC in English by indicator is downloaded from \url{https://webapps.ilo.org/ilostat-files/WEB_bulk_download/indicator/table_of_contents_en.csv}. 
+#' @details The toc in English by indicator is downloaded from ilostat API \url{https://rplumber.ilo.org/__docs__/#get-/metadata/toc/indicator/}. 
 #' The values in column 'id' should be used to download a selected dataset.
-#' @details The TOC in English by ref_area is downloaded from \url{https://webapps.ilo.org/ilostat-files/WEB_bulk_download/ref_area/table_of_contents_en.csv}. 
+#' @details The toc in English by ref_area is downloaded from ilostat API \url{https://rplumber.ilo.org/__docs__/#get-/metadata/toc/ref_area/}. 
 #' The values in column 'id' should be used to download a selected dataset.
 #' @references
 #' See citation("Rilostat")
-#' ilostat bulk download facility user guidelines \url{https://webapps.ilo.org/ilostat-files/WEB_bulk_download/ILOSTAT_BulkDownload_Guidelines.pdf} 
+#' ilostat bulk download facility user guidelines \url{https://ilostat.ilo.org/data/bulk/} 
 #' @author David Bescond \email{bescond@ilo.org}
 #' @keywords utilities database
 #' @examples
@@ -74,10 +76,11 @@ get_ilostat_toc <- function(segment = getOption('ilostat_segment', 'indicator'),
 							lang = getOption('ilostat_lang', 'en'), 
 							search = getOption('ilostat_search', 'none'), 
 							filters = getOption('ilostat_filter', 'none'),
-							fixed = getOption('ilostat_fixed', TRUE)) {
+							fixed = getOption('ilostat_fixed', TRUE), 
+							quiet = getOption('ilostat_quiet', FALSE)) {
   
   
-  set_ilostat_toc(segment, lang)
+  set_ilostat_toc(segment, lang, quiet)
   
   y <- get(paste0(".ilostatTOC", segment, lang), envir = .ilostatEnv) 
   
@@ -124,12 +127,12 @@ get_ilostat_toc <- function(segment = getOption('ilostat_segment', 'indicator'),
 }
 
 
-set_ilostat_toc <- function(segment, lang) {
+set_ilostat_toc <- function(segment, lang, quiet) {
   toc_name <- paste0(".ilostatTOC", segment, lang)
 
   if (!exists(toc_name, envir = .ilostatEnv)) {
     url <- paste0(ilostat_url(), segment, "/table_of_contents_", lang, ".rds")
-    message("Trying TOC URL '", url, "'")
+    if(!quiet) message("Trying toc URL '", url, "'")
 
     # Build User-Agent
     ua <- build_user_agent()
@@ -143,7 +146,7 @@ set_ilostat_toc <- function(segment, lang) {
       stop("Table of contents for segment '", segment, "' and lang '", lang, "' not available")
     }
 
-    # Save and read TOC
+    # Save and read toc
     tmpfile <- tempfile(fileext = ".rds")
     writeBin(resp_body_raw(resp), tmpfile)
 

@@ -6,7 +6,7 @@
 #'   \itemize{
 #'     \item{"dataexplorer"}: Quickly find, filter, pivot, and download ILOSTAT data.
 #'     \item{"microquery"}: Explore data availability and create custom queries from the ILO Harmonized Microdata Collection. Users can select variables, filters, and indicators to generate tailored datasets.
-#'     \item{"regionalaggregate"}: Generate custom regional estimates by defining or selecting country groupings. The app automatically aggregates country-level modeled data for selected indicators.
+#'     \item{"regionalaggregate"}: Generate custom regional estimates by defining or selecting country groupings. The app automatically aggregates country-level modelled data for selected indicators.
 #'   }
 #' @author David Bescond \email{bescond@ilo.org}
 #' @references

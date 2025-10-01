@@ -1,4 +1,4 @@
-#' @title Switch Ilostat codes and labels
+#' @title Switch ilostat codes and labels
 #' @description Gets definitions/labels for ilostat codes from ilostat dictionaries.
 #' @param x A character or a factor vector or a data_frame to labelled. 
 #' @param dic  A string (vector) naming ilostat dictionary or dictionaries.

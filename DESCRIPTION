@@ -1,5 +1,6 @@
 Package: Rilostat
 Type: Package
+Language: en-GB
 Title: R Interface to ILOSTAT Open Data
 Version: 2.3.3
 Date: 2025-09-30
@@ -29,7 +30,11 @@ Imports:
     httr2,
     data.table
 Suggests:
-    shiny
+    shiny,
+	plotrix,
+	ggplot2,
+	plotly,
+	knitr
 URL: https://ilostat.github.io/Rilostat/
 BugReports: https://github.com/ilostat/Rilostat/issues
 RoxygenNote: 7.3.3

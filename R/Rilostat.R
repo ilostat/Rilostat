@@ -93,7 +93,7 @@ filters_ilostat <- function(
 
     names(filters) <- tolower(names(filters)) # not capital sensitive
 
-    # Assuming ilostat_cols_ref is available internally (from R/data-internal.R)
+    
     names(filters) <- plyr::mapvalues(names(filters),
                                       from = c('geo', 'geo.l', 'sou', 'sou.l', 'ind', 'ind.l', 'sex', 'sex.l', 'cl1', 'cl1.l', 'cl2', 'cl2.l', 't', 'val', 'flag', 'ncol', 'ncl', 'ncl.l', 'nind', 'nind.l', 'nsou', 'nsou.l', 'tf', 'tt', 'f', 'f.l'),
                                       to = c(ilostat_cols_ref, 'timefrom', 'timeto', 'freq', 'freq.label'), warn_missing = FALSE)

@@ -1,4 +1,4 @@
-#' @title Read Ilostat Dictionary
+#' @title Read ilostat Dictionary
 #' @description Downloads one ilostat dictionary from ilostat \url{https://ilostat.ilo.org} via bulk download facility 
 #' \url{https://ilostat.ilo.org/data/bulk/}.
 #' @details For a given coded variable from ilostat \url{https://ilostat.ilo.org/}.
@@ -7,6 +7,8 @@
 #' @param dic A character, dictionary for the variable to be downloaded,
 #' @param lang a character, code for language. Available are \code{"en"} (default), 
 #'        \code{"fr"} and \code{"es"}. Can be set also with options(ilostat_lang = 'fr'),
+#' @param quiet a logical, if \code{TRUE} , don't return message from processing, \code{FALSE} (default).
+#' 			Can be set also with options(ilostat_quiet = TRUE), 
 #' @return tibble with two columns: code names and full names.
 #' @seealso \code{\link{label_ilostat}}, \code{\link{get_ilostat}}.
 #' @keywords utilities database
@@ -14,8 +16,6 @@
 #' @references
 #' See citation("Rilostat")
 #' ilostat bulk download facility user guidelines 
-#' \url{https://webapps.ilo.org/ilostat-files/WEB_bulk_download/ILOSTAT_BulkDownload_Guidelines.pdf}
-#' ilostat bulk download facility main page 
 #' \url{https://ilostat.ilo.org/data/bulk/}
 #' @examples
 #' \dontrun{
@@ -27,7 +27,8 @@
 #' @export
 
 get_ilostat_dic <- function(dic,
-                            lang = getOption("ilostat_lang", "en")) {
+                            lang = getOption("ilostat_lang", "en"), 
+							quiet = getOption('ilostat_quiet', FALSE)) {
 
   dictlang <- paste0(tolower(dic), "_", tolower(lang))
 
@@ -35,7 +36,7 @@ get_ilostat_dic <- function(dic,
 
     # Build URL for API dictionary
     url <- paste0(ilostat_url(), "dic/", tolower(dic), "_", tolower(lang), ".rds")
-    message("Trying dictionary URL '", url, "'")
+    if(!quiet) message("Trying dictionary URL '", url, "'")
 
     # Build User-Agent
     ua <- build_user_agent()

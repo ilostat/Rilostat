@@ -6,7 +6,7 @@ output:
 
 # Rilostat 2.3.3
 
-* better header, better cahche clean up
+* better header, better cache clean up
 
 # Rilostat 2.3.0
 
@@ -18,7 +18,7 @@ output:
 
 # Rilostat 2.1.0
 
-* use ilosta API via https://rplumber.ilo.org/
+* use ilostat API via https://rplumber.ilo.org/
 
 # Rilostat 2.0.0
 
@@ -71,9 +71,9 @@ output:
 
 * fixed .onload warnings
 * reviewed import packages version
-* fixed sdmx codelist annotation multilang issues
+* fixed sdmx codelist annotation multi lang issues
 * revised import package list and version
-* fixed tuto mapper error
+* fixed tutorial mapper error
 
 # Rilostat 0.1
 
