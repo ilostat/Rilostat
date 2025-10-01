@@ -27,7 +27,7 @@ this function use the max of the corresponding grouping so it is
 	which is no longer a distribution.
 
 	In addition, distribution is only applicable for indicators with Number of persons (usually in thousands), 
-	So plse do not distribute ratios, earnings, hours of works, CPI, GDP etc ... no warning will prevent for that
+	So please do not distribute ratios, earnings, hours of works, CPI, GDP etc ... no warning will prevent for that
 	if doubts use distribution from get_ilostat() instead of, warnings will help you.
 }
 \examples{

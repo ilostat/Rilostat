@@ -2,14 +2,15 @@
 % Please edit documentation in R/get_ilostat_toc.R
 \name{get_ilostat_toc}
 \alias{get_ilostat_toc}
-\title{Read Ilostat Table of Contents}
+\title{Read ilostat Table of Contents}
 \usage{
 get_ilostat_toc(
   segment = getOption("ilostat_segment", "indicator"),
   lang = getOption("ilostat_lang", "en"),
   search = getOption("ilostat_search", "none"),
   filters = getOption("ilostat_filter", "none"),
-  fixed = getOption("ilostat_fixed", TRUE)
+  fixed = getOption("ilostat_fixed", TRUE),
+  quiet = getOption("ilostat_quiet", FALSE)
 )
 }
 \arguments{
@@ -31,6 +32,9 @@ filters detect on variables.}
 
 \item{fixed}{a logical, if \code{TRUE} (default), pattern is a string to be matched as is,
 Change to \code{FALSE} if more complex regex matching is needed.}
+
+\item{quiet}{a logical, if \code{FALSE} , return message from processing, \code{TRUE} (default).
+Can be set also with options(ilostat_quiet = TRUE),}
 }
 \value{
 A tibble with ten columns depending of the segment: indicator or ref_area
@@ -52,10 +56,10 @@ Download one table of contents from ilostat \url{https://ilostat.ilo.org} via bu
 \url{https://ilostat.ilo.org/data/bulk/}.
 }
 \details{
-The TOC in English by indicator is downloaded from \url{https://webapps.ilo.org/ilostat-files/WEB_bulk_download/indicator/table_of_contents_en.csv}. 
+The toc in English by indicator is downloaded from ilostat API \url{https://rplumber.ilo.org/__docs__/#get-/metadata/toc/indicator/}. 
 The values in column 'id' should be used to download a selected dataset.
 
-The TOC in English by ref_area is downloaded from \url{https://webapps.ilo.org/ilostat-files/WEB_bulk_download/ref_area/table_of_contents_en.csv}. 
+The toc in English by ref_area is downloaded from ilostat API \url{https://rplumber.ilo.org/__docs__/#get-/metadata/toc/ref_area/}. 
 The values in column 'id' should be used to download a selected dataset.
 }
 \examples{
@@ -82,14 +86,12 @@ The values in column 'id' should be used to download a selected dataset.
  head(toc)
  toc <- get_ilostat_toc(search = 'youth|adult', fixed = FALSE)
  head(toc)
- toc <- get_ilostat_toc(search = c('youth','adult'), fixed = FALSE)
- head(toc)
 ##
 }
 }
 \references{
 See citation("Rilostat")
-ilostat bulk download facility user guidelines \url{https://webapps.ilo.org/ilostat-files/WEB_bulk_download/ILOSTAT_BulkDownload_Guidelines.pdf}
+ilostat bulk download facility user guidelines \url{https://ilostat.ilo.org/data/bulk/}
 }
 \seealso{
 \code{\link{get_ilostat}}.

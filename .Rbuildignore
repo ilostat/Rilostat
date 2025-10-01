@@ -5,6 +5,7 @@
 README.Rmd
 # pkgdown
 docs
+inst
 vignettes
 # Git related
 ./.git*

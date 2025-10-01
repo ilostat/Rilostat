@@ -32,6 +32,7 @@ navbar:
     href: news/index.html
   right:
   - icon: fa-github fa-lg
+    aria-label: "GitHub repository"
     href: https://github.com/ilostat/Rilostat
 development:
   mode: auto

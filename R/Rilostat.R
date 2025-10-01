@@ -22,7 +22,7 @@
 #' \url{https://webapps.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf}
 #'
 #' @keywords internal
-#' @importFrom dplyr %>% select filter mutate summarise distinct group_by_at across contains bind_rows select_at mutate_if where
+#' @importFrom dplyr %>% select filter mutate summarise distinct group_by_at across contains bind_rows select_at mutate_if where ungroup group_by
 #' @importFrom stringr str_replace str_c str_sub str_detect str_split fixed
 #' @importFrom readr read_csv col_character col_double cols read_rds read_lines
 #' @importFrom plyr llply ldply mapvalues
@@ -93,7 +93,7 @@ filters_ilostat <- function(
 
     names(filters) <- tolower(names(filters)) # not capital sensitive
 
-    # Assuming ilostat_cols_ref is available internally (from R/data-internal.R)
+    
     names(filters) <- plyr::mapvalues(names(filters),
                                       from = c('geo', 'geo.l', 'sou', 'sou.l', 'ind', 'ind.l', 'sex', 'sex.l', 'cl1', 'cl1.l', 'cl2', 'cl2.l', 't', 'val', 'flag', 'ncol', 'ncl', 'ncl.l', 'nind', 'nind.l', 'nsou', 'nsou.l', 'tf', 'tt', 'f', 'f.l'),
                                       to = c(ilostat_cols_ref, 'timefrom', 'timeto', 'freq', 'freq.label'), warn_missing = FALSE)
@@ -154,46 +154,6 @@ filters_ilostat <- function(
 .ilostatEnv <- new.env()
 
 
-# --- Internal Helper: Fetch App Code via HTTP (Uses httr2 style) ---
-
-#' @title Fetch remote R code file with traceable headers
-#' @description Fetches the content of a Shiny app file (UI, Server, or Global)
-#'              from the ILOSTAT server using a custom User-Agent header.
-#' @param app_name The name of the application directory (e.g., "dataexplorer").
-#' @param file_name The specific file to retrieve (e.g., "UI.r", "SERVER.r").
-#' @return A single character string containing the file content.
-#' @keywords internal
-fetch_app_file <- function(app_name, file_name) {
-  # 1. Construct the full URL
-  url <- paste0(ilostat_url(), "apps/", app_name, "/", file_name)
-  message("Trying URL '", url, "'")
-
-  # 2. Build User-Agent with platform + OS
-  ua <- build_user_agent()
-
-  # 3. Perform request with User-Agent
-  resp <- httr2::request(url) |>
-    httr2::req_headers(`User-Agent` = ua) |>
-    httr2::req_perform()
-
-  # 4. Check response status
-  if (httr2::resp_status(resp) == 200) {
-    # 5. Extract content as a single string (R code)
-    code_string <- httr2::resp_body_string(resp)
-    return(code_string)
-  } else {
-    # Log and stop on failure
-    error_message <- paste0(
-      "Failed to download Shiny app file '", file_name, "' for app '", app_name, "'.\n",
-      "URL: ", url, "\n",
-      "HTTP Status: ", httr2::resp_status(resp), " (", httr2::resp_status_desc(resp), ")"
-    )
-    stop(error_message, call. = FALSE)
-  }
-}
-
-
-
 #' Internal function to run Shiny apps stored remotely.
 #'
 #' Downloads and executes the GLOBAL.R, UI.R, and SERVER.R files for a given app.
@@ -205,19 +165,19 @@ fetch_app_file <- function(app_name, file_name) {
 
   production_status <- FALSE
 
-  myGlobal <- fetch_app_file(name, "GLOBAL.r")
-  myUi     <- fetch_app_file(name, "UI.r")
-  myServer <- fetch_app_file(name, "SERVER.r")
-
+	myGlobal 	<- read_lines(paste0(ilostat_url(), 'apps/',name,'/GLOBAL.r'))
+	myUi 		<- read_lines(paste0(ilostat_url(), 'apps/',name,'/UI.r'))
+	myServer 	<- read_lines(paste0(ilostat_url(), 'apps/',name,'/SERVER.r'))
+ 
   # Execute the Shiny app
   shiny::runApp(
     appDir  = list(
-      global = eval(parse(text = myGlobal)),
+      global =  eval(parse(text = myGlobal)),
       ui = function() {
-        eval(parse(text = myUi))
+        eval(parse(text = myUi)) 
       },
       server = function(input, output, session) {
-        eval(parse(text = myServer))
+         eval(parse(text = myServer)) 
       }
     ),
     port = 3838,

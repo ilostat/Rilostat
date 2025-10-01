@@ -2,7 +2,7 @@
 % Please edit documentation in R/label_ilostat.R
 \name{label_ilostat}
 \alias{label_ilostat}
-\title{Switch Ilostat codes and labels}
+\title{Switch ilostat codes and labels}
 \usage{
 label_ilostat(
   x,

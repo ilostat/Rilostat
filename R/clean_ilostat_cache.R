@@ -1,4 +1,4 @@
-#' @title Clean Ilostat Cache
+#' @title Clean ilostat Cache
 #' @description Deletes all cache files from the your ilostat cache directory.
 #'              See \code{\link{get_ilostat}} for more on cache.
 #' @param cache_dir A character, path to a cache directory. The directory has to exist.

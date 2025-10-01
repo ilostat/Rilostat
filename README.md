@@ -22,8 +22,7 @@ ILOSTAT’s website provides immediate access to all its data and related
 metadata through different ways. Basic users can simply view the desired
 data online or download it in Excel or csv formats. More advanced users
 can take advantage of ILOSTAT’s well-structured [bulk download
-facility](https://ilostat.ilo.org/data/bulk/) ([user
-guide](https://webapps.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf)).
+facility](https://ilostat.ilo.org/data/bulk/).
 
 The ilostat R package (`'Rilostat'`) was designed to give data users the
 ability to access the ILOSTAT database, search for data, rearrange the
@@ -36,8 +35,7 @@ required.
 
 - Provides access to all annual, quarterly, and monthly data available
   via the ILOSTAT [bulk download
-  facility](https://ilostat.ilo.org/data/bulk/) ([user
-  guide](https://webapps.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf))
+  facility](https://ilostat.ilo.org/data/bulk/)
 - Allows to search for and download data and related metadata in
   English, French and Spanish
 - Gives the ability to return `POSIXct` dates for easy integration into
@@ -88,7 +86,7 @@ Contributions are very welcome:
 - [Use issue tracker](https://github.com/ilostat/Rilostat/issues) for
   feedback and bug reports.
 
-- [Star us on the Github page](https://github.com/ilostat/Rilostat)
+- [Star us on the github page](https://github.com/ilostat/Rilostat)
 
 ## Permission to reproduce ILO publication and data
 
@@ -97,6 +95,4 @@ non-commercial purposes and within established limits. However, you may
 need to submit a formal request in certain circumstances. for more
 information please consult:
 
-<https://www.ilo.org/global/copyright>
-
-<https://www.ilo.org/global/copyright/request-for-permission>
+<https://www.ilo.org/rights-and-permissions>

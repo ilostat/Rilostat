@@ -2,15 +2,22 @@
 % Please edit documentation in R/get_ilostat_dic.R
 \name{get_ilostat_dic}
 \alias{get_ilostat_dic}
-\title{Read Ilostat Dictionary}
+\title{Read ilostat Dictionary}
 \usage{
-get_ilostat_dic(dic, lang = getOption("ilostat_lang", "en"))
+get_ilostat_dic(
+  dic,
+  lang = getOption("ilostat_lang", "en"),
+  quiet = getOption("ilostat_quiet", FALSE)
+)
 }
 \arguments{
 \item{dic}{A character, dictionary for the variable to be downloaded,}
 
 \item{lang}{a character, code for language. Available are \code{"en"} (default), 
 \code{"fr"} and \code{"es"}. Can be set also with options(ilostat_lang = 'fr'),}
+
+\item{quiet}{a logical, if \code{FALSE} , return message from processing, \code{TRUE} (default).
+Can be set also with options(ilostat_quiet = TRUE),}
 }
 \value{
 tibble with two columns: code names and full names.
@@ -35,8 +42,6 @@ For a given coded variable from ilostat \url{https://ilostat.ilo.org/}.
 \references{
 See citation("Rilostat")
 ilostat bulk download facility user guidelines 
-\url{https://webapps.ilo.org/ilostat-files/WEB_bulk_download/ILOSTAT_BulkDownload_Guidelines.pdf}
-ilostat bulk download facility main page 
 \url{https://ilostat.ilo.org/data/bulk/}
 }
 \seealso{

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_ilostat.R
 \name{get_ilostat}
 \alias{get_ilostat}
-\title{Read Ilostat Data}
+\title{Read ilostat Data}
 \usage{
 get_ilostat(
   id,
@@ -19,7 +19,7 @@ get_ilostat(
   cache_format = getOption("ilostat_cache_format", "rds"),
   back = getOption("ilostat_back", TRUE),
   cmd = getOption("ilostat_cmd", "none"),
-  quiet = getOption("ilostat_quiet", FALSE)
+  quiet = getOption("ilostat_quiet", TRUE)
 )
 }
 \arguments{
@@ -105,8 +105,6 @@ Download datasets from ilostat \url{https://ilostat.ilo.org} via bulk download f
   bulk download facility. 
 
   The bulk download facility is the fastest method to download whole datasets.
-  It is also often the only way as the sdmx API has limitation of maximum 
-  300 000 records at the same time and whole datasets usually exceeds that. 
 
   By default datasets from the bulk download facility are cached as they are
   often rather large. 

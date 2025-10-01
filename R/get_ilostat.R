@@ -1,4 +1,4 @@
-#' @title Read Ilostat Data
+#' @title Read ilostat Data
 #' @description Download datasets from ilostat \url{https://ilostat.ilo.org} via bulk download facility 
 #' \url{https://ilostat.ilo.org/data/bulk/}.
 #' @param id A code name for the dataset of interest.
@@ -61,8 +61,6 @@
 #'   bulk download facility. 
 #' 
 #'   The bulk download facility is the fastest method to download whole datasets.
-#'   It is also often the only way as the sdmx API has limitation of maximum 
-#'   300 000 records at the same time and whole datasets usually exceeds that. 
 #'
 #'   By default datasets from the bulk download facility are cached as they are
 #'   often rather large. 
@@ -152,7 +150,7 @@ get_ilostat <- function(id,
 						cache_format = getOption('ilostat_cache_format', 'rds'),
 						back = getOption('ilostat_back', TRUE),
 						cmd = getOption('ilostat_cmd', 'none'),
-						quiet = getOption('ilostat_quiet', FALSE)){
+						quiet = getOption('ilostat_quiet', TRUE)){
 
   # get multi id from tibble
   if (is_tibble(id)) { 
@@ -590,10 +588,10 @@ delete_old_cache <- function(cache_dir, new_file_path, quiet) {
 
   # Step 4: Delete the matched files.
   if (length(files_to_delete) > 0) {
-    message("Deleting the following old cache files:\n", paste(files_to_delete, collapse = "\n"))
+    if(! quiet) message("Deleting the following old cache files:\n", paste(files_to_delete, collapse = "\n"))
     file.remove(files_to_delete)
   } else {
-    message("No old cache files found to delete for this segment-id.")
+    if(! quiet) message("No old cache files found to delete for this segment-id.")
   }
 
   invisible(files_to_delete)
