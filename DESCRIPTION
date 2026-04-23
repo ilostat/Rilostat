@@ -1,8 +1,9 @@
 Package: Rilostat
 Type: Package
-Title: R Interface to ILOSTAT Open Data
-Version: 2.3.3
-Date: 2025-09-30
+Language: en-GB
+Title: Access and Manipulation of ILOSTAT Labour Statistics
+Version: 2.5.0
+Date: 2026-04-23
 Authors@R: c(
   person("David", "Bescond", role = c("aut", "cre"),
          email = "bescond@ilo.org",
@@ -10,27 +11,40 @@ Authors@R: c(
   person("Mabelin", "Villarreal-Fuentes", role = "ctb",
          email = "villarreal-fuentes@ilo.org",
          comment = c(ORCID = "0000-0001-5644-5760")),
-  person("ILO", "Department of Statistics", role = c("cph", "fnd"),
+  person("International Labour Organization", role = c("cph", "fnd"),
          email = "ilostat@ilo.org")
 		)
 Maintainer: David Bescond <bescond@ilo.org>
-Description: Provides tools to access, search, and manipulate ILO's ilostat database,
-  including bulk download of statistical data, dictionary lookups, and table of contents.
+Description: Provides functions to access and manipulate data from the
+    ILOSTAT database <https://ilostat.ilo.org>, the International Labour
+    Organization's repository of labour statistics. Supports bulk download
+    of datasets, metadata retrieval, and tools for filtering, reshaping,
+    and analysing data.
 License: BSD_2_clause + file LICENSE
 Depends:
-    R (>= 4.4.0)
+    R (>= 4.2.0)
 Imports:
+    data.table (>= 1.15.0),
     dplyr (>= 1.1.4),
-    stringr (>= 1.5.2),
+    httr2 (>= 1.0.0),
+    haven (>= 2.5.0),
+    rlang (>= 1.1.0),
     readr (>= 2.1.5),
+    stringr (>= 1.5.2),
     tibble (>= 3.3.0),
-    plyr,
-    haven,
-    httr2,
-    data.table
+	tidyselect (>= 1.2.0)
 Suggests:
-    shiny
-URL: https://ilostat.github.io/Rilostat/
+    ggplot2,
+    knitr,
+    plotly,
+    plotrix,
+    rmarkdown,
+    shiny,
+    testthat (>= 3.0.0)
+URL: https://ilostat.github.io/Rilostat/,
+     https://github.com/ilostat/Rilostat
 BugReports: https://github.com/ilostat/Rilostat/issues
 RoxygenNote: 7.3.3
 Encoding: UTF-8
+Config/testthat/edition: 3
+LazyData: true

@@ -1,17 +1,13 @@
 ---
-title: "Rilostat"
+title: "Accessing ILOSTAT Data with Rilostat"
 subtitle: "Bulk download in ILOSTAT:"
 author: "ILO Department of Statistics"
 date: "`r Sys.Date()`"
-output: 
-  rmarkdown::html_vignette:
-    toc: true
-vignette:  >
-  %\VignetteIndexEntry{Rilostat}
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Accessing ILOSTAT Data with Rilostat}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-editor_options: 
-chunk_output_type: console
 ---
 
 
@@ -33,14 +29,14 @@ wages, working time and labour productivity, to name a few. It includes time ser
 regional and global estimates; and even projections of the main labour market indicators.
 
 ILOSTAT's website provides immediate access to all its data and related metadata through different ways. Basic users can simply view the desired data online or download it in Excel or csv formats. 
-More advanced users can take advantage of ILOSTAT's well-structured [bulk download facility](https://ilostat.ilo.org/data/bulk/) ([user guide](https://www.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf)), or the SDMX web service  ([user guide](https://www.ilo.org/ilostat-files/Documents/SDMX_User_Guide.pdf)).
+More advanced users can take advantage of ILOSTAT's well-structured [bulk download facility](https://ilostat.ilo.org/data/bulk/).
 
 The ilostat R package (`'Rilostat'`) was designed to give data users the ability to access the ILOSTAT database, search for data, rearrange the information as needed, download it in the desired format, and 
 make various data visualizations, all in a programmatic and replicable manner, with the possibility of quickly re-running the queries as required.
 
 #### Main features of the ilostat R package
 
-  - Provides access to all annual, quarterly, and monthly data available via the ILOSTAT [bulk download facility](https://ilostat.ilo.org/data/bulk/) ([user guide](https://www.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf))
+  - Provides access to all annual, quarterly, and monthly data available via the ILOSTAT [bulk download facility](https://ilostat.ilo.org/data/bulk/)
   
   - Allows to search for and download data and related metadata in English, French and Spanish
   
@@ -51,15 +47,12 @@ make various data visualizations, all in a programmatic and replicable manner, w
   - Gives immediate access to the most recent updates
   
   - Allows for `grep`-style searching for data descriptions and names
-  
-  - Provides access to the ILOSTAT catalogue of related descriptive metadata ([user guide](https://www.ilo.org/ilostat-files/Documents/SDMX_User_Guide.pdf))
-
 
 #### Acknowledgements
 
 The developer of this package drew extensive inspiration from the [eurostat R package](https://CRAN.R-project.org/package=eurostat) and its related documentation:
 
-  - [Retrieval and Analysis of Eurostat Open Data with the eurostat Package](https://journal.r-project.org/archive/2017/RJ-2017-019/RJ-2017-019.pdf) - [Leo Lahti](https://github.com/antagomir), [Przemyslaw Biecek](https://github.com/pbiecek), [Markus Kainu](https://github.com/muuankarski) and [Janne Huovari](https://github.com/jhuovari). R Journal 9(1), 385-392, 2017.
+  - [Retrieval and Analysis of Eurostat Open Data with the eurostat Package](https://journal.r-project.org/articles/RJ-2017-019/RJ-2017-019.pdf) - [Leo Lahti](https://github.com/antagomir), [Przemyslaw Biecek](https://github.com/pbiecek), [Markus Kainu](https://github.com/muuankarski) and [Janne Huovari](https://github.com/jhuovari). R Journal 9(1), 385-392, 2017.
 
 # Installation
 
@@ -91,20 +84,13 @@ if(!require(devtools)){install.packages('devtools')}
 install_github("ilostat/Rilostat")
 ```
 
-The ilostat R package (`'Rilostat'`) includes the following functions:
-
-```{r, eval=TRUE}
-require(Rilostat)
-as.data.frame(ls("package:Rilostat"))
-
-```
 
 ```{r, echo=FALSE, eval=TRUE}
 options(ilostat_quiet = TRUE)
 ```
 
 We do not expect to update the ilostat R package too often, but based on questions and remarks from ILOSTAT data users, we will progressively create more examples, 
-tutorials, demos and apps. Please visite the [Rilostat package website](https://ilostat.github.io/Rilostat/).
+tutorials, demos and apps. Please visit the [Rilostat package website](https://ilostat.github.io/Rilostat/).
 
 
 # Search for data
@@ -116,7 +102,7 @@ facility and returns the indicators matching your query. `get_ilostat_toc(segmen
 To access the table of contents of all available indicators in ILOSTAT (by indicator):
 
 ```{r, eval=TRUE}
-toc <- get_ilostat_toc()
+toc <- get_ilostat_toc( quiet = TRUE)
 
 ```
 
@@ -135,7 +121,7 @@ For instance, to access the table of contents of all available datasets by refer
 <BR>
 
 ```{r, eval=TRUE}
-toc <- get_ilostat_toc(segment = 'ref_area', lang = 'es')
+toc <- get_ilostat_toc(segment = 'ref_area', lang = 'es', quiet = TRUE)
 ```
 
 <BR>
@@ -150,7 +136,7 @@ For example, searching for the word "bargaining" will return the indicators cont
 
 
 ```{r, eval=TRUE}
-toc <- get_ilostat_toc(search = 'bargaining')
+toc <- get_ilostat_toc(search = 'bargaining', quiet = TRUE)
 ```
 
 <BR>
@@ -167,7 +153,7 @@ For instance, to look for datasets with annual data for either Albania or France
 
 ```{r, eval=TRUE}
 toc <- get_ilostat_toc(segment = 'ref_area', search = c('France|Albania', 'Annual'), 
-											fixed = FALSE)
+											fixed = FALSE, quiet = TRUE)
 ```
 
 <BR>
@@ -183,7 +169,7 @@ For example, if you know beforehand you want data only from ILOSTAT's Short Term
 interested in monthly data (code "M") you can simply do:
 
 ```{r, eval=TRUE}
-toc <-  dplyr::filter(get_ilostat_toc(), collection == 'STI', freq == 'M')
+toc <-  dplyr::filter(get_ilostat_toc(), freq == 'M', quiet = TRUE)
 ```
 
 <BR>
@@ -208,7 +194,7 @@ code of the dataset desired (indicator_frequency or ref_area_frequency).
 If you want to access annual data for indicator code UNE_2UNE_SEX_AGE_NB, you should type:
 
 ```{r, eval=TRUE}
-dat <- get_ilostat(id = 'UNE_2UNE_SEX_AGE_NB_A', segment = 'indicator') 
+dat <- get_ilostat(id = 'UNE_2UNE_SEX_AGE_NB_A', segment = 'indicator', quiet = TRUE) 
 ```
 
 <BR>
@@ -220,7 +206,7 @@ knitr::kable(head(dat[1:3,1:7]),caption = "Table 2a. Extract, 'Annual unemployme
 If you want to access all annual data available in ILOSTAT for Armenia:
 
 ```{r, eval=TRUE}
-dat <- get_ilostat(id = 'ARM_A', segment = 'ref_area') 
+dat <- get_ilostat(id = 'ARM_A', segment = 'ref_area', quiet = TRUE) 
 
 ```
 
@@ -238,7 +224,7 @@ It is also possible to download multiple datasets at once, simply by setting the
 ids in a specific column:
 
 ```{r, eval=TRUE}
-dat <- get_ilostat(id = c('AFG_A', 'TTO_A'), segment = 'ref_area') 
+dat <- get_ilostat(id = c('AFG_A', 'TTO_A'), segment = 'ref_area',quiet = TRUE)
 
 dplyr::count(dat, ref_area)
 
@@ -247,7 +233,7 @@ dplyr::count(dat, ref_area)
 <BR>
 
 ```{r, eval=TRUE}
-toc <- get_ilostat_toc(search = 'CPI_')
+toc <- get_ilostat_toc(search = 'CPI_', quiet = TRUE)
 
 dat <- get_ilostat(id = toc, segment = 'indicator', quiet = TRUE) 
 
@@ -272,19 +258,13 @@ character vector with the following syntax:
   For instance, the following will return quarterly unemployment data by sex and age, with the time dimension in numeric format:
 
 ```{r, eval=TRUE}
-dat <- get_ilostat(id = 'UNE_TUNE_SEX_AGE_NB_Q', time_format = 'num') 
+dat <- get_ilostat(id = 'UNE_TUNE_SEX_AGE_NB_Q', time_format = 'num', quiet = TRUE) 
 ```
 
 <BR>
 
 ```{r, echo=FALSE, eval=TRUE}
 knitr::kable(dat[1:3, 1:7],caption = "Table 3a. Extract, 'Quarterly unemployment by sex and age'")
-```
-
-The following will return monthly time-related underemployment data by sex and age, with the time dimension in POSIXct date format:
-
-```{r, eval=TRUE}
-dat <- get_ilostat(id = 'TRU_TTRU_SEX_AGE_NB_M', time_format = 'date') 
 ```
 
 <BR>
@@ -302,7 +282,7 @@ arguments you can save it in other formats, such as `csv`, `dta`, `sav`, and `sa
 
 
 ```{r,eval=FALSE}
-dat <- get_ilostat(id = 'TRU_TTRU_SEX_AGE_NB_M', cache_dir = 'c:/temp', cache_format = 'dta') 
+dat <- get_ilostat(id = 'TRU_TTRU_SEX_AGE_NB_M', cache_dir = 'c:/temp', cache_format = 'dta', quiet = TRUE) 
 ```
 
 These arguments can also be set using `options(ilostat_cache_dir = 'C:/temp')` and `options(ilostat_cache_format = 'dta')`.
@@ -316,7 +296,7 @@ when downloading large amounts of data or datasets.
 
 ```{r, eval=FALSE}
 get_ilostat(id = get_ilostat_toc(search = 'SDG'), 	cache_dir = 'c:/temp', cache_format = 'dta', 
-													back = FALSE) 
+													back = FALSE, quiet = TRUE)
 ```
 
 # Filter data
@@ -327,47 +307,32 @@ analysis. You can apply several different filters to your datasets, to filter th
 
 ```{r, eval=FALSE}
 options(ilostat_cache_dir = 'C:/temp')
-dat <- get_ilostat(id = 'UNE_2EAP_SEX_AGE_RT_A', filters = list(
+dat <- get_ilostat(id = 'UNE_DEAP_SEX_AGE_RT_A', filters = list(
 													ref_area = c('BRA', 'ZAF'), 
 													sex = 'T', 
-													classif1 = 'AGE_YTHADULT_Y15-24'))
+													classif1 = '_Y15-24'), quiet = TRUE)
 dplyr::count(dat, ref_area, sex, classif1)
 ```
 
 ```{r, echo =FALSE, eval=TRUE}
 # options(ilostat_cache_dir = 'C:/temp')
-dat <- get_ilostat(id = 'UNE_2EAP_SEX_AGE_RT_A', filters = list(
+dat <- get_ilostat(id = 'UNE_DEAP_SEX_AGE_RT_A', filters = list(
 													ref_area = c('BRA', 'ZAF'), 
 													sex = 'T', 
-													classif1 = 'AGE_YTHADULT_Y15-24'))
+													classif1 = '_Y15-24'), quiet = TRUE)
 dplyr::count(dat, ref_area, sex, classif1)
 ```
 
 <BR>
 
-The argument `detail` set a default filter of aggregation. For instance, `detail = 'serieskeysonly'` will return distinct combinations 
-of ref_area/source/indicator/sex/classif1/classif2, whereas `detail = 'dataonly'` will remove the columns 
-obs_status/note_classif/note_indicator/note_source from the dataset and `detail = 'serieskeysonly'` will select the best source 
-(based on the lowest source sort id) at the ref_area/./indicator/sex/classif1/classif2/time levels.
-
-```{r, echo =FALSE, eval=TRUE}
-# options(ilostat_cache_dir = 'C:/temp')
-dat <- get_ilostat(id = 'UNE_2EAP_SEX_AGE_RT_A', filters = list(
-													ref_area = c('BRA', 'ZAF'), 
-													sex = 'M', 
-													classif1 = 'AGE_YTHADULT_Y15'), 
-												detail = 'serieskeysonly')
-```
-
-<BR>
 
 ```{r, eval=FALSE}
 options(ilostat_cache_dir = 'C:/temp')
-dat <- get_ilostat(id = 'UNE_2EAP_SEX_AGE_RT_A', filters = list(
+dat <- get_ilostat(id = 'UNE_DEAP_SEX_AGE_RT_A', filters = list(
 													ref_area = c('BRA', 'ZAF'), 
 													sex = 'M', 
-													classif1 = 'AGE_YTHADULT_Y15'), 
-												detail = 'serieskeysonly')
+													classif1 = '_YGE15'), 
+													quiet = TRUE)
 ```
 
 <BR>
@@ -380,18 +345,18 @@ knitr::kable(head(dat[1:2,]),caption = "Table 4a. Extract, Youth male unemployme
 
 ```{r, echo =FALSE, eval=TRUE}
 # options(ilostat_cache_dir = 'C:/temp')
-dat <- get_ilostat(id = 'UNE_2EAP_SEX_AGE_RT_A', filters = list(ref_area = c('BRA', 'ZAF'), 
+dat <- get_ilostat(id = 'UNE_DEAP_SEX_AGE_RT_A', filters = list(ref_area = c('BRA', 'ZAF'), 
 													sex = 'F', 
-													classif1 = 'AGE_YTHADULT_Y15'), 
-													detail = 'dataonly')
+													classif1 = '_YGE15'), 
+													quiet = TRUE)
 ```
 ```{r, eval=FALSE}
 # options(ilostat_cache_dir = 'C:/temp')
-dat <- get_ilostat(id = 'UNE_2EAP_SEX_AGE_RT_A', filters = list(
+dat <- get_ilostat(id = 'UNE_DEAP_SEX_AGE_RT_A', filters = list(
 													ref_area = c('BRA', 'ZAF'), 
 													sex = 'F', 
-													classif1 = 'AGE_YTHADULT_Y15'), 
-												detail = 'dataonly')
+													classif1 = '_YGE15'), 
+												 quiet = TRUE)
 ```
 
 <BR>
@@ -427,9 +392,9 @@ require(dplyr, quiet = TRUE)
               time_format = 'num', 
               filters = list( ref_area = c('FRA', 'USA', 'DEU'), 
                               sex = 'SEX_M',
-							  classif1 = 'AGE_AGGREGATE_TOTAL',
-							  timefrom = 2005, timeto = 2019))  %>% 
-  select(ref_area, time, obs_value) %>% 
+							  classif1 = '_YGE15',
+							  timefrom = 2005, timeto = 2019), quiet = TRUE)  %>% 
+  distinct(ref_area, time, obs_value) %>% 
   ggplot(aes(x = time, y = obs_value, colour = ref_area)) + 
   geom_line() + 
   ggtitle('Male labour force participation rate in selected countries, 2005-2019') + 
@@ -460,28 +425,23 @@ require(Rilostat)
 if(!require(ggplot2)){install.packages('ggplot2')}
 if(!require(dplyr)){install.packages('dplyr')}
 
-    get_ilostat(id = 'EMP_2EMP_SEX_AGE_CLA_DT_A', 
+    get_ilostat(id = 'EMP_2EMP_SEX_AGE_CLA_NB_A', 
                 filters = list( ref_area = 'ZAF', 
-                                time = '1999', 
+                                time = '2019', 
                                 sex = c('M', 'F'), 
-                                classif1 = c('Y15-24', 'YGE25'))) %>% 
-    filter(!classif2 %in% 'CLA_ECOCLA_TOTAL') %>% 
-    mutate(	sex = 		factor(sex) %>% recode_factor(
-                                'SEX_M' = 'Male', 
-                                'SEX_F' = 'Female'), 
-			classif1 =  factor(classif1) %>% recode_factor(
-                                'AGE_YTHADULT_YGE25' = 'Adult', 
-                                'AGE_YTHADULT_Y15-24' = 'Youth'),
-			classif2 =  factor(classif2) %>% recode_factor(
-                                'CLA_ECOCLA_USDLT2' = '<US$1.9', 
-                                'CLA_ECOCLA_USDGE2LT3' = '>=US$1.9 & <US$3.2', 
-                                'CLA_ECOCLA_USDGE3LT5' = '>=US$3.2 & <US$5.5', 
-                                'CLA_ECOCLA_USDGE5' = '>=US$5.5')) %>% 
-    ggplot(aes(y=obs_value, x=as.factor(classif1), fill=classif2)) +
+                                classif1 = c('Y15-24', 'YGE25')), quiet = TRUE) %>% 
+    group_by(ref_area, source , indicator , sex  , classif1, time) %>% 
+	mutate(obs_value = obs_value / max(obs_value) * 100) %>% 
+	ungroup %>%
+	filter(!classif2 %in% c('CLA_ECOCLA_TOTAL', 'CLA_ECOCLA_USDGE3')) %>% 
+	distinct(obs_value, sex, classif1, classif2) %>% 
+	label_ilostat() %>% 
+	
+    ggplot(aes(y=obs_value, x=as.factor(classif1.label), fill=classif2.label)) +
     geom_bar(stat="identity") +
-    facet_wrap(~as.factor(sex)) + coord_flip() +
+    facet_wrap(~as.factor(sex.label)) + coord_flip() +
     theme(legend.position="top") +
-    ggtitle("Employment by economic class, sex and age, South Africa, 1999") +
+    ggtitle("Employment by economic class, sex and age, South Africa, 2019") +
     labs(x="Age group", y="Distribution of economic class (%)", fill="Economic class : ") + 
 	theme(plot.title = element_text(hjust = 0.5)) + 
     scale_fill_brewer(type = "div")
@@ -490,7 +450,7 @@ if(!require(dplyr)){install.packages('dplyr')}
 
 <BR>
 
-![Employment by economic class, sex and age, South Africa, 1999](./g1_eco.png)
+![Employment by economic class, sex and age, South Africa, 2019](./g1_eco.png)
 
 
 <BR>
@@ -509,24 +469,38 @@ if(!require(dplyr)){install.packages('dplyr')}
 if(!require(plotrix)){install.packages('plotrix')}
 if(!require(stringr)){install.packages('stringr')}
 
-triangle <- get_ilostat(id = c('EIP_WDIS_SEX_AGE_NB_A', 
-                               'UNE_TUNE_SEX_AGE_NB_A', 
-                               'TRU_TTRU_SEX_AGE_NB_A'), 
-                        filters = list(
-                                      ref_area = c('ZAF', 'MNG', 'CHL'), 
-                                      source = 'BA',
-                                      sex = 'SEX_T', 
-                                      classif1 = 'YGE15', 
-                                      time = '2013'),
-                              detail = 'dataonly', 
-                              cmd = "dat %>% select(ref_area, indicator, obs_value)", 
-                              quiet = TRUE) %>%
-            label_ilostat() %>%
-            group_by(ref_area.label) %>%
-            mutate(obs_value = obs_value / sum(obs_value)) %>% ungroup() %>%
-            mutate(indicator.label = indicator.label %>% 
-                                      str_replace(fixed(' by sex and age (thousands)'), '')) %>%
-            spread(indicator.label, obs_value)
+
+triangle <- get_ilostat(
+  id = c(
+    "EIP_WDIS_SEX_AGE_NB_A",
+    "UNE_TUNE_SEX_AGE_NB_A",
+    "TRU_TTRU_SEX_AGE_NB_A"
+  ),
+  filters = list(
+    ref_area = c("ZAF", "MNG", "CHL"),
+    source = "BA",
+    sex = "SEX_T",
+    classif1 = "YGE15",
+    time = "2013"
+  ),
+  quiet = TRUE
+) %>%
+  distinct(ref_area, indicator, obs_value) %>%   # replaces cmd
+  label_ilostat() %>%
+  group_by(ref_area.label) %>%
+  mutate(obs_value = obs_value / sum(obs_value)) %>%
+  ungroup() %>%
+  mutate(
+    indicator.label = str_replace(
+      indicator.label,
+      fixed(" by sex and age (thousands)"),
+      ""
+    )
+  ) %>%
+  pivot_wider(
+    names_from = indicator.label,
+    values_from = obs_value
+  )
 
 par(cex=0.75, mar=c(0,0,0,0))
 positions <- plotrix::triax.plot(
@@ -558,7 +532,7 @@ text(df$x[ind], df$y[ind], df$geo[ind], adj = c(0.5,-1), cex=1.5)
 
 > It is also possible to create maps showing how indicators behave across the world at a given point in time (static maps) or even through time (dynamic maps allowing the user to scroll over the available time period).  
 
-For instance, below we have built a map to see differences across the world in the youth unemployment rate. For this, we have selected data from a compilation which is methodologically robust and consistent across countries to ensure international comparability: the ILO modelled estimates (from November 2017). You can change the legend settings to use the color coding that best suits your data. In our case, the colour scale used allows us to quickly see that youth unemployment rates are particularly high in Southern and Northern Africa.
+For instance, below we have built a map to see differences across the world in the youth unemployment rate. For this, we have selected data from a compilation which is methodologically robust and consistent across countries to ensure international comparability: the ILO modelled estimates (from November 2017). You can change the legend settings to use the colour coding that best suits your data. In our case, the colour scale used allows us to quickly see that youth unemployment rates are particularly high in Southern and Northern Africa.
 
 ```{r, eval=FALSE}
 require(Rilostat)
@@ -566,13 +540,12 @@ if(!require(plotly)){install.packages('plotly')}
 if(!require(dplyr)){install.packages('dplyr')}
 if(!require(stringr)){install.packages('stringr')}
 
-dat <- get_ilostat(id = 'UNE_2EAP_SEX_AGE_RT_A', filters = list(
+dat <- get_ilostat(id = 'UNE_DEAP_SEX_AGE_RT_A', filters = list(
 								time = '2019', 
 								sex = 'SEX_T', 
-								classif1 = 'AGE_YTHADULT_Y15-24'
-								)) %>% 
-			filter(!str_sub(ref_area,1,1) %in% 'X') %>% 
-			select(ref_area, obs_value) %>% 
+								classif1 = '_Y15-24'
+								), quiet = TRUE) %>% 
+			distinct(ref_area, obs_value) %>% 
 			left_join(	Rilostat:::ilostat_ref_area_mapping %>% 
 							select(ref_area, ref_area_plotly)%>% 
 							label_ilostat(code = 'ref_area'), 
@@ -601,7 +574,6 @@ dat %>%
 			len = 0.5
 		) %>%
 		layout(
-		  title = 'Youth unemployment rate in 2019 (ILO modelled estimates, Nov. 2020)', 
 		  geo = list(	
 					showframe = FALSE,  
 					showcoastlines = TRUE,
@@ -613,7 +585,7 @@ dat %>%
 
 <BR>
 
-![Youth unemployment rate in 2019 (ILO modelled estimates, Nov. 2020](./g1_map.png)
+![Youth unemployment rate in 2019](./g1_map.png)
 
 <BR>
 <BR>

@@ -1,4 +1,4 @@
-#' @title Switch Ilostat codes and labels
+#' @title Switch ilostat codes and labels
 #' @description Gets definitions/labels for ilostat codes from ilostat dictionaries.
 #' @param x A character or a factor vector or a data_frame to labelled. 
 #' @param dic  A string (vector) naming ilostat dictionary or dictionaries.
@@ -18,7 +18,7 @@
 #' @references
 #' See citation("Rilostat")
 #' ilostat bulk download facility user guidelines 
-#' \url{https://webapps.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf}
+#' \url{https://ilostat.ilo.org/data/bulk/}
 #' @examples
 #' \dontrun{
 #'  dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A", cache = FALSE)
@@ -92,7 +92,7 @@ label_ilostat <- function(	x,
 	  
 	  order_cols <- c(ref_cols, colnames(y)[!colnames(y) %in% ref_cols])
 	  
-	  y <- select_at(y, .vars = order_cols)
+	  y <- y %>% select(all_of(order_cols))
 	
     }
 	
@@ -104,37 +104,29 @@ label_ilostat <- function(	x,
 
 	if(stringr::str_detect(dic, 'note_')){
 	
-	y <-  as.character(
+		# build dictionary lookup once
+		dict <- setNames(dic_df[[2]], dic_df[[1]])
+
+		# unique values (equivalent to levels(as.factor(x)))
+		ux <- unique(x)
+
+		# compute mapped values
+		mapped <- vapply(
+		  str_split(ux, "_"),
+		  function(z) {
+			paste(dict[z], collapse = " | ")
+		  },
+		  character(1)
+		)
+
+		# final mapping
+		lookup <- setNames(mapped, ux)
+
+		y <- unname(lookup[x])
 			
-			mapvalues(
-			  
-			  as.factor(x),	
-			  
-			  from = levels(as.factor(x)), 
-							
-			  to =  unlist(
-					  
-					  llply(
-					    
-						str_split(levels(as.factor(x)), pattern = "_"),
-						
-						function(z) {
-																			
-						  str_c(dic_df[[2]][match(z, dic_df[[1]])], collapse = " | ")
-																		}
-					  )
-					
-					)
-			
-			, warn_missing = FALSE
-			
-			)
-		  
-		  )
-	
 	} else {
 	
-      # mapvalues
+      # 
      y <- dic_df[[2]][match(x, dic_df[[1]])]  
 
 	  

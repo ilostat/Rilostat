@@ -16,7 +16,7 @@ Package: \tab Rilostat\cr
 Type: \tab Package\cr
 Version: \tab See sessionInfo() or DESCRIPTION file\cr
 Date: \tab 2020-2025\cr
-License: \tab BSD_2_clause + LICENSE\cr
+License: \tab BSD_2_clause + file LICENSE\cr
 LazyLoad: \tab yes\cr
 }
 }
@@ -32,12 +32,13 @@ LazyLoad: \tab yes\cr
 See citation("Rilostat")
 
 ilostat bulk download facility user guidelines
-\url{https://webapps.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf}
+\url{https://ilostat.ilo.org/data/bulk/}
 }
 \seealso{
 Useful links:
 \itemize{
   \item \url{https://ilostat.github.io/Rilostat/}
+  \item \url{https://github.com/ilostat/Rilostat}
   \item Report bugs at \url{https://github.com/ilostat/Rilostat/issues}
 }
 

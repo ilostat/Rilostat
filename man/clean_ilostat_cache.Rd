@@ -2,12 +2,12 @@
 % Please edit documentation in R/clean_ilostat_cache.R
 \name{clean_ilostat_cache}
 \alias{clean_ilostat_cache}
-\title{Clean Ilostat Cache}
+\title{Clean ilostat Cache}
 \usage{
 clean_ilostat_cache(
   cache_dir = getOption("ilostat_cache_dir", file.path(tempdir(), "ilostat")),
   cache_update = getOption("ilostat_cache_update", FALSE),
-  quiet = getOption("ilostat_quiet", FALSE)
+  quiet = getOption("ilostat_quiet", TRUE)
 )
 }
 \arguments{
@@ -36,7 +36,7 @@ clean_ilostat_cache()
 \references{
 See citation("Rilostat")
 ilostat bulk download facility user guidelines 
-\url{https://webapps.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf}
+\url{https://ilostat.ilo.org/data/bulk/}
 }
 \author{
 David Bescond \email{bescond@ilo.org}

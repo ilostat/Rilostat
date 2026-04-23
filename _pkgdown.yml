@@ -18,21 +18,21 @@ reference:
   - Rilostat
 navbar:
   title: ~
-  type: default
   left:
-  - text: Intro
-    href: articles/Rilostat.html
-  - text: Functions
-    href: reference/index.html
-  - text: Vignettes
-    menu:
-    - text: Visualisation
-      href: articles/RilostatVisu.html
-  - text: News
-    href: news/index.html
-  right:
-  - icon: fa-github fa-lg
-    href: https://github.com/ilostat/Rilostat
+    - text: Intro
+      href: articles/Rilostat.html
+    - text: Functions
+      href: reference/index.html
+    - text: News
+      href: news/index.html
+    - text: Article
+      href: articles/index.html
+right:
+    - icon: fa-github fa-lg
+      href: https://github.com/ilostat/Rilostat
+      aria-label: GitHub repository
+    - text: CRAN
+      href: https://cran.r-project.org/package=Rilostat
 development:
   mode: auto
 template:
@@ -42,5 +42,4 @@ template:
       api_key: 5bb9805eecd1b1c2d12958ea75a8e9e8
       index_name: rilostat
     bootswatch: cerulean
-    ganalytics: UA-140141628-1
-
+    ganalytics: G-1MGT4WT12L
