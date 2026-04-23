@@ -45,7 +45,7 @@ The developer of this package drew extensive inspiration from the
 [eurostat R package](https://CRAN.R-project.org/package=eurostat) and
 its related documentation:  
 - [Retrieval and Analysis of Eurostat Open Data with the eurostat
-Package](https://journal.r-project.org/archive/2017/RJ-2017-019/RJ-2017-019.pdf) -
+Package](https://journal.r-project.org/articles/RJ-2017-019/RJ-2017-019.pdf) -
 [Leo Lahti](https://github.com/antagomir), [Przemyslaw
 Biecek](https://github.com/pbiecek), [Markus
 Kainu](https://github.com/muuankarski) and [Janne

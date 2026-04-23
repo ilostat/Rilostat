@@ -25,13 +25,11 @@ https://ilostat.ilo.org/data/bulk/."><!-- Global site tag (gtag.js) - Google Ana
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/Rilostat.html">Intro</a></li>
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Functions</a></li>
-<li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-vignettes" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Vignettes</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-vignettes"><li><a class="dropdown-item" href="../articles/RilostatVisu.html">Visualisation</a></li>
-  </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">News</a></li>
-      </ul><ul class="navbar-nav"><li class="nav-item"><a class="external-link nav-link" href="https://github.com/ilostat/Rilostat" aria-label="GitHub repository"><span class="fa fa-github fa-lg"></span></a></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://cran.r-project.org/package=Rilostat">CRAN</a></li>
+<li class="nav-item"><a class="nav-link" href="../articles/index.html">Article</a></li>
+      </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/ilostat/Rilostat/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -206,24 +204,24 @@ ilostat bulk download facility user guidelines <a href="https://ilostat.ilo.org/
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="co">############# get simple dataset</span></span></span>
-<span class="r-in"><span> <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">get_ilostat</span><span class="op">(</span><span class="st">"UNE_2UNE_SEX_AGE_NB_A"</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">get_ilostat</span><span class="op">(</span><span class="st">"UNE_TUNE_SEX_AGE_NB_A"</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">get_ilostat</span><span class="op">(</span><span class="st">"NZL_Q"</span>, segment <span class="op">=</span> <span class="st">"ref_area"</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"r_cache"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span> <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">get_ilostat</span><span class="op">(</span><span class="st">"UNE_2UNE_SEX_AGE_NB_A"</span>, </span></span>
+<span class="r-in"><span> <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">get_ilostat</span><span class="op">(</span><span class="st">"UNE_TUNE_SEX_AGE_NB_A"</span>, </span></span>
 <span class="r-in"><span>                  cache_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"r_cache"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="clean_ilostat_cache.html">clean_ilostat_cache</a></span><span class="op">(</span>cache_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"r_cache"</span><span class="op">)</span><span class="op">)</span> </span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>ilostat_update <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-in"><span> <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">get_ilostat</span><span class="op">(</span><span class="st">"UNE_2UNE_SEX_AGE_NB_A"</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">get_ilostat</span><span class="op">(</span><span class="st">"UNE_TUNE_SEX_AGE_NB_A"</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>ilostat_update <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>ilostat_cache_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"r_cache"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span> <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">get_ilostat</span><span class="op">(</span><span class="st">"UNE_2UNE_SEX_AGE_NB_A"</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">get_ilostat</span><span class="op">(</span><span class="st">"UNE_TUNE_SEX_AGE_NB_A"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="clean_ilostat_cache.html">clean_ilostat_cache</a></span><span class="op">(</span><span class="op">)</span> </span></span>
 <span class="r-in"><span></span></span>
@@ -235,9 +233,9 @@ ilostat bulk download facility user guidelines <a href="https://ilostat.ilo.org/
 <span class="r-in"><span> <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">get_ilostat</span><span class="op">(</span><span class="va">toc</span>, cache <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="co">#id as a tibble</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">############# get datasets with filters</span></span></span>
-<span class="r-in"><span> <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">get_ilostat</span><span class="op">(</span>id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"UNE_2UNE_SEX_AGE_NB_A"</span>, <span class="st">"EMP_2EMP_SEX_AGE_NB_A"</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span> <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">get_ilostat</span><span class="op">(</span>id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"UNE_TUNE_SEX_AGE_NB_A"</span>, <span class="st">"EMP_TEMP_SEX_AGE_NB_A"</span><span class="op">)</span>, </span></span>
 <span class="r-in"><span>         filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>  ref_area <span class="op">=</span> <span class="st">"FRA"</span>, </span></span>
-<span class="r-in"><span>         classif1 <span class="op">=</span> <span class="st">"AGE_YTHADULT_YGE15"</span>, </span></span>
+<span class="r-in"><span>         classif1 <span class="op">=</span> <span class="st">"_YGE15"</span>, </span></span>
 <span class="r-in"><span>         time <span class="op">=</span> <span class="st">"2016"</span>,</span></span>
 <span class="r-in"><span>         sex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"T"</span>, <span class="st">"SEX_F"</span><span class="op">)</span><span class="op">)</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
@@ -246,14 +244,14 @@ ilostat bulk download facility user guidelines <a href="https://ilostat.ilo.org/
 <span class="r-in"><span><span class="co">############# store in other format</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"ilostat"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span> <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">get_ilostat</span><span class="op">(</span><span class="st">"UNE_2UNE_SEX_AGE_NB_A"</span>, </span></span>
+<span class="r-in"><span> <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">get_ilostat</span><span class="op">(</span><span class="st">"UNE_TUNE_SEX_AGE_NB_A"</span>, </span></span>
 <span class="r-in"><span>                  cache_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"r_cache"</span><span class="op">)</span>, cache_format <span class="op">=</span> <span class="st">"csv"</span><span class="op">)</span></span></span>
-<span class="r-in"><span> <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">get_ilostat</span><span class="op">(</span><span class="st">"UNE_2UNE_SEX_AGE_NB_A"</span>, </span></span>
+<span class="r-in"><span> <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">get_ilostat</span><span class="op">(</span><span class="st">"UNE_TUNE_SEX_AGE_NB_A"</span>, </span></span>
 <span class="r-in"><span>                  cache_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"r_cache"</span><span class="op">)</span>, cache_format <span class="op">=</span> <span class="st">"dta"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">############# advanced manipulation</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span> <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">get_ilostat</span><span class="op">(</span><span class="st">"UNE_2UNE_SEX_AGE_NB_A"</span>, cmd <span class="op">=</span> <span class="st">"dat %&gt;% count(ref_area)"</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">get_ilostat</span><span class="op">(</span><span class="st">"UNE_TUNE_SEX_AGE_NB_A"</span>, cmd <span class="op">=</span> <span class="st">"dat %&gt;% count(ref_area)"</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="label_ilostat.html">label_ilostat</a></span><span class="op">(</span><span class="va">dat</span>, code <span class="op">=</span> <span class="st">"ref_area"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="clean_ilostat_cache.html">clean_ilostat_cache</a></span><span class="op">(</span><span class="op">)</span></span></span>

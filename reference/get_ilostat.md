@@ -175,24 +175,24 @@ David Bescond <bescond@ilo.org>
 ``` r
 if (FALSE) { # \dontrun{
 ############# get simple dataset
- dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A")
+ dat <- get_ilostat("UNE_TUNE_SEX_AGE_NB_A")
  head(dat)
  dat <- get_ilostat("NZL_Q", segment = "ref_area")
  head(dat)
 
  dir.create(file.path(tempdir(), "r_cache"))
- dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A", 
+ dat <- get_ilostat("UNE_TUNE_SEX_AGE_NB_A", 
                   cache_dir = file.path(tempdir(), "r_cache"))
  head(dat)
 
  clean_ilostat_cache(cache_dir = file.path(tempdir(), "r_cache")) 
 
  options(ilostat_update = TRUE)
- dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A")
+ dat <- get_ilostat("UNE_TUNE_SEX_AGE_NB_A")
  head(dat)
  options(ilostat_update = FALSE)
  options(ilostat_cache_dir = file.path(tempdir(), "r_cache"))
- dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A")
+ dat <- get_ilostat("UNE_TUNE_SEX_AGE_NB_A")
 
  clean_ilostat_cache() 
 
@@ -204,9 +204,9 @@ if (FALSE) { # \dontrun{
  dat <- get_ilostat(toc, cache = FALSE) #id as a tibble
 
 ############# get datasets with filters
- dat <- get_ilostat(id = c("UNE_2UNE_SEX_AGE_NB_A", "EMP_2EMP_SEX_AGE_NB_A"), 
+ dat <- get_ilostat(id = c("UNE_TUNE_SEX_AGE_NB_A", "EMP_TEMP_SEX_AGE_NB_A"), 
          filters = list(  ref_area = "FRA", 
-         classif1 = "AGE_YTHADULT_YGE15", 
+         classif1 = "_YGE15", 
          time = "2016",
          sex = c("T", "SEX_F")), quiet = TRUE)
  head(dat)
@@ -215,14 +215,14 @@ if (FALSE) { # \dontrun{
 ############# store in other format
  dir.create(file.path(tempdir(), "ilostat"))
 
- dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A", 
+ dat <- get_ilostat("UNE_TUNE_SEX_AGE_NB_A", 
                   cache_dir = file.path(tempdir(), "r_cache"), cache_format = "csv")
- dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A", 
+ dat <- get_ilostat("UNE_TUNE_SEX_AGE_NB_A", 
                   cache_dir = file.path(tempdir(), "r_cache"), cache_format = "dta")
 
 ############# advanced manipulation
 
- dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A", cmd = "dat %>% count(ref_area)", quiet = TRUE)
+ dat <- get_ilostat("UNE_TUNE_SEX_AGE_NB_A", cmd = "dat %>% count(ref_area)", quiet = TRUE)
  label_ilostat(dat, code = "ref_area")
 
  clean_ilostat_cache()

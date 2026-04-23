@@ -62,7 +62,7 @@ The developer of this package drew extensive inspiration from the
 its related documentation:
 
 - [Retrieval and Analysis of Eurostat Open Data with the eurostat
-  Package](https://journal.r-project.org/archive/2017/RJ-2017-019/RJ-2017-019.pdf) -
+  Package](https://journal.r-project.org/articles/RJ-2017-019/RJ-2017-019.pdf) -
   [Leo Lahti](https://github.com/antagomir), [Przemyslaw
   Biecek](https://github.com/pbiecek), [Markus
   Kainu](https://github.com/muuankarski) and [Janne
@@ -85,23 +85,6 @@ To install the development version, use the following command:
 if(!require(devtools)){install.packages('devtools')}
 install_github("ilostat/Rilostat")
 ```
-
-The ilostat R package (`'Rilostat'`) includes the following functions:
-
-``` r
-require(Rilostat)
-as.data.frame(ls("package:Rilostat"))
-```
-
-    ##   ls("package:Rilostat")
-    ## 1  check_ilostat_version
-    ## 2    clean_ilostat_cache
-    ## 3   distribution_ilostat
-    ## 4            get_ilostat
-    ## 5        get_ilostat_dic
-    ## 6        get_ilostat_toc
-    ## 7          label_ilostat
-    ## 8         runapp_ilostat
 
 We do not expect to update the ilostat R package too often, but based on
 questions and remarks from ILOSTAT data users, we will progressively
@@ -155,7 +138,7 @@ toc <- get_ilostat_toc(segment = 'ref_area', lang = 'es', quiet = TRUE)
 
 | id    | ref_area | ref_area.label | freq | freq.label | data.start | data.end | last.update         | n.records |
 |:------|:---------|:---------------|:-----|:-----------|-----------:|---------:|:--------------------|----------:|
-| AFG_A | AFG      | Afganistán     | A    | Anual      |       1977 |     2030 | 20/03/2026 18:50:30 |    359507 |
+| AFG_A | AFG      | Afganistán     | A    | Anual      |       1977 |     2030 | 10/04/2026 10:03:27 |    359161 |
 | AFG_Q | AFG      | Afganistán     | Q    | Trimestral |       2005 |     2024 | 05/03/2026 16:35:54 |      2903 |
 | AFG_M | AFG      | Afganistán     | M    | Mensual    |       1976 |     2025 | 13/02/2026 12:22:29 |      9179 |
 
@@ -198,8 +181,8 @@ toc <- get_ilostat_toc(segment = 'ref_area', search = c('France|Albania', 'Annua
 
 | id    | ref_area | ref_area.label | freq | freq.label | data.start | data.end | last.update         | n.records |
 |:------|:---------|:---------------|:-----|:-----------|-----------:|---------:|:--------------------|----------:|
-| ALB_A | ALB      | Albania        | A    | Annual     |       1960 |     2030 | 21/03/2026 06:05:22 |   1260555 |
-| FRA_A | FRA      | France         | A    | Annual     |       1955 |     2030 | 21/03/2026 06:05:22 |   2551085 |
+| ALB_A | ALB      | Albania        | A    | Annual     |       1960 |     2030 | 20/04/2026 17:17:11 |   1264141 |
+| FRA_A | FRA      | France         | A    | Annual     |       1955 |     2030 | 20/04/2026 17:16:08 |   2577142 |
 
 Table 1d. ‘Table of contents by ref_area with search words ’France’ or
 ‘Albania’ and ‘Annual’’
@@ -254,8 +237,6 @@ UNE_2UNE_SEX_AGE_NB, you should type:
 dat <- get_ilostat(id = 'UNE_2UNE_SEX_AGE_NB_A', segment = 'indicator', quiet = TRUE) 
 ```
 
-    ## Trying URL 'https://rplumber.ilo.org/files/indicator/UNE_2UNE_SEX_AGE_NB_A.rds'
-
   
 
 | ref_area | source  | indicator           | sex   | classif1            | time | obs_value |
@@ -272,8 +253,6 @@ If you want to access all annual data available in ILOSTAT for Armenia:
 ``` r
 dat <- get_ilostat(id = 'ARM_A', segment = 'ref_area', quiet = TRUE) 
 ```
-
-    ## Trying URL 'https://rplumber.ilo.org/files/ref_area/ARM_A.rds'
 
   
 
@@ -295,21 +274,15 @@ in a specific column:
 
 ``` r
 dat <- get_ilostat(id = c('AFG_A', 'TTO_A'), segment = 'ref_area',quiet = TRUE)
-```
 
-    ## Trying URL 'https://rplumber.ilo.org/files/ref_area/AFG_A.rds'
-
-    ## Trying URL 'https://rplumber.ilo.org/files/ref_area/TTO_A.rds'
-
-``` r
 dplyr::count(dat, ref_area)
 ```
 
     ## # A tibble: 2 × 2
     ##   ref_area      n
     ##   <chr>     <int>
-    ## 1 AFG      359507
-    ## 2 TTO      371384
+    ## 1 AFG      359161
+    ## 2 TTO      372668
 
   
 
@@ -317,37 +290,7 @@ dplyr::count(dat, ref_area)
 toc <- get_ilostat_toc(search = 'CPI_', quiet = TRUE)
 
 dat <- get_ilostat(id = toc, segment = 'indicator', quiet = TRUE) 
-```
 
-    ## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_XCPI_COI_RT_A.rds'
-
-    ## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_XCPI_COI_RT_Q.rds'
-
-    ## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_XCPI_COI_RT_M.rds'
-
-    ## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NCPD_COI_RT_Q.rds'
-
-    ## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NCPD_COI_RT_M.rds'
-
-    ## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NCYR_COI_RT_A.rds'
-
-    ## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NCYR_COI_RT_Q.rds'
-
-    ## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NCYR_COI_RT_M.rds'
-
-    ## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_NWGT_COI_RT_A.rds'
-
-    ## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_ACPI_COI_RT_A.rds'
-
-    ## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_ACPI_COI_RT_Q.rds'
-
-    ## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_ACPI_COI_RT_M.rds'
-
-    ## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_MCPI_COI_RT_Q.rds'
-
-    ## Trying URL 'https://rplumber.ilo.org/files/indicator/CPI_MCPI_COI_RT_M.rds'
-
-``` r
 dplyr::count(dat, indicator)
 ```
 
@@ -356,10 +299,10 @@ dplyr::count(dat, indicator)
     ##   <chr>            <int>
     ## 1 CPI_ACPI_COI_RT 144980
     ## 2 CPI_MCPI_COI_RT 138608
-    ## 3 CPI_NCPD_COI_RT 663028
-    ## 4 CPI_NCYR_COI_RT 756174
-    ## 5 CPI_NWGT_COI_RT  41249
-    ## 6 CPI_XCPI_COI_RT 792694
+    ## 3 CPI_NCPD_COI_RT 664657
+    ## 4 CPI_NCYR_COI_RT 758098
+    ## 5 CPI_NWGT_COI_RT  41256
+    ## 6 CPI_XCPI_COI_RT 794629
 
 ## Time format
 
@@ -388,15 +331,13 @@ sex and age, with the time dimension in numeric format:
 dat <- get_ilostat(id = 'UNE_TUNE_SEX_AGE_NB_Q', time_format = 'num', quiet = TRUE) 
 ```
 
-    ## Trying URL 'https://rplumber.ilo.org/files/indicator/UNE_TUNE_SEX_AGE_NB_Q.rds'
-
   
 
 | ref_area | source   | indicator           | sex   | classif1            |    time | obs_value |
 |:---------|:---------|:--------------------|:------|:--------------------|--------:|----------:|
-| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_YGE15  | 2024.75 |  1978.153 |
-| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_Y15-64 | 2024.75 |  1965.008 |
-| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_Y15-24 | 2024.75 |   880.416 |
+| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_YGE15  | 2025.25 |  1587.134 |
+| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_Y15-64 | 2025.25 |  1578.551 |
+| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_Y15-24 | 2025.25 |   707.463 |
 
 Table 3a. Extract, ‘Quarterly unemployment by sex and age’
 
@@ -404,9 +345,9 @@ Table 3a. Extract, ‘Quarterly unemployment by sex and age’
 
 | ref_area | source   | indicator           | sex   | classif1            |    time | obs_value |
 |:---------|:---------|:--------------------|:------|:--------------------|--------:|----------:|
-| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_YGE15  | 2024.75 |  1978.153 |
-| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_Y15-64 | 2024.75 |  1965.008 |
-| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_Y15-24 | 2024.75 |   880.416 |
+| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_YGE15  | 2025.25 |  1587.134 |
+| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_Y15-64 | 2025.25 |  1578.551 |
+| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_Y15-24 | 2025.25 |   707.463 |
 
 Table 3b. Extract, Monthly time-related underemployment by sex and age
 
@@ -454,38 +395,40 @@ item, etc.
 
 ``` r
 options(ilostat_cache_dir = 'C:/temp')
-dat <- get_ilostat(id = 'UNE_2EAP_SEX_AGE_RT_A', filters = list(
+dat <- get_ilostat(id = 'UNE_DEAP_SEX_AGE_RT_A', filters = list(
                                                     ref_area = c('BRA', 'ZAF'), 
                                                     sex = 'T', 
-                                                    classif1 = 'AGE_YTHADULT_Y15-24'), quiet = TRUE)
+                                                    classif1 = '_Y15-24'), quiet = TRUE)
 dplyr::count(dat, ref_area, sex, classif1)
 ```
 
-    ## Trying URL 'https://rplumber.ilo.org/files/indicator/UNE_2EAP_SEX_AGE_RT_A.rds'
-
-    ## # A tibble: 2 × 4
-    ##   ref_area sex   classif1                n
-    ##   <chr>    <chr> <chr>               <int>
-    ## 1 BRA      SEX_T AGE_YTHADULT_Y15-24    37
-    ## 2 ZAF      SEX_T AGE_YTHADULT_Y15-24    37
+    ## # A tibble: 6 × 4
+    ##   ref_area sex   classif1                 n
+    ##   <chr>    <chr> <chr>                <int>
+    ## 1 BRA      SEX_T AGE_10YRBANDS_Y15-24    32
+    ## 2 BRA      SEX_T AGE_AGGREGATE_Y15-24    32
+    ## 3 BRA      SEX_T AGE_YTHADULT_Y15-24     37
+    ## 4 ZAF      SEX_T AGE_10YRBANDS_Y15-24    25
+    ## 5 ZAF      SEX_T AGE_AGGREGATE_Y15-24    25
+    ## 6 ZAF      SEX_T AGE_YTHADULT_Y15-24     25
 
   
 
 ``` r
 options(ilostat_cache_dir = 'C:/temp')
-dat <- get_ilostat(id = 'UNE_2EAP_SEX_AGE_RT_A', filters = list(
+dat <- get_ilostat(id = 'UNE_DEAP_SEX_AGE_RT_A', filters = list(
                                                     ref_area = c('BRA', 'ZAF'), 
                                                     sex = 'M', 
-                                                    classif1 = 'AGE_YTHADULT_YGE15'), 
+                                                    classif1 = '_YGE15'), 
                                                     quiet = TRUE)
 ```
 
   
 
-| ref_area | source  | indicator           | sex   | classif1            | time | obs_value | obs_status |
-|:---------|:--------|:--------------------|:------|:--------------------|:-----|----------:|:-----------|
-| BRA      | XA:2002 | UNE_2EAP_SEX_AGE_RT | SEX_T | AGE_YTHADULT_Y15-24 | 2027 |    12.435 | NA         |
-| BRA      | XA:2002 | UNE_2EAP_SEX_AGE_RT | SEX_T | AGE_YTHADULT_Y15-24 | 2026 |    12.727 | NA         |
+| ref_area | source  | indicator           | sex   | classif1             | time | obs_value | obs_status | note_classif | note_indicator | note_source |
+|:---------|:--------|:--------------------|:------|:---------------------|:-----|----------:|:-----------|:-------------|:---------------|:------------|
+| BRA      | BX:6355 | UNE_DEAP_SEX_AGE_RT | SEX_T | AGE_YTHADULT_Y15-24  | 2025 |    13.594 | NA         | NA           | NA             | R1:3513     |
+| BRA      | BX:6355 | UNE_DEAP_SEX_AGE_RT | SEX_T | AGE_AGGREGATE_Y15-24 | 2025 |    13.594 | NA         | NA           | NA             | R1:3513     |
 
 Table 4a. Extract, Youth male unemployment rate in Brazil and South
 Africa (ILO modelled estimates, Nov. 2018), ‘Series Key’
@@ -494,20 +437,20 @@ Africa (ILO modelled estimates, Nov. 2018), ‘Series Key’
 
 ``` r
 # options(ilostat_cache_dir = 'C:/temp')
-dat <- get_ilostat(id = 'UNE_2EAP_SEX_AGE_RT_A', filters = list(
+dat <- get_ilostat(id = 'UNE_DEAP_SEX_AGE_RT_A', filters = list(
                                                     ref_area = c('BRA', 'ZAF'), 
                                                     sex = 'F', 
-                                                    classif1 = 'AGE_YTHADULT_YGE15'), 
+                                                    classif1 = '_YGE15'), 
                                                  quiet = TRUE)
 ```
 
   
 
-| ref_area | source  | indicator           | sex   | classif1           | time | obs_value |
-|:---------|:--------|:--------------------|:------|:-------------------|:-----|----------:|
-| BRA      | XA:2002 | UNE_2EAP_SEX_AGE_RT | SEX_F | AGE_YTHADULT_YGE15 | 2027 |     6.408 |
-| BRA      | XA:2002 | UNE_2EAP_SEX_AGE_RT | SEX_F | AGE_YTHADULT_YGE15 | 2026 |     6.603 |
-| BRA      | XA:2002 | UNE_2EAP_SEX_AGE_RT | SEX_F | AGE_YTHADULT_YGE15 | 2025 |     7.329 |
+| ref_area | source  | indicator           | sex   | classif1            | time | obs_value |
+|:---------|:--------|:--------------------|:------|:--------------------|:-----|----------:|
+| BRA      | BX:6355 | UNE_DEAP_SEX_AGE_RT | SEX_F | AGE_YTHADULT_YGE15  | 2025 |     7.155 |
+| BRA      | BX:6355 | UNE_DEAP_SEX_AGE_RT | SEX_F | AGE_AGGREGATE_YGE15 | 2025 |     7.155 |
+| BRA      | BX:6355 | UNE_DEAP_SEX_AGE_RT | SEX_F | AGE_10YRBANDS_YGE15 | 2025 |     7.155 |
 
 Table 4b. Extract, Youth female unemployment rate in Brazil and South
 Africa (ILO modelled estimates, Nov. 2018)
@@ -543,9 +486,9 @@ require(dplyr, quiet = TRUE)
               time_format = 'num', 
               filters = list( ref_area = c('FRA', 'USA', 'DEU'), 
                               sex = 'SEX_M',
-                              classif1 = 'AGE_AGGREGATE_TOTAL',
+                              classif1 = '_YGE15',
                               timefrom = 2005, timeto = 2019), quiet = TRUE)  %>% 
-  select(ref_area, time, obs_value) %>% 
+  distinct(ref_area, time, obs_value) %>% 
   ggplot(aes(x = time, y = obs_value, colour = ref_area)) + 
   geom_line() + 
   ggtitle('Male labour force participation rate in selected countries, 2005-2019') + 
@@ -583,29 +526,21 @@ if(!require(dplyr)){install.packages('dplyr')}
 
     get_ilostat(id = 'EMP_2EMP_SEX_AGE_CLA_NB_A', 
                 filters = list( ref_area = 'ZAF', 
-                                time = '1999', 
+                                time = '2019', 
                                 sex = c('M', 'F'), 
                                 classif1 = c('Y15-24', 'YGE25')), quiet = TRUE) %>% 
     group_by(ref_area, source , indicator , sex  , classif1, time) %>% 
     mutate(obs_value = obs_value / max(obs_value) * 100) %>% 
     ungroup %>%
     filter(!classif2 %in% c('CLA_ECOCLA_TOTAL', 'CLA_ECOCLA_USDGE3')) %>% 
-    mutate( sex =       factor(sex) %>% recode_factor(
-                                'SEX_M' = 'Male', 
-                                'SEX_F' = 'Female'), 
-            classif1 =  factor(classif1) %>% recode_factor(
-                                'AGE_YTHADULT_YGE25' = 'Adult', 
-                                'AGE_YTHADULT_Y15-24' = 'Youth'),
-            classif2 =  factor(classif2) %>% recode_factor(
-                                'CLA_ECOCLA_USDLT2' = '<US$3', 
-                                'CLA_ECOCLA_USDGE2LT3' = '>=US$3 & <US$4.2', 
-                                'CLA_ECOCLA_USDGE3LT5' = '>=US$4.2 & <US$8.3', 
-                                'CLA_ECOCLA_USDGE5' = '>=US$8.3')) %>% 
-    ggplot(aes(y=obs_value, x=as.factor(classif1), fill=classif2)) +
+    distinct(obs_value, sex, classif1, classif2) %>% 
+    label_ilostat() %>% 
+    
+    ggplot(aes(y=obs_value, x=as.factor(classif1.label), fill=classif2.label)) +
     geom_bar(stat="identity") +
-    facet_wrap(~as.factor(sex)) + coord_flip() +
+    facet_wrap(~as.factor(sex.label)) + coord_flip() +
     theme(legend.position="top") +
-    ggtitle("Employment by economic class, sex and age, South Africa, 1999") +
+    ggtitle("Employment by economic class, sex and age, South Africa, 2019") +
     labs(x="Age group", y="Distribution of economic class (%)", fill="Economic class : ") + 
     theme(plot.title = element_text(hjust = 0.5)) + 
     scale_fill_brewer(type = "div")
@@ -614,9 +549,9 @@ if(!require(dplyr)){install.packages('dplyr')}
   
 
 ![Employment by economic class, sex and age, South Africa,
-1999](g1_eco.png)
+2019](g1_eco.png)
 
-Employment by economic class, sex and age, South Africa, 1999
+Employment by economic class, sex and age, South Africa, 2019
 
   
   
@@ -670,7 +605,7 @@ triangle <- get_ilostat(
   ),
   quiet = TRUE
 ) %>%
-  select(ref_area, indicator, obs_value) %>%   # replaces cmd
+  distinct(ref_area, indicator, obs_value) %>%   # replaces cmd
   label_ilostat() %>%
   group_by(ref_area.label) %>%
   mutate(obs_value = obs_value / sum(obs_value)) %>%
@@ -735,13 +670,12 @@ if(!require(plotly)){install.packages('plotly')}
 if(!require(dplyr)){install.packages('dplyr')}
 if(!require(stringr)){install.packages('stringr')}
 
-dat <- get_ilostat(id = 'UNE_2EAP_SEX_AGE_RT_A', filters = list(
+dat <- get_ilostat(id = 'UNE_DEAP_SEX_AGE_RT_A', filters = list(
                                 time = '2019', 
                                 sex = 'SEX_T', 
-                                classif1 = 'AGE_YTHADULT_Y15-24'
+                                classif1 = '_Y15-24'
                                 ), quiet = TRUE) %>% 
-            filter(!str_sub(ref_area,1,1) %in% 'X') %>% 
-            select(ref_area, obs_value) %>% 
+            distinct(ref_area, obs_value) %>% 
             left_join(  Rilostat:::ilostat_ref_area_mapping %>% 
                             select(ref_area, ref_area_plotly)%>% 
                             label_ilostat(code = 'ref_area'), 
@@ -770,7 +704,6 @@ dat %>%
             len = 0.5
         ) %>%
         layout(
-          title = 'Youth unemployment rate in 2019 (ILO modelled estimates, Nov. 2020)', 
           geo = list(   
                     showframe = FALSE,  
                     showcoastlines = TRUE,
@@ -782,10 +715,9 @@ dat %>%
 
   
 
-![Youth unemployment rate in 2019 (ILO modelled estimates,
-Nov. 2020](g1_map.png)
+![Youth unemployment rate in 2019](g1_map.png)
 
-Youth unemployment rate in 2019 (ILO modelled estimates, Nov. 2020
+Youth unemployment rate in 2019
 
   
   

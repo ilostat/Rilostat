@@ -5,7 +5,12 @@ Get distribution for ilostat number of persons only.
 ## Usage
 
 ``` r
-distribution_ilostat(x, var, .keep = FALSE)
+distribution_ilostat(
+  x,
+  var,
+  .keep = FALSE,
+  quiet = getOption("ilostat_quiet", TRUE)
+)
 ```
 
 ## Arguments
@@ -21,7 +26,12 @@ distribution_ilostat(x, var, .keep = FALSE)
 
 - .keep:
 
-  if true return only new column call distribution default `FALSE`.
+  if true return only new column call distribution default `FALSE`,
+
+- quiet:
+
+  a logical, if `TRUE` , don't return message from processing, `FALSE`
+  (default). Can be set also with options(ilostat_quiet = TRUE).
 
 ## Value
 
