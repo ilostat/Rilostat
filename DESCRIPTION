@@ -3,7 +3,7 @@ Type: Package
 Language: en-GB
 Title: Access and Manipulation of ILOSTAT Labour Statistics
 Version: 2.5.0
-Date: 2026-04-23
+Date: 2026-04-24
 Authors@R: c(
   person("David", "Bescond", role = c("aut", "cre"),
          email = "bescond@ilo.org",

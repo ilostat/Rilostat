@@ -42,7 +42,7 @@ The developer of this package drew extensive inspiration from the [eurostat R pa
 
 # Installation
 
-Download and install [R from CRAN](https://cran.r-project.org/), install [RStudio's IDE](https://posit.co/products/open-source/rstudio/), a powerful user interface for R.
+Download and install [R from CRAN](https://cran.r-project.org/), install [RStudio's IDE](https://posit.co/products/open-source/rstudio), a powerful user interface for R.
 Then use command:
  
 ```{r, eval=FALSE}
