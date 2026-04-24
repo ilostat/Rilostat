@@ -52,7 +52,7 @@ Kainu](https://github.com/muuankarski) and [Janne
 Huovari](https://github.com/jhuovari). R Journal 9(1), 385-392, 2017.
 
 Download and install [R from CRAN](https://cran.r-project.org/), install
-[RStudio’s IDE](https://posit.co/products/open-source/rstudio/), a
+[RStudio’s IDE](https://posit.co/products/open-source/rstudio), a
 powerful user interface for R. Then use command:
 
 ``` r

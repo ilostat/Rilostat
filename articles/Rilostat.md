@@ -72,9 +72,6 @@ its related documentation:
 
 To install the release version, use the following command:
 
-    ## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
-    ## logical.return = TRUE, : there is no package called 'devtools'
-
 ``` r
 install.packages("Rilostat")
 ```
