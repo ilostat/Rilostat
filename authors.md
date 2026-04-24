@@ -13,7 +13,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/ilostat/Rilostat/blob/master/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/ilostat/Rilostat/blob/v2.5/DESCRIPTION)
 
 Bescond D (2026). *Rilostat: Access and Manipulation of ILOSTAT Labour
 Statistics*. R package version 2.5.0,

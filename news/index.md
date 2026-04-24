@@ -2,6 +2,8 @@
 
 ## Rilostat 2.5.0
 
+CRAN release: 2026-04-24
+
 - best_source control
 
 ## Rilostat 2.3.4
