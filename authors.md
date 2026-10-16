@@ -13,16 +13,16 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/ilostat/Rilostat/blob/v2.5/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/ilostat/Rilostat/blob/master/DESCRIPTION)
 
 Bescond D (2026). *Rilostat: Access and Manipulation of ILOSTAT Labour
-Statistics*. R package version 2.5.0,
+Statistics*. R package version 2.5.1,
 <https://ilostat.github.io/Rilostat/>.
 
     @Manual{,
       title = {Rilostat: Access and Manipulation of ILOSTAT Labour Statistics},
       author = {David Bescond},
       year = {2026},
-      note = {R package version 2.5.0},
+      note = {R package version 2.5.1},
       url = {https://ilostat.github.io/Rilostat/},
     }

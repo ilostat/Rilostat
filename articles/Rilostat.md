@@ -72,13 +72,18 @@ its related documentation:
 
 To install the release version, use the following command:
 
+    ## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
+    ## logical.return = TRUE, : there is no package called 'devtools'
+
 ``` r
+
 install.packages("Rilostat")
 ```
 
 To install the development version, use the following command:
 
 ``` r
+
 if(!require(devtools)){install.packages('devtools')}
 install_github("ilostat/Rilostat")
 ```
@@ -103,18 +108,19 @@ To access the table of contents of all available indicators in ILOSTAT
 (by indicator):
 
 ``` r
+
 toc <- get_ilostat_toc( quiet = TRUE)
 ```
 
   
 
-| id                    | indicator           | indicator.label                                                                                                    | freq | freq.label |
-|:----------------------|:--------------------|:-------------------------------------------------------------------------------------------------------------------|:-----|:-----------|
-| SDG_0111_SEX_AGE_RT_A | SDG_0111_SEX_AGE_RT | SDG indicator 1.1.1 - Working poverty rate by sex and age (percentage of employed living below US\$3 PPP) (%)      | A    | Annual     |
-| SDG_0131_SEX_SOC_RT_A | SDG_0131_SEX_SOC_RT | SDG indicator 1.3.1 - Proportion of population covered by social protection floors/systems by sex and function (%) | A    | Annual     |
-| SDG_0552_NOC_RT_A     | SDG_0552_NOC_RT     | SDG indicator 5.5.2 - Proportion of women in senior and middle management positions (%)                            | A    | Annual     |
+| id | indicator | indicator.label | freq | freq.label |
+|:---|:---|:---|:---|:---|
+| SDG_0111_SEX_AGE_RT_A | SDG_0111_SEX_AGE_RT | SDG indicator 1.1.1: Working poverty rate by sex and age (%) | A | Annual |
+| SDG_0131_SEX_SOC_RT_A | SDG_0131_SEX_SOC_RT | SDG indicator 1.3.1: Proportion of population covered by social protection floors/systems by sex and function (%) | A | Annual |
+| SDG_0552_NOC_RT_A | SDG_0552_NOC_RT | SDG indicator 5.5.2: Proportion of women in senior and middle management positions (%) | A | Annual |
 
-Table 1a. Extract, ‘Table of contents by indicator in English’
+Table 1a. Extract, ‘Table of contents by indicator in English’ {.table}
 
   
 
@@ -128,18 +134,19 @@ by reference area in ILOSTAT in Spanish:
   
 
 ``` r
+
 toc <- get_ilostat_toc(segment = 'ref_area', lang = 'es', quiet = TRUE)
 ```
 
   
 
-| id    | ref_area | ref_area.label | freq | freq.label | data.start | data.end | last.update         | n.records |
-|:------|:---------|:---------------|:-----|:-----------|-----------:|---------:|:--------------------|----------:|
-| AFG_A | AFG      | Afganistán     | A    | Anual      |       1977 |     2030 | 10/04/2026 10:03:27 |    359161 |
-| AFG_Q | AFG      | Afganistán     | Q    | Trimestral |       2005 |     2024 | 05/03/2026 16:35:54 |      2903 |
-| AFG_M | AFG      | Afganistán     | M    | Mensual    |       1976 |     2025 | 13/02/2026 12:22:29 |      9179 |
+| id | ref_area | ref_area.label | freq | freq.label | data.start | data.end | last.update | n.records |
+|:---|:---|:---|:---|:---|---:|---:|:---|---:|
+| AFG_A | AFG | Afganistán | A | Anual | 1978 | 2030 | 12/10/2026 08:59:09 | 363647 |
+| AFG_Q | AFG | Afganistán | Q | Trimestral | 2005 | 2024 | 05/03/2026 16:35:54 | 2903 |
+| AFG_M | AFG | Afganistán | M | Mensual | 2005 | 2025 | 13/02/2026 12:22:29 | 8742 |
 
-Table 1b. Extract, ‘Table of contents by ref_area in Spanish’
+Table 1b. Extract, ‘Table of contents by ref_area in Spanish’ {.table}
 
 You can search for words or expressions within the table of contents
 listing all of ILOSTAT’s indicators.
@@ -148,17 +155,19 @@ For example, searching for the word “bargaining” will return the
 indicators containing that word somewhere in the indicator information:
 
 ``` r
+
 toc <- get_ilostat_toc(search = 'bargaining', quiet = TRUE)
 ```
 
   
 
-| id                | indicator       | indicator.label                                                                                                          | freq | freq.label | rep_var     | rep_var.label                                      | classification |
-|:------------------|:----------------|:-------------------------------------------------------------------------------------------------------------------------|:-----|:-----------|:------------|:---------------------------------------------------|:---------------|
-| SDG_0882_NOC_RT_A | SDG_0882_NOC_RT | SDG indicator 8.8.2 - Level of national compliance with labour rights (freedom of association and collective bargaining) | A    | Annual     | SDG_0882_RT | National compliance with labour rights (SDG 8.8.2) | NA             |
-| ILR_CBCT_NOC_RT_A | ILR_CBCT_NOC_RT | Collective bargaining coverage rate (%)                                                                                  | A    | Annual     | ILR_CBCT_RT | Collective bargaining coverage rate                | NA             |
+| id | indicator | indicator.label | freq | freq.label | rep_var | rep_var.label | classification |
+|:---|:---|:---|:---|:---|:---|:---|:---|
+| SDG_0882_NOC_RT_A | SDG_0882_NOC_RT | SDG indicator 8.8.2: Level of national compliance with labour rights, freedom of association and collective bargaining | A | Annual | SDG_0882_RT | SDG indicator 8.8.2: Level of national compliance with labour rights, freedom of association and collective bargaining | NA |
+| ILR_CBCT_NOC_RT_A | ILR_CBCT_NOC_RT | Collective bargaining coverage rate (%) | A | Annual | ILR_CBCT_RT | Collective bargaining coverage rate | NA |
 
 Table 1c. ‘Table of contents by indicator with search word ’bargaining’’
+{.table}
 
 Similarly, you can also search the list of all available datasets by
 reference area for a given reference area (using a country or region
@@ -170,19 +179,20 @@ For instance, to look for datasets with annual data for either Albania
 or France:
 
 ``` r
+
 toc <- get_ilostat_toc(segment = 'ref_area', search = c('France|Albania', 'Annual'), 
                                             fixed = FALSE, quiet = TRUE)
 ```
 
   
 
-| id    | ref_area | ref_area.label | freq | freq.label | data.start | data.end | last.update         | n.records |
-|:------|:---------|:---------------|:-----|:-----------|-----------:|---------:|:--------------------|----------:|
-| ALB_A | ALB      | Albania        | A    | Annual     |       1960 |     2030 | 20/04/2026 17:17:11 |   1264141 |
-| FRA_A | FRA      | France         | A    | Annual     |       1955 |     2030 | 20/04/2026 17:16:08 |   2577142 |
+| id | ref_area | ref_area.label | freq | freq.label | data.start | data.end | last.update | n.records |
+|:---|:---|:---|:---|:---|---:|---:|:---|---:|
+| ALB_A | ALB | Albania | A | Annual | 1960 | 2030 | 13/10/2026 10:07:05 | 1272473 |
+| FRA_A | FRA | France | A | Annual | 1955 | 2030 | 13/10/2026 10:00:51 | 2660319 |
 
 Table 1d. ‘Table of contents by ref_area with search words ’France’ or
-‘Albania’ and ‘Annual’’
+‘Albania’ and ‘Annual’’ {.table}
 
 You can also manipulate ILOSTAT’s table of contents’ dataframe using the
 basic R filter. If you are already familiar with ILOSTAT data and the
@@ -193,21 +203,22 @@ Short Term Indicators dataset (code “STI”) and you are only interested
 in monthly data (code “M”) you can simply do:
 
 ``` r
+
 toc <-  dplyr::filter(get_ilostat_toc(), freq == 'M', quiet = TRUE)
 ```
 
   
 
-| id                        | indicator               | indicator.label                                                         | freq | freq.label |
-|:--------------------------|:------------------------|:------------------------------------------------------------------------|:-----|:-----------|
-| POP_XWAP_SEX_AGE_NB_M     | POP_XWAP_SEX_AGE_NB     | Working-age population by sex and age (thousands)                       | M    | Monthly    |
-| POP_XWAP_SEX_AGE_EDU_NB_M | POP_XWAP_SEX_AGE_EDU_NB | Working-age population by sex, age and education (thousands)            | M    | Monthly    |
-| POP_XWAP_SEX_AGE_GEO_NB_M | POP_XWAP_SEX_AGE_GEO_NB | Working-age population by sex, age and rural / urban areas (thousands)  | M    | Monthly    |
-| POP_XWAP_SEX_AGE_LMS_NB_M | POP_XWAP_SEX_AGE_LMS_NB | Working-age population by sex, age and labour market status (thousands) | M    | Monthly    |
-| POP_XWAP_SEX_EDU_NB_M     | POP_XWAP_SEX_EDU_NB     | Working-age population by sex and education (thousands)                 | M    | Monthly    |
+| id | indicator | indicator.label | freq | freq.label |
+|:---|:---|:---|:---|:---|
+| POP_XWAP_SEX_AGE_NB_M | POP_XWAP_SEX_AGE_NB | Working-age population by sex and age (thousands) | M | Monthly |
+| POP_XWAP_SEX_AGE_EDU_NB_M | POP_XWAP_SEX_AGE_EDU_NB | Working-age population by sex, age and education (thousands) | M | Monthly |
+| POP_XWAP_SEX_AGE_GEO_NB_M | POP_XWAP_SEX_AGE_GEO_NB | Working-age population by sex, age and rural / urban areas (thousands) | M | Monthly |
+| POP_XWAP_SEX_AGE_LMS_NB_M | POP_XWAP_SEX_AGE_LMS_NB | Working-age population by sex, age and labour market status (thousands) | M | Monthly |
+| POP_XWAP_SEX_EDU_NB_M | POP_XWAP_SEX_EDU_NB | Working-age population by sex and education (thousands) | M | Monthly |
 
 Table 1e. Extract, ‘Table of contents by indicator filtered for Monthly
-Short term indicators’
+Short term indicators’ {.table}
 
 ## Download data
 
@@ -231,6 +242,7 @@ If you want to access annual data for indicator code
 UNE_2UNE_SEX_AGE_NB, you should type:
 
 ``` r
+
 dat <- get_ilostat(id = 'UNE_2UNE_SEX_AGE_NB_A', segment = 'indicator', quiet = TRUE) 
 ```
 
@@ -243,11 +255,12 @@ dat <- get_ilostat(id = 'UNE_2UNE_SEX_AGE_NB_A', segment = 'indicator', quiet = 
 | AFG      | XA:2198 | UNE_2UNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_YGE25  | 2027 |   726.145 |
 
 Table 2a. Extract, ‘Annual unemployment by sex and age, ILO modelled
-estimates, Nov. 2018’
+estimates, Nov. 2018’ {.table}
 
 If you want to access all annual data available in ILOSTAT for Armenia:
 
 ``` r
+
 dat <- get_ilostat(id = 'ARM_A', segment = 'ref_area', quiet = TRUE) 
 ```
 
@@ -259,7 +272,7 @@ dat <- get_ilostat(id = 'ARM_A', segment = 'ref_area', quiet = TRUE)
 | ARM      | XA:1931 | SDG_0111_SEX_AGE_RT | SEX_T | AGE_YTHADULT_YGE15 | 2024 |     0.212 |
 | ARM      | XA:1931 | SDG_0111_SEX_AGE_RT | SEX_T | AGE_YTHADULT_YGE15 | 2023 |     1.084 |
 
-Table 2b. Extract, ‘Armenia, annual data’
+Table 2b. Extract, ‘Armenia, annual data’ {.table}
 
   
 
@@ -270,6 +283,7 @@ setting the dataset’s id as a vector of ids or a tibble that lists ids
 in a specific column:
 
 ``` r
+
 dat <- get_ilostat(id = c('AFG_A', 'TTO_A'), segment = 'ref_area',quiet = TRUE)
 
 dplyr::count(dat, ref_area)
@@ -278,12 +292,13 @@ dplyr::count(dat, ref_area)
     ## # A tibble: 2 × 2
     ##   ref_area      n
     ##   <chr>     <int>
-    ## 1 AFG      359161
-    ## 2 TTO      372668
+    ## 1 AFG      363647
+    ## 2 TTO      375147
 
   
 
 ``` r
+
 toc <- get_ilostat_toc(search = 'CPI_', quiet = TRUE)
 
 dat <- get_ilostat(id = toc, segment = 'indicator', quiet = TRUE) 
@@ -291,15 +306,13 @@ dat <- get_ilostat(id = toc, segment = 'indicator', quiet = TRUE)
 dplyr::count(dat, indicator)
 ```
 
-    ## # A tibble: 6 × 2
+    ## # A tibble: 4 × 2
     ##   indicator            n
     ##   <chr>            <int>
-    ## 1 CPI_ACPI_COI_RT 144980
-    ## 2 CPI_MCPI_COI_RT 138608
-    ## 3 CPI_NCPD_COI_RT 664657
-    ## 4 CPI_NCYR_COI_RT 758098
-    ## 5 CPI_NWGT_COI_RT  41256
-    ## 6 CPI_XCPI_COI_RT 794629
+    ## 1 CPI_NCPD_COI_RT 671852
+    ## 2 CPI_NCYR_COI_RT 765990
+    ## 3 CPI_NWGT_COI_RT  41302
+    ## 4 CPI_XCPI_COI_RT 802795
 
 ## Time format
 
@@ -325,28 +338,30 @@ For instance, the following will return quarterly unemployment data by
 sex and age, with the time dimension in numeric format:
 
 ``` r
+
 dat <- get_ilostat(id = 'UNE_TUNE_SEX_AGE_NB_Q', time_format = 'num', quiet = TRUE) 
 ```
 
   
 
-| ref_area | source   | indicator           | sex   | classif1            |    time | obs_value |
-|:---------|:---------|:--------------------|:------|:--------------------|--------:|----------:|
-| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_YGE15  | 2025.25 |  1587.134 |
-| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_Y15-64 | 2025.25 |  1578.551 |
-| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_Y15-24 | 2025.25 |   707.463 |
+| ref_area | source   | indicator           | sex   | classif1            | time | obs_value |
+|:---------|:---------|:--------------------|:------|:--------------------|-----:|----------:|
+| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_YGE15  | 2026 |  1993.019 |
+| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_Y15-64 | 2026 |  1969.182 |
+| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_Y15-24 | 2026 |  1002.256 |
 
-Table 3a. Extract, ‘Quarterly unemployment by sex and age’
+Table 3a. Extract, ‘Quarterly unemployment by sex and age’ {.table}
 
   
 
-| ref_area | source   | indicator           | sex   | classif1            |    time | obs_value |
-|:---------|:---------|:--------------------|:------|:--------------------|--------:|----------:|
-| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_YGE15  | 2025.25 |  1587.134 |
-| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_Y15-64 | 2025.25 |  1578.551 |
-| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_Y15-24 | 2025.25 |   707.463 |
+| ref_area | source   | indicator           | sex   | classif1            | time | obs_value |
+|:---------|:---------|:--------------------|:------|:--------------------|-----:|----------:|
+| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_YGE15  | 2026 |  1993.019 |
+| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_Y15-64 | 2026 |  1969.182 |
+| AGO      | BA:13951 | UNE_TUNE_SEX_AGE_NB | SEX_T | AGE_YTHADULT_Y15-24 | 2026 |  1002.256 |
 
 Table 3b. Extract, Monthly time-related underemployment by sex and age
+{.table}
 
 ## Cached data
 
@@ -361,6 +376,7 @@ arguments you can save it in other formats, such as `csv`, `dta`, `sav`,
 and `sas7bdat`.
 
 ``` r
+
 dat <- get_ilostat(id = 'TRU_TTRU_SEX_AGE_NB_M', cache_dir = 'c:/temp', cache_format = 'dta', quiet = TRUE) 
 ```
 
@@ -378,6 +394,7 @@ without being returned in R. This quiet setting is convenient
 particularly when downloading large amounts of data or datasets.
 
 ``` r
+
 get_ilostat(id = get_ilostat_toc(search = 'SDG'),   cache_dir = 'c:/temp', cache_format = 'dta', 
                                                     back = FALSE, quiet = TRUE)
 ```
@@ -391,6 +408,7 @@ datasets, to filter the data by reference area, sex, classification
 item, etc.
 
 ``` r
+
 options(ilostat_cache_dir = 'C:/temp')
 dat <- get_ilostat(id = 'UNE_DEAP_SEX_AGE_RT_A', filters = list(
                                                     ref_area = c('BRA', 'ZAF'), 
@@ -405,13 +423,14 @@ dplyr::count(dat, ref_area, sex, classif1)
     ## 1 BRA      SEX_T AGE_10YRBANDS_Y15-24    32
     ## 2 BRA      SEX_T AGE_AGGREGATE_Y15-24    32
     ## 3 BRA      SEX_T AGE_YTHADULT_Y15-24     37
-    ## 4 ZAF      SEX_T AGE_10YRBANDS_Y15-24    25
-    ## 5 ZAF      SEX_T AGE_AGGREGATE_Y15-24    25
-    ## 6 ZAF      SEX_T AGE_YTHADULT_Y15-24     25
+    ## 4 ZAF      SEX_T AGE_10YRBANDS_Y15-24    26
+    ## 5 ZAF      SEX_T AGE_AGGREGATE_Y15-24    26
+    ## 6 ZAF      SEX_T AGE_YTHADULT_Y15-24     26
 
   
 
 ``` r
+
 options(ilostat_cache_dir = 'C:/temp')
 dat <- get_ilostat(id = 'UNE_DEAP_SEX_AGE_RT_A', filters = list(
                                                     ref_area = c('BRA', 'ZAF'), 
@@ -422,17 +441,18 @@ dat <- get_ilostat(id = 'UNE_DEAP_SEX_AGE_RT_A', filters = list(
 
   
 
-| ref_area | source  | indicator           | sex   | classif1             | time | obs_value | obs_status | note_classif | note_indicator | note_source |
-|:---------|:--------|:--------------------|:------|:---------------------|:-----|----------:|:-----------|:-------------|:---------------|:------------|
-| BRA      | BX:6355 | UNE_DEAP_SEX_AGE_RT | SEX_T | AGE_YTHADULT_Y15-24  | 2025 |    13.594 | NA         | NA           | NA             | R1:3513     |
-| BRA      | BX:6355 | UNE_DEAP_SEX_AGE_RT | SEX_T | AGE_AGGREGATE_Y15-24 | 2025 |    13.594 | NA         | NA           | NA             | R1:3513     |
+| ref_area | source | indicator | sex | classif1 | time | obs_value | obs_status | note_classif | note_indicator | note_source |
+|:---|:---|:---|:---|:---|:---|---:|:---|:---|:---|:---|
+| BRA | BX:6355 | UNE_DEAP_SEX_AGE_RT | SEX_T | AGE_YTHADULT_Y15-24 | 2025 | 13.594 | NA | NA | NA | R1:3513 |
+| BRA | BX:6355 | UNE_DEAP_SEX_AGE_RT | SEX_T | AGE_AGGREGATE_Y15-24 | 2025 | 13.594 | NA | NA | NA | R1:3513 |
 
 Table 4a. Extract, Youth male unemployment rate in Brazil and South
-Africa (ILO modelled estimates, Nov. 2018), ‘Series Key’
+Africa (ILO modelled estimates, Nov. 2018), ‘Series Key’ {.table}
 
   
 
 ``` r
+
 # options(ilostat_cache_dir = 'C:/temp')
 dat <- get_ilostat(id = 'UNE_DEAP_SEX_AGE_RT_A', filters = list(
                                                     ref_area = c('BRA', 'ZAF'), 
@@ -450,11 +470,12 @@ dat <- get_ilostat(id = 'UNE_DEAP_SEX_AGE_RT_A', filters = list(
 | BRA      | BX:6355 | UNE_DEAP_SEX_AGE_RT | SEX_F | AGE_10YRBANDS_YGE15 | 2025 |     7.155 |
 
 Table 4b. Extract, Youth female unemployment rate in Brazil and South
-Africa (ILO modelled estimates, Nov. 2018)
+Africa (ILO modelled estimates, Nov. 2018) {.table}
 
 In order to delete files from the cache just run:
 
 ``` r
+
 clean_ilostat_cache()
 ```
 
@@ -475,6 +496,7 @@ participation rates particularly with Germany, where the male labour
 force participation rate slightly increased in the last period observed.
 
 ``` r
+
 require(Rilostat)
 require(ggplot2, quiet = TRUE)
 require(dplyr, quiet = TRUE)
@@ -517,6 +539,7 @@ poverty (being poor in spite of being employed) affects youth much more
 than adults, and women more than men.
 
 ``` r
+
 require(Rilostat)
 if(!require(ggplot2)){install.packages('ggplot2')}
 if(!require(dplyr)){install.packages('dplyr')}
@@ -580,6 +603,7 @@ unemployment is the biggest concern, as opposed to time-related
 underemployment or discouragement.
 
 ``` r
+
 require(Rilostat)
 if(!require(tidyr)){install.packages('tidyr')}
 if(!require(dplyr)){install.packages('dplyr')}
@@ -662,17 +686,19 @@ scale used allows us to quickly see that youth unemployment rates are
 particularly high in Southern and Northern Africa.
 
 ``` r
+
 require(Rilostat)
 if(!require(plotly)){install.packages('plotly')}
 if(!require(dplyr)){install.packages('dplyr')}
 if(!require(stringr)){install.packages('stringr')}
 
-dat <- get_ilostat(id = 'UNE_DEAP_SEX_AGE_RT_A', filters = list(
+dat <- get_ilostat(id = 'UNE_2EAP_SEX_AGE_RT_A', filters = list(
                                 time = '2019', 
                                 sex = 'SEX_T', 
-                                classif1 = '_Y15-24'
+                                classif1 = 'AGE_YTHADULT_Y15-24'
                                 ), quiet = TRUE) %>% 
-            distinct(ref_area, obs_value) %>% 
+            filter(!str_sub(ref_area,1,1) %in% 'X') %>% 
+            select(ref_area, obs_value) %>% 
             left_join(  Rilostat:::ilostat_ref_area_mapping %>% 
                             select(ref_area, ref_area_plotly)%>% 
                             label_ilostat(code = 'ref_area'), 
@@ -701,6 +727,7 @@ dat %>%
             len = 0.5
         ) %>%
         layout(
+          title = 'Youth unemployment rate in 2019 (ILO modelled estimates, Nov. 2020)', 
           geo = list(   
                     showframe = FALSE,  
                     showcoastlines = TRUE,
@@ -712,9 +739,10 @@ dat %>%
 
   
 
-![Youth unemployment rate in 2019](g1_map.png)
+![Youth unemployment rate in 2019 (ILO modelled estimates,
+Nov. 2020](g1_map.png)
 
-Youth unemployment rate in 2019
+Youth unemployment rate in 2019 (ILO modelled estimates, Nov. 2020
 
   
   

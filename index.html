@@ -7,8 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Access and Manipulation of ILOSTAT Labour Statistics • Rilostat</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Access and Manipulation of ILOSTAT Labour Statistics">
 <meta name="description" content="Provides functions to access and manipulate data from the ILOSTAT database &lt;https://ilostat.ilo.org&gt;, the International Labour Organization's repository of labour statistics. Supports bulk download of datasets, metadata retrieval, and tools for filtering, reshaping, and analysing data.">
@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="index.html">Rilostat</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.5.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.5.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,13 +41,10 @@
 <li class="nav-item"><a class="nav-link" href="articles/Rilostat.html">Intro</a></li>
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Functions</a></li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">News</a></li>
-<li class="nav-item"><a class="nav-link" href="articles/index.html">Article</a></li>
       </ul>
 <ul class="navbar-nav">
-<li class="nav-item"><form class="form-inline" role="search">
- <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
-</form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/ilostat/Rilostat/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/ilostat/Rilostat" aria-label="GitHub repository"><span class="fa fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://cran.r-project.org/package=Rilostat">CRAN</a></li>
       </ul>
 </div>
 
@@ -87,13 +84,13 @@
 </div>
 <div class="section level1">
 
-<p>Download and install <a href="https://cran.r-project.org/" class="external-link">R from CRAN</a>, install <a href="https://posit.co/products/open-source/rstudio" class="external-link">RStudio’s IDE</a>, a powerful user interface for R. Then use command:</p>
+<p>Download and install <a href="https://cran.r-project.org/" class="external-link">R from CRAN</a>, install <a href="https://posit.co/products/open-source/rstudio/" class="external-link">RStudio’s IDE</a>, a powerful user interface for R. Then use command:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"Rilostat"</span><span class="op">)</span></span></code></pre></div>
 <p>To install the development version, use the following command:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'devtools'</span><span class="op">)</span><span class="op">}</span></span>
-<span><span class="fu"><a href="https://devtools.r-lib.org/reference/install-deprecated.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ilostat/Rilostat"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ilostat/Rilostat"</span><span class="op">)</span></span></code></pre></div>
 <p>We do not expect to update the ilostat R package too often, but based on questions and remarks from ILOSTAT data users, we will progressively create more examples, tutorials, demos and apps. We will publicly share all of this via <a href="https://ilostat.github.io/Rilostat/">Rilostat webpage</a></p>
 <div class="section level2">
 <h2 id="contribute">Contribute<a class="anchor" aria-label="anchor" href="#contribute"></a>
@@ -105,10 +102,18 @@
 </ul>
 </div>
 <div class="section level2">
-<h2 id="permission-to-reproduce-ilo-publication-and-data">Permission to reproduce ILO publication and data<a class="anchor" aria-label="anchor" href="#permission-to-reproduce-ilo-publication-and-data"></a>
+<h2 id="software-license">Software license<a class="anchor" aria-label="anchor" href="#software-license"></a>
 </h2>
-<p>The reproduction of ILO material is generally authorized for non-commercial purposes and within established limits. However, you may need to submit a formal request in certain circumstances. for more information please consult:</p>
-<p><a href="https://www.ilo.org/rights-and-permissions" class="external-link uri">https://www.ilo.org/rights-and-permissions</a></p>
+<p><code>Rilostat</code> is distributed under the BSD 2-Clause License.</p>
+<p>Copyright © 2026 International Labour Organization.</p>
+</div>
+<div class="section level2">
+<h2 id="ilostat-data-licensing">ILOSTAT data licensing<a class="anchor" aria-label="anchor" href="#ilostat-data-licensing"></a>
+</h2>
+<p>ILOSTAT databases and datasets, together with their accompanying referential metadata, published by the International Labour Organization (ILO) as of 3 May 2023 are licensed under the <a href="https://creativecommons.org/licenses/by/4.0/" class="external-link">Creative Commons Attribution 4.0 International License (CC BY 4.0)</a>, unless otherwise indicated.</p>
+<p>Users may reuse, share and adapt this material in accordance with the terms of the licence and must give appropriate credit to the International Labour Organization (ILO) as the source.</p>
+<p>The licensing of ILOSTAT data and metadata is separate from the BSD 2-Clause License applying to the <code>Rilostat</code> R package.</p>
+<p>For full information on ILO copyright, data licensing, third-party material and other rights and permissions, see the <a href="https://www.ilo.org/rights-and-permissions" class="external-link">ILO Rights and permissions</a> page.</p>
 </div>
 </div>
 
@@ -159,7 +164,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>
