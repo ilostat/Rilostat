@@ -6,7 +6,7 @@
 #'   \itemize{
 #'     \item{"dataexplorer"}: Quickly find, filter, pivot, and download ILOSTAT data.
 #'     \item{"microquery"}: Explore data availability and create custom queries from the ILO Harmonized Microdata Collection. Users can select variables, filters, and indicators to generate tailored datasets.
-#'     \item{"regionalaggregate"}: Generate custom regional estimates by defining or selecting country groupings. The app automatically aggregates country-level modeled data for selected indicators.
+#'     \item{"regionalaggregate"}: Generate custom regional estimates by defining or selecting country groupings. The app automatically aggregates country-level modelled data for selected indicators.
 #'   }
 #' @author David Bescond \email{bescond@ilo.org}
 #' @references
@@ -52,29 +52,3 @@ runapp_ilostat <- function(name = "dataexplorer"){
   .runapps(name)
 
 }
-
-
-#' @export
-#' @rdname runapp_ilostat
-dataexplorer <- function() {
-	
-	  # CRITICAL: Check if the 'shiny' package is installed.
-  # If 'shiny' is only a suggested package in the DESCRIPTION, it might be missing.
-  if (!requireNamespace("shiny", quietly = TRUE)) {
-    # If the package is missing, stop execution and give the user clear instructions.
-    # 'call. = FALSE' prevents the function call itself from being printed in the error message,
-    # making the output cleaner.
-    stop(
-      "The 'shiny' package is required to run the ILOSTAT web applications.\n",
-      "Please install it first: install.packages('shiny')",
-      call. = FALSE
-    )
-  }
-
-  # If 'shiny' is available, proceed to run the application using the internal function.
-  .runapps(name="dataexplorer")
-
-}
-
-
-  

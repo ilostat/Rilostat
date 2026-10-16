@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_ilostat.R
 \name{get_ilostat}
 \alias{get_ilostat}
-\title{Read Ilostat Data}
+\title{Read ilostat Data}
 \usage{
 get_ilostat(
   id,
@@ -11,15 +11,15 @@ get_ilostat(
   lang = getOption("ilostat_lang", "en"),
   time_format = getOption("ilostat_time_format", "raw"),
   filters = getOption("ilostat_filter", "none"),
+  best_source = getOption("ilostat_best_source", "yes"),
   fixed = getOption("ilostat_fixed", TRUE),
-  detail = getOption("ilostat_detail", "full"),
   cache = getOption("ilostat_cache", TRUE),
   cache_update = getOption("ilostat_cache_update", TRUE),
   cache_dir = getOption("ilostat_cache_dir", NULL),
   cache_format = getOption("ilostat_cache_format", "rds"),
   back = getOption("ilostat_back", TRUE),
   cmd = getOption("ilostat_cmd", "none"),
-  quiet = getOption("ilostat_quiet", FALSE)
+  quiet = getOption("ilostat_quiet", TRUE)
 )
 }
 \arguments{
@@ -27,39 +27,35 @@ get_ilostat(
 See \code{\link{get_ilostat_toc}} or details for how to get code.}
 
 \item{segment}{A character, way to get datasets by: \code{"indicator"} (default) or \code{"ref_area"}.
-Can be set also with options(ilostat_segment = 'ref_area'),}
+Can be set also with options(ilostat_segment = "ref_area"),}
 
 \item{type}{a character, type of variables, \code{"code"} (default), \code{"label"} or \code{"both"}.
-Can be set also with options(ilostat_type = 'both'),}
+Can be set also with options(ilostat_type = "both"),}
 
 \item{lang}{a character, code for language. Available are \code{"en"} (default), 
-\code{"fr"} and \code{"es"}. Can be set also with options(ilostat_lang = 'fr'),}
+\code{"fr"} and \code{"es"}. Can be set also with options(ilostat_lang = "fr"),}
 
 \item{time_format}{a string giving a type of the conversion of the time
 column from the ilostat format. "raw" (default)
-does not do conversion and return time as character (ie. '2017', '2017Q1', '2017M01'). A "date" converted to
+does not do conversion and return time as character (ie. "2017", "2017Q1", "2017M01"). A "date" converted to
 a \code{\link{Date}} with a first date of the period. A "date_last" converted to a \code{\link{Date}} with
 a last date of the period and "num" converted to a numeric. Can be set also with 
-options(ilostat_time_format = 'date'),}
+options(ilostat_time_format = "date"),}
 
 \item{filters}{a list; \code{"none"} (default) to get a whole dataset or a named list of
 filters to get just part of the table. Names of list objects are
 ilostat variable codes and values are vectors of observation codes.
-filters detect on variables, so could be partial, ie. \code{list(sex = 'T')} is
-enough but equivalent to \code{list(sex = 'SEX_T')}. Additional options:
-enough but equivalent to \code{list(sex = 'SEX_T')}. Additional options:
+filters detect on variables, so could be partial, ie. \code{list(sex = "T")} is
+enough but equivalent to \code{list(sex = "SEX_T")}. Additional options:
     \itemize{ 
         \item{\code{timefrom}} : starting year of the return dataset,
         \item{\code{timeto}} : ending year of the return dataset.
    }}
 
+\item{best_source}{a character; \code{"yes"} (default) to get secondary source if exist \code{"all"}, \code{"no"} for secondary only.}
+
 \item{fixed}{a logical, if \code{TRUE} (default), filters arguments pattern is a string to be matched as is,
 Change to \code{FALSE} if more complex regex matching is needed.}
-
-\item{detail}{a character, \code{'full'} (default), whether \code{'serieskeysonly'}, return
-   only key, no data, no notes or \code{dataonly} return key and data, no notes or \code{'bestsourceonly'} return 
-best source only at the series key levels, see details.
-   Can be set also with options(ilostat_detail = 'serieskeysonly'),}
 
 \item{cache}{a logical whether to do caching. Default is \code{TRUE}. Affects
     only queries from the ilostat bulk download facility. 
@@ -77,12 +73,13 @@ The \code{NULL} (default) uses and creates
 
 \item{cache_format}{a character, format to store on the cache \code{"rds"} (default), but also \code{"csv"}, \code{"dta"}, 
 \code{"sav"}, \code{"sas7bdat"}. useful for getting ilostat dataset directly on the \code{cache_dir} without R.  
-     Can be set also with options(ilostat_cache_format = 'dta'),}
+     Can be set also with options(ilostat_cache_format = "dta"),}
 
-\item{back}{a logical, \code{TRUE} return dataframe on R or not \code{FALSE}, useful for just saving file in specific \code{cache_format},}
+\item{back}{a logical; if TRUE (default) return a data frame, otherwise only write to cache,}
 
 \item{cmd}{a character, R expression use for manipulate internal data frame \code{dat} object applied to each datasets retrieved 
-If use, \code{cache} is set to FALSE. see examples.}
+If use, \code{cache} is set to FALSE. see examples. 
+This argument uses non-standard evaluation and should be used with care.}
 
 \item{quiet}{a logical, if \code{TRUE} , don't return message from processing, \code{FALSE} (default).
 Can be set also with options(ilostat_quiet = TRUE),}
@@ -105,8 +102,6 @@ Download datasets from ilostat \url{https://ilostat.ilo.org} via bulk download f
   bulk download facility. 
 
   The bulk download facility is the fastest method to download whole datasets.
-  It is also often the only way as the sdmx API has limitation of maximum 
-  300 000 records at the same time and whole datasets usually exceeds that. 
 
   By default datasets from the bulk download facility are cached as they are
   often rather large. 
@@ -122,55 +117,55 @@ Download datasets from ilostat \url{https://ilostat.ilo.org} via bulk download f
 \examples{
 \dontrun{
 ############# get simple dataset
- dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A")
+ dat <- get_ilostat("UNE_TUNE_SEX_AGE_NB_A")
  head(dat)
  dat <- get_ilostat("NZL_Q", segment = "ref_area")
  head(dat)
 
  dir.create(file.path(tempdir(), "r_cache"))
- dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A", 
+ dat <- get_ilostat("UNE_TUNE_SEX_AGE_NB_A", 
                   cache_dir = file.path(tempdir(), "r_cache"))
  head(dat)
 
  clean_ilostat_cache(cache_dir = file.path(tempdir(), "r_cache")) 
 
  options(ilostat_update = TRUE)
- dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A")
+ dat <- get_ilostat("UNE_TUNE_SEX_AGE_NB_A")
  head(dat)
  options(ilostat_update = FALSE)
  options(ilostat_cache_dir = file.path(tempdir(), "r_cache"))
- dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A")
+ dat <- get_ilostat("UNE_TUNE_SEX_AGE_NB_A")
 
  clean_ilostat_cache() 
 
 ############# get multiple datasets
- dat <- get_ilostat(c("CPI_ACPI_COI_RT_M", 'CPI_ACPI_COI_RT_Q'), cache = FALSE)
+ dat <- get_ilostat(c("CPI_ACPI_COI_RT_M", "CPI_ACPI_COI_RT_Q"), cache = FALSE)
  head(dat)
- toc <- get_ilostat_toc(search = 'CPI_')
+ toc <- get_ilostat_toc(search = "CPI_")
  head(toc)
  dat <- get_ilostat(toc, cache = FALSE) #id as a tibble
 
 ############# get datasets with filters
- dat <- get_ilostat(id = c("UNE_2UNE_SEX_AGE_NB_A", 'EMP_2EMP_SEX_AGE_NB_A'), 
- 		filters = list(	ref_area = "FRA", 
- 		classif1 = "AGE_YTHADULT_YGE15", 
- 		time = "2016",
- 		sex = c("T", 'SEX_F')), quiet = TRUE)
+ dat <- get_ilostat(id = c("UNE_TUNE_SEX_AGE_NB_A", "EMP_TEMP_SEX_AGE_NB_A"), 
+         filters = list(	ref_area = "FRA", 
+         classif1 = "_YGE15", 
+         time = "2016",
+         sex = c("T", "SEX_F")), quiet = TRUE)
  head(dat)
  clean_ilostat_cache() 
 
 ############# store in other format
  dir.create(file.path(tempdir(), "ilostat"))
 
- dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A", 
-                  cache_dir = file.path(tempdir(), "r_cache"), cache_format = 'csv')
- dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A", 
-                  cache_dir = file.path(tempdir(), "r_cache"), cache_format = 'dta')
+ dat <- get_ilostat("UNE_TUNE_SEX_AGE_NB_A", 
+                  cache_dir = file.path(tempdir(), "r_cache"), cache_format = "csv")
+ dat <- get_ilostat("UNE_TUNE_SEX_AGE_NB_A", 
+                  cache_dir = file.path(tempdir(), "r_cache"), cache_format = "dta")
 
 ############# advanced manipulation
 
- dat <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A", cmd = "dat \%>\% count(ref_area)", quiet = TRUE)
- label_ilostat(dat, code = 'ref_area')
+ dat <- get_ilostat("UNE_TUNE_SEX_AGE_NB_A", cmd = "dat \%>\% count(ref_area)", quiet = TRUE)
+ label_ilostat(dat, code = "ref_area")
 
  clean_ilostat_cache()
 }

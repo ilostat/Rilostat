@@ -1,4 +1,4 @@
-#' @title Clean Ilostat Cache
+#' @title Clean ilostat Cache
 #' @description Deletes all cache files from the your ilostat cache directory.
 #'              See \code{\link{get_ilostat}} for more on cache.
 #' @param cache_dir A character, path to a cache directory. The directory has to exist.
@@ -15,7 +15,7 @@
 #' @references
 #' See citation("Rilostat")
 #' ilostat bulk download facility user guidelines 
-#' \url{https://webapps.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf}
+#' \url{https://ilostat.ilo.org/data/bulk/}
 #' @examples 
 #' \dontrun{
 #' clean_ilostat_cache() 
@@ -24,13 +24,13 @@
 
 clean_ilostat_cache <- function(cache_dir = getOption("ilostat_cache_dir", file.path(tempdir(), "ilostat")), 
 								cache_update = getOption("ilostat_cache_update", FALSE), 
-								quiet = getOption('ilostat_quiet', FALSE)){
+								quiet = getOption('ilostat_quiet', TRUE)){
 
   if (!file.exists(cache_dir)){ 
     stop("The cache folder ", cache_dir, " does not exist")
   }
   
-  cache_files <- list.files(cache_dir, pattern = "rds|dta|csv|csv.gz|sav|sas7bdat", full.names = TRUE)
+  cache_files <- list.files(cache_dir, pattern = "\\.(rds|dta|csv|csv\\.gz|sav|sas7bdat)$", full.names = TRUE)
   
   
   if (length(cache_files) == 0) {
@@ -57,11 +57,11 @@ clean_ilostat_cache <- function(cache_dir = getOption("ilostat_cache_dir", file.
 
       test = "last.update = ifelse(substr(last.update, 6,8) %in% '/20', last.update %>% strptime('%d/%m/%Y  %H:%M:%S') %>% format('%Y%m%dT%H%M%S'), last.update)"
 	
-      if(unique(cache_files$segment) %in% 'indicator'){
+      if ("indicator" %in% cache_files$segment){
             
 		ref_toc <- bind_rows(ref_toc, 
 						get_ilostat_toc('indicator') %>%
-						select_at(.vars = c("id", "last.update")) %>%
+						select(all_of(c("id", "last.update"))) %>%
 						mutate(eval(parse(text = test)))
 						)
 						
@@ -69,12 +69,12 @@ clean_ilostat_cache <- function(cache_dir = getOption("ilostat_cache_dir", file.
 	  
 	  }
 	  
-	  if(unique(cache_files$segment) %in% 'ref_area'){
+	 if ("ref_area" %in% cache_files$segment){
 	  
 	    
 		ref_toc <- bind_rows(ref_toc, 
 						get_ilostat_toc('ref_area') %>%
-						select_at(.vars = c("id", "last.update")) %>%
+						select(all_of(c("id", "last.update"))) %>%
 						mutate(eval(parse(text = test))) 
 						)
 		ref_toc <- filter(ref_toc, eval(parse(text = "id %in% cache_files$id")))				

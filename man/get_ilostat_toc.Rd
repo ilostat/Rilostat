@@ -2,27 +2,30 @@
 % Please edit documentation in R/get_ilostat_toc.R
 \name{get_ilostat_toc}
 \alias{get_ilostat_toc}
-\title{Read Ilostat Table of Contents}
+\title{Read ilostat Table of Contents / workflow}
 \usage{
 get_ilostat_toc(
   segment = getOption("ilostat_segment", "indicator"),
   lang = getOption("ilostat_lang", "en"),
   search = getOption("ilostat_search", "none"),
   filters = getOption("ilostat_filter", "none"),
-  fixed = getOption("ilostat_fixed", TRUE)
+  fixed = getOption("ilostat_fixed", TRUE),
+  cache_dir = getOption("ilostat_cache_dir", NULL),
+  cache_update = getOption("ilostat_cache_update", TRUE),
+  quiet = getOption("ilostat_quiet", TRUE)
 )
 }
 \arguments{
 \item{segment}{A character, way to get datasets by: \code{"indicator"} (default) or \code{"ref_area"}, 
-Can be set also with options(ilostat_segment = 'ref_area'),}
+Can be set also with options(ilostat_segment = "ref_area"),}
 
 \item{lang}{a character, code for language. Available are \code{"en"} (default), 
-\code{"fr"} and \code{"es"}. Can be set also with options(ilostat_lang = 'fr'),}
+\code{"fr"} and \code{"es"}. Can be set also with options(ilostat_lang = "fr"),}
 
 \item{search}{a character vector, "none" (default), datasets with this pattern in
 the description will be returned,
-   characters vector will be use as AND, Character with '|' as OR, see example,
-options(ilostat_time_format = 'date'),}
+   characters vector will be use as AND, Character with "|" as OR, see example,
+options(ilostat_time_format = "date"),}
 
 \item{filters}{a list; \code{"none"} (default) to get a whole toc or a named list of
 filters to get just part of the table. Names of list objects are
@@ -31,6 +34,19 @@ filters detect on variables.}
 
 \item{fixed}{a logical, if \code{TRUE} (default), pattern is a string to be matched as is,
 Change to \code{FALSE} if more complex regex matching is needed.}
+
+\item{cache_dir}{a path to a cache directory. The directory has to exist.
+The \code{NULL} (default) uses and creates
+'ilostat' directory in the temporary directory from
+\code{\link{tempdir}}. The directory can also be set with
+\code{option} ilostat_cache_dir,}
+
+\item{cache_update}{a logical whether to update cache. Check cache update with last.update attribute store on the cache file name 
+ and the one from the table of contents. Can be set also with
+options(ilostat_cache_update = FALSE). Default is \code{TRUE},}
+
+\item{quiet}{a logical, if \code{FALSE} , return message from processing, \code{TRUE} (default).
+Can be set also with options(ilostat_quiet = TRUE),}
 }
 \value{
 A tibble with ten columns depending of the segment: indicator or ref_area
@@ -52,44 +68,42 @@ Download one table of contents from ilostat \url{https://ilostat.ilo.org} via bu
 \url{https://ilostat.ilo.org/data/bulk/}.
 }
 \details{
-The TOC in English by indicator is downloaded from \url{https://webapps.ilo.org/ilostat-files/WEB_bulk_download/indicator/table_of_contents_en.csv}. 
-The values in column 'id' should be used to download a selected dataset.
+The toc in English by indicator is downloaded from ilostat API \url{https://rplumber.ilo.org/__docs__/#get-/metadata/toc/indicator/}. 
+The values in column "id" should be used to download a selected dataset.
 
-The TOC in English by ref_area is downloaded from \url{https://webapps.ilo.org/ilostat-files/WEB_bulk_download/ref_area/table_of_contents_en.csv}. 
-The values in column 'id' should be used to download a selected dataset.
+The toc in English by ref_area is downloaded from ilostat API \url{https://rplumber.ilo.org/__docs__/#get-/metadata/toc/ref_area/}. 
+The values in column "id" should be used to download a selected dataset.
 }
 \examples{
 \dontrun{
 ## default segment by indicator, default lang English
  toc <- get_ilostat_toc()
  head(toc)
- toc <- get_ilostat_toc(segment = 'ref_area', lang = 'fr')
+ toc <- get_ilostat_toc(segment = "ref_area", lang = "fr")
  head(toc)
 ##
 ## search on toc
- toc <- get_ilostat_toc(search = 'education')
+ toc <- get_ilostat_toc(search = "education")
  head(toc)
- toc <- get_ilostat_toc(lang = 'fr', search = 'éducation')
+ toc <- get_ilostat_toc(lang = "fr", search = "age")
  head(toc)
- toc <- get_ilostat_toc(segment = 'ref_area', lang = 'fr', search = 'Albanie')
+ toc <- get_ilostat_toc(segment = "ref_area", lang = "fr", search = "Albanie")
  toc
- toc <- get_ilostat_toc(segment = 'ref_area', lang = 'es', search = 'Trimestral')
+ toc <- get_ilostat_toc(segment = "ref_area", lang = "es", search = "Trimestral")
  head(toc)
 ##
 ## search multi on toc
- toc <- get_ilostat_toc(segment = 'ref_area', lang = 'fr', 
-             search = 'Albanie|France', fixed = FALSE)
+ toc <- get_ilostat_toc(segment = "ref_area", lang = "fr", 
+             search = "Albanie|France", fixed = FALSE)
  head(toc)
- toc <- get_ilostat_toc(search = 'youth|adult', fixed = FALSE)
- head(toc)
- toc <- get_ilostat_toc(search = c('youth','adult'), fixed = FALSE)
+ toc <- get_ilostat_toc(search = "youth|adult", fixed = FALSE)
  head(toc)
 ##
 }
 }
 \references{
 See citation("Rilostat")
-ilostat bulk download facility user guidelines \url{https://webapps.ilo.org/ilostat-files/WEB_bulk_download/ILOSTAT_BulkDownload_Guidelines.pdf}
+ilostat bulk download facility user guidelines \url{https://ilostat.ilo.org/data/bulk/}
 }
 \seealso{
 \code{\link{get_ilostat}}.

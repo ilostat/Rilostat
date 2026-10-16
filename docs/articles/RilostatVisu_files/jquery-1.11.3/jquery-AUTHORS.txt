@@ -23,7 +23,7 @@ Ariel Flesler <aflesler@gmail.com>
 Jon Evans <jon@springyweb.com>
 TJ Holowaychuk <tj@vision-media.ca>
 Michael Bensoussan <mickey@seesmic.com>
-Robert Katić <robert.katic@gmail.com>
+Robert Katic <robert.katic@gmail.com>
 Louis-Rémi Babé <lrbabe@gmail.com>
 Earle Castledine <mrspeaker@gmail.com>
 Damian Janowski <damian.janowski@gmail.com>
@@ -178,7 +178,7 @@ Adam Coulombe <me@adam.co>
 Andrew Plummer <plummer.andrew@gmail.com>
 Mark Raddatz <mraddatz@gmail.com>
 Dmitry Gusev <dmitry.gusev@gmail.com>
-Michał Gołębiowski <m.goleb@gmail.com>
+Michal Golebiowski <m.goleb@gmail.com>
 Nguyen Phuc Lam <ruado1987@gmail.com>
 Tom H Fuertes <tomfuertes@gmail.com>
 Brandon Johnson <bjohn465+github@gmail.com>

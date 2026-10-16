@@ -4,7 +4,12 @@
 \alias{distribution_ilostat}
 \title{Switch ilostat to distribution}
 \usage{
-distribution_ilostat(x, var, .keep = FALSE)
+distribution_ilostat(
+  x,
+  var,
+  .keep = FALSE,
+  quiet = getOption("ilostat_quiet", TRUE)
+)
 }
 \arguments{
 \item{x}{dataset to transform into distribution.}
@@ -12,7 +17,10 @@ distribution_ilostat(x, var, .keep = FALSE)
 \item{var}{String variable name use for the distribution default \code{"no"}, 
 could be \code{"sex"}, \code{"classif1"}, \code{"classif2"}.}
 
-\item{.keep}{if true return only new column call distribution default \code{FALSE}.}
+\item{.keep}{if true return only new column call distribution default \code{FALSE},}
+
+\item{quiet}{a logical, if \code{TRUE} , don't return message from processing, \code{FALSE} (default).
+Can be set also with options(ilostat_quiet = TRUE).}
 }
 \value{
 a data_frame. obs_status will no longer be a number of persons but a percentage.
@@ -27,7 +35,7 @@ this function use the max of the corresponding grouping so it is
 	which is no longer a distribution.
 
 	In addition, distribution is only applicable for indicators with Number of persons (usually in thousands), 
-	So plse do not distribute ratios, earnings, hours of works, CPI, GDP etc ... no warning will prevent for that
+	So please do not distribute ratios, earnings, hours of works, CPI, GDP etc ... no warning will prevent for that
 	if doubts use distribution from get_ilostat() instead of, warnings will help you.
 }
 \examples{
@@ -42,7 +50,7 @@ this function use the max of the corresponding grouping so it is
 \references{
 See citation("Rilostat")
 ilostat bulk download facility user guidelines 
-\url{https://webapps.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf}
+\url{https://ilostat.ilo.org/data/bulk/}
 }
 \author{
 David Bescond \email{bescond@ilo.org}

@@ -2,12 +2,9 @@
 % Please edit documentation in R/runapp_ilostat.R
 \name{runapp_ilostat}
 \alias{runapp_ilostat}
-\alias{dataexplorer}
 \title{Play with ILOSTAT data apps}
 \usage{
 runapp_ilostat(name = "dataexplorer")
-
-dataexplorer()
 }
 \arguments{
 \item{name}{`chr` The name of the application to open.
@@ -16,7 +13,7 @@ dataexplorer()
   \itemize{
     \item{"dataexplorer"}: Quickly find, filter, pivot, and download ILOSTAT data.
     \item{"microquery"}: Explore data availability and create custom queries from the ILO Harmonized Microdata Collection. Users can select variables, filters, and indicators to generate tailored datasets.
-    \item{"regionalaggregate"}: Generate custom regional estimates by defining or selecting country groupings. The app automatically aggregates country-level modeled data for selected indicators.
+    \item{"regionalaggregate"}: Generate custom regional estimates by defining or selecting country groupings. The app automatically aggregates country-level modelled data for selected indicators.
   }}
 }
 \description{

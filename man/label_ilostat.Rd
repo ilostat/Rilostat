@@ -2,7 +2,7 @@
 % Please edit documentation in R/label_ilostat.R
 \name{label_ilostat}
 \alias{label_ilostat}
-\title{Switch Ilostat codes and labels}
+\title{Switch ilostat codes and labels}
 \usage{
 label_ilostat(
   x,
@@ -58,7 +58,7 @@ dat <- get_ilostat("UNE_TUNE_SEX_AGE_NB_A") \%>\%
 \references{
 See citation("Rilostat")
 ilostat bulk download facility user guidelines 
-\url{https://webapps.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf}
+\url{https://ilostat.ilo.org/data/bulk/}
 }
 \author{
 David Bescond \email{bescond@ilo.org}

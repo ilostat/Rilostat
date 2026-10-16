@@ -24,7 +24,7 @@ ilostat_date_convert <- data.frame(
            "-07-01", "-08-01", "-09-01", "-10-01", "-11-01", "-12-01")
 ) %>% tibble::as_tibble()
 
-#' ilostat_cols_ref: Standard ILOSTAT Column Names
+#' ilostat_cols_ref: Standard ILOSTAT Column Names populate
 #'
 #' A static internal character vector containing the expected default column names
 #' returned by the ILOSTAT API. Used for internal data validation and ordering.
@@ -38,3 +38,4 @@ ilostat_cols_ref <- c("ref_area", "ref_area.label", "source", "source.label", "i
                       "obs_status.label", "note_classif", "note_classif.label", 
                       "note_indicator", "note_indicator.label", "note_source", 
                       "note_source.label")
+					  
