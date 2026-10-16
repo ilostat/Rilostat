@@ -22,8 +22,7 @@ ILOSTAT’s website provides immediate access to all its data and related
 metadata through different ways. Basic users can simply view the desired
 data online or download it in Excel or csv formats. More advanced users
 can take advantage of ILOSTAT’s well-structured [bulk download
-facility](https://ilostat.ilo.org/data/bulk/) ([user
-guide](https://webapps.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf)).
+facility](https://ilostat.ilo.org/data/bulk/).
 
 The ilostat R package (`'Rilostat'`) was designed to give data users the
 ability to access the ILOSTAT database, search for data, rearrange the
@@ -36,8 +35,7 @@ required.
 
 - Provides access to all annual, quarterly, and monthly data available
   via the ILOSTAT [bulk download
-  facility](https://ilostat.ilo.org/data/bulk/) ([user
-  guide](https://webapps.ilo.org/ilostat-files/Documents/ILOSTAT_BulkDownload_Guidelines.pdf))
+  facility](https://ilostat.ilo.org/data/bulk/)
 - Allows to search for and download data and related metadata in
   English, French and Spanish
 - Gives the ability to return `POSIXct` dates for easy integration into
@@ -51,9 +49,9 @@ required.
 
 The developer of this package drew extensive inspiration from the
 [eurostat R package](https://CRAN.R-project.org/package=eurostat) and
-its related documentation:  
+its related documentation:\
 - [Retrieval and Analysis of Eurostat Open Data with the eurostat
-Package](https://journal.r-project.org/archive/2017/RJ-2017-019/RJ-2017-019.pdf) -
+Package](https://journal.r-project.org/articles/RJ-2017-019/RJ-2017-019.pdf) -
 [Leo Lahti](https://github.com/antagomir), [Przemyslaw
 Biecek](https://github.com/pbiecek), [Markus
 Kainu](https://github.com/muuankarski) and [Janne
@@ -88,15 +86,30 @@ Contributions are very welcome:
 - [Use issue tracker](https://github.com/ilostat/Rilostat/issues) for
   feedback and bug reports.
 
-- [Star us on the Github page](https://github.com/ilostat/Rilostat)
+- [Star us on the github page](https://github.com/ilostat/Rilostat)
 
-## Permission to reproduce ILO publication and data
+## Software license
 
-The reproduction of ILO material is generally authorized for
-non-commercial purposes and within established limits. However, you may
-need to submit a formal request in certain circumstances. for more
-information please consult:
+`Rilostat` is distributed under the BSD 2-Clause License.
 
-<https://www.ilo.org/global/copyright>
+Copyright © 2026 International Labour Organization.
 
-<https://www.ilo.org/global/copyright/request-for-permission>
+## ILOSTAT data licensing
+
+ILOSTAT databases and datasets, together with their accompanying
+referential metadata, published by the International Labour Organization
+(ILO) as of 3 May 2023 are licensed under the [Creative Commons
+Attribution 4.0 International License (CC BY
+4.0)](https://creativecommons.org/licenses/by/4.0/), unless otherwise
+indicated.
+
+Users may reuse, share and adapt this material in accordance with the
+terms of the licence and must give appropriate credit to the
+International Labour Organization (ILO) as the source.
+
+The licensing of ILOSTAT data and metadata is separate from the BSD
+2-Clause License applying to the `Rilostat` R package.
+
+For full information on ILO copyright, data licensing, third-party
+material and other rights and permissions, see the [ILO Rights and
+permissions](https://www.ilo.org/rights-and-permissions) page.
