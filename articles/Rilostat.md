@@ -142,9 +142,9 @@ toc <- get_ilostat_toc(segment = 'ref_area', lang = 'es', quiet = TRUE)
 
 | id | ref_area | ref_area.label | freq | freq.label | data.start | data.end | last.update | n.records |
 |:---|:---|:---|:---|:---|---:|---:|:---|---:|
-| AFG_A | AFG | Afganistán | A | Anual | 1978 | 2030 | 12/10/2026 08:59:09 | 363647 |
-| AFG_Q | AFG | Afganistán | Q | Trimestral | 2005 | 2024 | 05/03/2026 16:35:54 | 2903 |
-| AFG_M | AFG | Afganistán | M | Mensual | 2005 | 2025 | 13/02/2026 12:22:29 | 8742 |
+| AFG_A | AFG | Afganistán | A | Anual | 1979 | 2030 | 25/10/2026 21:43:16 | 363687 |
+| AFG_Q | AFG | Afganistán | Q | Trimestral | 2005 | 2024 | 05/03/2026 17:35:54 | 2903 |
+| AFG_M | AFG | Afganistán | M | Mensual | 2005 | 2025 | 13/02/2026 13:22:29 | 8742 |
 
 Table 1b. Extract, ‘Table of contents by ref_area in Spanish’ {.table}
 
@@ -188,8 +188,8 @@ toc <- get_ilostat_toc(segment = 'ref_area', search = c('France|Albania', 'Annua
 
 | id | ref_area | ref_area.label | freq | freq.label | data.start | data.end | last.update | n.records |
 |:---|:---|:---|:---|:---|---:|---:|:---|---:|
-| ALB_A | ALB | Albania | A | Annual | 1960 | 2030 | 13/10/2026 10:07:05 | 1272473 |
-| FRA_A | FRA | France | A | Annual | 1955 | 2030 | 13/10/2026 10:00:51 | 2660319 |
+| ALB_A | ALB | Albania | A | Annual | 1960 | 2030 | 26/10/2026 18:55:10 | 1271446 |
+| FRA_A | FRA | France | A | Annual | 1955 | 2030 | 26/10/2026 18:53:19 | 2685810 |
 
 Table 1d. ‘Table of contents by ref_area with search words ’France’ or
 ‘Albania’ and ‘Annual’’ {.table}
@@ -292,7 +292,7 @@ dplyr::count(dat, ref_area)
     ## # A tibble: 2 × 2
     ##   ref_area      n
     ##   <chr>     <int>
-    ## 1 AFG      363647
+    ## 1 AFG      363687
     ## 2 TTO      375147
 
   
@@ -309,10 +309,10 @@ dplyr::count(dat, indicator)
     ## # A tibble: 4 × 2
     ##   indicator            n
     ##   <chr>            <int>
-    ## 1 CPI_NCPD_COI_RT 671852
-    ## 2 CPI_NCYR_COI_RT 765990
-    ## 3 CPI_NWGT_COI_RT  41302
-    ## 4 CPI_XCPI_COI_RT 802795
+    ## 1 CPI_NCPD_COI_RT 673023
+    ## 2 CPI_NCYR_COI_RT 767353
+    ## 3 CPI_NWGT_COI_RT  41326
+    ## 4 CPI_XCPI_COI_RT 804166
 
 ## Time format
 
