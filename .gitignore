@@ -1,10 +1,51 @@
-Meta
-doc
-.Rproj.user
+# R session files
 .Rhistory
+.RData
 .Rdata
+.Ruserdata
+.Rapp.history
+
+# RStudio / Positron local project state
+.Rproj.user/
+.positron/
+
+# Local R environments
+.Renviron
+.Rprofile
+
+# R package build/check output
+/*.tar.gz
+/*.Rcheck/
+/check/
+/build/
+
+# Coverage / test artifacts
+.Rcoverage
+covr.R
+coverage/
+
+# pkgdown generated site
+/docs/
+/site/
+
+# Quarto generated/cache files
+/.quarto/
+*_cache/
+*_files/
+
+# Credentials / authentication
 .httr-oauth
+*.pem
+*.key
+
+# OS files
 .DS_Store
-.quarto
-docs
-inst
+Thumbs.db
+Desktop.ini
+
+# Editor temporary files
+*~
+*.swp
+*.swo
+*.tmp
+/Meta/
