@@ -28,6 +28,7 @@ Imports:
     dplyr (>= 1.1.4),
     httr2 (>= 1.0.0),
     haven (>= 2.5.0),
+    jsonlite (>= 1.8.0),
     rlang (>= 1.1.0),
     readr (>= 2.1.5),
     stringr (>= 1.5.2),
