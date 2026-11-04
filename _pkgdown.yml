@@ -1,12 +1,18 @@
-# _pkgdown.yml (in the docs directory)
-url: https://ilostat.github.io/Rilostat/
+﻿url: https://ilostat.github.io/Rilostat/
+
 home:
   strip_header: yes
   links:
-  - text: Learn more
+  - text: ILOSTAT bulk download
     href: https://ilostat.ilo.org/data/bulk/
+  - text: ILOSTAT
+    href: https://ilostat.ilo.org/
+
 reference:
 - title: Essential functionality
+  desc: >
+    Access, search, label and manage ILOSTAT data using the native
+    Rilostat interface.
   contents:
   - get_ilostat
   - get_ilostat_dic
@@ -16,28 +22,40 @@ reference:
   - distribution_ilostat
   - runapp_ilostat
   - Rilostat
+
+- title: SDMX
+  desc: >
+    SDMX-oriented access to ILOSTAT observation data, structures,
+    codelists and dataflows, with SDMX-ML 3.1 and SDMX-JSON 2.1
+    support for structural resources.
+  contents:
+  - get_ilostat_sdmx
+
 navbar:
   title: ~
   left:
-    - text: Intro
-      href: articles/Rilostat.html
-    - text: Functions
-      href: reference/index.html
-    - text: News
-      href: news/index.html
+  - text: Intro
+    href: articles/Rilostat.html
+  - text: Reference
+    href: reference/index.html
+  - text: News
+    href: news/index.html
   right:
-    - icon: fa-github fa-lg
-      href: https://github.com/ilostat/Rilostat
-      aria-label: GitHub repository
-    - text: CRAN
-      href: https://cran.r-project.org/package=Rilostat
+  - icon: fa-github fa-lg
+    href: https://github.com/ilostat/Rilostat
+    aria-label: GitHub repository
+  - text: CRAN
+    href: https://cran.r-project.org/package=Rilostat
+
 development:
   mode: auto
+
 template:
   bootstrap: 5
+  bootswatch: cerulean
   params:
     docsearch:
       api_key: 5bb9805eecd1b1c2d12958ea75a8e9e8
       index_name: rilostat
-    bootswatch: cerulean
     ganalytics: G-1MGT4WT12L
+
