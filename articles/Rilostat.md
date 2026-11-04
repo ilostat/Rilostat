@@ -72,6 +72,9 @@ its related documentation:
 
 To install the release version, use the following command:
 
+    ## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
+    ## logical.return = TRUE, : there is no package called 'devtools'
+
 ``` r
 
 install.packages("Rilostat")
@@ -761,4 +764,6 @@ ILO material is generally authorized for non-commercial purposes and
 within established limits. However, you may need to submit a formal
 request in certain circumstances. for more information please refer to:
 
-<https://www.ilo.org/rights-and-permissions>
+<https://www.ilo.org/global/copyright>
+
+<https://www.ilo.org/global/copyright/request-for-permission>
