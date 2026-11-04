@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2025 - http://www.sdmx.org -->
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/structure" 
+			xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/structure" 
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/common"
+			xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/structure" 
+			elementFormDefault="qualified">
+			
+	<xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/common" schemaLocation="SDMXCommon.xsd"/>
+	
+	<xs:include schemaLocation="SDMXStructureBase.xsd"/>
+	
+	<xs:annotation>
+		<xs:appinfo>SDMX Categorisation Structure Module</xs:appinfo>
+		<xs:documentation>The categorisation structure module defines the structure categorisation constructs.</xs:documentation>
+	</xs:annotation>
+
+	<xs:complexType name="CategorisationBaseType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>CategorisationBaseType defines the base refinement of the CategorisationType. Its purpose is to restrict the urn attribute.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="common:MaintainableType">
+				<xs:sequence>
+					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="common:Name" maxOccurs="unbounded"/>
+					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="urn" type="common:CategorisationUrnType" use="optional"/>
+				<xs:attribute name="version" type="common:VersionType" use="prohibited"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="CategorisationType">
+		<xs:annotation>
+			<xs:documentation>CategorisationType is defines the structure for a categorisation. A source object is referenced via an object reference and the target category is referenced via the target category.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="CategorisationBaseType">
+				<xs:sequence minOccurs="0">
+					<xs:element name="Source" type="common:UrnReferenceType">
+						<xs:annotation>
+							<xs:documentation>Source is a reference to an object to be categorized.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Target" type="common:CategoryReferenceType">
+						<xs:annotation>
+							<xs:documentation>Target is reference to the category that the referenced object is to be mapped to.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+</xs:schema>

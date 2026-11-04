@@ -1,62 +1,126 @@
-context("Get")
+test_that("get_ilostat returns expected data structure", {
 
-test_that("get_ilostat includes time and value",{
   skip_on_cran()
-  expect_true(all(c("time", "obs_value") %in%
-                    names(get_ilostat("UNE_2UNE_SEX_AGE_NB_A"))))
-})
 
+  x <- get_ilostat(
+    "UNE_2UNE_SEX_AGE_NB_A"
+  )
 
-test_that("get_ilostat return right classes",{
-  skip_on_cran()
-  expect_true(all(c("character", "numeric") %in%
-                    sapply(get_ilostat("UNE_2UNE_SEX_AGE_NB_A"), class)))
+  expect_s3_class(
+    x,
+    "data.frame"
+  )
 
-})
+  expect_true(
+    all(
+      c("time", "obs_value") %in% names(x)
+    )
+  )
 
-context("cache")
+  expect_type(
+    x$time,
+    "character"
+  )
 
-test_that("Cache give error if cache dir does not exist", {
-  skip_on_cran()
-  expect_error(
-    get_ilostat("UNE_2UNE_SEX_AGE_NB_A", cache = TRUE, cache_dir = file.path(tempdir(), "test/mytest")))
-})
-
-test_that("Cache works", {
-  skip_on_cran()
-  expect_is({
-    t_dir <- file.path(tempdir(), "rilostat")
-    dir.create(t_dir)
-    k <- get_ilostat("UNE_2UNE_SEX_AGE_NB_A", cache_dir = t_dir)
-    },
-    "data.frame")
-})
-
-
-context("Search")
-
-test_that("search_ilostat finds",{
-  skip_on_cran()
-  expect_equal(get_ilostat_toc( search = 
-		"KI")$collection[1],
-    "KI"
+  expect_type(
+    x$obs_value,
+    "double"
   )
 })
 
 
-context("Label")
+test_that("cache directory is created and works", {
 
-test_that("Variable names are labeled",{
   skip_on_cran()
-  expect_equal({nrow(get_ilostat('UNE_2UNE_SEX_AGE_NB_A', type = 'label' , filters = list(ref_area.label = 'France'))) > 0}
-  
-  
-  , TRUE)
 
+  t_dir <- tempfile("rilostat-")
+
+  on.exit(
+    unlink(
+      t_dir,
+      recursive = TRUE,
+      force = TRUE
+    ),
+    add = TRUE
+  )
+
+  expect_false(
+    dir.exists(t_dir)
+  )
+
+  x <- get_ilostat(
+    "UNE_2UNE_SEX_AGE_NB_A",
+    cache_dir = t_dir
+  )
+
+  expect_true(
+    dir.exists(t_dir)
+  )
+
+  expect_s3_class(
+    x,
+    "data.frame"
+  )
 })
 
-test_that("Dic downloading works", {
+
+test_that("get_ilostat_toc search finds SDG datasets", {
+
   skip_on_cran()
-  expect_error(get_ilostat_dic("na_item"))
+
+  x <- get_ilostat_toc(
+    search = "SDG"
+  )
+
+  expect_s3_class(
+    x,
+    "data.frame"
+  )
+
+  expect_gt(
+    nrow(x),
+    0L
+  )
+
+  expect_true(
+    "database" %in% names(x)
+  )
+
+  expect_true(
+    "ILOSDG" %in% x$database
+  )
 })
 
+
+test_that("get_ilostat supports label filters", {
+
+  skip_on_cran()
+
+  x <- get_ilostat(
+    "UNE_2UNE_SEX_AGE_NB_A",
+    type = "label",
+    filters = list(
+      ref_area.label = "France"
+    )
+  )
+
+  expect_s3_class(
+    x,
+    "data.frame"
+  )
+
+  expect_gt(
+    nrow(x),
+    0L
+  )
+})
+
+
+test_that("get_ilostat_dic rejects an unknown dictionary", {
+
+  skip_on_cran()
+
+  expect_error(
+    get_ilostat_dic("na_item")
+  )
+})

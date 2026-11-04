@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2025 - http://www.sdmx.org -->
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/structure" 
+			xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/structure" 
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/common"
+			xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/structure" 
+			elementFormDefault="qualified">
+	<xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/common" schemaLocation="SDMXCommon.xsd"/>
+	<xs:include schemaLocation="SDMXStructureBase.xsd"/>
+
+	<xs:annotation>
+		<xs:appinfo>SDMX Code List Structure Module</xs:appinfo>
+		<xs:documentation>The code list structure module defines the structure of code list and code constructs.</xs:documentation>
+	</xs:annotation>
+
+	<xs:complexType name="CodelistBaseType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>CodelistType defines the structure of a codelist. A codelist is defined as a list from which some statistical concepts (coded concepts) take their values.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ItemSchemeType">
+				<xs:sequence>
+					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="common:Name" maxOccurs="unbounded"/>
+					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:sequence minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="Code"/>
+					</xs:sequence>
+				</xs:sequence>
+				<xs:attribute name="urn" type="common:CodelistUrnType" use="optional"/>
+				<xs:attribute name="id" type="common:NCNameIDType" use="required">
+					<xs:annotation>
+						<xs:documentation>The id attribute holds the identification of the code list. The type of this id is restricted to the common:NCNNameIDType. This is necessary, since the code list may be used to create simple types in data and metadata structure specific schemas and therefore must be compliant with the NCName type in XML Schema (see common:NCNameIDType for further details).</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="CodelistType">
+		<xs:complexContent>
+			<xs:extension base="CodelistBaseType">
+				<xs:sequence>
+					<xs:element name="CodelistExtension" type="CodelistExtensionType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>CodelistExtension allows for the extension of codelists by referencing the codelists to be extended and providing inclusion/exclusion rules for selecting the codes to extend. The order of these is important as it is indicates the order of precedence of the extended codelists for conflict resolution of codes. However, the prefix property can be used to ensure uniqueness of inherited codes in the extending codelist, in case conflicting codes must be included.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="Code" type="CodeType" substitutionGroup="Item">
+		<xs:annotation>
+			<xs:documentation>Code describes a code in a codelist. In addition to the identification and description of the code, basic presentational information is also available. Presentational information not present may be added through the use of annotations.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="CodeType">
+		<xs:annotation>
+			<xs:documentation>CodeType describes the structure of a code. A code is defined as a language independent set of letters, numbers or symbols that represent a concept whose meaning is described in a natural language. Presentational information not present may be added through the use of annotations.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ItemType">
+				<xs:sequence>
+					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="common:Name" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Name provides for a human-readable name for the object. This may be provided in multiple, parallel language-equivalent forms. It may be used in place of a short description.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Description provides a plain text, human-readable description of the code. This may be provided in multiple, parallel language-equivalent forms.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:choice minOccurs="0">
+						<xs:element name="Parent" type="common:IDType">
+							<xs:annotation>
+								<xs:documentation>Parent provides the ability to describe simple hierarchies within a single codelist, by referencing the id value of another code in the same codelist.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="urn" type="common:CodeUrnType" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="CodelistExtensionType">
+		<xs:annotation>
+			<xs:documentation>CodelistExtensionType defines the structure of a codelist to be extended by the codelist defining the extension. It provides a reference to the extended codelist and selection criteria to indicate the codes to be included in the extending codelist.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Codelist" type="common:CodelistReferenceType"/>
+			<xs:choice minOccurs="0">
+				<xs:element name="InclusiveCodeSelection" type="CodeSelectionType">
+					<xs:annotation>
+						<xs:documentation>Selection of codes from the referenced (extended) codelist to be included in the extending codelist.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ExclusiveCodeSelection" type="CodeSelectionType">
+					<xs:annotation>
+						<xs:documentation>Selection of codes from the referenced (extended) codelist to be excluded in the extending codelist.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="prefix" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>A reference to a codelist may contain a prefix. If a prefix is provided, this prefix will be applied to all the codes in the codelist before they are imported into the extended codelist.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="CodeSelectionType">
+		<xs:annotation>
+			<xs:documentation>CodeSelectionType defines the structure for code selection to be used as inclusive or exclusive extensions.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MemberValue" type="MemberValueType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>An explicit or wildcard selection of a code(s) from the codelist selected for inclusion/exclusion. If a wildcard expression is used, it is evaluated to determine codes selected for inclusion/exclusion. Otherwise, each member value is a distinct code. If the extended list is hierarchical, this can indicate whether child codes are to be included.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:simpleType name="WildcardedMemberValueType">
+		<xs:annotation>
+			<xs:documentation>WildcardedMemberValueType allows for an optional wildcard characters ('%') in an identifier.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Za-z0-9_@$-%]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="MemberValueType">
+		<xs:annotation>
+			<xs:documentation>Allows for a ditinct reference or a wildcard expression for selecting codes from a codelist.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="WildcardedMemberValueType">
+				<xs:attribute name="cascadeValues" type="common:CascadeSelectionType" use="optional">
+					<xs:annotation>
+						<xs:documentation>Indicates whether child codes should be selected when the codelist is hierarchical. Possible values are true (include the selected and child codes), false (only include the selected code(s)), and excluderoot (include the children but not the selected code(s)).</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="GeoCodelistBaseType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>GeoCodelistBaseType is an abstract base refinement of a codelist that restricts the cods to be derived from the abstract GeoRefCode.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="CodelistType">
+				<xs:sequence>
+					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="common:Name" maxOccurs="unbounded"/>
+					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:sequence minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="GeoRefCode"/>
+					</xs:sequence>
+					<xs:element name="CodelistExtension" type="CodelistExtensionType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="GeoCodelistType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>GeoCodelistType is an abstract refinement of a codelist from which specific types of geographic codelists will be derived.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="GeoCodelistBaseType">
+				<xs:attribute name="geoType" type="GeoCodelistTypeType" use="required">
+					<xs:annotation>
+						<xs:documentation>The type of geographic codelist. The will be refined and provided a fixed value in the specific geographic codelist type implementations.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="GeoRefCode" type="GeoRefCodeType" substitutionGroup="Code" abstract="true">
+		<xs:annotation>
+			<xs:documentation>GeoRefCode is the abstract base from which specific types of geographic codes will be derived.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="GeoRefCodeType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>GeoRefCodeType is the abstract base type defining the structure of geographic codes.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="CodeType"/>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="GeographicCodelistType">
+		<xs:annotation>
+			<xs:documentation>GeographicCodelistType defines the structure of a geographic codelist. It comprises a set of GeoFeatureSetCodes, by adding a value in the Code that follows a pattern to represent a geo feature set.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="GeoCodelistType">
+				<xs:sequence>
+					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="common:Name" maxOccurs="unbounded"/>
+					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:sequence minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="GeoFeatureSetCode"/>
+					</xs:sequence>
+					<xs:element name="CodelistExtension" type="CodelistExtensionType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="geoType" type="GeoCodelistTypeType" use="required" fixed="GeographicCodelist"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="GeoFeatureSetCode" type="GeoFeatureSetCodeType" substitutionGroup="GeoRefCode">
+		<xs:annotation>
+			<xs:documentation>Is a geographic code in a geographic codelist. It adds a value to a code that folows a pattern to represent a geo feature set.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	
+	<xs:complexType name="GeoFeatureSetCodeType">
+		<xs:annotation>
+			<xs:documentation>GeoFeatureSetCodeType defines the structure of a geographic code.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="GeoRefCodeType">
+				<xs:attribute name="value" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>The geo feature set of the Code, which represents a set of points defining a feature in a format defined a predefined pattern (see section 6).</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="GeoGridCodelistBaseType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>GeoGridCodelistBaseType is the abstract base refinement for a geographic grid codelist.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="GeoCodelistType">
+				<xs:sequence>
+					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="common:Name" maxOccurs="unbounded"/>
+					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:sequence minOccurs="0" maxOccurs="unbounded">
+						<xs:element ref="GeoGridCode"/>
+					</xs:sequence>
+					<xs:element name="CodelistExtension" type="CodelistExtensionType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="geoType" type="GeoCodelistTypeType" use="required" fixed="GeoGridCodelist"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="GeoGridCodelistType">
+		<xs:annotation>
+			<xs:documentation>GeoGridCodelistType defines the structure of a geographic grid code list. These define a geographical grid composed of cells representing regular squared portions of the Earth.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="GeoGridCodelistBaseType">
+				<xs:sequence>
+					<xs:element name="GridDefinition" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>Contains a regular expression string corresponding to the grid definition for the GeoGrid Codelist.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="GeoGridCode" type="GeoGridCodeType" substitutionGroup="GeoRefCode">
+		<xs:annotation>
+			<xs:documentation>GeoGridCode is a code the represents a geographic grid cell that belongs to a specific grid definition.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="GeoGridCodeType">
+		<xs:annotation>
+			<xs:documentation>GeoGridCodeType defines the structure of a geographic grid cell.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="GeoRefCodeType">
+				<xs:sequence>
+					<xs:element name="GeoCell" type="xs:string">
+						<xs:annotation>
+							<xs:documentation>The value used to assign the Code to one cell in the grid.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:simpleType name="GeoCodelistTypeType">
+		<xs:annotation>
+			<xs:documentation>GeoCodelistTypeType defines an enumeration of the specific types of geographic codelists.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="GeographicCodelist"/>
+			<xs:enumeration value="GeoGridCodelist"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="ValueListBaseType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>ValueListBaseType defines the base refinement of the ValueListType. Its purpose is to restrict the urn attribute.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="common:MaintainableType">
+				<xs:sequence>
+					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="common:Name" maxOccurs="unbounded"/>
+					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="urn" type="common:ValueListUrnType" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ValueListType">
+		<xs:annotation>
+			<xs:documentation>ValueListType defines the structure of value list. These represent a closed set of values the can occur for a dimension, measure, or attribute. These may be values, or values with names and descriptions (similar to a codelist).</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ValueListBaseType">
+				<xs:sequence>
+					<xs:element name="ValueItem" type="ValueItemType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation></xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ValueItemType">
+		<xs:annotation>
+			<xs:documentation>ValueItemType defines the structure of a value item. A value must be provided, and a longer name and description can be provided to provide additional meaning to the value (similar to a code in a code list).</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="common:AnnotableType">
+				<xs:sequence>
+					<xs:element ref="common:Name" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="id" type="xs:string" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+</xs:schema>

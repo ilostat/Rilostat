@@ -59,12 +59,7 @@ The developer of this package drew extensive inspiration from the [eurostat R pa
 To install the release version, use the following command:
 
 ```{r,echo = FALSE, results = 'hide',   eval=TRUE, message = FALSE}
-if(!require(devtools)){install.packages('devtools', repos='http://cran.us.r-project.org')}
-if(!require(plotly)){install.packages('plotly', repos='http://cran.us.r-project.org')}
-if(!require(dplyr)){install.packages('dplyr', repos='http://cran.us.r-project.org')}
-if(!require(ggplot2)){install.packages('ggplot2', repos='http://cran.us.r-project.org')}
-if(!require(plotrix)){install.packages('plotrix', repos='http://cran.us.r-project.org')}
-if(!require(stringr)){install.packages('stringr', repos='http://cran.us.r-project.org')}
+
 if(!require(Rilostat)){install.packages('stringr', repos='http://cran.us.r-project.org')}
 require(Rilostat)
 

@@ -1,0 +1,1042 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2025 - http://www.sdmx.org -->
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/structure" 
+			xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/structure" 
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/structure"
+			elementFormDefault="qualified">
+			
+	<xs:include schemaLocation="SDMXStructureBase.xsd"/>
+	<xs:include schemaLocation="SDMXStructureCategorisation.xsd"/>
+	<xs:include schemaLocation="SDMXStructureCategory.xsd"/>
+	<xs:include schemaLocation="SDMXStructureCodelist.xsd"/>
+	<xs:include schemaLocation="SDMXStructureConcept.xsd"/>
+	<xs:include schemaLocation="SDMXStructureConstraint.xsd"/>
+	<xs:include schemaLocation="SDMXStructureDataStructure.xsd"/>
+	<xs:include schemaLocation="SDMXStructureDataflow.xsd"/>
+	<xs:include schemaLocation="SDMXStructureHierarchicalCodelist.xsd"/>
+	<xs:include schemaLocation="SDMXStructureMetadataflow.xsd"/>
+	<xs:include schemaLocation="SDMXStructureMetadataStructure.xsd"/>
+	<xs:include schemaLocation="SDMXStructureOrganisation.xsd"/>
+	<xs:include schemaLocation="SDMXStructureProvisionAgreement.xsd"/>
+	<xs:include schemaLocation="SDMXStructureProcess.xsd"/>
+	<xs:include schemaLocation="SDMXStructureReportingTaxonomy.xsd"/>
+	<xs:include schemaLocation="SDMXStructureStructureMappings.xsd"/>
+	<xs:include schemaLocation="SDMXStructureTransformation.xsd"/>
+
+	<xs:annotation>
+		<xs:appinfo>SDMX Structure Namespace Module</xs:appinfo>
+		<xs:documentation>The structure namespace module contains the descriptions of structural metadata such as key families, concepts, and codelists. For convenience, this module has been broken down into sub-modules for the different type of structural constructs.</xs:documentation>
+	</xs:annotation>
+	
+	<xs:element name="Structures" type="StructuresType">
+		<xs:annotation>
+			<xs:documentation>Structures contains constructs for all structural metadata components.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	
+	<xs:complexType name="StructuresType">
+		<xs:annotation>
+			<xs:documentation>StructuresType describes the structure of the container for all structural metadata components. The structural components may be explicitly detailed, or referenced from an external structure document or registry service. Best practices dictate that, at a minimum, any structural component that is referenced by another structural component be included by reference.</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element name="AgencySchemes" type="AgencySchemesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>AgencySchemes contains a collection of agency scheme descriptions. The agency schemes may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueAgencyScheme">
+					<xs:selector xpath="structure:AgencyScheme"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="AvailabilityConstraints" type="AvailabilityConstraintsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>AvailabilityConstraints contains a collection of availability constraints. The constraints may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueAvailabilityConstraint">
+					<xs:selector xpath="structure:AvailabilityConstraint"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Categorisations" type="CategorisationsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Categorisations contains a collection of structural object categorisations. This container may contain categorisations for many types of objects. The categorisations may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueCategorisation">
+					<xs:selector xpath="structure:Categorisation"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="CategorySchemeMaps" type="CategorySchemeMapsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CategorySchemeMaps contains a collection of category scheme map descriptions. The category scheme maps may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueCategorySchemeMap">
+					<xs:selector xpath="structure:CategorySchemeMap"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="CategorySchemes" type="CategorySchemesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CategorySchemes contains a collection of category scheme descriptions. The category schemes may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueCategoryScheme">
+					<xs:selector xpath="structure:CategoryScheme"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Codelists" type="CodelistsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Codelists contains a collection of code list descriptions. The code lists may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueCodelist">
+					<xs:selector xpath="structure:Codelist"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="ConceptSchemeMaps" type="ConceptSchemeMapsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ConceptSchemeMaps contains a collection of concept scheme map descriptions. The concept scheme maps may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueConceptSchemeMap">
+					<xs:selector xpath="structure:ConceptSchemeMap"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="ConceptSchemes" type="ConceptSchemesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ConceptSchemes contains a collection of concept scheme descriptions. The concept schemes described are contained within schemes. The concepts may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueConceptScheme">
+					<xs:selector xpath="structure:ConceptScheme"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="CustomTypeSchemes" type="CustomTypeSchemesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CustomTypeSchemes contains a collection of custom type schemes. The scheme may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueCustomTypeScheme">
+					<xs:selector xpath="structure:CustomTypeScheme"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="DataConstraints" type="DataConstraintsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>DataConstraints contains a collection of data constraints. The constraints may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueDataConstraint">
+					<xs:selector xpath="structure:DataConstraint"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="DataConsumerSchemes" type="DataConsumerSchemesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>DataConsumerSchemes contains a collection of data consumer scheme descriptions. The data consumer schemes may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueDataConsumerScheme">
+					<xs:selector xpath="structure:DataConsumerScheme"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Dataflows" type="DataflowsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Dataflows contains a collection of data flow descriptions. The data flows may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueDataflow">
+					<xs:selector xpath="structure:Dataflow"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="DataProviderSchemes" type="DataProviderSchemesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>DataProviderSchemes contains a collection of data provider scheme descriptions. The data provider schemes may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueDataProviderScheme">
+					<xs:selector xpath="structure:DataProviderScheme"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="DataStructures" type="DataStructuresType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>DataStructures contains a collection of data structure definitions. The data structure definitions may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueDataStructure">
+					<xs:selector xpath="structure:DataStructure"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="GeographicCodelists" type="GeographicCodelistsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>GeographicCodelists contains a collection of geographic codelist descriptions. The codelists may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueGeographicCodelist">
+					<xs:selector xpath="structure:GeographicCodelist"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="GeoGridCodelists" type="GeoGridCodelistsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>GeoGridCodelists contains a collection of geographic grid codelist descriptions. The codelists may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueGeoGridCodelist">
+					<xs:selector xpath="structure:GeoGridCodelist"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Hierarchies" type="HierarchiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Hierarchies contains a collection of hierarchical code list descriptions. The hierarchical code lists may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueHierarchy">
+					<xs:selector xpath="structure:Hierarchy"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="HierarchyAssociations" type="HierarchyAssociationsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>HierarchyAssociations contains a collection of hierarchy associations. The associations may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueHierarchyAssociation">
+					<xs:selector xpath="structure:HierarchyAssociation"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="MetadataConstraints" type="MetadataConstraintsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MetadataConstraints contains a collection of metadata constraint descriptions. The constraints may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueMetadataConstraint">
+					<xs:selector xpath="structure:MetadataConstraint"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Metadataflows" type="MetadataflowsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Metadataflows contains a collection of metadata flow descriptions. The metadata flows may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueMetadataflow">
+					<xs:selector xpath="structure:Metadataflow"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="MetadataProviderSchemes" type="MetadataProviderSchemesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MetadataProviderSchemes contains a collection of metadata provider scheme descriptions. The meatadata provider schemes may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueMetadataProviderScheme">
+					<xs:selector xpath="structure:MetadataProviderScheme"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="MetadataProvisionAgreements" type="MetadataProvisionAgreementsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ProvisionAgreements contains a collection of provision agreements. The provision agreements may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueMetadataProvisionAgreement">
+					<xs:selector xpath="structure:MetadataProvisionAgreement"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="MetadataStructures" type="MetadataStructuresType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>MetadataStructures contains a collection of metadata structure definition descriptions. The metadata structure definitions may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueMetadataStructure">
+					<xs:selector xpath="structure:MetadataStructure"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="NamePersonalisationSchemes" type="NamePersonalisationSchemesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>NamePersonalisationSchemes contains a collection of name personalisation schemes. The scheme may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueNamePersonalisationScheme">
+					<xs:selector xpath="structure:NamePersonalisationScheme"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="OrganisationSchemeMaps" type="OrganisationSchemeMapsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>OrganisationSchemeMaps contains a collection of organisation scheme map descriptions. The organisation scheme maps may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueOrganisationSchemeMap">
+					<xs:selector xpath="structure:OrganisationSchemeMap"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="OrganisationUnitSchemes" type="OrganisationUnitSchemesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>OrganisationUnitSchemes contains a collection of organisation unit scheme descriptions. The organisation unit schemes may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueOrganisationUnitScheme">
+					<xs:selector xpath="structure:OrganisationUnitScheme"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Processes" type="ProcessesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Processes contains a collection of process descriptions. The processes may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueProcess">
+					<xs:selector xpath="structure:Process"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="ProvisionAgreements" type="ProvisionAgreementsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ProvisionAgreements contains a collection of provision agreements. The provision agreements may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueProvisionAgreement">
+					<xs:selector xpath="structure:ProvisionAgreement"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="ReportingTaxonomies" type="ReportingTaxonomiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ReportingTaxonomies contains a collection of reporting taxonomy descriptions. The reporting taxonomies may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueReportingTaxonomy">
+					<xs:selector xpath="structure:ReportingTaxonomy"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="ReportingTaxonomyMaps" type="ReportingTaxonomyMapsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ReportingTaxonomyMaps contains a collection of reporting taxonomy map descriptions. The reporting taxonomy maps may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueReportingTaxonomyMap">
+					<xs:selector xpath="structure:ReportingTaxonomyMap"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="RepresentationMaps" type="RepresentationMapsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>RepresentationMaps contains a collection of representation map descriptions. The representation maps may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueRepresentationMap">
+					<xs:selector xpath="structure:RepresentationMap"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="RulesetSchemes" type="RulesetSchemesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>RulesetSchemes contains a collection of ruleset schemes. The scheme may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueRulesetScheme">
+					<xs:selector xpath="structure:RulesetScheme"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="StructureMaps" type="StructureMapsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>StructureMaps contains a collection of structure map descriptions. The structure maps may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueStructureMap">
+					<xs:selector xpath="structure:StructureMap"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="TransformationSchemes" type="TransformationSchemesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>TransformationSchemes contains a collection of transformation schemes. The transformation schemes may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueTransformationScheme">
+					<xs:selector xpath="structure:TransformationScheme"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="UserDefinedOperatorSchemes" type="UserDefinedOperatorSchemesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>UserDefinedOperatorSchemes contains a collection of user defined operator schemes. The scheme may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueUserDefinedOperatorScheme">
+					<xs:selector xpath="structure:UserDefinedOperatorScheme"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="ValueLists" type="ValueListsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ValueLists contains a collection of value list descriptions. The value lists may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueValueList">
+					<xs:selector xpath="structure:ValueList"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="VtlMappingSchemes" type="VtlMappingSchemesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>VtlMappingSchemes contains a collection of VTL mapping schemes. The scheme may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueVtlMappingScheme">
+					<xs:selector xpath="structure:VtlMappingScheme"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+		</xs:all>
+	</xs:complexType>
+
+	<xs:complexType name="AgencySchemesType">
+		<xs:annotation>
+			<xs:documentation>AgencySchemesType describes the structure of the agency schemes container. It contains one or more agency scheme, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AgencyScheme" type="AgencySchemeType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>AgencyScheme provides the details of an agency scheme, in which agencies are described.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="AgencyScheme_UniqueAgency">
+					<xs:selector xpath="structure:Agency"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CategorisationsType">
+		<xs:annotation>
+			<xs:documentation>CategorisationsType describes the structure of the categorisations container. It contains one or more categorisation of a specific object type, which can be explicitly detailed or referenced from an external structure document or registry service. This container may contain categorisations for multiple types of structural objects.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Categorisation" type="CategorisationType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Categorisation allows for the association of an identifiable object to a category, providing for the classifications of the reference identifiable object. This must either contain the full details of the categorisation, or provide a name and identification information and reference the full details from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CategorySchemeMapsType">
+		<xs:annotation>
+			<xs:documentation>CategorySchemeMapsType describes the structure of the category scheme maps container. It contains one or more category scheme map, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CategorySchemeMap" type="CategorySchemeMapType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>CategorySchemeMap provides the details of a category scheme map, which describes mappings between categories in different schemes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CategorySchemesType">
+		<xs:annotation>
+			<xs:documentation>CategorySchemesType describes the structure of the category schemes container. It contains one or more category scheme, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CategoryScheme" type="CategorySchemeType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>CategoryScheme provides the details of a category scheme, which is the descriptive information for an arrangement or division of categories into groups based on characteristics, which the objects have in common. This provides for a simple, leveled hierarchy or categories.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="CategoryScheme_UniqueCategory">
+					<xs:selector xpath="structure:Category"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ConceptSchemeMapsType">
+		<xs:annotation>
+			<xs:documentation>ConceptSchemeMapsType describes the structure of the concept scheme maps container. It contains one or more concept scheme map, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ConceptSchemeMap" type="ConceptSchemeMapType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>ConceptSchemeMap provides the details of a concept scheme map, which describes mappings between concepts in different schemes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ConceptSchemesType">
+		<xs:annotation>
+			<xs:documentation>ConceptSchemesType describes the structure of the concept schemes container. It contains one or more concept schemes, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ConceptScheme" type="ConceptSchemeType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>ConceptScheme provides the details of a concept scheme, which is the descriptive information for an arrangement or division of concepts into groups based on characteristics, which the objects have in common. It contains a collection of concept definitions, that may be arranged in simple hierarchies.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="ConceptScheme_UniqueConcept">
+					<xs:selector xpath="structure:Concept"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CodelistsType">
+		<xs:annotation>
+			<xs:documentation>CodelistsType describes the structure of the codelists container. It contains one or more codelist, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Codelist" type="CodelistType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Codelist provides the details of a codelist, which is defined as a list from which some statistical concepts (coded concepts) take their values.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="Codelist_UniqueCode">
+					<xs:selector xpath="structure:Code"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CustomTypeSchemesType">
+		<xs:annotation>
+			<xs:documentation>CustomTypeSchemesType describes the structure of the custom type schemes container. It contains one or more custom type scheme, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="CustomTypeScheme" type="CustomTypeSchemeType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>CustomTypeScheme provides the details of a custom type scheme, in which user defined operators are described.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="CustomTypeScheme_UniqueCustomType">
+					<xs:selector xpath="structure:CustomtType"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DataConstraintsType">
+		<xs:annotation>
+			<xs:documentation>DataConstraintsType describes the structure of the container for data constraints.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DataConstraint" type="DataConstraintType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>DataConstraint specifies the allowed content for a set of data.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="DataConstraint_CubeRegionInclusion">
+					<xs:selector xpath="structure:CubeRegion"/>
+					<xs:field xpath="@include"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="AvailabilityConstraintsType">
+		<xs:annotation>
+			<xs:documentation>AvailabilityConstraintsType describes the structure of the container for availability constraints.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AvailabilityConstraint" type="AvailabilityConstraintType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>AvailabilityConstraint specifies the available content for a set of data.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="AvailabilityConstraint_CubeRegionInclusion">
+					<xs:selector xpath="structure:CubeRegion"/>
+					<xs:field xpath="@include"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DataConsumerSchemesType">
+		<xs:annotation>
+			<xs:documentation>DataConsumerSchemesType describes the structure of the data consumer schemes container. It contains one or more data consumer scheme, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DataConsumerScheme" type="DataConsumerSchemeType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>DataConsumerScheme provides the details of an data consumer scheme, in which data consumers are described.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="DataConsumerScheme_UniqueDataConsumer">
+					<xs:selector xpath="structure:DataConsumer"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DataflowsType">
+		<xs:annotation>
+			<xs:documentation>DataflowsType describes the structure of the data flows container. It contains one or more data flow, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Dataflow" type="DataflowType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Dataflow provides the details of a data flow, which is defined as the structure of data that will be provided for different reference periods.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DataProviderSchemesType">
+		<xs:annotation>
+			<xs:documentation>DataProviderSchemesType describes the structure of the data provider schemes container. It contains one or more data provider scheme, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DataProviderScheme" type="DataProviderSchemeType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>DataProviderScheme provides the details of a data provider scheme, in which data providers are described.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="DataProviderScheme_UniqueDataProvider">
+					<xs:selector xpath="structure:DataProvider"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="DataStructuresType">
+		<xs:annotation>
+			<xs:documentation>DataStructuresType describes the structure of the data structure definitions container. It contains one or more data structure definition, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DataStructure" type="DataStructureType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>DataStructure provides the details of a data structure definition, which is defined as a collection of metadata concepts, their structure and usage when used to collect or disseminate data.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="GeographicCodelistsType">
+		<xs:annotation>
+			<xs:documentation>GeographicCodelistsType describes the structure of the geographic code lists container. It contains one or more geographic codelist, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="GeographicCodelist" type="GeographicCodelistType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>GeographiCodelist provides the details of a geographic codelists container, which comprises a set of GeoFeatureSetCodes, by adding a value in the Code that follows a pattern to represent a geo feature set.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="Codelist_UniqueGeoFeatureSetCode">
+					<xs:selector xpath="structure:GeoFeatureSetCode"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="GeoGridCodelistsType">
+		<xs:annotation>
+			<xs:documentation>GeoGridCodelistsType describes the structure of the codelists container. It contains one or more geographic grid codelist, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="GeoGridCodelist" type="GeoGridCodelistType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>GeoGridCodelist provides the details of a geographic grid code list, which comprises a set of GridCodes, which are related to the gridDefinition specified in the GeoGridCodelist.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="Codelist_UniqueGeoGridCode">
+					<xs:selector xpath="structure:GeoGridCode"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="HierarchiesType">
+		<xs:annotation>
+			<xs:documentation>HierarchiesType describes the structure of the hierarchies container. It contains one or more hierarchy, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Hierarchy" type="HierarchyType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Hierarchy provides the details of a hierarchy, which is defined as an organised collection of codes that may participate in many parent/child relationships with other codes in the list.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="Hierarchiy_UniqueLevel">
+					<xs:selector xpath=".//structure:Level"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+				<xs:unique name="Hierarchiy_UniqueHierarchicalCode">
+					<xs:selector xpath=".//structure:HierarchicalCode"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="HierarchyAssociationsType">
+		<xs:annotation>
+			<xs:documentation>HiearchyAssociationsType describes the structure of the hierarchy associations container. It contains one or more hiearchy associations, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="HierarchyAssociation" type="HierarchyAssociationType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>HierarchyAssociation provides the details of a hierarchy association, which associates a hierarchy with an identifiable object in the context of another object.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MetadataConstraintsType">
+		<xs:annotation>
+			<xs:documentation>MetadataConstraintsType describes the structure of the metadata constraints container. It contains one or more metadata constraint, which can be explicitly detailed or referenced from an external structure document or registry service. This container may contain both attachment and content constraints.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MetadataConstraint" type="MetadataConstraintType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>MetadataConstraint specifies a subset of the definition of the allowable content of a metadata set.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="MetadataConstraint_MetadataTargetRegionInclusion">
+					<xs:selector xpath="structure:MetadataTargetRegion"/>
+					<xs:field xpath="@include"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MetadataflowsType">
+		<xs:annotation>
+			<xs:documentation>MetadataflowsType describes the structure of the metadata flows container. It contains one or more metadata flow, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Metadataflow" type="MetadataflowType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Metadataflow provides the details of a metadata flow, which is defined as the structure of reference metadata that will be provided for different reference periods.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MetadataProviderSchemesType">
+		<xs:annotation>
+			<xs:documentation>MetadataProviderSchemesType describes the structure of the metadata provider schemes container. It contains one or more metadata provider scheme, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MetadataProviderScheme" type="MetadataProviderSchemeType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>MetadataProviderScheme provides the details of a metadata provider scheme, in which metadata providers are described.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="MetadataProviderScheme_UniqueDataProvider">
+					<xs:selector xpath="structure:MetadataProvider"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MetadataProvisionAgreementsType">
+		<xs:annotation>
+			<xs:documentation>MetadataProvisionAgreementsType describes the structure of the metadata provision agreements container. It contains one or more metadata provision agreement, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MetadataProvisionAgreement" type="MetadataProvisionAgreementType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>MetadataProvisionAgreement provides the details of a metadata provision agreement, which is an agreement for a metadata provider to report reference metadata against a flow.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MetadataStructuresType">
+		<xs:annotation>
+			<xs:documentation>MetadataStructuresType describes the structure of the metadata structure definitions container. It contains one or more metadata structure definition, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="MetadataStructure" type="MetadataStructureType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>MetadataStructure provides the details of a metadata structure definition, which is defined as a collection of metadata concepts, their structure and usage when used to collect or disseminate reference metadata. A metadata structure definition performs several functions: it groups sets of objects into "targets" against which reference metadata may be reported. Targets define the structure of the reference metadata "keys" which identify specific types of reported metadata, and describe the valid values for populating the keys. Also, metadata structure definitions provide a presentational organization of concepts for reporting purposes. The structure of reference metadata is derived from this presentational structure.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="NamePersonalisationSchemesType">
+		<xs:annotation>
+			<xs:documentation>NamePersonalisationSchemesType describes the structure of the name personalisation schemes container. It contains one or more name personalisation scheme, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="NamePersonalisationScheme" type="NamePersonalisationSchemeType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>NamePersonalisationScheme provides the details of a name personalisation scheme, in which name personalisations are described.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="NamePersonalisationScheme_UniqueNamePersonalisation">
+					<xs:selector xpath="structure:NamePersonalisation"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="OrganisationSchemeMapsType">
+		<xs:annotation>
+			<xs:documentation>OrganisationSchemeMapsType describes the structure of the organisation scheme maps container. It contains one or more organisation scheme map, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="OrganisationSchemeMap" type="OrganisationSchemeMapType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>OrganisationSchemeMap provides the details of an organisation scheme map, which describes mappings between organisations in different schemes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="OrganisationUnitSchemesType">
+		<xs:annotation>
+			<xs:documentation>OrganisationUnitSchemesType describes the structure of the organisation unit schemes container. It contains one or more organisation unit scheme, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="OrganisationUnitScheme" type="OrganisationUnitSchemeType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>OrganisationUnitScheme provides the details of an organisation unit scheme, in which organisation units are described.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="OrganisationUnitScheme_UniqueOrganisationUnit">
+					<xs:selector xpath="structure:OrganisationUnit"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ProcessesType">
+		<xs:annotation>
+			<xs:documentation>ProcessesType describes the structure of the processes container. It contains one or more process, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Process" type="ProcessType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Process provides the details of a process, which is a scheme which defines or documents the operations performed on data in order to validate data or to derive new information according to a given set of rules. It is not meant to support process automation, but serves as a description of how processes occur. The primary use for this structural mechanism is the attachment of reference metadata regarding statistical processing. This must either contain the full details of the category scheme, or provide a name and identification information and reference the full details from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="Process_UniqueProcessStep">
+					<xs:selector xpath="structure:ProcessStep"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+				<xs:unique name="Process_UniqueTransition">
+					<xs:selector xpath="structure:Transition"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ProvisionAgreementsType">
+		<xs:annotation>
+			<xs:documentation>ProvisionAgreementsType describes the structure of the provision agreements container. It contains one or more provision agreement, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ProvisionAgreement" type="ProvisionAgreementType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>ProvisionAgreement provides the details of a provision agreement, which is an agreement for a data provider to report data against a flow.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ReportingTaxonomiesType">
+		<xs:annotation>
+			<xs:documentation>ReportingTaxonomiesType describes the structure of the reporting taxonomies container. It contains one or more reporting taxonomy, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ReportingTaxonomy" type="ReportingTaxonomyType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>ReportingTaxonomy provides the details of a reporting taxonomy, which is a scheme which defines the composition structure of a data report where each component can be described by an independent data or metadata flow definition.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="ReportingTaxonomy_UniqueReportingCategory">
+					<xs:selector xpath="structure:ReportingCategory"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ReportingTaxonomyMapsType">
+		<xs:annotation>
+			<xs:documentation>ReportingTaxonomyMapsType describes the structure of the reporting taxonomy maps container. It contains one or reporting taxonomy map, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ReportingTaxonomyMap" type="ReportingTaxonomyMapType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>ReportingTaxonomyMap provides the details of a reporting taxonomy map, which describes mappings between reporting taxonomies.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="RepresentationMapsType">
+		<xs:annotation>
+			<xs:documentation>RepresentationMapsType describes the structure of the representation maps container. It contains one or more representation map, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="RepresentationMap" type="RepresentationMapType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>RepresentationMap provides the details of a representation map, which describes mappings between various component representations. </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="RulesetSchemesType">
+		<xs:annotation>
+			<xs:documentation>RulesetSchemesType describes the structure of the ruleset schemes container. It contains one or more ruleset scheme, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="RulesetScheme" type="RulesetSchemeType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>RulesetScheme provides the details of a ruleset scheme, in which rulesets are described.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="RulesetScheme_UniqueRuleset">
+					<xs:selector xpath="structure:Ruleset"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="StructureMapsType">
+		<xs:annotation>
+			<xs:documentation>StructureMapsType describes the structure of the structure maps container. It contains one or more structure maps, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="StructureMap" type="StructureMapType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>StructureMap provides the details or a structure map, which describes mapping between data structures or dataflows.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="StructureMap_UniqueEpochMap">
+					<xs:selector xpath="structure:EpochMap"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+				<xs:unique name="StructureMap_UniqueDatePatternMap">
+					<xs:selector xpath="structure:DatePatternMap"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="TransformationSchemesType">
+		<xs:annotation>
+			<xs:documentation>TransformationSchemesType describes the structure of the transformations container. It contains one or more transformation schemes, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="TransformationScheme" type="TransformationSchemeType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>TransformationScheme provides the details of a transformation scheme, in which transformations are described.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="TransformationScheme_UniqueTransformation">
+					<xs:selector xpath="structure:Transformation"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="UserDefinedOperatorSchemesType">
+		<xs:annotation>
+			<xs:documentation>UserDefinedOperatorSchemesType describes the structure of the user defined operator schemes container. It contains one or more user defined operator scheme, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="UserDefinedOperatorScheme" type="UserDefinedOperatorSchemeType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>UserDefinedOperatorScheme provides the details of a user defined operator scheme, in which user defined operators are described.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UserDefinedOperatorScheme_UniqueUserDefinedOperator">
+					<xs:selector xpath="structure:UserDefinedOperator"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ValueListsType">
+		<xs:annotation>
+			<xs:documentation>ValueListsType describes the structure of the value lists container. It contains one or more value list, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ValueList" type="ValueListType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>ValueList provides the details of a value list, which is a closed set of values that can occur for a dimension, measure, or attribute. This may be a simple list of values, or a list of values with names and descriptions (similar to a codelist).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VtlMappingSchemesType">
+		<xs:annotation>
+			<xs:documentation>VtlMappingSchemesType describes the structure of the VTL mappings schemes container. It contains one or more VTL mapping schemes, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="VtlMappingScheme" type="VtlMappingSchemeType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>VtlMappingScheme provides the details of a VTL mapping scheme, in which VTL mappings are described.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="VtlMappingScheme_UniqueVtlMapping">
+					<xs:selector xpath="structure:VtlMapping"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+				<xs:unique name="VtlMappingScheme_UniqueVtlAlias">
+					<xs:selector xpath="structure:VtlMapping"/>
+					<xs:field xpath="@alias"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

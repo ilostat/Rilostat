@@ -137,46 +137,58 @@
   refresh = FALSE
 ) {
 
-  if (is.null(id) || length(id) != 1L || is.na(id) || !nzchar(id)) {
+  # -----------------------------------------------------------------------
+  # Validate dataset ID
+  # -----------------------------------------------------------------------
+
+  if (
+    is.null(id) ||
+    length(id) != 1L ||
+    is.na(id) ||
+    !nzchar(id)
+  ) {
     stop(
       "`id` is required for this SDMX resource.",
       call. = FALSE
     )
   }
 
+  # -----------------------------------------------------------------------
+  # Cache location
+  # -----------------------------------------------------------------------
+
   cache_file <- .ilostat_sdmx_meta_file(
     id = id,
     cache_dir = cache_dir
   )
 
-  if (refresh || !file.exists(cache_file)) {
+  # -----------------------------------------------------------------------
+  # Download metadata when required
+  # -----------------------------------------------------------------------
+
+  if (
+    refresh ||
+    !file.exists(cache_file)
+  ) {
 
     url <- .ilostat_sdmx_meta_url(id)
 
-    tmp <- tempfile(
-      pattern = paste0(id, "_meta_"),
-      fileext = ".json"
-    )
+    # Use the same User-Agent as the rest of Rilostat.
+    ua <- build_user_agent()
 
-    on.exit(
-      unlink(tmp),
-      add = TRUE
-    )
-
-    status <- try(
-      utils::download.file(
-        url,
-        tmp,
-        mode = "wb",
-        quiet = TRUE
-      ),
+    resp <- try(
+      httr2::request(url) |>
+        httr2::req_headers(
+          `User-Agent` = ua
+        ) |>
+        httr2::req_timeout(30) |>
+        httr2::req_perform(),
       silent = TRUE
     )
 
     if (
-      inherits(status, "try-error") ||
-      !file.exists(tmp) ||
-      file.info(tmp)$size == 0
+      inherits(resp, "try-error") ||
+      httr2::resp_status(resp) != 200L
     ) {
       stop(
         sprintf(
@@ -187,7 +199,68 @@
       )
     }
 
-    if (!file.copy(tmp, cache_file, overwrite = TRUE)) {
+    # ---------------------------------------------------------------------
+    # Write response to temporary file first
+    # ---------------------------------------------------------------------
+
+    tmp <- tempfile(
+      pattern = paste0(
+        id,
+        "_meta_"
+      ),
+      fileext = ".json"
+    )
+
+    on.exit(
+      unlink(tmp),
+      add = TRUE
+    )
+
+    writeBin(
+      httr2::resp_body_raw(resp),
+      tmp
+    )
+
+    # ---------------------------------------------------------------------
+    # Validate downloaded JSON before replacing the cache
+    # ---------------------------------------------------------------------
+
+    downloaded_meta <- try(
+      jsonlite::fromJSON(
+        tmp,
+        simplifyVector = FALSE
+      ),
+      silent = TRUE
+    )
+
+    if (
+      inherits(downloaded_meta, "try-error") ||
+      is.null(downloaded_meta$dataset$id) ||
+      !identical(
+        downloaded_meta$dataset$id,
+        id
+      )
+    ) {
+      stop(
+        sprintf(
+          "Invalid SDMX metadata returned for dataset `%s`.",
+          id
+        ),
+        call. = FALSE
+      )
+    }
+
+    # ---------------------------------------------------------------------
+    # Update disk cache
+    # ---------------------------------------------------------------------
+
+    if (
+      !file.copy(
+        tmp,
+        cache_file,
+        overwrite = TRUE
+      )
+    ) {
       stop(
         sprintf(
           "Unable to write SDMX metadata cache for dataset `%s`.",
@@ -198,14 +271,25 @@
     }
   }
 
-  meta <- jsonlite::fromJSON(
-    cache_file,
-    simplifyVector = FALSE
+  # -----------------------------------------------------------------------
+  # Read metadata from disk cache
+  # -----------------------------------------------------------------------
+
+  meta <- try(
+    jsonlite::fromJSON(
+      cache_file,
+      simplifyVector = FALSE
+    ),
+    silent = TRUE
   )
 
   if (
+    inherits(meta, "try-error") ||
     is.null(meta$dataset$id) ||
-    !identical(meta$dataset$id, id)
+    !identical(
+      meta$dataset$id,
+      id
+    )
   ) {
     stop(
       sprintf(
@@ -331,6 +415,10 @@
     }
   }
 
+  # -----------------------------------------------------------------------
+  # Standard SDMX dimensions
+  # -----------------------------------------------------------------------
+
   base <- data.frame(
     component_id = c(
       "REF_AREA",
@@ -360,6 +448,12 @@
     stringsAsFactors = FALSE
   )
 
+  # -----------------------------------------------------------------------
+  # Dynamic semantic dimensions
+  #
+  # SEX, AGE, ECO, EDU, OCU, etc.
+  # -----------------------------------------------------------------------
+
   reserved <- c(
     "REF_AREA",
     "SOURCE"
@@ -385,10 +479,15 @@
       ),
       stringsAsFactors = FALSE
     )
+
   } else {
 
     dynamic <- base[FALSE, , drop = FALSE]
   }
+
+  # -----------------------------------------------------------------------
+  # Time dimension, measure and attributes
+  # -----------------------------------------------------------------------
 
   tail <- data.frame(
     component_id = c(
@@ -403,7 +502,7 @@
       "BEST_SOURCE"
     ),
     role = c(
-      "time_dimension",
+      "dimension",
       "measure",
       rep("attribute", 7L)
     ),
@@ -422,8 +521,8 @@
       "Time period",
       "Observation value",
       "Observation status",
-      "Unit measure",
-      "Unit multiplier",
+      "Unit of measure",
+      "Multiplier",
       "Source note",
       "Indicator note",
       "Classification note",
@@ -449,17 +548,45 @@
     tail
   )
 
-  out$position <- seq_len(nrow(out))
+  # -----------------------------------------------------------------------
+  # Position
+  #
+  # Python assigns positions only to dimensions.
+  # TIME_PERIOD has a logical position in the dataframe structure, but the
+  # XML serializer does not write a position attribute on TimeDimension.
+  #
+  # Measures and attributes have no position.
+  # -----------------------------------------------------------------------
 
-  out$representation <- ifelse(
-    is.na(out$codelist),
-    "string",
-    "enumerated"
+  out$position <- NA_integer_
+
+dimension_rows <- out$role == "dimension"
+
+  out$position[dimension_rows] <- seq_len(
+    sum(dimension_rows)
   )
+
+  # -----------------------------------------------------------------------
+  # Representation
+  #
+  # Match pyilostat:
+  #   coded  -> dimensions/attributes using codelists
+  #   time   -> TIME_PERIOD
+  #   number -> OBS_VALUE
+  # -----------------------------------------------------------------------
+
+  out$representation <- "coded"
+
+  out$representation[
+    out$component_id == "TIME_PERIOD"
+  ] <- "time"
+
+  out$representation[
+    out$component_id == "OBS_VALUE"
+  ] <- "number"
 
   out
 }
-
 
 # -------------------------------------------------------------------------
 # SDMX -> native Rilostat filters
@@ -563,10 +690,16 @@
   lang = "en"
 ) {
 
+  lang <- .ilostat_sdmx_validate_lang(lang)
   component <- toupper(component)
 
-  # Dataset dimensions:
-  # REF_AREA, SOURCE, SEX and dynamic classifications such as AGE.
+  # -----------------------------------------------------------------------
+  # Dataset dimensions
+  #
+  # REF_AREA, SEX and dynamic classifications such as
+  # AGE, ECO, OCU, EDU, etc.
+  # -----------------------------------------------------------------------
+
   dims <- meta$dimensions
 
   if (!is.null(dims)) {
@@ -577,11 +710,22 @@
 
       type <- x$type
 
-      if (is.null(type) || !nzchar(type)) {
+      if (
+        is.null(type) ||
+        !length(type) ||
+        is.na(type) ||
+        !nzchar(type)
+      ) {
         type <- toupper(name)
       }
 
-      if (identical(toupper(type), component)) {
+      if (
+        identical(
+          toupper(type),
+          component
+        )
+      ) {
+
         return(
           .ilostat_sdmx_values_to_df(
             x$values,
@@ -592,12 +736,46 @@
     }
   }
 
-  # Frequency.
+  # -----------------------------------------------------------------------
+  # Source
+  #
+  # SOURCE is stored separately from meta$dimensions.
+  # -----------------------------------------------------------------------
+
+  if (component == "SOURCE") {
+
+    values <- meta$source$values
+
+    if (
+      !is.null(values) &&
+      length(values)
+    ) {
+
+      return(
+        .ilostat_sdmx_values_to_df(
+          values,
+          lang = lang
+        )
+      )
+    }
+
+    return(NULL)
+  }
+
+  # -----------------------------------------------------------------------
+  # Frequency
+  #
+  # FREQ is a dataset-level constant.
+  # -----------------------------------------------------------------------
+
   if (component == "FREQ") {
 
     x <- meta$dataset$frequency
 
-    if (!is.null(x) && !is.null(x$code)) {
+    if (
+      !is.null(x) &&
+      !is.null(x$code)
+    ) {
 
       label <- .ilostat_sdmx_lang_value(
         x$label,
@@ -614,20 +792,39 @@
         )
       )
     }
+
+    return(NULL)
   }
 
-  # Measure, unit measure and unit multiplier.
+  # -----------------------------------------------------------------------
+  # Dataset-level SDMX constants
+  #
+  # MEASURE
+  # UNIT_MEASURE
+  # UNIT_MULT
+  # -----------------------------------------------------------------------
+
   if (component == "MEASURE") {
+
     x <- meta$sdmx$measure
+
   } else if (component == "UNIT_MEASURE") {
+
     x <- meta$sdmx$unit_measure
+
   } else if (component == "UNIT_MULT") {
+
     x <- meta$sdmx$unit_mult
+
   } else {
+
     x <- NULL
   }
 
-  if (!is.null(x) && !is.null(x$code)) {
+  if (
+    !is.null(x) &&
+    !is.null(x$code)
+  ) {
 
     label <- .ilostat_sdmx_lang_value(
       x$label,
@@ -645,8 +842,12 @@
     )
   }
 
-  # Observation status.
+  # -----------------------------------------------------------------------
+  # Observation status
+  # -----------------------------------------------------------------------
+
   if (component == "OBS_STATUS") {
+
     return(
       .ilostat_sdmx_values_to_df(
         meta$observation_status,
@@ -655,18 +856,32 @@
     )
   }
 
-  # Notes.
+  # -----------------------------------------------------------------------
+  # Notes
+  # -----------------------------------------------------------------------
+
   if (component == "NOTE_SOURCE") {
+
     values <- meta$notes$source
+
   } else if (component == "NOTE_INDICATOR") {
+
     values <- meta$notes$indicator
+
   } else if (component == "NOTE_CLASSIF") {
+
     values <- meta$notes$classif
+
   } else {
+
     values <- NULL
   }
 
-  if (!is.null(values)) {
+  if (
+    !is.null(values) &&
+    length(values)
+  ) {
+
     return(
       .ilostat_sdmx_values_to_df(
         values,
@@ -723,9 +938,12 @@
 # -------------------------------------------------------------------------
 
 .ilostat_sdmx_codelist_dataframe <- function(
+  id,
   meta,
   component,
-  lang = "en"
+  lang = "en",
+  cache_dir = NULL,
+  refresh = FALSE
 ) {
 
   lang <- .ilostat_sdmx_validate_lang(lang)
@@ -744,48 +962,78 @@
 
   component <- toupper(component)
 
+  # Build the same semantic structure model used by structure/SDMX-ML.
   components <- .ilostat_sdmx_components(
-    meta,
-    lang = lang
-  )
-
-  if (!component %in% components$component_id) {
-    stop(
-      sprintf(
-        "Component `%s` is not available in this dataset.",
-        component
-      ),
-      call. = FALSE
-    )
-  }
-
-  values <- .ilostat_sdmx_component_values(
     meta = meta,
-    component = component,
     lang = lang
   )
 
-  if (is.null(values)) {
+  i <- match(
+    component,
+    components$component_id
+  )
+
+  if (is.na(i)) {
     stop(
       sprintf(
-        "No dataset codelist values are available for component `%s`.",
+        "Unknown SDMX component `%s` for dataset `%s`.",
+        component,
+        id
+      ),
+      call. = FALSE
+    )
+  }
+
+  codelist <- components$codelist[[i]]
+
+  if (
+    is.na(codelist) ||
+    !nzchar(codelist)
+  ) {
+    stop(
+      sprintf(
+        "SDMX component `%s` does not use a codelist.",
         component
       ),
       call. = FALSE
     )
   }
 
-  # Keep the R-facing representation semantic:
-  #
-  # AGE
-  # AGE_LABEL
-  #
-  # rather than exposing native names such as classif1/classif1.label.
-  out <- data.frame(
-    values$code,
-    values$label,
+  # Reuse the existing Rilostat dictionary/cache infrastructure.
+  args <- list(
+    dic = codelist,
+    lang = lang
+  )
+
+  if (!is.null(cache_dir)) {
+    args$cache_dir <- cache_dir
+  }
+
+  # Add the appropriate existing refresh argument here only if
+  # get_ilostat_dic() exposes one in the current Rilostat API.
+  out <- do.call(
+    get_ilostat_dic,
+    args
+  )
+
+  out <- as.data.frame(
+    out,
     stringsAsFactors = FALSE
   )
+
+  if (ncol(out) < 2L) {
+    stop(
+      sprintf(
+        "ILOSTAT dictionary `%s` does not contain code and label columns.",
+        codelist
+      ),
+      call. = FALSE
+    )
+  }
+
+  # Match the public R SDMX convention we established:
+  # AGE / AGE_LABEL, REF_AREA / REF_AREA_LABEL, etc.
+  out <- out[, 1:2, drop = FALSE]
 
   names(out) <- c(
     component,
@@ -925,5 +1173,601 @@
     ),
     LAST_UPDATE = toc$last.update,
     stringsAsFactors = FALSE
+  )
+}
+
+# -------------------------------------------------------------------------
+# SDMX time-period formatting
+#
+# Match pyilostat:
+#   2024     -> 2024
+#   2024Q1   -> 2024-Q1
+#   2024M01  -> 2024-M01
+# -------------------------------------------------------------------------
+
+.ilostat_sdmx_format_time_period <- function(x) {
+
+  x <- as.character(x)
+
+  quarterly <- grepl(
+    "^[0-9]{4}Q[1-4]$",
+    x
+  )
+
+  monthly <- grepl(
+    "^[0-9]{4}M(0[1-9]|1[0-2])$",
+    x
+  )
+
+  x[quarterly] <- sub(
+    "^([0-9]{4})Q([1-4])$",
+    "\\1-Q\\2",
+    x[quarterly]
+  )
+
+  x[monthly] <- sub(
+    "^([0-9]{4})M(0[1-9]|1[0-2])$",
+    "\\1-M\\2",
+    x[monthly]
+  )
+
+  x
+}
+
+# -------------------------------------------------------------------------
+# SDMX data message envelope
+# -------------------------------------------------------------------------
+
+# -------------------------------------------------------------------------
+# SDMX data envelope
+#
+# Match pyilostat:
+#   STRUCTURE    = dataflow
+#   STRUCTURE_ID = ILO:<dataflow_id>(1.0)
+#   STRUCTURE_NAME is included for type = "both"
+#   ACTION       = I
+# -------------------------------------------------------------------------
+
+.ilostat_sdmx_add_data_envelope <- function(
+  x,
+  meta,
+  type = "code",
+  lang = "en"
+) {
+
+  n <- nrow(x)
+
+  dataflow_id <- meta$sdmx$dataflow$id
+
+  if (
+    is.null(dataflow_id) ||
+    !length(dataflow_id) ||
+    is.na(dataflow_id) ||
+    !nzchar(dataflow_id)
+  ) {
+    stop(
+      "SDMX metadata does not define a Dataflow ID.",
+      call. = FALSE
+    )
+  }
+
+  envelope <- data.frame(
+    STRUCTURE = rep(
+      "dataflow",
+      n
+    ),
+    STRUCTURE_ID = rep(
+      paste0(
+        "ILO:",
+        dataflow_id,
+        "(1.0)"
+      ),
+      n
+    ),
+    stringsAsFactors = FALSE
+  )
+
+  # pyilostat includes STRUCTURE_NAME when both codes and labels
+  # are requested.
+  if (type %in% c(
+        "label",
+        "label_short",
+        "both"
+      )) {
+
+    dataflow_name <- .ilostat_sdmx_lang_value(
+      meta$sdmx$dataflow$name,
+      lang,
+      default = dataflow_id
+    )
+
+    envelope$STRUCTURE_NAME <- rep(
+      dataflow_name,
+      n
+    )
+  }
+
+  envelope$ACTION <- rep(
+    "I",
+    n
+  )
+
+  cbind(
+    envelope,
+    x,
+    stringsAsFactors = FALSE
+  )
+}
+
+.ilostat_sdmx_extract_time_filter <- function(filters) {
+
+  empty_result <- function(filters) {
+    list(
+      filters = filters,
+      time = NULL,
+      timefrom = NULL,
+      timeto = NULL
+    )
+  }
+
+  if (
+    is.null(filters) ||
+    !"TIME_PERIOD" %in% names(filters)
+  ) {
+    return(
+      empty_result(filters)
+    )
+  }
+
+  value <- filters$TIME_PERIOD
+  filters$TIME_PERIOD <- NULL
+
+  # -----------------------------------------------------------------------
+  # Simple equality
+  #
+  # Preserve native Rilostat matching semantics:
+  #
+  # TIME_PERIOD = "2020" -> time = "2020"
+  # TIME_PERIOD = "12"   -> time = "12"
+  # -----------------------------------------------------------------------
+
+  if (!is.list(value)) {
+
+    return(
+      list(
+        filters = filters,
+        time = value,
+        timefrom = NULL,
+        timeto = NULL
+      )
+    )
+  }
+
+  # -----------------------------------------------------------------------
+  # Validate operators
+  # -----------------------------------------------------------------------
+
+  supported <- c(
+    "eq",
+    "gt",
+    "ge",
+    "lt",
+    "le"
+  )
+
+  unsupported <- setdiff(
+    names(value),
+    supported
+  )
+
+  if (length(unsupported)) {
+
+    stop(
+      sprintf(
+        "Unsupported TIME_PERIOD operator(s): %s.",
+        paste(
+          unsupported,
+          collapse = ", "
+        )
+      ),
+      call. = FALSE
+    )
+  }
+
+  if (!length(value)) {
+
+    stop(
+      "Empty `TIME_PERIOD` operator filter.",
+      call. = FALSE
+    )
+  }
+
+  # -----------------------------------------------------------------------
+  # Equality
+  #
+  # Keep the value unchanged and let native get_ilostat() perform its
+  # existing time matching.
+  # -----------------------------------------------------------------------
+
+  if (!is.null(value$eq)) {
+
+    if (length(value) != 1L) {
+
+      stop(
+        "`TIME_PERIOD` operator `eq` cannot be combined with other operators.",
+        call. = FALSE
+      )
+    }
+
+    return(
+      list(
+        filters = filters,
+        time = value$eq,
+        timefrom = NULL,
+        timeto = NULL
+      )
+    )
+  }
+
+  # -----------------------------------------------------------------------
+  # Inequality helpers
+  #
+  # Native Rilostat timefrom/timeto operate on years. Only the first four
+  # characters are therefore relevant for quarterly/monthly periods too.
+  # -----------------------------------------------------------------------
+
+  get_year <- function(x) {
+
+    if (
+      is.null(x) ||
+      !length(x)
+    ) {
+      return(NULL)
+    }
+
+    year <- suppressWarnings(
+      as.integer(
+        substr(
+          as.character(x)[[1L]],
+          1L,
+          4L
+        )
+      )
+    )
+
+    if (is.na(year)) {
+
+      stop(
+        sprintf(
+          "Invalid TIME_PERIOD value `%s`.",
+          as.character(x)[[1L]]
+        ),
+        call. = FALSE
+      )
+    }
+
+    year
+  }
+
+  # -----------------------------------------------------------------------
+  # Lower bound
+  #
+  # ge 2020 -> timefrom 2020
+  # gt 2020 -> timefrom 2021
+  # -----------------------------------------------------------------------
+
+  lower <- integer()
+
+  if (!is.null(value$ge)) {
+    lower <- c(
+      lower,
+      get_year(value$ge)
+    )
+  }
+
+  if (!is.null(value$gt)) {
+    lower <- c(
+      lower,
+      get_year(value$gt) + 1L
+    )
+  }
+
+  timefrom <- if (length(lower)) {
+    as.character(max(lower))
+  } else {
+    NULL
+  }
+
+  # -----------------------------------------------------------------------
+  # Upper bound
+  #
+  # le 2023 -> timeto 2023
+  # lt 2023 -> timeto 2022
+  # -----------------------------------------------------------------------
+
+  upper <- integer()
+
+  if (!is.null(value$le)) {
+    upper <- c(
+      upper,
+      get_year(value$le)
+    )
+  }
+
+  if (!is.null(value$lt)) {
+    upper <- c(
+      upper,
+      get_year(value$lt) - 1L
+    )
+  }
+
+  timeto <- if (length(upper)) {
+    as.character(min(upper))
+  } else {
+    NULL
+  }
+
+  list(
+    filters = filters,
+    time = NULL,
+    timefrom = timefrom,
+    timeto = timeto
+  )
+}
+
+.ilostat_sdmx_extract_component_operators <- function(
+  filters
+) {
+
+  if (is.null(filters) || !length(filters)) {
+    return(
+      list(
+        filters = filters,
+        exclude = list()
+      )
+    )
+  }
+
+  remaining <- filters
+  exclude <- list()
+
+  for (component in names(filters)) {
+
+    value <- filters[[component]]
+
+    # Ordinary scalar/vector filters remain unchanged.
+    if (!is.list(value)) {
+      next
+    }
+
+    operators <- names(value)
+
+    if (
+      is.null(operators) ||
+      !length(operators)
+    ) {
+      stop(
+        sprintf(
+          "Empty operator filter for SDMX component `%s`.",
+          component
+        ),
+        call. = FALSE
+      )
+    }
+
+    unsupported <- setdiff(
+      operators,
+      c("eq", "ne")
+    )
+
+    if (length(unsupported)) {
+      stop(
+        sprintf(
+          "Unsupported operator(s) for SDMX component `%s`: %s.",
+          component,
+          paste(
+            unsupported,
+            collapse = ", "
+          )
+        ),
+        call. = FALSE
+      )
+    }
+
+    if (
+      !is.null(value$eq) &&
+      !is.null(value$ne)
+    ) {
+      stop(
+        sprintf(
+          "SDMX component `%s` cannot combine `eq` and `ne`.",
+          component
+        ),
+        call. = FALSE
+      )
+    }
+
+    # eq maps directly onto the existing positive Rilostat filter.
+    if (!is.null(value$eq)) {
+      remaining[[component]] <- value$eq
+      next
+    }
+
+    # ne must be applied after retrieval.
+    if (!is.null(value$ne)) {
+      remaining[[component]] <- NULL
+      exclude[[component]] <- value$ne
+    }
+  }
+
+  list(
+    filters = remaining,
+    exclude = exclude
+  )
+}
+
+.ilostat_sdmx_apply_exclusions <- function(
+  x,
+  exclude
+) {
+
+  if (
+    is.null(exclude) ||
+    !length(exclude) ||
+    !nrow(x)
+  ) {
+    return(x)
+  }
+
+  for (component in names(exclude)) {
+
+    if (!component %in% names(x)) {
+      next
+    }
+
+    values <- as.character(
+      exclude[[component]]
+    )
+
+    keep <- !x[[component]] %in% values
+
+    # Preserve NA values unless NA itself was explicitly excluded.
+    keep[is.na(keep)] <- TRUE
+
+    x <- x[
+      keep,
+      ,
+      drop = FALSE
+    ]
+  }
+
+  rownames(x) <- NULL
+
+  x
+}
+
+.ilostat_sdmx_extract_constant_filters <- function(
+  filters,
+  meta
+) {
+
+  if (is.null(filters) || !length(filters)) {
+    return(
+      list(
+        filters = filters,
+        matches = TRUE
+      )
+    )
+  }
+
+  constants <- c(
+    FREQ = as.character(
+      meta$dataset$frequency$code
+    ),
+    MEASURE = as.character(
+      meta$sdmx$measure$code
+    )
+  )
+
+  remaining <- filters
+  matches <- TRUE
+
+  for (component in names(constants)) {
+
+    if (!component %in% names(remaining)) {
+      next
+    }
+
+    requested <- as.character(
+      remaining[[component]]
+    )
+
+    expected <- constants[[component]]
+
+    if (
+      !length(requested) ||
+      !expected %in% requested
+    ) {
+      matches <- FALSE
+    }
+
+    remaining[[component]] <- NULL
+  }
+
+  list(
+    filters = remaining,
+    matches = matches
+  )
+}
+
+# -------------------------------------------------------------------------
+# Empty SDMX data result
+#
+# Used when a dataset-level constant filter cannot match the requested
+# dataset, for example:
+#
+#   FREQ = "Q"
+#
+# against an annual dataset.
+#
+# The result contains zero observations but preserves the same SDMX schema
+# and column ordering as a non-empty result.
+# -------------------------------------------------------------------------
+
+.ilostat_sdmx_empty_data <- function(
+  meta,
+  components,
+  type = "code",
+  lang = "en"
+) {
+
+  component_ids <- components$component_id
+
+  # BEST_SOURCE is absent for the default best_source = "yes".
+  component_ids <- component_ids[
+    component_ids != "BEST_SOURCE"
+  ]
+
+  x <- as.data.frame(
+    setNames(
+      replicate(
+        length(component_ids),
+        character(),
+        simplify = FALSE
+      ),
+      component_ids
+    ),
+    stringsAsFactors = FALSE
+  )
+
+  # Observation values are numeric.
+  if ("OBS_VALUE" %in% names(x)) {
+    x$OBS_VALUE <- numeric()
+  }
+
+  # Apply the requested representation.
+  #
+  # In particular, type = "both" creates the *_LABEL columns even though
+  # there are no observations.
+  x <- .ilostat_sdmx_apply_type(
+    x,
+    meta = meta,
+    components = components,
+    type = type,
+    lang = lang
+  )
+
+  # Add STRUCTURE / STRUCTURE_ID / STRUCTURE_NAME / ACTION according to the
+  # same rules as a non-empty SDMX result.
+  x <- .ilostat_sdmx_add_data_envelope(
+    x = x,
+    meta = meta,
+    type = type,
+    lang = lang
+  )
+
+  .ilostat_sdmx_order_columns(
+    x,
+    components
   )
 }

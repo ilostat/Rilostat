@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2025 - http://www.sdmx.org -->
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/structure" 
+			xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/structure" 
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/common"
+			xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/structure" 
+			elementFormDefault="qualified">
+			
+	<xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/common" schemaLocation="SDMXCommon.xsd"/>
+	<xs:include schemaLocation="SDMXStructureBase.xsd"/>
+	
+	<xs:annotation>
+		<xs:appinfo>SDMX Structure Mapping Structure Module</xs:appinfo>
+		<xs:documentation>The structure Mapping structure module defines the structure of structure mapping constructs.</xs:documentation>
+	</xs:annotation>
+
+	<xs:complexType name="ItemSchemeMapBaseType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>ItemSchemeMapBaseType is an abstract base type which forms the basis for the ItemSchemeMapType.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="common:MaintainableType">
+				<xs:sequence>
+					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="common:Name" maxOccurs="unbounded"/>
+					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="id" type="common:IDType" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="ItemSchemeMapType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>ItemSchemeMapType is an abstract base type which forms the basis for mapping items between item schemes of the same type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ItemSchemeMapBaseType">
+				<xs:sequence>
+					<xs:element name="Source" type="common:MaintainableUrnReferenceType">
+						<xs:annotation>
+							<xs:documentation>Source provides a reference to the item scheme which items are mapped from.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Target" type="common:MaintainableUrnReferenceType">
+						<xs:annotation>
+							<xs:documentation>Target provides a reference to the item scheme which items are mapped to.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ItemMap" type="SingleValueMappingType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="OrganisationSchemeMapType">
+		<xs:annotation>
+			<xs:documentation>OrganisationSchemeMapType defines the structure of a map which identifies relationships between organisations in different organisation schemes.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ItemSchemeMapType">
+				<xs:sequence>
+					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="common:Name" maxOccurs="unbounded"/>
+					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Source" type="common:OrganisationSchemeReferenceType"/>
+					<xs:element name="Target" type="common:OrganisationSchemeReferenceType"/>
+					<xs:element name="ItemMap" type="SingleValueMappingType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="urn" type="common:OrganisationSchemeMapUrnType" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="CategorySchemeMapType">
+		<xs:annotation>
+			<xs:documentation>CategorySchemeMapType defines the structure of a map which identifies relationships between categories in different category schemes.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ItemSchemeMapType">
+				<xs:sequence>
+					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="common:Name" maxOccurs="unbounded"/>
+					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Source" type="common:CategorySchemeReferenceType"/>
+					<xs:element name="Target" type="common:CategorySchemeReferenceType"/>
+					<xs:element name="ItemMap" type="SingleValueMappingType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="urn" type="common:CategorySchemeMapUrnType" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ConceptSchemeMapType">
+		<xs:annotation>
+			<xs:documentation>ConceptSchemeMapType defines the structure of a map which identifies relationships between concepts in different concept schemes.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ItemSchemeMapType">
+				<xs:sequence>
+					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="common:Name" maxOccurs="unbounded"/>
+					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Source" type="common:ConceptSchemeReferenceType"/>
+					<xs:element name="Target" type="common:ConceptSchemeReferenceType"/>
+					<xs:element name="ItemMap" type="SingleValueMappingType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="urn" type="common:ConceptSchemeMapUrnType" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ReportingTaxonomyMapType">
+		<xs:annotation>
+			<xs:documentation>ReportingTaxonomyMapType defines the structure of a map which identifies relationships between reporting categories in different reporting taxonomies.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ItemSchemeMapType">
+				<xs:sequence>
+					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="common:Name" maxOccurs="unbounded"/>
+					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Source" type="common:ReportingTaxonomyReferenceType"/>
+					<xs:element name="Target" type="common:ReportingTaxonomyReferenceType"/>
+					<xs:element name="ItemMap" type="SingleValueMappingType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="urn" type="common:ReportingTaxonomyMapUrnType" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="StructureMapBaseType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>StructureMapBaseType defines the base refinement of the StructureMapType. Its purpose is to restrict the urn attribute.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="common:MaintainableType">
+				<xs:sequence>
+					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="common:Name" maxOccurs="unbounded"/>
+					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="urn" type="common:StructureMapUrnType" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="StructureMapType">
+		<xs:annotation>
+			<xs:documentation>StructureMapType defines the structure for mapping components of one structure to components of another structure. A structure may be referenced directly meaning the map applies wherever the structure is used, or it may be a reference via a structure usage meaning the map only applies within the context of that usage. Using the related structures, one can make extrapolations between maps. For example, if key families, A, B, and C, are all grouped in a related structures container, then a map from data structure A to C and a map from data structure B to C could be used to infer a relation between data structure A to C.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="StructureMapBaseType">
+				<xs:sequence>
+					<xs:element name="Source" type="common:StructureOrUsageReferenceType">
+						<xs:annotation>
+							<xs:documentation>Source provides a reference to a structure (data or metadata) or a structure usage (dataflow or metadataflow) from which components defined by the actual structure are to be mapped.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Target" type="common:StructureOrUsageReferenceType">
+						<xs:annotation>
+							<xs:documentation>Target provides a reference to a structure (data or metadata) or a structure usage (dataflow or metadataflow) to which components from the source are to be mapped.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="EpochMap" type="EpochMapType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Provides the ability to map source to target date formats. The source date is described as the number of epochs since a point in time, where the duration of each epoch is defined, e.g. number of milliseconds since 1970.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="DatePatternMap" type="DatePatternMapType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Provides the ability to map source to target date formats. The source date is described as a pattern (for example MM-YYYY).</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="FrequencyFormatMapping" type="FrequencyFormatMappingType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation></xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ComponentMap" type="ComponentMapType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>ComponentMap defines the relationship between the components of the source and target structures, including information on how the value from the source component relates to values in the target component.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="FixedValueMap" type="FixedValueMapType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>FixedValueMap defines a fixed value for a source or target component in the mapping.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="FixedValueMapType">
+		<xs:annotation>
+			<xs:documentation>FixedValueMapType defines the structure for providing a fixed value for a source or target component.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="common:AnnotableType">
+				<xs:sequence>
+					<xs:choice>
+						<xs:element name="Source" type="common:IDType"/>
+						<xs:element name="Target" type="common:IDType"/>
+					</xs:choice>
+					<xs:element name="Value" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>The fixed value for the component.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ComponentMapType">
+		<xs:annotation>
+			<xs:documentation>ComponentMapType defines the structure for relating a component in a source structure to a component in a target structure.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="common:AnnotableType">
+				<xs:sequence>
+					<xs:element name="Source" type="common:IDType" maxOccurs="unbounded"/>
+					<xs:element name="Target" type="common:IDType" maxOccurs="unbounded"/>
+					<xs:element name="RepresentationMap" type="common:RepresentationMapReferenceType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="FrequencyFormatMappingBaseType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>FrequencyFormatMappingBaseType defines the base refinement of the FrequencyFormatMappingType. Its purpose is to restrict the urn attribute.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="common:IdentifiableType">
+				<xs:sequence>
+					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="urn" type="common:FrequencyFormatMappingUrnType" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="FrequencyFormatMappingType">
+		<xs:complexContent>
+			<xs:extension base="FrequencyFormatMappingBaseType">
+				<xs:sequence>
+					<xs:element name="FrequencyId" type="common:IDType"/>
+					<xs:element name="DatePattern" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="DateMapType" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="common:IdentifiableType">
+				<xs:sequence>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="Source" type="common:IDType"/>
+						<xs:element name="Target" type="common:IDType"/>
+					</xs:sequence>
+					<xs:choice>
+						<xs:sequence>
+								<xs:element name="FrequencyDimension" type="common:IDType"/>
+								<xs:element name="MappedFrequencies" type="common:IDType" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+						<xs:element name="TargetFrequencyID" type="common:IDType"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="resolvePeriod" type="ResolvePeriodType" use="optional">
+					<xs:annotation>
+						<xs:documentation>Indicates the point in time to resolve to when mapping from low frequency periods to higher frequency periods.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EpochMapBaseType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>EpochMapBaseType defines the base refinement of the EpochMapType. Its purpose is to restrict the urn attribute.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="DateMapType">
+				<xs:sequence>
+					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="Source" type="common:IDType"/>
+						<xs:element name="Target" type="common:IDType"/>
+					</xs:sequence>
+					<xs:choice>
+						<xs:sequence>
+								<xs:element name="FrequencyDimension" type="common:IDType"/>
+								<xs:element name="MappedFrequencies" type="common:IDType" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+						<xs:element name="TargetFrequencyID" type="common:IDType"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="urn" type="common:EpochMapUrnType" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="EpochMapType">
+		<xs:complexContent>
+			<xs:extension base="EpochMapBaseType">
+				<xs:attribute name="basePeriod" type="xs:string" use="required"/>
+				<xs:attribute name="epochPeriod" type="EpochPeriodType" use="required"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="DatePatternMapBaseType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>DatePatternMapBaseType defines the base refinement of the DatePatternMapType. Its purpose is to retrict the urn attribute.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="DateMapType">
+				<xs:sequence>
+					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="Source" type="common:IDType"/>
+						<xs:element name="Target" type="common:IDType"/>
+					</xs:sequence>
+					<xs:choice>
+						<xs:sequence>
+								<xs:element name="FrequencyDimension" type="common:IDType"/>
+								<xs:element name="MappedFrequencies" type="common:IDType" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+						<xs:element name="TargetFrequencyID" type="common:IDType"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="urn" type="common:DatePatternMapUrnType" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="DatePatternMapType">
+		<xs:complexContent>
+			<xs:extension base="DatePatternMapBaseType">
+				<xs:attribute name="sourcePattern" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>Describes the source date using conventions for describing years, months, days, etc.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="locale" type="xs:string" use="required">
+					<xs:annotation>
+						<xs:documentation>The locale on which the input will be parsed according to the pattern.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="RepresentationMapBaseType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>RepresentationMapBaseType defines the base refinement of the RepresentationMapType. Its purpose is to retrict the urn attribute.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="common:MaintainableType">
+				<xs:sequence>
+					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="common:Name" maxOccurs="unbounded"/>
+					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="urn" type="common:RepresentationMapUrnType" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="RepresentationMapType">
+		<xs:complexContent>
+			<xs:extension base="RepresentationMapBaseType">
+				<xs:sequence>
+					<xs:choice maxOccurs="unbounded">
+						<xs:element name="SourceCodelist" type="common:AnyCodelistReferenceType"/>
+						<xs:element name="SourceDataType" type="common:DataType"/>
+					</xs:choice>
+					<xs:choice maxOccurs="unbounded">
+						<xs:element name="TargetCodelist" type="common:AnyCodelistReferenceType"/>
+						<xs:element name="TargetDataType" type="common:DataType"/>
+					</xs:choice>
+					<xs:element name="RepresentationMapping" type="ValueMappingType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="SingleValueMappingType">
+		<xs:annotation>
+			<xs:documentation>SingleValueMappingType defines a mapping with a single source and optional target.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="common:AnnotableType">
+				<xs:sequence>
+					<xs:element name="SourceValue" type="MappedValueType">
+						<xs:annotation>
+							<xs:documentation>There should be a source value for each source representation (e.g. codelist, data type). Source values can be pattern matched by using regular expression or substrings using start/end indexes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TargetValue" type="xs:string" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>The target value(s) is always an absolute string. However, if source value is a regular expression, the target value can output the capture group from the source.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="validFrom" type="xs:date" use="optional"/>
+				<xs:attribute name="validTo" type="xs:date" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="ValueMappingType">
+		<xs:annotation>
+			<xs:documentation>ValueMappingType defines a mapping of multiple sources to multiple targets.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="common:AnnotableType">
+				<xs:sequence>
+					<xs:element name="SourceValue" type="MappedValueType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>There should be a source value for each source representation (e.g. codelist, data type). Source values can be pattern matched by using regular expression or substrings using start/end indexes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TargetValue" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>The target value(s) is always an absolute string. However, if source value is a regular expression, the target value can output the capture group from the source.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="validFrom" type="xs:date" use="optional"/>
+				<xs:attribute name="validTo" type="xs:date" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="MappedValueType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="isRegEx" type="xs:boolean" use="optional"/>
+				<xs:attribute name="startIndex" type="xs:int" use="optional"/>
+				<xs:attribute name="endIndex" type="xs:int" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:simpleType name="EpochPeriodType">
+		<xs:annotation>
+			<xs:documentation>EpochPeriodType defines an enumeration of epoch period types.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="nanosecond"/>
+			<xs:enumeration value="millisecond"/>
+			<xs:enumeration value="microsecond"/>
+			<xs:enumeration value="second"/>
+			<xs:enumeration value="day"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ResolvePeriodType">
+		<xs:annotation>
+			<xs:documentation>ResolvePeriodType defines an enumeration of how date periods should be resolved.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="startOfPeriod"/>
+			<xs:enumeration value="endOfPeriod"/>
+			<xs:enumeration value="midPeriod"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>

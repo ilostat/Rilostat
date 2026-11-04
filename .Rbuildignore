@@ -13,3 +13,6 @@
 ^CRAN-RELEASE$
 ^revdep$
 ^data-raw$
+^vignettes/Thumbs\.db$
+^doc$
+^Meta$

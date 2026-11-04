@@ -49,3 +49,5 @@ Desktop.ini
 *.swo
 *.tmp
 /Meta/
+Thumbs.db
+/doc/

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2025 - http://www.sdmx.org -->
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/structure" 
+			xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/structure" 
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/common"
+			xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/structure" 
+			elementFormDefault="qualified">
+
+	<xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/common" schemaLocation="SDMXCommon.xsd"/>
+	
+	<xs:include schemaLocation="SDMXStructureBase.xsd"/>
+
+	<xs:annotation>
+		<xs:appinfo>SDMX Metadataflow Structure Module</xs:appinfo>
+		<xs:documentation>The metadata flow structure module defines the structure of metadata flow constructs.</xs:documentation>
+	</xs:annotation>
+
+	<xs:complexType name="MetadataflowBaseType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>MetadataflowBaseType is an abstract base type that serves as the basis for the MetadataflowType. It restricts the structure to reference a metadata structure definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="StructureUsageType">
+				<xs:sequence>
+					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="common:Name" maxOccurs="unbounded"/>
+					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="Structure" type="common:MetadataStructureReferenceType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Structure provides a reference to the metadata structure definition describing the structure of all reference metadata for this flow.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:attribute name="urn" type="common:MetadataflowUrnType" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="MetadataflowType">
+		<xs:annotation>
+			<xs:documentation>MetadataflowType describes the structure of a metadata flow. A dataflow is defined as the structure of reference metadata that will be provided for different reference periods. If this type is not referenced externally, then a reference to a metadata structure definition must be provided</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="MetadataflowBaseType">
+				<xs:sequence>
+					<xs:element name="Target" type="common:WildcardUrnType" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>References identifiable structures to which the refernece metadata described by the referenced metadata structure should be restricted to. These references may include wildcards for parts of the reference.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+</xs:schema>

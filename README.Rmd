@@ -9,7 +9,7 @@ output: github_document
 
 <br>
 
-## ilostat R package
+## ILOSTAT R package
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
@@ -26,7 +26,7 @@ More advanced users can take advantage of ILOSTAT's well-structured [bulk downlo
 The ilostat R package (`'Rilostat'`) was designed to give data users the ability to access the ILOSTAT database, search for data, rearrange the information as needed, download it in the desired format, and 
 make various data visualizations, all in a programmatic and replicable manner, with the possibility of quickly re-running the queries as required.
 
-## Main features of the ilostat R package 
+## Main features of the ILOSTAT R package 
 
 - Provides access to all annual, quarterly, and monthly data available via the ILOSTAT [bulk download facility](https://ilostat.ilo.org/data/bulk/)
 - Allows to search for and download data and related metadata in English, French and Spanish
@@ -53,13 +53,212 @@ install.packages("Rilostat")
 To install the development version, use the following command:
 
 ```{r, eval=FALSE}
-if(!require(devtools)){install.packages('devtools')}
-install_github("ilostat/Rilostat")
+devtools::install_github("ilostat/Rilostat")
 ```
 
 We do not expect to update the ilostat R package too often, but based on questions and remarks from ILOSTAT 
 data users, we will progressively create more examples, 
 tutorials, demos and apps. We will publicly share all of this via [Rilostat webpage](https://ilostat.github.io/Rilostat/)
+
+
+## SDMX support
+
+Rilostat provides an SDMX-oriented interface through `get_ilostat_sdmx()`. It reuses the existing Rilostat download, cache and filtering infrastructure while exposing ILOSTAT datasets using SDMX component names and metadata.
+
+The interface supports:
+
+- observation data as R data frames;
+- data structures;
+- canonical codelists;
+- ILOSTAT dataflows;
+- SDMX-ML 3.1 for structural resources;
+- SDMX-JSON 2.1 for structural resources;
+- English, French and Spanish labels;
+- code, label, short-label and combined code/label representations;
+- SDMX-oriented filtering, including time-period ranges.
+
+### Observation data
+
+Observation data can be retrieved using SDMX component identifiers:
+
+```r
+x <- get_ilostat_sdmx(
+  "UNE_TUNE_SEX_AGE_NB_A",
+  filters = list(
+    REF_AREA = "FRA",
+    SEX = "SEX_F",
+    AGE = "AGE_YTHADULT_YGE15"
+  )
+)
+```
+
+The returned data use SDMX component names such as `REF_AREA`, `SOURCE`, `FREQ`, `MEASURE`, `SEX`, `AGE`, `TIME_PERIOD`, `OBS_VALUE`, `OBS_STATUS`, `UNIT_MEASURE` and `UNIT_MULT`.
+
+The SDMX data envelope also identifies the dataflow through `STRUCTURE`, `STRUCTURE_ID` and `ACTION`.
+
+### Codes and labels
+
+Codes and labels can be returned together:
+
+```r
+x <- get_ilostat_sdmx(
+  "UNE_TUNE_SEX_AGE_NB_A",
+  type = "both",
+  filters = list(
+    REF_AREA = "FRA",
+    SEX = "SEX_F",
+    AGE = "AGE_YTHADULT_YGE15"
+  )
+)
+```
+
+This returns SDMX code columns together with companion label columns such as `REF_AREA_LABEL`, `SOURCE_LABEL`, `SEX_LABEL` and `AGE_LABEL`.
+
+The available representations are:
+
+- `type = "code"` for SDMX codes;
+- `type = "label"` for full labels;
+- `type = "label_short"` for short/display labels where available;
+- `type = "both"` for codes and labels together.
+
+For example, the AGE code `AGE_YTHADULT_YGE15` has the full label `Age (Youth, adults): 15+` and the short label `15+`.
+
+### Filtering
+
+Filters use SDMX component names:
+
+```r
+x <- get_ilostat_sdmx(
+  "UNE_TUNE_SEX_AGE_NB_A",
+  filters = list(
+    REF_AREA = "FRA",
+    SEX = "SEX_F"
+  )
+)
+```
+
+Time-period ranges can use comparison operators:
+
+```r
+x <- get_ilostat_sdmx(
+  "UNE_TUNE_SEX_AGE_NB_A",
+  filters = list(
+    REF_AREA = "FRA",
+    TIME_PERIOD = list(
+      ge = "2020",
+      le = "2023"
+    )
+  )
+)
+```
+
+`FREQ` and `MEASURE` can also be used as filters. They are dataset-level SDMX components; a value incompatible with the selected dataset returns an empty SDMX result.
+
+### Data structure
+
+The SDMX-oriented structure of a dataset can be inspected directly:
+
+```r
+structure <- get_ilostat_sdmx(
+  "UNE_TUNE_SEX_AGE_NB_A",
+  resource = "structure"
+)
+```
+
+The structure describes the dimensions, time dimension, measure and attributes of the dataset, including their position, representation and associated codelists.
+
+### Codelists
+
+Canonical ILOSTAT codelists can be retrieved for coded SDMX components:
+
+```r
+age <- get_ilostat_sdmx(
+  "UNE_TUNE_SEX_AGE_NB_A",
+  resource = "codelist",
+  component = "AGE"
+)
+```
+
+Other examples include `REF_AREA`, `SOURCE`, `SEX`, `OBS_STATUS`, `UNIT_MEASURE` and `UNIT_MULT`.
+
+### Dataflows
+
+Retrieve the dataflow associated with one ILOSTAT dataset:
+
+```r
+flow <- get_ilostat_sdmx(
+  "UNE_TUNE_SEX_AGE_NB_A",
+  resource = "dataflow"
+)
+```
+
+The complete ILOSTAT dataflow catalogue can also be retrieved:
+
+```r
+flows <- get_ilostat_sdmx(
+  resource = "dataflow"
+)
+```
+
+### SDMX-ML 3.1
+
+Structural resources can be serialized as **SDMX-ML 3.1**.
+
+For example:
+
+```r
+xml <- get_ilostat_sdmx(
+  "UNE_TUNE_SEX_AGE_NB_A",
+  resource = "structure",
+  format = "sdmx-ml"
+)
+```
+
+SDMX-ML 3.1 output is available for:
+
+- `resource = "structure"`;
+- `resource = "codelist"`;
+- `resource = "dataflow"`.
+
+For example, a codelist can be serialized directly:
+
+```r
+xml <- get_ilostat_sdmx(
+  "UNE_TUNE_SEX_AGE_NB_A",
+  resource = "codelist",
+  component = "AGE",
+  format = "sdmx-ml"
+)
+```
+
+### SDMX-JSON 2.1
+
+The same structural resources can be serialized as **SDMX-JSON 2.1**:
+
+```r
+json <- get_ilostat_sdmx(
+  "UNE_TUNE_SEX_AGE_NB_A",
+  resource = "structure",
+  format = "sdmx-json"
+)
+```
+
+SDMX-JSON 2.1 output is available for structures, codelists and dataflows.
+
+For example:
+
+```r
+json <- get_ilostat_sdmx(
+  "UNE_TUNE_SEX_AGE_NB_A",
+  resource = "codelist",
+  component = "AGE",
+  format = "sdmx-json"
+)
+```
+
+The R data-frame interface, SDMX-ML 3.1 output and SDMX-JSON 2.1 output are generated from the same dataset metadata and SDMX semantic model.
+
+See `?get_ilostat_sdmx` for the complete interface.
 
 
 ## Contribute

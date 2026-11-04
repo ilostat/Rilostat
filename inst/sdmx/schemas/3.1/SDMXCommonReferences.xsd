@@ -1,0 +1,1633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2025 - http://www.sdmx.org -->
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/common" 
+			xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/common"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			elementFormDefault="qualified">
+	
+	<xs:annotation>
+		<xs:appinfo>SDMX Common References Module</xs:appinfo>
+		<xs:documentation>The common references module contains common constructs that are used to reference objects.</xs:documentation>
+	</xs:annotation>
+
+	<!-- Identification and Reference Field Types -->
+	<xs:simpleType name="UrnPrefixPart">
+		<xs:annotation>
+			<xs:documentation>This is validates the first part of the URN (urn:sdmx.org.infomodel.&lt;package>.&lt;class=). It is intended to be further restricted.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="urn:sdmx:org\.sdmx\.infomodel\.[a-z]+\.[A-Za-z]+=[^=]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="UrnClassesPart">
+		<xs:annotation>
+			<xs:documentation>This refines the prefix to make specific restrictions of package and class values. Note that only one of the patterns must match. It is intended to be further restricted.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnPrefixPart">
+			<xs:pattern value=".+\.base\.Agency=.+"/>
+			<xs:pattern value=".+\.base\.AgencyScheme=.+"/>
+			<xs:pattern value=".+\.base\.Any=.+"/>
+			<xs:pattern value=".+\.base\.DataConsumer=.+"/>
+			<xs:pattern value=".+\.base\.DataConsumerScheme=.+"/>
+			<xs:pattern value=".+\.base\.DataProvider=.+"/>
+			<xs:pattern value=".+\.base\.DataProviderScheme=.+"/>
+			<xs:pattern value=".+\.base\.MetadataProvider=.+"/>
+			<xs:pattern value=".+\.base\.MetadataProviderScheme=.+"/>
+			<xs:pattern value=".+\.base\.OrganisationUnit=.+"/>
+			<xs:pattern value=".+\.base\.OrganisationUnitScheme=.+"/>
+			<xs:pattern value=".+\.categoryscheme\.Categorisation=.+"/>
+			<xs:pattern value=".+\.categoryscheme\.Category=.+"/>
+			<xs:pattern value=".+\.categoryscheme\.CategoryScheme=.+"/>
+			<xs:pattern value=".+\.categoryscheme\.ReportingCategory=.+"/>
+			<xs:pattern value=".+\.categoryscheme\.ReportingTaxonomy=.+"/>
+			<xs:pattern value=".+\.codelist\.Code=.+"/>
+			<xs:pattern value=".+\.codelist\.Codelist=.+"/>
+			<xs:pattern value=".+\.codelist\.HierarchicalCode=.+"/>
+			<xs:pattern value=".+\.codelist\.Hierarchy=.+"/>
+			<xs:pattern value=".+\.codelist\.HierarchyAssociation=.+"/>
+			<xs:pattern value=".+\.codelist\.Level=.+"/>
+			<xs:pattern value=".+\.codelist\.ValueList=.+"/>
+			<xs:pattern value=".+\.conceptscheme\.Concept=.+"/>
+			<xs:pattern value=".+\.conceptscheme\.ConceptScheme=.+"/>
+			<xs:pattern value=".+\.datastructure\.AttributeDescriptor=.+"/>
+			<xs:pattern value=".+\.datastructure\.DataAttribute=.+"/>
+			<xs:pattern value=".+\.datastructure\.Dataflow=.+"/>
+			<xs:pattern value=".+\.datastructure\.DataStructure=.+"/>
+			<xs:pattern value=".+\.datastructure\.Dimension=.+"/>
+			<xs:pattern value=".+\.datastructure\.DimensionDescriptor=.+"/>
+			<xs:pattern value=".+\.datastructure\.GroupDimensionDescriptor=.+"/>
+			<xs:pattern value=".+\.datastructure\.Measure=.+"/>
+			<xs:pattern value=".+\.datastructure\.MeasureDescriptor=.+"/>
+			<xs:pattern value=".+\.datastructure\.TimeDimension=.+"/>
+			<xs:pattern value=".+\.metadatastructure\.MetadataAttribute=.+"/>
+			<xs:pattern value=".+\.metadatastructure\.Metadataflow=.+"/>
+			<xs:pattern value=".+\.metadatastructure\.MetadataSet=.+"/>
+			<xs:pattern value=".+\.metadatastructure\.MetadataStructure=.+"/>
+			<xs:pattern value=".+\.process\.Process=.+"/>
+			<xs:pattern value=".+\.process\.ProcessStep=.+"/>
+			<xs:pattern value=".+\.process\.Transition=.+"/>
+			<xs:pattern value=".+\.registry\.DataConstraint=.+"/>
+			<xs:pattern value=".+\.registry\.MetadataConstraint=.+"/>
+			<xs:pattern value=".+\.registry\.MetadataProvisionAgreement=.+"/>
+			<xs:pattern value=".+\.registry\.ProvisionAgreement=.+"/>
+			<xs:pattern value=".+\.structuremapping\.CategorySchemeMap=.+"/>
+			<xs:pattern value=".+\.structuremapping\.ConceptSchemeMap=.+"/>
+			<xs:pattern value=".+\.structuremapping\.DatePatternMap=.+"/>
+			<xs:pattern value=".+\.structuremapping\.EpochMap=.+"/>
+			<xs:pattern value=".+\.structuremapping\.FrequencyFormatMapping=.+"/>
+			<xs:pattern value=".+\.structuremapping\.OrganisationSchemeMap=.+"/>
+			<xs:pattern value=".+\.structuremapping\.ReportingTaxonomyMap=.+"/>
+			<xs:pattern value=".+\.structuremapping\.RepresentationMap=.+"/>
+			<xs:pattern value=".+\.structuremapping\.StructureMap=.+"/>
+			<xs:pattern value=".+\.transformation\.CustomType=.+"/>
+			<xs:pattern value=".+\.transformation\.CustomTypeScheme=.+"/>
+			<xs:pattern value=".+\.transformation\.NamePersonalisation=.+"/>
+			<xs:pattern value=".+\.transformation\.NamePersonalisationScheme=.+"/>
+			<xs:pattern value=".+\.transformation\.Ruleset=.+"/>
+			<xs:pattern value=".+\.transformation\.RulesetScheme=.+"/>
+			<xs:pattern value=".+\.transformation\.Transformation=.+"/>
+			<xs:pattern value=".+\.transformation\.TransformationScheme=.+"/>
+			<xs:pattern value=".+\.transformation\.UserDefinedOperator=.+"/>
+			<xs:pattern value=".+\.transformation\.UserDefinedOperatorScheme=.+"/>
+			<xs:pattern value=".+\.transformation\.VtlCodelistMapping=.+"/>
+			<xs:pattern value=".+\.transformation\.VtlConceptMapping=.+"/>
+			<xs:pattern value=".+\.transformation\.VtlDataflowMapping=.+"/>
+			<xs:pattern value=".+\.transformation\.VtlMappingScheme=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="UrnAgencyPart">
+		<xs:annotation>
+			<xs:documentation>This restricts the prefix and classes patterns to validate the agency part of the URN (=&lt;agency_id>:).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnClassesPart">
+			<xs:pattern value=".+=([A-Za-z][A-Za-z0-9_\-]*(\.[A-Za-z][A-Za-z0-9_\-]*)*):[^:]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="WildcardUrnAgencyPart">
+		<xs:annotation>
+			<xs:documentation>This restricts the prefix and classes patterns to validate the agency part of a wildcarded URN reference (=&lt;agency_id>:).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnClassesPart">
+			<xs:pattern value=".+=([A-Za-z][A-Za-z0-9_\-]*(\.[A-Za-z][A-Za-z0-9_\-]*)*):[^:]+"/>
+			<xs:pattern value=".+=\*:[^:]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="UrnMaintainableIdPart">
+		<xs:annotation>
+			<xs:documentation>This refines the prefix, classes, and agency patterns to validate the maintainable ID part of the URN (:&lt;maintainable_id(&lt;version_number>)). Note that it does not restrict the version part as it is intended to be further restricted.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnAgencyPart">
+			<xs:pattern value=".+:([A-Za-z0-9_@$\-]+)\([0-9A-Za-z\-\.\+]+\)[^(\(\))]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="WildcardUrnMaintainableIdPart">
+		<xs:annotation>
+			<xs:documentation>This refines the prefix, classes, and agency patterns to validate the maintainable ID part of a wildcarded URN reference (:&lt;maintainable_id(&lt;version_number>)). Note that it does not restrict the version part as it is intended to be further restricted.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="WildcardUrnAgencyPart">
+			<xs:pattern value=".+:([A-Za-z0-9_@$\-]+)\([0-9A-Za-z\-\.\+\*]+\)[^(\(\))]*"/>
+			<xs:pattern value=".+:\*\([0-9A-Za-z\-\.\+\*]+\)[^(\(\))]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="UrnVersionPart">
+		<xs:annotation>
+			<xs:documentation>This refines the prefix, classes, agency, and maintainable id patterns to validate the version number part of the URN ((&lt;version_number)). It accounts for both legacy and semantic versioning, but not wildcarding (for referencing). It is meant to be further refined, although all parts after this are optional.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnMaintainableIdPart">
+			<xs:pattern value=".+\((0|[1-9]\d*)(\.(0|[1-9]\d*))?\).*"/>
+			<xs:pattern value=".+\((0|[1-9]\d*)(\.(0|[1-9]\d*)){2}(\-(([A-Za-z\-]|([A-Za-z\-][A-Za-z0-9\-]+)|([A-Za-z0-9\-]+[A-Za-z\-][A-Za-z0-9\-]*))|(0|[1-9][0-9]*))(\.(([A-Za-z\-]|([A-Za-z\-][A-Za-z0-9\-]+)|([A-Za-z0-9\-]+[A-Za-z\-][A-Za-z0-9\-]*))|(0|[1-9][0-9]*)))*)?\).*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="UrnReferenceVersionPart">
+		<xs:annotation>
+			<xs:documentation>This refines the prefix, classes, agency, and maintainable id patterns to validate the version number part of a URN reference ((&lt;version_number)). It accounts for both legacy and semantic versioning (including late binding). It is meant to be further refined, although all parts after this are optional.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnMaintainableIdPart">
+			<xs:pattern value=".+\((0|[1-9]\d*)(\.(0|[1-9]\d*))?\).*"/>
+			<xs:pattern value=".+\((0|[1-9]\d*)(\.(0|[1-9]\d*)){2}(\-(([A-Za-z\-]|([A-Za-z\-][A-Za-z0-9\-]+)|([A-Za-z0-9\-]+[A-Za-z\-][A-Za-z0-9\-]*))|(0|[1-9][0-9]*))(\.(([A-Za-z\-]|([A-Za-z\-][A-Za-z0-9\-]+)|([A-Za-z0-9\-]+[A-Za-z\-][A-Za-z0-9\-]*))|(0|[1-9][0-9]*)))*)?\).*"/>
+			<xs:pattern value=".+\(((0|[1-9]\d*)\+?)(\.((0|[1-9]\d*))){2}\).*"/>
+			<xs:pattern value=".+\(((0|[1-9]\d*))(\.((0|[1-9]\d*)\+?))(\.((0|[1-9]\d*)))\).*"/>
+			<xs:pattern value=".+\(((0|[1-9]\d*))(\.((0|[1-9]\d*)))(\.((0|[1-9]\d*)\+?))\).*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="WildcardUrnVersionPart">
+		<xs:annotation>
+			<xs:documentation>This refines the prefix, classes, agency, and maintainable id patterns to validate the version number part of a wildcarded URN reference ((&lt;version_number)). It accounts for both legacy and semantic versioning (including late binding). It is meant to be further refined, although all parts after this are optional.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="WildcardUrnMaintainableIdPart">
+			<xs:pattern value=".+\((0|[1-9]\d*)(\.(0|[1-9]\d*))?\).*"/>
+			<xs:pattern value=".+\((0|[1-9]\d*)(\.(0|[1-9]\d*)){2}(\-(([A-Za-z\-]|([A-Za-z\-][A-Za-z0-9\-]+)|([A-Za-z0-9\-]+[A-Za-z\-][A-Za-z0-9\-]*))|(0|[1-9][0-9]*))(\.(([A-Za-z\-]|([A-Za-z\-][A-Za-z0-9\-]+)|([A-Za-z0-9\-]+[A-Za-z\-][A-Za-z0-9\-]*))|(0|[1-9][0-9]*)))*)?\).*"/>
+			<xs:pattern value=".+\(((0|[1-9]\d*)\+?)(\.((0|[1-9]\d*))){2}\).*"/>
+			<xs:pattern value=".+\(((0|[1-9]\d*))(\.((0|[1-9]\d*)\+?))(\.((0|[1-9]\d*)))\).*"/>
+			<xs:pattern value=".+\(((0|[1-9]\d*))(\.((0|[1-9]\d*)))(\.((0|[1-9]\d*)\+?))\).*"/>
+			<xs:pattern value=".+\(\*\).*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="UrnType">
+		<xs:annotation>
+			<xs:documentation>The completes the refinement of the prefix, classes, agency, maintainable id, and version number patterns to validate the last, and optional, nested component part of the URN (e.g. (&lt;version_number>)&lt;containerobject-id>.&lt;object-id>*). The nested patterns provide a complete validation of the URN pattern. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnVersionPart">
+			<xs:pattern value=".+\)(\.[A-Za-z0-9_@$\-]+(\.[A-Za-z0-9_@$\-]+)*)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="UrnReferenceType">
+		<xs:annotation>
+			<xs:documentation>The completes the refinement of the prefix, classes, agency, maintainable id, and version number patterns to validate the last, and optional, nested component part of a URN reference (e.g. (&lt;version_number>)&lt;containerobject-id>.&lt;object-id>*). The nested patterns provide a complete validation of the URN pattern. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnReferenceVersionPart">
+			<xs:pattern value=".+\)(\.[A-Za-z0-9_@$\-]+(\.[A-Za-z0-9_@$\-]+)*)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="WildcardUrnType">
+		<xs:annotation>
+			<xs:documentation>The completes the refinement of the prefix, classes, agency, maintainable id, and version number patterns to validate the last, and optional, nested component part of a wildcarded URN reference (e.g. (&lt;version_number>)&lt;containerobject-id>.&lt;object-id>*). The nested patterns provide a complete validation of the URN pattern. </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="WildcardUrnVersionPart">
+			<xs:pattern value=".+\)(\.[A-Za-z0-9_@$\-]+(\.[A-Za-z0-9_@$\-]+)*)?"/>
+			<xs:pattern value=".+\)(\.\*(\.\*)*)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MaintainableUrnType">
+		<xs:annotation>
+			<xs:documentation>Restricts the URN so that the pattern ends after the version part.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnType">
+			<xs:pattern value=".+\)"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MaintainableUrnReferenceType">
+		<xs:annotation>
+			<xs:documentation>Restricts the URN reference so that the pattern ends after the version part.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnReferenceType">
+			<xs:pattern value=".+\)"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ComponentUrnType">
+		<xs:annotation>
+			<xs:documentation>Restricts the URN so that the pattern ends after the first component part.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnType">
+			<xs:pattern value=".+\)\.[A-Za-z0-9_@$\-]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ComponentUrnReferenceType">
+		<xs:annotation>
+			<xs:documentation>Restricts the URN reference so that the pattern ends after the first component part.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnReferenceType">
+			<xs:pattern value=".+\)\.[A-Za-z0-9_@$\-]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- Specific Object URNs -->
+
+	<xs:simpleType name="AgencyUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for an agency.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.base\.Agency=.+:AGENCIES\(1\.0\).+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="AgencySchemeUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for an agency scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.base\.AgencyScheme=.+:AGENCIES\(1\.0\)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="DataConsumerUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a data consumer.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.base\.DataConsumer=.+:DATA_CONSUMERS\(1\.0\).+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DataConsumerSchemeUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a data consumer scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.base\.DataConsumerScheme=.+:DATA_CONSUMERS\(1\.0\)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="DataProviderUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a data provider.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.base\.DataProvider=.+:DATA_PROVIDERS\(1\.0\).+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DataProviderSchemeUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a data provider scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.base\.DataProviderScheme=.+:DATA_PROVIDERS\(1\.0\)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="MetadataProviderUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a metadata provider.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.base\.MetadataProvider=.+:METADATA_PROVIDERS\(1\.0\).+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MetadataProviderSchemeUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a metadata provider scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.base\.MetadataProviderScheme=.+:METADATA_PROVIDERS\(1\.0\)"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="OrganisationUnitUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for an organisation unit.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.base\.OrganisationUnit=.+\(1\.0\).+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="OrganisationUnitSchemeUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for an organisation unit scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.base\.OrganisationUnitScheme=.+\(1\.0\)"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CategorisationUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a categorisation.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.categoryscheme\.Categorisation=.+\(1\.0\)"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CategoryUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a category.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnType">
+			<xs:pattern value=".+\.categoryscheme\.Category=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CategorySchemeUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a category scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.categoryscheme\.CategoryScheme=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ReportingCategoryUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a reporting category.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnType">
+			<xs:pattern value=".+\.categoryscheme\.ReportingCategory=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ReportingTaxonomyUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a reporting taxonomy.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.categoryscheme\.ReportingTaxonomy=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CodeUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a code.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.codelist\.Code=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CodelistUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a codelist.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.codelist\.Codelist=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="HierarchicalCodeUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a hierarchical code.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnType">
+			<xs:pattern value=".+\.codelist\.HierarchicalCode=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="HierarchyUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a hierarchy.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.codelist\.Hierarchy=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="HierarchyAssociationUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a hierarchy association.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.codelist\.HierarchyAssociation=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="LevelUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a level.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.codelist\.Level=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ValueListUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a value list.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.codelist\.ValueList=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ConceptUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a concept.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.conceptscheme\.Concept=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ConceptSchemeUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a concept scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.conceptscheme\.ConceptScheme=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="AttributeDescriptorUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for an attribute descriptor.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.datastructure\.AttributeDescriptor=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DataAttributeUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a data attribute.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.datastructure\.DataAttribute=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DataflowUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a dataflow.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.datastructure\.Dataflow=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DataStructureUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a data structure.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.datastructure\.DataStructure=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DimensionUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a dimension.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.datastructure\.Dimension=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DimensionDescriptorUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a dimension descriptor.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.datastructure\.DimensionDescriptor=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="GroupDimensionDescriptorUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a group dimension descriptor.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.datastructure\.GroupDimensionDescriptor=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MeasureUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a measure.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.datastructure\.Measure=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MeasureDescriptorUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a measure descriptor.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.datastructure\.MeasureDescriptor=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TimeDimensionUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a time dimension.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.datastructure\.TimeDimension=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MetadataAttributeUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a metadata attribute.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnType">
+			<xs:pattern value=".+\.metadatastructure\.MetadataAttribute=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MetadataflowUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a metadataflow.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.metadatastructure\.Metadataflow=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MetadataSetUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a metadata set.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.metadatastructure\.MetadataSet=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MetadataStructureUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a metadata structure.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.metadatastructure\.MetadataStructure=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ProcessUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a process.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.process\.Process=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ProcessStepUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a process step.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnType">
+			<xs:pattern value=".+\.process\.ProcessStep=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TransitionUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a transition.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnType">
+			<xs:pattern value=".+\.process\.Transition=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DataConstraintUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a data constraint.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.registry\.DataConstraint=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MetadataConstraintUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a metadata constraint.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.registry\.MetadataConstraint=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MetadataProvisionAgreementUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a metadata provision agreement.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.registry\.MetadataProvisionAgreement=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ProvisionAgreementUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a provision agreement.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.registry\.ProvisionAgreement=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CategorySchemeMapUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a category scheme map.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.structuremapping\.CategorySchemeMap=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ConceptSchemeMapUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a concept scheme map.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.structuremapping\.ConceptSchemeMap=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DatePatternMapUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a date pattern map.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.structuremapping\.DatePatternMap=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="EpochMapUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for an epoch map.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.structuremapping\.EpochMap=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="FrequencyFormatMappingUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a frequency format mapping.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.structuremapping\.FrequencyFormatMapping=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="OrganisationSchemeMapUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for an organisation scheme map.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.structuremapping\.OrganisationSchemeMap=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ReportingTaxonomyMapUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a reporting taxonomy map.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.structuremapping\.ReportingTaxonomyMap=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="RepresentationMapUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a representation map.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.structuremapping\.RepresentationMap=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="StructureMapUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a structure map.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.structuremapping\.StructureMap=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CustomTypeUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a custom type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.transformation\.CustomType=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CustomTypeSchemeUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a custom type scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.transformation\.CustomTypeScheme=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="NamePersonalisationUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a name personalisation.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.transformation\.NamePersonalisation=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="NamePersonalisationSchemeUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a name personalisation scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.transformation\.NamePersonalisationScheme=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="RulesetUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a ruleset.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.transformation\.Ruleset=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="RulesetSchemeUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a ruleset scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.transformation\.RulesetScheme=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TransformationUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a transformation.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.transformation\.Transformation=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TransformationSchemeUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a transformation scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.transformation\.TransformationScheme=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="UserDefinedOperatorUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a user defined operator.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.transformation\.UserDefinedOperator=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="UserDefinedOperatorSchemeUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a user defined operator scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.transformation\.UserDefinedOperatorScheme=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="VtlMappingUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a VTL mapping.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnType">
+			<xs:pattern value=".+\.transformation\.VtlCodelistMapping=.+"/>
+			<xs:pattern value=".+\.transformation\.VtlConceptMapping=.+"/>
+			<xs:pattern value=".+\.transformation\.VtlDataflowMapping=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="VtlMappingSchemeUrnType">
+		<xs:annotation>
+			<xs:documentation>Urn type for a VTL mapping scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnType">
+			<xs:pattern value=".+\.transformation\.VtlMappingScheme=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- URN References -->
+	<xs:simpleType name="StructureOrUsageReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a structure or structure usage.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.datastructure\.DataStructure=.+"/>
+			<xs:pattern value=".+\.datastructure\.Dataflow=.+"/>
+			<xs:pattern value=".+\.metadatastructure\.MetadataStructure=.+"/>
+			<xs:pattern value=".+\.metadatastructure\.Metadataflow=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="StructureUsageReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for structure usage.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="StructureOrUsageReferenceType">
+			<xs:pattern value=".+\.datastructure\.Dataflow=.+"/>
+			<xs:pattern value=".+\.metadatastructure\.Metadataflow=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="StructureReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a structure.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="StructureOrUsageReferenceType">
+			<xs:pattern value=".+\.datastructure\.DataStructure=.+"/>
+			<xs:pattern value=".+\.metadatastructure\.MetadataStructure=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="AnyCodelistReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a codelist or value list.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.codelist\.Codelist=.+"/>
+			<xs:pattern value=".+\.codelist\.ValueList=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="OrganisationSchemeReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for any type of organisation scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.base\.AgencyScheme=.+:AGENCIES\(.+\)"/>
+			<xs:pattern value=".+\.base\.DataConsumerScheme=.+:DATA_CONSUMERS\(.+\)"/>
+			<xs:pattern value=".+\.base\.DataProviderScheme=.+:DATA_PROVIDERS\(.+\)"/>
+			<xs:pattern value=".+\.base\.MetadataProviderScheme=.+:METADATA_PROVIDERS\(.+\)"/>
+			<xs:pattern value=".+\.base\.OrganisationUnitScheme=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="OrganisationReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for any type of organisation.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnReferenceType">
+			<xs:pattern value=".+\.base\.Agency=.+:AGENCIES\(.+\).+"/>
+			<xs:pattern value=".+\.base\.DataConsumer=.+:DATA_CONSUMERS\(.+\).+"/>
+			<xs:pattern value=".+\.base\.DataProvider=.+:DATA_PROVIDERS\(.+\).+"/>
+			<xs:pattern value=".+\.base\.MetadataProvider=.+:METADATA_PROVIDERS\(.+\).+"/>
+			<xs:pattern value=".+\.base\.OrganisationUnit=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ConstraintReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference for any type of constraint.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.registry\.DataConstraint=.+"/>
+			<xs:pattern value=".+\.registry\.MetadataConstraint=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="AgencyReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for an agency.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="OrganisationReferenceType">
+			<xs:pattern value=".+\.base\.Agency=.+:AGENCIES\(.+\).+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="AgencySchemeReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for an agency scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="OrganisationSchemeReferenceType">
+			<xs:pattern value=".+\.base\.AgencyScheme=.+:AGENCIES\(.+\)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="DataConsumerReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a data consumer.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="OrganisationReferenceType">
+			<xs:pattern value=".+\.base\.DataConsumer=.+:DATA_CONSUMERS\(.+\).+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DataConsumerSchemeReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a data consumer scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="OrganisationSchemeReferenceType">
+			<xs:pattern value=".+\.base\.DataConsumerScheme=.+:DATA_CONSUMERS\(.+\)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="DataProviderReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a data provider.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="OrganisationReferenceType">
+			<xs:pattern value=".+\.base\.DataProvider=.+:DATA_PROVIDERS\(.+\).+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DataProviderSchemeReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a data provider scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="OrganisationSchemeReferenceType">
+			<xs:pattern value=".+\.base\.DataProviderScheme=.+:DATA_PROVIDERS\(.+\)"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="MetadataProviderReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a metadata provider.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="OrganisationReferenceType">
+			<xs:pattern value=".+\.base\.MetadataProvider=.+:METADATA_PROVIDERS\(.+\).+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MetadataProviderSchemeReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a metadata provider scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="OrganisationSchemeReferenceType">
+			<xs:pattern value=".+\.base\.MetadataProviderScheme=.+:METADATA_PROVIDERS\(.+\)"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="OrganisationUnitReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for an organisation unit.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="OrganisationReferenceType">
+			<xs:pattern value=".+\.base\.OrganisationUnit=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="OrganisationUnitSchemeReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for an organisation unit scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="OrganisationSchemeReferenceType">
+			<xs:pattern value=".+\.base\.OrganisationUnitScheme=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CategorisationReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a categorisation.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.categoryscheme\.Categorisation=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CategoryReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a category.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnReferenceType">
+			<xs:pattern value=".+\.categoryscheme\.Category=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CategorySchemeReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a cateogry scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.categoryscheme\.CategoryScheme=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ReportingCategoryReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a reporting category.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnReferenceType">
+			<xs:pattern value=".+\.categoryscheme\.ReportingCategory=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ReportingTaxonomyReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a reporting taxonomy.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.categoryscheme\.ReportingTaxonomy=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CodeReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a code.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnReferenceType">
+			<xs:pattern value=".+\.codelist\.Code=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CodelistReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a codelist.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="AnyCodelistReferenceType">
+			<xs:pattern value=".+\.codelist\.Codelist=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="HierarchicalCodeReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a hierarchical code.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnReferenceType">
+			<xs:pattern value=".+\.codelist\.HierarchicalCode=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="HierarchyReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a hierarchy.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.codelist\.Hierarchy=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="HierarchyAssociationReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a hierarchy association.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.codelist\.HierarchyAssociation=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="LevelReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a level.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnReferenceType">
+			<xs:pattern value=".+\.codelist\.Level=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ValueListReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a value list.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="AnyCodelistReferenceType">
+			<xs:pattern value=".+\.codelist\.ValueList=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ConceptReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a concept.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnReferenceType">
+			<xs:pattern value=".+\.conceptscheme\.Concept=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ConceptSchemeReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a concept scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.conceptscheme\.ConceptScheme=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="AttributeDescriptorReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for an attribute descriptor.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnReferenceType">
+			<xs:pattern value=".+\.datastructure\.AttributeDescriptor=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DataAttributeReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a data attribute.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnReferenceType">
+			<xs:pattern value=".+\.datastructure\.DataAttribute=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DataflowReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a dataflow.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="StructureUsageReferenceType">
+			<xs:pattern value=".+\.datastructure\.Dataflow=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DataStructureReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a data structure.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="StructureReferenceType">
+			<xs:pattern value=".+\.datastructure\.DataStructure=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DimensionReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a dimension.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnReferenceType">
+			<xs:pattern value=".+\.datastructure\.Dimension=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DimensionDescriptorReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a dimension descriptor.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnReferenceType">
+			<xs:pattern value=".+\.datastructure\.DimensionDescriptor=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="GroupDimensionDescriptorReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a group dimension descriptor.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnReferenceType">
+			<xs:pattern value=".+\.datastructure\.GroupDimensionDescriptor=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MeasureReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a measure.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnReferenceType">
+			<xs:pattern value=".+\.datastructure\.Measure=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MeasureDescriptorReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a measure descriptor.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnReferenceType">
+			<xs:pattern value=".+\.datastructure\.MeasureDescriptor=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TimeDimensionReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a time dimension.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnReferenceType">
+			<xs:pattern value=".+\.datastructure\.TimeDimension=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MetadataAttributeReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a metadata attribute.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnReferenceType">
+			<xs:pattern value=".+\.metadatastructure\.MetadataAttribute=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MetadataflowReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a metadataflow.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="StructureUsageReferenceType">
+			<xs:pattern value=".+\.metadatastructure\.Metadataflow=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MetadataSetReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a metadata set.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="StructureReferenceType">
+			<xs:pattern value=".+\.metadatastructure\.MetadataSet=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MetadataStructureReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a metadata structure.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="StructureReferenceType">
+			<xs:pattern value=".+\.metadatastructure\.MetadataStructure=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ProcessReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a process.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.process\.Process=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ProcessStepReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a process step.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnReferenceType">
+			<xs:pattern value=".+\.process\.ProcessStep=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TransitionReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a transition.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="UrnReferenceType">
+			<xs:pattern value=".+\.process\.Transition=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DataConstraintReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a data constraint.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ConstraintReferenceType">
+			<xs:pattern value=".+\.registry\.DataConstraint=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MetadataConstraintReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a metadata constraint.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ConstraintReferenceType">
+			<xs:pattern value=".+\.registry\.MetadataConstraint=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="MetadataProvisionAgreementReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a metadata provision agreement.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.registry\.MetadataProvisionAgreement=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ProvisionAgreementReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a provision agreement.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.registry\.ProvisionAgreement=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CategorySchemeMapReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a category scheme map.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.structuremapping\.CategorySchemeMap=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ConceptSchemeMapReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a concept scheme map.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.structuremapping\.ConceptSchemeMap=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="DatePatternMapReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a date pattern map.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnReferenceType">
+			<xs:pattern value=".+\.structuremapping\.DatePatternMap=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="EpochMapReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for an epoch map.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnReferenceType">
+			<xs:pattern value=".+\.structuremapping\.EpochMap=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="FrequencyFormatMappingReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a frequency format mapping.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnReferenceType">
+			<xs:pattern value=".+\.structuremapping\.FrequencyFormatMapping=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="OrganisationSchemeMapReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for an organisation scheme map.</xs:documentation>
+		</xs:annotation>
+
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.structuremapping\.OrganisationSchemeMap=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ReportingTaxonomyMapReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a reporting taxonomy map.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.structuremapping\.ReportingTaxonomyMap=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="RepresentationMapReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a representation map.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.structuremapping\.RepresentationMap=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="StructureMapReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a structure map.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.structuremapping\.StructureMap=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CustomTypeReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a custom type.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnReferenceType">
+			<xs:pattern value=".+\.transformation\.CustomType=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CustomTypeSchemeReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a custom type scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.transformation\.CustomTypeScheme=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="NamePersonalisationReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a name personalisation.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnReferenceType">
+			<xs:pattern value=".+\.transformation\.NamePersonalisation=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="NamePersonalisationSchemeReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a name personalisation scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.transformation\.NamePersonalisationScheme=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="RulesetReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a ruleset.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnReferenceType">
+			<xs:pattern value=".+\.transformation\.Ruleset=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="RulesetSchemeReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a ruleset scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.transformation\.RulesetScheme=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TransformationReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a transformation.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnReferenceType">
+			<xs:pattern value=".+\.transformation\.Transformation=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TransformationSchemeReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a transformation scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.transformation\.TransformationScheme=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="UserDefinedOperatorReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a user defined operator.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnReferenceType">
+			<xs:pattern value=".+\.transformation\.UserDefinedOperator=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="UserDefinedOperatorSchemeReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a user defined operator scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.transformation\.UserDefinedOperatorScheme=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="VtlMappingReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a VTL mapping.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="ComponentUrnReferenceType">
+			<xs:pattern value=".+\.transformation\.VtlCodelistMapping=.+"/>
+			<xs:pattern value=".+\.transformation\.VtlConceptMapping=.+"/>
+			<xs:pattern value=".+\.transformation\.VtlDataflowMapping=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="VtlMappingSchemeReferenceType">
+		<xs:annotation>
+			<xs:documentation>A reference type for a VTL mapping scheme.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableUrnReferenceType">
+			<xs:pattern value=".+\.transformation\.VtlMappingScheme=.+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- Version Referencing -->
+	<xs:simpleType name="VersionReferenceType">
+		<xs:annotation>
+			<xs:documentation>VersionReferenceType defines the structure of version number in a reference. When semantic versioning is used, the major, minor, or patch version parts can be wildcarded using "+" as an extension. For example, 2+.3.1 means the currently latest available version >= 2.3.1 (even if not backwards compatible). Note that wildcarded semantic version references cannot be combined with version extended reference (e.g. 2.3+.1-draft is not permissible). Version-extended (e.g. 1.3.1-draft) and legacy version numbers (e.g. 1 or 1.0) are also supported.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="LegacyVersionNumberType SemanticVersionNumberType SemanticVersionReferenceType"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="SemanticVersionReferenceType">
+		<xs:annotation>
+			<xs:documentation>SemanticVersionReferenceType is a simple type for referencing semantic version numbers. It allows for the wildcarding of only one the major, minor, or patch version parts using "+".</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="((0|[1-9]\d*)\+?)(\.((0|[1-9]\d*))){2}"/>
+			<xs:pattern value="((0|[1-9]\d*))(\.((0|[1-9]\d*)\+?))(\.((0|[1-9]\d*)))"/>
+			<xs:pattern value="((0|[1-9]\d*))(\.((0|[1-9]\d*)))(\.((0|[1-9]\d*)\+?))"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="WildcardVersionType">
+		<xs:annotation>
+			<xs:documentation>WildcardVersionType combines the VersionType and WildcardType to allow a reference to either a specific version of an object, or to wildcard the version in the reference by specifying the '*' value.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="VersionReferenceType WildcardType"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="WildcardType">
+		<xs:annotation>
+			<xs:documentation>WildcardType is a single value code list, used to include the '*' character - indicating that the identification component is wildcarded.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="*">
+				<xs:annotation>
+					<xs:documentation>Indicates that any value of the identifier component is allowed.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<!-- ID Types -->
+
+	<xs:simpleType name="NestedIDType">
+		<xs:annotation>
+			<xs:documentation>NestedIDType is the least restrictive form of an identifier used throughout all SDMX-ML messages. It allows for a hierarchical identifier, with each portion separated by the '.' character. For the identifier portions, valid characters include A-Z, a-z, @, 0-9, _, -, $.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[A-Za-z0-9_@$\-]+(\.[A-Za-z0-9_@$\-]+)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TwoLevelIDType">
+		<xs:annotation>
+			<xs:documentation>TwoLevelIDType defines an identifier with exactly two levels.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="NestedIDType">
+			<xs:pattern value="[A-Za-z0-9_@$\-]+\.[A-Za-z0-9_@$\-]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="IDType">
+		<xs:annotation>
+			<xs:documentation>IDType provides a type which is used for restricting the characters in codes and IDs throughout all SDMX-ML messages. Valid characters include A-Z, a-z, @, 0-9, _, -, $.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="NestedIDType">
+			<xs:pattern value="[A-Za-z0-9_@$\-]+"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="NCNameIDType">
+		<xs:annotation>
+			<xs:documentation>NCNameIDType restricts the IDType, so that the id may be used to generate valid XML components. IDs created from this type conform to the W3C XML Schema NCNAME type, and therefore can be used as element or attribute names.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="IDType">
+			<xs:pattern value="[A-Za-z][A-Za-z0-9_\-]*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="NestedNCNameIDType">
+		<xs:annotation>
+			<xs:documentation>NestedNCNameIDType restricts the NestedIDType, so that the id may be used to generate valid XML components. IDs created from this type conform to the W3C XML Schema NCNAME type, and therefore can be used as element or attribute names.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="NestedIDType">
+			<xs:pattern value="[A-Za-z][A-Za-z0-9_\-]*(\.[A-Za-z][A-Za-z0-9_\-]*)*"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="SingleNCNameIDType">
+		<xs:annotation>
+			<xs:documentation>SingleNCNameIDType restricts the NestedNCNameIDType to allow only one level. Note that this is the same pattern as the NCNameIDType, but can be used when the base type to be restricted is a nested NCNameIDType (where as the NCNameIDType could only restrict the IDType).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="NestedNCNameIDType">
+			<xs:pattern value="[A-Za-z][A-Za-z0-9_\-]*"/>
+		</xs:restriction>
+	</xs:simpleType>	
+	
+	<xs:simpleType name="VersionType">
+		<xs:annotation>
+			<xs:documentation>VersionType is used to communicate version information. Semantic versioning, based on 3 or 4 version parts (major.minor.patch[-extension]) is supported. The legacy SDMX version format is also supported.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="LegacyVersionNumberType SemanticVersionNumberType"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="SemanticVersionNumberType">
+		<xs:annotation>
+			<xs:documentation>SemanticVersionNumberType is a simple type for validating semantic version in the format (major.minor.patch[-extension]).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0|[1-9]\d*)(\.(0|[1-9]\d*)){2}(\-(([A-Za-z\-]|([A-Za-z\-][A-Za-z0-9\-]+)|([A-Za-z0-9\-]+[A-Za-z\-][A-Za-z0-9\-]*))|(0|[1-9][0-9]*))(\.(([A-Za-z\-]|([A-Za-z\-][A-Za-z0-9\-]+)|([A-Za-z0-9\-]+[A-Za-z\-][A-Za-z0-9\-]*))|(0|[1-9][0-9]*)))*)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="LegacyVersionNumberType">
+		<xs:annotation>
+			<xs:documentation>LegacyVersionNumberType describes the version number format previously supported in SDMX. The format is restricted to allow for simple incrementing and sorting of version number. The version consists of a set of maximum 2 numeric components, separated by the '.' character. When processing version, each numeric component (the number preceding and following any '.' character) should be parsed as an integer. Thus, a version of 1.3 and 1.03 would be equivalent, as both the '3' component and the '03' component would parse to an integer value of 3.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0|[1-9]\d*)(\.(0|[1-9]\d*))?"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright SDMX 2025 - http://www.sdmx.org -->
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/structure" 
+			xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/structure" 
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+			xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/common"
+			xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/structure" 
+			elementFormDefault="qualified">
+			
+	<xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_1/common" schemaLocation="SDMXCommon.xsd"/>
+	
+	<xs:include schemaLocation="SDMXStructureBase.xsd"/>
+
+	<xs:annotation>
+		<xs:appinfo>SDMX Metadata Structure Structure Module</xs:appinfo>
+		<xs:documentation>The Metadata Structure structure module defines the structure of metadata structure definition constructs.</xs:documentation>
+	</xs:annotation>
+
+	<xs:complexType name="MetadataStructureType">
+		<xs:annotation>
+			<xs:documentation>MetadataStructureType is used to describe a metadata structure definition, which is defined as a collection of metadata concepts, their structure and usage when used to collect or disseminate reference metadata.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="StructureType">
+				<xs:sequence>
+					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="common:Name" maxOccurs="unbounded"/>
+					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:sequence minOccurs="0">
+						<xs:element ref="MetadataStructureComponents"/>
+					</xs:sequence>
+				</xs:sequence>
+				<xs:attribute name="urn" type="common:MetadataStructureUrnType" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="MetadataStructureComponents" type="MetadataStructureComponentsType" substitutionGroup="Grouping">
+		<xs:annotation>
+			<xs:documentation>MetadataStructureComponents defines the grouping of the sets of the components that make up the metadata structure definition.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="MetadataStructureComponentsBaseType">
+		<xs:annotation>
+			<xs:documentation>MetadataStructureComponentsBaseType is an abstract base type that forms the basis for the MetadataStructureComponentsType.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="GroupingType"/>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="MetadataStructureComponentsType">
+		<xs:annotation>
+			<xs:documentation>MetadataStructureComponentsType describes the structure of the grouping of the sets of the components that make up the metadata structure definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="MetadataStructureComponentsBaseType">
+				<xs:sequence>
+					<xs:element ref="MetadataAttributeList"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="MetadataAttributeList" type="MetadataAttributeListType" substitutionGroup="ComponentList">
+		<xs:annotation>
+			<xs:documentation>MetadataAttributeList defines the set of metadata attributes that can be defined as a hierarchy, for reporting reference metadata about a target object. The identification of metadata attributes must be unique at any given level of the metadata structure. Although there are XML schema constraints to help enforce this, these only apply to explicitly assigned identifiers. Identifiers inherited from a concept from which a metadata attribute takes its identity cannot be validated against this constraint. Therefore, systems processing metadata structure definitions will have to perform this check outside of the XML validation.</xs:documentation>
+		</xs:annotation>
+		<xs:unique name="MetadataAttributeList_Unique_MetadataAttribute">
+			<xs:selector xpath="structure:MetadataAttribute"/>
+			<xs:field xpath="@id"/>
+		</xs:unique>
+	</xs:element>
+	
+	<xs:complexType name="MetadataAttributeListType">
+		<xs:annotation>
+			<xs:documentation>MetadataAttributeListType describes the structure of a meta data attribute list. It comprises a set of metadata attributes that can be defined as a hierarchy.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ComponentListType">
+				<xs:sequence>
+					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element ref="MetadataAttribute"/>
+					</xs:sequence>
+				</xs:sequence>
+				<xs:attribute name="id" type="common:IDType" use="optional" fixed="MetadataAttributeDescriptor">
+					<xs:annotation>
+						<xs:documentation>The id attribute is provided in this case for completeness. However, its value is fixed to MetadataAttributeDescriptor.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:element name="MetadataAttribute" type="MetadataAttributeType" substitutionGroup="Component">
+		<xs:annotation>
+			<xs:documentation>MetadataAttribute defines the metadata attribute, which is the value of an attribute, such as the instance of a coded or uncoded attribute in a metadata structure definition.</xs:documentation>
+		</xs:annotation>
+		<xs:unique name="MetadataAttribute_Unique_MetadataAttribute">
+			<xs:selector xpath="structure:MetadataAttribute"/>
+			<xs:field xpath="@id"/>
+		</xs:unique>
+	</xs:element>
+
+	<xs:complexType name="MetadataAttributeBaseType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>MetadataAttributeBaseType is an abstract base type the serves as the basis for the MetadataAttributeType.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ComponentType">
+				<xs:sequence>
+					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="ConceptIdentity" type="common:ConceptReferenceType"/>
+					<xs:element name="LocalRepresentation" type="MetadataAttributeRepresentationType" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="urn" type="common:MetadataAttributeUrnType" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="MetadataAttributeType">
+		<xs:annotation>
+			<xs:documentation>MetadataAttributeType describes the structure of a metadata attribute. The metadata attribute takes its semantic, and in some cases it representation, from its concept identity. A metadata attribute may be coded (via the local representation), uncoded (via the text format), or take no value. In addition to this value, the metadata attribute may also specify subordinate metadata attributes. If a metadata attribute only serves the purpose of containing subordinate metadata attributes, then the isPresentational attribute should be used. Otherwise, it is assumed to also take a value. If the metadata attribute does take a value, and a representation is not defined, it will be inherited from the concept it takes its semantic from. The optional id on the metadata attribute uniquely identifies it within the metadata structured definition. If this id is not supplied, its value is assumed to be that of the concept referenced from the concept identity. Note that a metadata attribute (as identified by the id attribute) definition must be unique across the entire metadata structure definition.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="MetadataAttributeBaseType">
+				<xs:sequence>
+					<xs:element ref="MetadataAttribute" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+				<xs:attribute name="minOccurs" type="xs:nonNegativeInteger" default="1">
+					<xs:annotation>
+						<xs:documentation>The minOccurs attribute indicates the minimum number of times this metadata attribute must occur within its parent object.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="maxOccurs" type="common:OccurenceType" default="1">
+					<xs:annotation>
+						<xs:documentation>The maxOccurs attribute indicates the maximum number of times this metadata attribute can occur within its parent object.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="isPresentational" type="xs:boolean" use="optional" default="false">
+					<xs:annotation>
+						<xs:documentation>The isPresentational attribute indicates whether the metadata attribute should allow for a value. A value of true, meaning the metadata attribute is presentational means that the attribute only contains child metadata attributes, and does not contain a value. If this attribute is not set to true, and a representation (coded or uncoded) is not defined, then the representation of the metadata attribute will be inherited from the concept from which it takes its identity.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="MetadataAttributeRepresentationType">
+		<xs:annotation>
+			<xs:documentation>MetadataAttributeRepresentationType defines the possible local representations of a metadata attribute.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="RepresentationType">
+				<xs:choice>
+					<xs:element name="TextFormat" type="BasicComponentTextFormatType"/>
+					<xs:sequence>
+						<xs:element name="Enumeration" type="common:CodelistReferenceType"/>
+						<xs:element name="EnumerationFormat" type="CodedTextFormatType" minOccurs="0"/>
+					</xs:sequence>
+				</xs:choice>
+				<xs:attribute name="minOccurs" type="xs:nonNegativeInteger" use="prohibited"/>
+				<xs:attribute name="maxOccurs" type="common:OccurenceType" use="prohibited"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+</xs:schema>
