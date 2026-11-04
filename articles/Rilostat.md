@@ -72,9 +72,6 @@ its related documentation:
 
 To install the release version, use the following command:
 
-    ## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
-    ## logical.return = TRUE, : there is no package called 'devtools'
-
 ``` r
 
 install.packages("Rilostat")
@@ -309,10 +306,10 @@ dplyr::count(dat, indicator)
     ## # A tibble: 4 × 2
     ##   indicator            n
     ##   <chr>            <int>
-    ## 1 CPI_NCPD_COI_RT 673023
-    ## 2 CPI_NCYR_COI_RT 767353
-    ## 3 CPI_NWGT_COI_RT  41326
-    ## 4 CPI_XCPI_COI_RT 804166
+    ## 1 CPI_NCPD_COI_RT 674196
+    ## 2 CPI_NCYR_COI_RT 768730
+    ## 3 CPI_NWGT_COI_RT  41518
+    ## 4 CPI_XCPI_COI_RT 805467
 
 ## Time format
 
