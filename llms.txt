@@ -39,21 +39,9 @@ required.
 - Gives immediate access to the most recent updates
 - Allows for `grep`-style searching for data descriptions and names
 
-## Acknowledgements
-
-The developer of this package drew extensive inspiration from the
-[eurostat R package](https://CRAN.R-project.org/package=eurostat) and
-its related documentation:  
-- [Retrieval and Analysis of Eurostat Open Data with the eurostat
-Package](https://journal.r-project.org/articles/RJ-2017-019/RJ-2017-019.pdf) -
-[Leo Lahti](https://github.com/antagomir), [Przemyslaw
-Biecek](https://github.com/pbiecek), [Markus
-Kainu](https://github.com/muuankarski) and [Janne
-Huovari](https://github.com/jhuovari). R Journal 9(1), 385-392, 2017.
-
 Download and install [R from CRAN](https://cran.r-project.org/), install
-[RStudio’s IDE](https://posit.co/products/open-source/rstudio/), a
-powerful user interface for R. Then use command:
+[Positron’s IDE](https://posit.co/products/ide/positron), a powerful
+user interface for R and Python. Then use command:
 
 ``` r
 
