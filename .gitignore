@@ -25,7 +25,7 @@ covr.R
 coverage/
 
 # pkgdown generated site
-/docs/
+
 /site/
 
 # Quarto generated/cache files

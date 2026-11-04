@@ -1,0 +1,325 @@
+\
+
+## ILOSTAT R package
+
+The ILO’s main online database, [ILOSTAT](https://ilostat.ilo.org),
+maintained by the Department of Statistics, is the world’s largest
+repository of labour market statistics. It covers all countries and
+regions and a wide range of labour-related topics, including employment,
+unemployment, wages, working time and labour productivity, to name a
+few. It includes time series going back as far as 1938; annual,
+quarterly and monthly labour statistics; country-level, regional and
+global estimates; and even projections of the main labour market
+indicators.
+
+ILOSTAT’s website provides immediate access to all its data and related
+metadata through different ways. Basic users can simply view the desired
+data online or download it in Excel or csv formats. More advanced users
+can take advantage of ILOSTAT’s well-structured [bulk download
+facility](https://ilostat.ilo.org/data/bulk/).
+
+The ilostat R package (`'Rilostat'`) was designed to give data users the
+ability to access the ILOSTAT database, search for data, rearrange the
+information as needed, download it in the desired format, and make
+various data visualizations, all in a programmatic and replicable
+manner, with the possibility of quickly re-running the queries as
+required.
+
+## Main features of the ILOSTAT R package
+
+- Provides access to all annual, quarterly, and monthly data available
+  via the ILOSTAT [bulk download
+  facility](https://ilostat.ilo.org/data/bulk/)
+- Allows to search for and download data and related metadata in
+  English, French and Spanish
+- Gives the ability to return `POSIXct` dates for easy integration into
+  plotting and time-series analysis techniques
+- Returns data in long format for direct integration with packages like
+  `ggplot2` and `dplyr`
+- Gives immediate access to the most recent updates
+- Allows for `grep`-style searching for data descriptions and names
+
+Download and install [R from CRAN](https://cran.r-project.org/), install
+[Positron’s IDE](https://posit.co/products/ide/positron), a powerful
+user interface for R and Python. Then use command:
+
+``` r
+
+install.packages("Rilostat")
+```
+
+To install the development version, use the following command:
+
+``` r
+
+devtools::install_github("ilostat/Rilostat")
+```
+
+We do not expect to update the ilostat R package too often, but based on
+questions and remarks from ILOSTAT data users, we will progressively
+create more examples, tutorials, demos and apps. We will publicly share
+all of this via [Rilostat webpage](https://ilostat.github.io/Rilostat/)
+
+## SDMX support
+
+Rilostat provides an SDMX-oriented interface through
+[`get_ilostat_sdmx()`](https://ilostat.github.io/Rilostat/reference/get_ilostat_sdmx.md).
+It reuses the existing Rilostat download, cache and filtering
+infrastructure while exposing ILOSTAT datasets using SDMX component
+names and metadata.
+
+The interface supports:
+
+- observation data as R data frames;
+- data structures;
+- canonical codelists;
+- ILOSTAT dataflows;
+- SDMX-ML 3.1 for structural resources;
+- SDMX-JSON 2.1 for structural resources;
+- English, French and Spanish labels;
+- code, label, short-label and combined code/label representations;
+- SDMX-oriented filtering, including time-period ranges.
+
+### Observation data
+
+Observation data can be retrieved using SDMX component identifiers:
+
+``` r
+
+x <- get_ilostat_sdmx(
+  "UNE_TUNE_SEX_AGE_NB_A",
+  filters = list(
+    REF_AREA = "FRA",
+    SEX = "SEX_F",
+    AGE = "AGE_YTHADULT_YGE15"
+  )
+)
+```
+
+The returned data use SDMX component names such as `REF_AREA`, `SOURCE`,
+`FREQ`, `MEASURE`, `SEX`, `AGE`, `TIME_PERIOD`, `OBS_VALUE`,
+`OBS_STATUS`, `UNIT_MEASURE` and `UNIT_MULT`.
+
+The SDMX data envelope also identifies the dataflow through `STRUCTURE`,
+`STRUCTURE_ID` and `ACTION`.
+
+### Codes and labels
+
+Codes and labels can be returned together:
+
+``` r
+
+x <- get_ilostat_sdmx(
+  "UNE_TUNE_SEX_AGE_NB_A",
+  type = "both",
+  filters = list(
+    REF_AREA = "FRA",
+    SEX = "SEX_F",
+    AGE = "AGE_YTHADULT_YGE15"
+  )
+)
+```
+
+This returns SDMX code columns together with companion label columns
+such as `REF_AREA_LABEL`, `SOURCE_LABEL`, `SEX_LABEL` and `AGE_LABEL`.
+
+The available representations are:
+
+- `type = "code"` for SDMX codes;
+- `type = "label"` for full labels;
+- `type = "label_short"` for short/display labels where available;
+- `type = "both"` for codes and labels together.
+
+For example, the AGE code `AGE_YTHADULT_YGE15` has the full label
+`Age (Youth, adults): 15+` and the short label `15+`.
+
+### Filtering
+
+Filters use SDMX component names:
+
+``` r
+
+x <- get_ilostat_sdmx(
+  "UNE_TUNE_SEX_AGE_NB_A",
+  filters = list(
+    REF_AREA = "FRA",
+    SEX = "SEX_F"
+  )
+)
+```
+
+Time-period ranges can use comparison operators:
+
+``` r
+
+x <- get_ilostat_sdmx(
+  "UNE_TUNE_SEX_AGE_NB_A",
+  filters = list(
+    REF_AREA = "FRA",
+    TIME_PERIOD = list(
+      ge = "2020",
+      le = "2023"
+    )
+  )
+)
+```
+
+`FREQ` and `MEASURE` can also be used as filters. They are dataset-level
+SDMX components; a value incompatible with the selected dataset returns
+an empty SDMX result.
+
+### Data structure
+
+The SDMX-oriented structure of a dataset can be inspected directly:
+
+``` r
+
+structure <- get_ilostat_sdmx(
+  "UNE_TUNE_SEX_AGE_NB_A",
+  resource = "structure"
+)
+```
+
+The structure describes the dimensions, time dimension, measure and
+attributes of the dataset, including their position, representation and
+associated codelists.
+
+### Codelists
+
+Canonical ILOSTAT codelists can be retrieved for coded SDMX components:
+
+``` r
+
+age <- get_ilostat_sdmx(
+  "UNE_TUNE_SEX_AGE_NB_A",
+  resource = "codelist",
+  component = "AGE"
+)
+```
+
+Other examples include `REF_AREA`, `SOURCE`, `SEX`, `OBS_STATUS`,
+`UNIT_MEASURE` and `UNIT_MULT`.
+
+### Dataflows
+
+Retrieve the dataflow associated with one ILOSTAT dataset:
+
+``` r
+
+flow <- get_ilostat_sdmx(
+  "UNE_TUNE_SEX_AGE_NB_A",
+  resource = "dataflow"
+)
+```
+
+The complete ILOSTAT dataflow catalogue can also be retrieved:
+
+``` r
+
+flows <- get_ilostat_sdmx(
+  resource = "dataflow"
+)
+```
+
+### SDMX-ML 3.1
+
+Structural resources can be serialized as **SDMX-ML 3.1**.
+
+For example:
+
+``` r
+
+xml <- get_ilostat_sdmx(
+  "UNE_TUNE_SEX_AGE_NB_A",
+  resource = "structure",
+  format = "sdmx-ml"
+)
+```
+
+SDMX-ML 3.1 output is available for:
+
+- `resource = "structure"`;
+- `resource = "codelist"`;
+- `resource = "dataflow"`.
+
+For example, a codelist can be serialized directly:
+
+``` r
+
+xml <- get_ilostat_sdmx(
+  "UNE_TUNE_SEX_AGE_NB_A",
+  resource = "codelist",
+  component = "AGE",
+  format = "sdmx-ml"
+)
+```
+
+### SDMX-JSON 2.1
+
+The same structural resources can be serialized as **SDMX-JSON 2.1**:
+
+``` r
+
+json <- get_ilostat_sdmx(
+  "UNE_TUNE_SEX_AGE_NB_A",
+  resource = "structure",
+  format = "sdmx-json"
+)
+```
+
+SDMX-JSON 2.1 output is available for structures, codelists and
+dataflows.
+
+For example:
+
+``` r
+
+json <- get_ilostat_sdmx(
+  "UNE_TUNE_SEX_AGE_NB_A",
+  resource = "codelist",
+  component = "AGE",
+  format = "sdmx-json"
+)
+```
+
+The R data-frame interface, SDMX-ML 3.1 output and SDMX-JSON 2.1 output
+are generated from the same dataset metadata and SDMX semantic model.
+
+See
+[`?get_ilostat_sdmx`](https://ilostat.github.io/Rilostat/reference/get_ilostat_sdmx.md)
+for the complete interface.
+
+## Contribute
+
+Contributions are very welcome:
+
+- [Use issue tracker](https://github.com/ilostat/Rilostat/issues) for
+  feedback and bug reports.
+
+- [Star us on the github page](https://github.com/ilostat/Rilostat)
+
+## Software license
+
+`Rilostat` is distributed under the BSD 2-Clause License.
+
+Copyright © 2026 International Labour Organization.
+
+## ILOSTAT data licensing
+
+ILOSTAT databases and datasets, together with their accompanying
+referential metadata, published by the International Labour Organization
+(ILO) as of 3 May 2023 are licensed under the [Creative Commons
+Attribution 4.0 International License (CC BY
+4.0)](https://creativecommons.org/licenses/by/4.0/), unless otherwise
+indicated.
+
+Users may reuse, share and adapt this material in accordance with the
+terms of the licence and must give appropriate credit to the
+International Labour Organization (ILO) as the source.
+
+The licensing of ILOSTAT data and metadata is separate from the BSD
+2-Clause License applying to the `Rilostat` R package.
+
+For full information on ILO copyright, data licensing, third-party
+material and other rights and permissions, see the [ILO Rights and
+permissions](https://www.ilo.org/rights-and-permissions) page.
