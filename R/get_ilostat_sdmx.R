@@ -543,24 +543,44 @@ get_ilostat_sdmx <- function(
 .ilostat_sdmx_lookup_values <- function(
   values,
   dictionary,
-  field
+  field,
+  component = NULL
 ) {
 
+  values <- as.character(values)
+
   if (is.null(dictionary)) {
-    return(as.character(values))
+    return(values)
   }
 
-  pos <- match(
-    as.character(values),
-    dictionary$code
-  )
+  pos <- match(values, dictionary$code)
+  result <- as.character(dictionary[[field]][pos])
 
-  result <- dictionary[[field]][pos]
+  # Combined note identifiers are separated by underscores in native
+  # ILOSTAT data. Resolve each note independently, preserving their order.
+  # Never split ordinary dimension codes (e.g. AGE_YTHADULT_YGE15).
+  note_components <- c("NOTE_SOURCE", "NOTE_INDICATOR", "NOTE_CLASSIF")
+
+  if (!is.null(component) && component %in% note_components) {
+    unresolved <- which(!is.na(values) & nzchar(values) & is.na(result))
+
+    for (i in unresolved) {
+      parts <- strsplit(values[[i]], "_", fixed = TRUE)[[1L]]
+      if (length(parts) < 2L) next
+
+      part_pos <- match(parts, dictionary$code)
+      part_labels <- as.character(dictionary[[field]][part_pos])
+
+      # Follow native label behavior: preserve unknown codes rather than
+      # silently dropping note references.
+      bad <- is.na(part_labels) | !nzchar(part_labels)
+      part_labels[bad] <- parts[bad]
+      result[[i]] <- paste(part_labels, collapse = " | ")
+    }
+  }
 
   missing <- is.na(result)
-
-  result[missing] <- as.character(values)[missing]
-
+  result[missing] <- values[missing]
   result
 }
 
@@ -600,13 +620,15 @@ get_ilostat_sdmx <- function(
     labels <- .ilostat_sdmx_lookup_values(
       codes,
       dictionary,
-      "label"
+      "label",
+      component = component
     )
 
     labels_short <- .ilostat_sdmx_lookup_values(
       codes,
       dictionary,
-      "label_short"
+      "label_short",
+      component = component
     )
 
     if (type == "label") {

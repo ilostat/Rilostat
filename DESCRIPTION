@@ -2,8 +2,8 @@ Package: Rilostat
 Type: Package
 Language: en-GB
 Title: Access and Manipulation of ILOSTAT Labour Statistics
-Version: 2.5.1
-Date: 2026-10-16
+Version: 2.5.2
+Date: 2026-11-05
 Authors@R: c(
   person("David", "Bescond", role = c("aut", "cre"),
          email = "bescond@ilo.org",
