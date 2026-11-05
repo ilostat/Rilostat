@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="index.html">Rilostat</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.5.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.5.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,7 +39,7 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="articles/Rilostat.html">Intro</a></li>
-<li class="nav-item"><a class="nav-link" href="reference/index.html">Functions</a></li>
+<li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">News</a></li>
       </ul>
 <ul class="navbar-nav">
@@ -55,7 +55,7 @@
   <main id="main" class="col-md-9">
 <p><br></p>
 <div class="section level2">
-<h2 id="ilostat-r-package">ilostat R package<a class="anchor" aria-label="anchor" href="#ilostat-r-package"></a>
+<h2 id="ilostat-r-package">ILOSTAT R package<a class="anchor" aria-label="anchor" href="#ilostat-r-package"></a>
 </h2>
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <p>The ILO’s main online database, <a href="https://ilostat.ilo.org" class="external-link">ILOSTAT</a>, maintained by the Department of Statistics, is the world’s largest repository of labour market statistics. It covers all countries and regions and a wide range of labour-related topics, including employment, unemployment, wages, working time and labour productivity, to name a few. It includes time series going back as far as 1938; annual, quarterly and monthly labour statistics; country-level, regional and global estimates; and even projections of the main labour market indicators.</p>
@@ -63,7 +63,7 @@
 <p>The ilostat R package (<code>'Rilostat'</code>) was designed to give data users the ability to access the ILOSTAT database, search for data, rearrange the information as needed, download it in the desired format, and make various data visualizations, all in a programmatic and replicable manner, with the possibility of quickly re-running the queries as required.</p>
 </div>
 <div class="section level2">
-<h2 id="main-features-of-the-ilostat-r-package">Main features of the ilostat R package<a class="anchor" aria-label="anchor" href="#main-features-of-the-ilostat-r-package"></a>
+<h2 id="main-features-of-the-ilostat-r-package">Main features of the ILOSTAT R package<a class="anchor" aria-label="anchor" href="#main-features-of-the-ilostat-r-package"></a>
 </h2>
 <ul>
 <li>Provides access to all annual, quarterly, and monthly data available via the ILOSTAT <a href="https://ilostat.ilo.org/data/bulk/" class="external-link">bulk download facility</a>
@@ -76,22 +76,191 @@
 <li>Allows for <code>grep</code>-style searching for data descriptions and names</li>
 </ul>
 </div>
-<div class="section level2">
-<h2 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>
-</h2>
-<p>The developer of this package drew extensive inspiration from the <a href="https://CRAN.R-project.org/package=eurostat" class="external-link">eurostat R package</a> and its related documentation:<br>
-- <a href="https://journal.r-project.org/articles/RJ-2017-019/RJ-2017-019.pdf" class="external-link">Retrieval and Analysis of Eurostat Open Data with the eurostat Package</a> - <a href="https://github.com/antagomir" class="external-link">Leo Lahti</a>, <a href="https://github.com/pbiecek" class="external-link">Przemyslaw Biecek</a>, <a href="https://github.com/muuankarski" class="external-link">Markus Kainu</a> and <a href="https://github.com/jhuovari" class="external-link">Janne Huovari</a>. R Journal 9(1), 385-392, 2017.</p>
-</div>
 <div class="section level1">
 
-<p>Download and install <a href="https://cran.r-project.org/" class="external-link">R from CRAN</a>, install <a href="https://posit.co/products/open-source/rstudio/" class="external-link">RStudio’s IDE</a>, a powerful user interface for R. Then use command:</p>
+<p>Download and install <a href="https://cran.r-project.org/" class="external-link">R from CRAN</a>, install <a href="https://posit.co/products/ide/positron" class="external-link">Positron’s IDE</a>, a powerful user interface for R and Python. Then use command:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"Rilostat"</span><span class="op">)</span></span></code></pre></div>
 <p>To install the development version, use the following command:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'devtools'</span><span class="op">)</span><span class="op">}</span></span>
-<span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ilostat/Rilostat"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ilostat/Rilostat"</span><span class="op">)</span></span></code></pre></div>
 <p>We do not expect to update the ilostat R package too often, but based on questions and remarks from ILOSTAT data users, we will progressively create more examples, tutorials, demos and apps. We will publicly share all of this via <a href="https://ilostat.github.io/Rilostat/">Rilostat webpage</a></p>
+<div class="section level2">
+<h2 id="sdmx-support">SDMX support<a class="anchor" aria-label="anchor" href="#sdmx-support"></a>
+</h2>
+<p>Rilostat provides an SDMX-oriented interface through <code><a href="reference/get_ilostat_sdmx.html">get_ilostat_sdmx()</a></code>. It reuses the existing Rilostat download, cache and filtering infrastructure while exposing ILOSTAT datasets using SDMX component names and metadata.</p>
+<p>The interface supports:</p>
+<ul>
+<li>observation data as R data frames;</li>
+<li>data structures;</li>
+<li>canonical codelists;</li>
+<li>ILOSTAT dataflows;</li>
+<li>SDMX-ML 3.1 for structural resources;</li>
+<li>SDMX-JSON 2.1 for structural resources;</li>
+<li>English, French and Spanish labels;</li>
+<li>code, label, short-label and combined code/label representations;</li>
+<li>SDMX-oriented filtering, including time-period ranges.</li>
+</ul>
+<div class="section level3">
+<h3 id="observation-data">Observation data<a class="anchor" aria-label="anchor" href="#observation-data"></a>
+</h3>
+<p>Observation data can be retrieved using SDMX component identifiers:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_ilostat_sdmx.html">get_ilostat_sdmx</a></span><span class="op">(</span></span>
+<span>  <span class="st">"UNE_TUNE_SEX_AGE_NB_A"</span>,</span>
+<span>  filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    REF_AREA <span class="op">=</span> <span class="st">"FRA"</span>,</span>
+<span>    SEX <span class="op">=</span> <span class="st">"SEX_F"</span>,</span>
+<span>    AGE <span class="op">=</span> <span class="st">"AGE_YTHADULT_YGE15"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>The returned data use SDMX component names such as <code>REF_AREA</code>, <code>SOURCE</code>, <code>FREQ</code>, <code>MEASURE</code>, <code>SEX</code>, <code>AGE</code>, <code>TIME_PERIOD</code>, <code>OBS_VALUE</code>, <code>OBS_STATUS</code>, <code>UNIT_MEASURE</code> and <code>UNIT_MULT</code>.</p>
+<p>The SDMX data envelope also identifies the dataflow through <code>STRUCTURE</code>, <code>STRUCTURE_ID</code> and <code>ACTION</code>.</p>
+</div>
+<div class="section level3">
+<h3 id="codes-and-labels">Codes and labels<a class="anchor" aria-label="anchor" href="#codes-and-labels"></a>
+</h3>
+<p>Codes and labels can be returned together:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_ilostat_sdmx.html">get_ilostat_sdmx</a></span><span class="op">(</span></span>
+<span>  <span class="st">"UNE_TUNE_SEX_AGE_NB_A"</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"both"</span>,</span>
+<span>  filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    REF_AREA <span class="op">=</span> <span class="st">"FRA"</span>,</span>
+<span>    SEX <span class="op">=</span> <span class="st">"SEX_F"</span>,</span>
+<span>    AGE <span class="op">=</span> <span class="st">"AGE_YTHADULT_YGE15"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>This returns SDMX code columns together with companion label columns such as <code>REF_AREA_LABEL</code>, <code>SOURCE_LABEL</code>, <code>SEX_LABEL</code> and <code>AGE_LABEL</code>.</p>
+<p>The available representations are:</p>
+<ul>
+<li>
+<code>type = "code"</code> for SDMX codes;</li>
+<li>
+<code>type = "label"</code> for full labels;</li>
+<li>
+<code>type = "label_short"</code> for short/display labels where available;</li>
+<li>
+<code>type = "both"</code> for codes and labels together.</li>
+</ul>
+<p>For example, the AGE code <code>AGE_YTHADULT_YGE15</code> has the full label <code>Age (Youth, adults): 15+</code> and the short label <code>15+</code>.</p>
+</div>
+<div class="section level3">
+<h3 id="filtering">Filtering<a class="anchor" aria-label="anchor" href="#filtering"></a>
+</h3>
+<p>Filters use SDMX component names:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_ilostat_sdmx.html">get_ilostat_sdmx</a></span><span class="op">(</span></span>
+<span>  <span class="st">"UNE_TUNE_SEX_AGE_NB_A"</span>,</span>
+<span>  filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    REF_AREA <span class="op">=</span> <span class="st">"FRA"</span>,</span>
+<span>    SEX <span class="op">=</span> <span class="st">"SEX_F"</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>Time-period ranges can use comparison operators:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_ilostat_sdmx.html">get_ilostat_sdmx</a></span><span class="op">(</span></span>
+<span>  <span class="st">"UNE_TUNE_SEX_AGE_NB_A"</span>,</span>
+<span>  filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>    REF_AREA <span class="op">=</span> <span class="st">"FRA"</span>,</span>
+<span>    TIME_PERIOD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>      ge <span class="op">=</span> <span class="st">"2020"</span>,</span>
+<span>      le <span class="op">=</span> <span class="st">"2023"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p><code>FREQ</code> and <code>MEASURE</code> can also be used as filters. They are dataset-level SDMX components; a value incompatible with the selected dataset returns an empty SDMX result.</p>
+</div>
+<div class="section level3">
+<h3 id="data-structure">Data structure<a class="anchor" aria-label="anchor" href="#data-structure"></a>
+</h3>
+<p>The SDMX-oriented structure of a dataset can be inspected directly:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">structure</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_ilostat_sdmx.html">get_ilostat_sdmx</a></span><span class="op">(</span></span>
+<span>  <span class="st">"UNE_TUNE_SEX_AGE_NB_A"</span>,</span>
+<span>  resource <span class="op">=</span> <span class="st">"structure"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>The structure describes the dimensions, time dimension, measure and attributes of the dataset, including their position, representation and associated codelists.</p>
+</div>
+<div class="section level3">
+<h3 id="codelists">Codelists<a class="anchor" aria-label="anchor" href="#codelists"></a>
+</h3>
+<p>Canonical ILOSTAT codelists can be retrieved for coded SDMX components:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">age</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_ilostat_sdmx.html">get_ilostat_sdmx</a></span><span class="op">(</span></span>
+<span>  <span class="st">"UNE_TUNE_SEX_AGE_NB_A"</span>,</span>
+<span>  resource <span class="op">=</span> <span class="st">"codelist"</span>,</span>
+<span>  component <span class="op">=</span> <span class="st">"AGE"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>Other examples include <code>REF_AREA</code>, <code>SOURCE</code>, <code>SEX</code>, <code>OBS_STATUS</code>, <code>UNIT_MEASURE</code> and <code>UNIT_MULT</code>.</p>
+</div>
+<div class="section level3">
+<h3 id="dataflows">Dataflows<a class="anchor" aria-label="anchor" href="#dataflows"></a>
+</h3>
+<p>Retrieve the dataflow associated with one ILOSTAT dataset:</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">flow</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_ilostat_sdmx.html">get_ilostat_sdmx</a></span><span class="op">(</span></span>
+<span>  <span class="st">"UNE_TUNE_SEX_AGE_NB_A"</span>,</span>
+<span>  resource <span class="op">=</span> <span class="st">"dataflow"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>The complete ILOSTAT dataflow catalogue can also be retrieved:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">flows</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_ilostat_sdmx.html">get_ilostat_sdmx</a></span><span class="op">(</span></span>
+<span>  resource <span class="op">=</span> <span class="st">"dataflow"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="sdmx-ml-31">SDMX-ML 3.1<a class="anchor" aria-label="anchor" href="#sdmx-ml-31"></a>
+</h3>
+<p>Structural resources can be serialized as <strong>SDMX-ML 3.1</strong>.</p>
+<p>For example:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">xml</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_ilostat_sdmx.html">get_ilostat_sdmx</a></span><span class="op">(</span></span>
+<span>  <span class="st">"UNE_TUNE_SEX_AGE_NB_A"</span>,</span>
+<span>  resource <span class="op">=</span> <span class="st">"structure"</span>,</span>
+<span>  format <span class="op">=</span> <span class="st">"sdmx-ml"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>SDMX-ML 3.1 output is available for:</p>
+<ul>
+<li>
+<code>resource = "structure"</code>;</li>
+<li>
+<code>resource = "codelist"</code>;</li>
+<li>
+<code>resource = "dataflow"</code>.</li>
+</ul>
+<p>For example, a codelist can be serialized directly:</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">xml</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_ilostat_sdmx.html">get_ilostat_sdmx</a></span><span class="op">(</span></span>
+<span>  <span class="st">"UNE_TUNE_SEX_AGE_NB_A"</span>,</span>
+<span>  resource <span class="op">=</span> <span class="st">"codelist"</span>,</span>
+<span>  component <span class="op">=</span> <span class="st">"AGE"</span>,</span>
+<span>  format <span class="op">=</span> <span class="st">"sdmx-ml"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="sdmx-json-21">SDMX-JSON 2.1<a class="anchor" aria-label="anchor" href="#sdmx-json-21"></a>
+</h3>
+<p>The same structural resources can be serialized as <strong>SDMX-JSON 2.1</strong>:</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_ilostat_sdmx.html">get_ilostat_sdmx</a></span><span class="op">(</span></span>
+<span>  <span class="st">"UNE_TUNE_SEX_AGE_NB_A"</span>,</span>
+<span>  resource <span class="op">=</span> <span class="st">"structure"</span>,</span>
+<span>  format <span class="op">=</span> <span class="st">"sdmx-json"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>SDMX-JSON 2.1 output is available for structures, codelists and dataflows.</p>
+<p>For example:</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">json</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_ilostat_sdmx.html">get_ilostat_sdmx</a></span><span class="op">(</span></span>
+<span>  <span class="st">"UNE_TUNE_SEX_AGE_NB_A"</span>,</span>
+<span>  resource <span class="op">=</span> <span class="st">"codelist"</span>,</span>
+<span>  component <span class="op">=</span> <span class="st">"AGE"</span>,</span>
+<span>  format <span class="op">=</span> <span class="st">"sdmx-json"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>The R data-frame interface, SDMX-ML 3.1 output and SDMX-JSON 2.1 output are generated from the same dataset metadata and SDMX semantic model.</p>
+<p>See <code><a href="reference/get_ilostat_sdmx.html">?get_ilostat_sdmx</a></code> for the complete interface.</p>
+</div>
+</div>
 <div class="section level2">
 <h2 id="contribute">Contribute<a class="anchor" aria-label="anchor" href="#contribute"></a>
 </h2>
@@ -123,7 +292,8 @@
 <li><a href="https://cloud.r-project.org/package=Rilostat" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/ilostat/Rilostat/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/ilostat/Rilostat/issues" class="external-link">Report a bug</a></li>
-<li><a href="https://ilostat.ilo.org/data/bulk/" class="external-link">Learn more</a></li>
+<li><a href="https://ilostat.ilo.org/data/bulk/" class="external-link">ILOSTAT bulk download</a></li>
+<li><a href="https://ilostat.ilo.org/" class="external-link">ILOSTAT</a></li>
 </ul>
 </div>
 
@@ -149,7 +319,6 @@
 <ul class="list-unstyled">
 <li>David Bescond <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0002-1642-0304" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 <li>International Labour Organization <br><small class="roles"> Copyright holder, funder </small>   </li>
-<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 
