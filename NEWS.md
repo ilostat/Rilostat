@@ -1,8 +1,8 @@
----
-output: 
-  html_document: 
-    keep_md: yes
----
+# Rilostat 2.5.1
+
+* restored `get_ilostat_sdmx()` for SDMX-oriented access to ILOSTAT data.
+* Added SDMX structures, codelists and dataflows.
+* Added SDMX-ML 3.1 and SDMX-JSON 2.1 support for structural resources.
 
 # Rilostat 2.5.0
 
