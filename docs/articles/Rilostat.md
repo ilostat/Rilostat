@@ -186,7 +186,7 @@ toc <- get_ilostat_toc(segment = 'ref_area', search = c('France|Albania', 'Annua
 | id | ref_area | ref_area.label | freq | freq.label | data.start | data.end | last.update | n.records |
 |:---|:---|:---|:---|:---|---:|---:|:---|---:|
 | ALB_A | ALB | Albania | A | Annual | 1960 | 2030 | 26/10/2026 18:55:10 | 1271446 |
-| FRA_A | FRA | France | A | Annual | 1955 | 2030 | 26/10/2026 18:53:19 | 2685810 |
+| FRA_A | FRA | France | A | Annual | 1955 | 2030 | 08/11/2026 07:44:15 | 2746862 |
 
 Table 1d. ‘Table of contents by ref_area with search words ’France’ or
 ‘Albania’ and ‘Annual’’ {.table}
@@ -290,7 +290,7 @@ dplyr::count(dat, ref_area)
     ##   ref_area      n
     ##   <chr>     <int>
     ## 1 AFG      363687
-    ## 2 TTO      375147
+    ## 2 TTO      375148
 
 \
 
@@ -306,10 +306,10 @@ dplyr::count(dat, indicator)
     ## # A tibble: 4 x 2
     ##   indicator            n
     ##   <chr>            <int>
-    ## 1 CPI_NCPD_COI_RT 674196
-    ## 2 CPI_NCYR_COI_RT 768730
+    ## 1 CPI_NCPD_COI_RT 674371
+    ## 2 CPI_NCYR_COI_RT 768911
     ## 3 CPI_NWGT_COI_RT  41518
-    ## 4 CPI_XCPI_COI_RT 805467
+    ## 4 CPI_XCPI_COI_RT 805651
 
 ## Time format
 
