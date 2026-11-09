@@ -1,5 +1,15 @@
 # Changelog
 
+## Rilostat 2.5.1
+
+CRAN release: 2026-11-04
+
+- restored
+  [`get_ilostat_sdmx()`](https://ilostat.github.io/Rilostat/reference/get_ilostat_sdmx.md)
+  for SDMX-oriented access to ILOSTAT data.
+- Added SDMX structures, codelists and dataflows.
+- Added SDMX-ML 3.1 and SDMX-JSON 2.1 support for structural resources.
+
 ## Rilostat 2.5.0
 
 CRAN release: 2026-04-24
