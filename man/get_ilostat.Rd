@@ -12,6 +12,7 @@ get_ilostat(
   time_format = getOption("ilostat_time_format", "raw"),
   filters = getOption("ilostat_filter", "none"),
   best_source = getOption("ilostat_best_source", "yes"),
+  latestyear = getOption("ilostat_latestyear", FALSE),
   fixed = getOption("ilostat_fixed", TRUE),
   cache = getOption("ilostat_cache", TRUE),
   cache_update = getOption("ilostat_cache_update", TRUE),
@@ -53,6 +54,13 @@ enough but equivalent to \code{list(sex = "SEX_T")}. Additional options:
    }}
 
 \item{best_source}{a character; \code{"yes"} (default) to get secondary source if exist \code{"all"}, \code{"no"} for secondary only.}
+
+\item{latestyear}{A logical; if \code{TRUE}, retain observations
+from the latest available time period for each combination of
+reference area and indicator, after applying the requested filters.
+Defaults to \code{FALSE}, which returns all available periods.
+Assumes observations are ordered by descending time.
+Can also be set using \code{options(ilostat_latestyear = TRUE)}.}
 
 \item{fixed}{a logical, if \code{TRUE} (default), filters arguments pattern is a string to be matched as is,
 Change to \code{FALSE} if more complex regex matching is needed.}

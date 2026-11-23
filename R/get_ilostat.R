@@ -25,6 +25,12 @@
 #' 				\item{\code{timeto}} : ending year of the return dataset.
 #'    		}
 #' @param best_source a character; \code{"yes"} (default) to get secondary source if exist \code{"all"}, \code{"no"} for secondary only.
+#' @param latestyear A logical; if \code{TRUE}, retain observations
+#'   from the latest available time period for each combination of
+#'   reference area and indicator, after applying the requested filters.
+#'   Defaults to \code{FALSE}, which returns all available periods.
+#'   Assumes observations are ordered by descending time.
+#'   Can also be set using \code{options(ilostat_latestyear = TRUE)}.
 #' @param fixed a logical, if \code{TRUE} (default), filters arguments pattern is a string to be matched as is,
 #'        Change to \code{FALSE} if more complex regex matching is needed.
 #' @param cache a logical whether to do caching. Default is \code{TRUE}. Affects
@@ -140,6 +146,7 @@ get_ilostat <- function(id,
 						time_format = getOption('ilostat_time_format', 'raw'),
 						filters = getOption('ilostat_filter', 'none'),
 						best_source = getOption('ilostat_best_source', 'yes'),
+						latestyear = getOption('ilostat_latestyear', FALSE),
 						fixed = getOption('ilostat_fixed', TRUE),
 						cache = getOption('ilostat_cache', TRUE),
 						cache_update = getOption('ilostat_cache_update', TRUE),
@@ -180,8 +187,23 @@ best_source_vec <- switch(
 				
 				dat, 
 				
-				get_ilostat_dat(id = ref_id[i], segment, type, lang, time_format, filters, best_source_vec, fixed, cache, cache_update,	cache_dir, cache_format, back, cmd, quiet 
-								
+				get_ilostat_dat(
+						  id = ref_id[i],
+						  segment = segment,
+						  type = type,
+						  lang = lang,
+						  time_format = time_format,
+						  filters = filters,
+						  best_source_vec = best_source_vec,
+						  latestyear = latestyear,
+						  fixed = fixed,
+						  cache = cache,
+						  cache_update = cache_update,
+						  cache_dir = cache_dir,
+						  cache_format = cache_format,
+						  back = back,
+						  cmd = cmd,
+						  quiet = quiet
 				)
 			)
   }
@@ -203,6 +225,7 @@ get_ilostat_dat <- function(id,
                             time_format,
                             filters,
                             best_source_vec,
+							latestyear,
                             fixed,
                             cache,
                             cache_update,
@@ -211,6 +234,14 @@ get_ilostat_dat <- function(id,
                             back,
                             cmd,
                             quiet) {
+
+  # Label-only requests use the existing "both" representation internally.
+  # This retains code columns for filtering and latestyear selection,
+  # while allowing remote requests to reuse the same processed disk cache.
+  if (!type %in% c("code", "both", "label")) {
+    stop("Invalid type.", call. = FALSE)
+  }
+  cache_type <- if (type == "label") "both" else type
 
   backend <- tolower(
     Sys.getenv("ILOSTAT_BACKEND", unset = "remote")
@@ -245,12 +276,8 @@ from_processed_cache <- FALSE
     # Local data is already filtered by best_source.
     # The raw reader also converts time to character.
 
-    if (type == "both") {
+    if (cache_type == "both") {
       dat <- label_ilostat(dat, code = "all", lang = lang)
-    } else if (type == "label") {
-      dat <- label_ilostat(dat, lang = lang)
-    } else if (type != "code") {
-      stop("Invalid type.")
     }
 
   } else {
@@ -312,7 +339,7 @@ from_processed_cache <- FALSE
       paste0(
         segment, "-",
         id, "-",
-        type, "-",
+        cache_type, "-",
         time_format, "-",
         last_toc_update, "-",
         paste0(best_source_vec, collapse = ""),
@@ -356,24 +383,8 @@ from_processed_cache <- FALSE
         quiet
       )
 
-      if (type == "both") {
-
-        dat <- label_ilostat(
-          dat,
-          code = "all",
-          lang = lang
-        )
-
-      } else if (type == "label") {
-
-        dat <- label_ilostat(
-          dat,
-          lang = lang
-        )
-
-      } else if (type != "code") {
-
-        stop("Invalid type.")
+      if (cache_type == "both") {
+        dat <- label_ilostat(dat, code = "all", lang = lang)
       }
 
     } else {
@@ -450,8 +461,7 @@ from_processed_cache <- FALSE
   # Remote cached data already contains the requested time format.
   # Preserve the existing behavior of the remote pipeline.
   #
-  # Note: the original implementation also applies this section
-  # after a cache hit. We retain that behavior for compatibility.
+  # Cache hits skip conversion because the stored time is already formatted.
 
 if (!from_processed_cache) {
 
@@ -629,6 +639,30 @@ if (!from_processed_cache) {
     }
   }
 
+  # ------------------------------------------------------------
+  # LATEST YEAR: preserve the first period in existing row order,
+  # independently for each reference area and indicator.
+  # ------------------------------------------------------------
+  if (isTRUE(latestyear)) {
+    dat <- dat %>%
+      dplyr::group_by(.data$ref_area, .data$indicator) %>%
+      dplyr::filter(
+        as.character(.data$time) ==
+          as.character(dplyr::first(.data$time))
+      ) %>%
+      dplyr::ungroup()
+  }
+
+  # For label-only output, drop the original code columns only AFTER
+  # filtering, latestyear, and cache processing. Keep their .label peers.
+  if (type == "label") {
+    code_cols <- intersect(ilostat_cols_ref, names(dat))
+    code_cols <- code_cols[
+      paste0(code_cols, ".label") %in% names(dat)
+    ]
+    dat <- dplyr::select(dat, -dplyr::all_of(code_cols))
+  }
+
   # Preserve legacy cmd behavior.
   if (!identical(cmd, "none")) {
 
@@ -641,20 +675,26 @@ if (!from_processed_cache) {
     )
   }
 
-  # Hide best_source for the default selection.
-  if (length(best_source_vec) == 1L &&
-      best_source_vec == 1) {
 
-    dat %>%
-      dplyr::select(
-        -tidyselect::contains("best_source")
-      )
 
-  } else {
+	  # ------------------------------------------------------------
+	  # 7. HIDE BEST_SOURCE FOR DEFAULT SELECTION
+	  # ------------------------------------------------------------
 
-    dat
-  }
+	  if (length(best_source_vec) == 1L &&
+		  best_source_vec == 1) {
+
+		dat <- dat %>%
+		  dplyr::select(
+			-tidyselect::contains("best_source")
+		  )
+	  }
+	  dat
+
 }
+
+
+
 
 get_ilostat_raw <- function(id,
                             segment,

@@ -51,4 +51,6 @@ Desktop.ini
 /Meta/
 Thumbs.db
 /doc/
+# Generated README HTML
+/README.html
 README.html
