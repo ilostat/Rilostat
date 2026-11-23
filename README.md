@@ -66,6 +66,62 @@ questions and remarks from ILOSTAT data users, we will progressively
 create more examples, tutorials, demos and apps. We will publicly share
 all of this via [Rilostat webpage](https://ilostat.github.io/Rilostat/)
 
+## Data access backends
+
+Rilostat supports two data access backends: **remote** (default) and
+**local**.
+
+### Remote access (default)
+
+By default, Rilostat retrieves datasets and metadata from the public
+ILOSTAT service. Downloaded data and dictionaries can be cached on disk
+for faster subsequent access.
+
+``` r
+library(Rilostat)
+
+dat <- get_ilostat("UNE_TUNE_SEX_AGE_NB_A")
+```
+
+No additional configuration is required.
+
+### Local access
+
+For installations with direct access to ILOSTAT RDS storage, such as
+internal development environments or containerized API deployments,
+configure:
+
+``` r
+Sys.setenv(
+  ILOSTAT_BACKEND = "local",
+  ILOSTAT_DATA_ROOT = "/path/to/ilostat/data"
+)
+
+library(Rilostat)
+
+dat <- get_ilostat("UNE_TUNE_SEX_AGE_NB_A")
+```
+
+The local backend reads statistical observations, dictionaries and
+tables of contents directly from RDS files, without additional disk
+caching or HTTP requests.
+
+### Environment configuration
+
+The backend can also be configured through environment variables:
+
+| Variable | Description | Default |
+|----|----|----|
+| `ILOSTAT_BACKEND` | Data access mode: `remote` or `local` | `remote` |
+| `ILOSTAT_DATA_ROOT` | Root directory containing local ILOSTAT RDS storage | Not required for remote access |
+
+For local development, these variables can be defined in a private
+`.Renviron` file excluded from Git. For Docker or Linux services, they
+can be supplied through the deployment environment.
+
+The package does not require operating-system-specific paths in its
+source code.
+
 ## SDMX support
 
 Rilostat provides an SDMX-oriented interface through

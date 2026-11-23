@@ -43,22 +43,51 @@
 "_PACKAGE"
 
 
-#' Internal utility to determine the base URL for data access.
+#' Internal utility to determine the ILOSTAT data access location.
 #'
-#' Checks if a local RDS directory exists and returns the local path
-#' or the remote API URL.
+#' Uses the remote API by default. When ILOSTAT_BACKEND is "local",
+#' resolves ILOSTAT_DATA_ROOT to a filesystem directory.
 #'
-#' @return A character string representing the base URL or local path.
+#' @return A character string ending with "/".
 #' @keywords internal
 #' @noRd
 ilostat_url <- function() {
 
-  if(dir.exists('/data/rds/')) {
-    '/data/rds/'
-  } else {
-    'https://rplumber.ilo.org/files/'
-    }
+  backend <- tolower(
+    Sys.getenv("ILOSTAT_BACKEND", unset = "remote")
+  )
 
+  if (!backend %in% c("remote", "local")) {
+    stop(
+      "Invalid ILOSTAT_BACKEND. Use 'remote' or 'local'.",
+      call. = FALSE
+    )
+  }
+
+  if (backend == "remote") {
+    return("https://rplumber.ilo.org/files/")
+  }
+
+  root <- Sys.getenv("ILOSTAT_DATA_ROOT", unset = "")
+
+  if (!nzchar(root)) {
+    stop(
+      "ILOSTAT_DATA_ROOT must be configured ",
+      "when ILOSTAT_BACKEND=local.",
+      call. = FALSE
+    )
+  }
+
+  root <- path.expand(root)
+
+  if (!dir.exists(root)) {
+    stop(
+      "ILOSTAT_DATA_ROOT does not exist or is inaccessible.",
+      call. = FALSE
+    )
+  }
+
+  paste0(sub("[/\\\\]+$", "", root), "/")
 }
 
 #' Internal utility function to translate and format filters for data processing.
@@ -143,13 +172,6 @@ filters_ilostat <- function(
   newfilter
 }
 
-#' Internal environment for session variables.
-#'
-#' Used to store non-exported, temporary variables needed during a session.
-#'
-#' @keywords internal
-#' @noRd
-.ilostatEnv <- new.env()
 
 
 #' Internal function to run Shiny apps stored remotely.

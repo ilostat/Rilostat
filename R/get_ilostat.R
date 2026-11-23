@@ -195,355 +195,604 @@ best_source_vec <- switch(
 }
 
 
-get_ilostat_dat <- function(id, 
-							segment, 
-							type, 
-							lang, 
-							time_format,
-							filters,
-							best_source_vec,
-							fixed,
-							cache, 
-							cache_update, 
-							cache_dir,
-							cache_format,
-							back,
-							cmd, 
-							quiet 
-							){
 
-  # check id validity and return last update
-  ref_id <- id
-  last_toc_update <- get_ilostat_toc(segment, lang) %>% 
-					 filter(id %in% ref_id) 
-  last_toc_update <- unique(last_toc_update$last.update)
-					
-  last_toc_update <- ifelse(substr(last_toc_update, 6,8) %in% '/20', 
-												format(strptime(last_toc_update, '%d/%m/%Y  %H:%M'), '%Y%m%dT%H%M'), 
-												last_toc_update) 
-					
-  if(length(last_toc_update) == 0){
-    
-	if(!quiet){message("Dataset with id = '", id, "' does not exist or is not readable")}
-	
-	return(NULL)
-  
+get_ilostat_dat <- function(id,
+                            segment,
+                            type,
+                            lang,
+                            time_format,
+                            filters,
+                            best_source_vec,
+                            fixed,
+                            cache,
+                            cache_update,
+                            cache_dir,
+                            cache_format,
+                            back,
+                            cmd,
+                            quiet) {
+
+  backend <- tolower(
+    Sys.getenv("ILOSTAT_BACKEND", unset = "remote")
+  )
+
+  if (!backend %in% c("remote", "local")) {
+    stop("Invalid ILOSTAT_BACKEND.", call. = FALSE)
   }
-  
-  # get cache directory
-  if (is.null(cache_dir)){
-    
-	  cache_dir <- file.path(tempdir(), "ilostat")
- 	  
-  } 
-	
-	dir.create(cache_dir, recursive = TRUE, showWarnings = FALSE)
-	
-  # cache filename
-  cache_file <- file.path(cache_dir, paste0(segment, "-", id, "-", type,"-",time_format, "-", last_toc_update, "-", paste0(best_source_vec, collapse = "") , paste0(".", cache_format)))
-  
-  if (cache){
-    
-	if(cache_update & file.exists(cache_file)){
-	  
-	  cache_update <- FALSE
-	
-	  if(!quiet){message("Table ", id, " is up to date")}
-  
-    }  
-  
-  }
-  
-  # if cache = FALSE or update or new: download else read from cache
-  if (!cache || cache_update || !file.exists(cache_file) ){
-      
-	  dat <- get_ilostat_raw(id, segment, cache_file, cache_dir, cache_format, quiet)   %>% filter(.data$best_source %in% best_source_vec)	
-		
-	
-	  
-
-		# delete alod cache 
-	  delete_old_cache(cache_dir, cache_file, quiet)
-  
-	  
-      if (type == 'code') {
-        
-		dat <- dat 
-	  
-	  } else if(type == 'both') {
-		
-		dat <- label_ilostat(dat, code = 'all', lang = lang)
-	  
-	  } else if (type == 'label') {
-        
-		dat <- label_ilostat(dat, lang = lang)
-      
-	  } else {
-        
-		stop("Invalid type.")
-      
-	  }
-  
-  } else {
-	
-    cf <- path.expand(cache_file)
- 
-	if(cache_format == 'rds'){
-		
-		dat <- read_rds(cache_file) %>% as_tibble %>% mutate(across(where(is.factor), as.character))
-	
-	}
-	
-	if(cache_format == 'csv'){
-		
-		dat <- read_csv(cache_file, col_types = cols(.default = col_character(), obs_value = col_double()), progress = FALSE)
-	
-	}
-	
-	if(cache_format == 'dta'){
-		
-		dat <- read_dta(cache_file)
-		
-		colnames(dat) <- colnames(dat) %>% stringr::str_replace(stringr::fixed('label'), stringr::fixed('.label'))
-		
-	} 
-	
-	if(cache_format == 'sav'){
-		
-		dat <- read_sav(cache_file)
-	
-	} 
-	
-	if(cache_format == 'sas7bdat'){
-		
-		dat <- read_sas(cache_file)
-		
-		colnames(dat) <- colnames(dat) %>% stringr::str_replace(stringr::fixed('label'), stringr::fixed('.label'))
-	
-	} 
-	
-	if(!quiet){message("Table ", id, " read from cache file: ", cf)}
-  
-  }
-  
 
 
-# process time_format
-if (tolower(time_format) %in% "num" && str_sub(id, -1, -1) %in% c("Q", "M")) {
+# TRUE when observations are loaded from an existing
+# processed remote cache.
+from_processed_cache <- FALSE
 
-  # build lookup once
-  lookup <- setNames(ilostat_date_convert[["num"]], ilostat_date_convert$code)
+  # ------------------------------------------------------------
+  # 1. LOCAL BACKEND
+  # No TOC, HTTP, cache creation or cache deletion.
+  # ------------------------------------------------------------
 
-  dat$time <- paste0(
-    str_sub(dat$time, 1, 4),
-    lookup[str_sub(dat$time, 5, -1)]
-  ) |> as.numeric()
+  if (backend == "local") {
 
-} else if (tolower(time_format) %in% "num") {
-
-  dat$time <- as.numeric(dat$time)
-
-}
- 
-
-if (tolower(str_sub(time_format, 1, 4)) %in% "date") {
-
-  if (str_sub(id, -1, -1) %in% c("Q", "M")) {
-
-    # lookup for code -> date
-    lookup_date <- setNames(ilostat_date_convert[["date"]], ilostat_date_convert$code)
-
-    dat$time <- paste0(
-      str_sub(dat$time, 1, 4),
-      lookup_date[str_sub(dat$time, 5, -1)]
+    dat <- get_ilostat_raw(
+      id = id,
+      segment = segment,
+      cache_file = NULL,
+      cache_dir = NULL,
+      cache_format = "rds",
+      quiet = quiet,
+      best_source_vec = best_source_vec
     )
 
+    # Local data is already filtered by best_source.
+    # The raw reader also converts time to character.
+
+    if (type == "both") {
+      dat <- label_ilostat(dat, code = "all", lang = lang)
+    } else if (type == "label") {
+      dat <- label_ilostat(dat, lang = lang)
+    } else if (type != "code") {
+      stop("Invalid type.")
+    }
+
   } else {
 
-    dat$time <- paste0(dat$time, "-01-01")
+    # ----------------------------------------------------------
+    # 2. REMOTE BACKEND
+    # Preserve existing TOC and cache behavior.
+    # ----------------------------------------------------------
 
-  }
+    ref_id <- id
 
-  if (tolower(time_format) %in% "date_last") {
+    last_toc_update <- get_ilostat_toc(
+      segment,
+      lang
+    ) %>%
+      dplyr::filter(.data$id %in% ref_id)
 
-    if (str_sub(id, -1, -1) %in% c("Q", "M")) {
+    last_toc_update <- unique(
+      last_toc_update$last.update
+    )
 
-      shift <- c("A" = 367, "Q" = 96, "M" = 32)[str_sub(id, -1, -1)]
+    last_toc_update <- ifelse(
+      substr(last_toc_update, 6, 8) %in% "/20",
+      format(
+        strptime(
+          last_toc_update,
+          "%d/%m/%Y  %H:%M"
+        ),
+        "%Y%m%dT%H%M"
+      ),
+      last_toc_update
+    )
 
-      # unique dates (equivalent to levels(as.factor()))
-      u <- unique(dat$time)
+    if (length(last_toc_update) == 0) {
 
-      # build lookup: original -> shifted end-of-period
-      lookup_last <- setNames(
-        as.Date(cut(as.Date(u) + shift, "month")) - 1,
-        u
+      if (!quiet) {
+        message(
+          "Dataset with id = '",
+          id,
+          "' does not exist or is not readable"
+        )
+      }
+
+      return(NULL)
+    }
+
+    if (is.null(cache_dir)) {
+      cache_dir <- file.path(tempdir(), "ilostat")
+    }
+
+    dir.create(
+      cache_dir,
+      recursive = TRUE,
+      showWarnings = FALSE
+    )
+
+    cache_file <- file.path(
+      cache_dir,
+      paste0(
+        segment, "-",
+        id, "-",
+        type, "-",
+        time_format, "-",
+        last_toc_update, "-",
+        paste0(best_source_vec, collapse = ""),
+        ".", cache_format
+      )
+    )
+
+    if (cache) {
+
+      if (cache_update && file.exists(cache_file)) {
+
+        cache_update <- FALSE
+
+        if (!quiet) {
+          message("Table ", id, " is up to date")
+        }
+      }
+    }
+
+    # ----------------------------------------------------------
+    # Remote cache miss or forced retrieval
+    # ----------------------------------------------------------
+
+    if (!cache || cache_update || !file.exists(cache_file)) {
+
+      dat <- get_ilostat_raw(
+        id = id,
+        segment = segment,
+        cache_file = cache_file,
+        cache_dir = cache_dir,
+        cache_format = cache_format,
+        quiet = quiet
+      ) %>%
+        dplyr::filter(
+          .data$best_source %in% best_source_vec
+        )
+
+      delete_old_cache(
+        cache_dir,
+        cache_file,
+        quiet
       )
 
-      dat$time <- lookup_last[dat$time]
+      if (type == "both") {
+
+        dat <- label_ilostat(
+          dat,
+          code = "all",
+          lang = lang
+        )
+
+      } else if (type == "label") {
+
+        dat <- label_ilostat(
+          dat,
+          lang = lang
+        )
+
+      } else if (type != "code") {
+
+        stop("Invalid type.")
+      }
 
     } else {
 
-      dat$time <- stringr::str_replace(dat$time, "-01-01", "-12-31")
+      # --------------------------------------------------------
+      # Remote cache hit
+      # --------------------------------------------------------
 
+	from_processed_cache <- TRUE
+
+      cf <- path.expand(cache_file)
+
+      if (cache_format == "rds") {
+
+        dat <- readr::read_rds(cache_file) %>%
+          tibble::as_tibble() %>%
+          dplyr::mutate(
+            dplyr::across(
+              where(is.factor),
+              as.character
+            )
+          )
+
+      } else if (cache_format == "csv") {
+
+        dat <- readr::read_csv(
+          cache_file,
+          col_types = readr::cols(
+            .default = readr::col_character(),
+            obs_value = readr::col_double()
+          ),
+          progress = FALSE
+        )
+
+      } else if (cache_format == "dta") {
+
+        dat <- haven::read_dta(cache_file)
+
+        names(dat) <- stringr::str_replace(
+          names(dat),
+          stringr::fixed("label"),
+          stringr::fixed(".label")
+        )
+
+      } else if (cache_format == "sav") {
+
+        dat <- haven::read_sav(cache_file)
+
+      } else if (cache_format == "sas7bdat") {
+
+        dat <- haven::read_sas(cache_file)
+
+        names(dat) <- stringr::str_replace(
+          names(dat),
+          stringr::fixed("label"),
+          stringr::fixed(".label")
+        )
+
+      } else {
+
+        stop("Unsupported cache format: ", cache_format)
+      }
+
+      if (!quiet) {
+        message("Table ", id, " read from cache file: ", cf)
+      }
     }
   }
 
+  # ------------------------------------------------------------
+  # 3. COMMON TIME CONVERSION
+  # ------------------------------------------------------------
+
+  # Remote cached data already contains the requested time format.
+  # Preserve the existing behavior of the remote pipeline.
+  #
+  # Note: the original implementation also applies this section
+  # after a cache hit. We retain that behavior for compatibility.
+
+if (!from_processed_cache) {
 
 
-}
-  
-  
-  
-  # if save in cache_dir, cache_format
-  if (cache && (cache_update || !file.exists(cache_file))){
+  if (tolower(time_format) %in% "num" &&
+      stringr::str_sub(id, -1, -1) %in% c("Q", "M")) {
 
-    # resort colnames
+    lookup <- setNames(
+      ilostat_date_convert[["num"]],
+      ilostat_date_convert$code
+    )
 
-	ref_cols <- ilostat_cols_ref[ilostat_cols_ref %in% colnames(dat)]
-	
-	order_cols <- c(ref_cols, colnames(dat)[!colnames(dat) %in% ref_cols])
-	
-	dat <- dat %>% select(all_of(order_cols))
-	
-	
+    dat$time <- paste0(
+      stringr::str_sub(dat$time, 1, 4),
+      lookup[stringr::str_sub(dat$time, 5, -1)]
+    ) |>
+      as.numeric()
 
-	if(cache_format == 'rds'){
-		
-		saveRDS(dat, file = cache_file)
-	
-	}
-	
-	if(cache_format == 'csv'){
-		
-		fwrite(dat, file = cache_file)
-	
-	}
-	
-	if(cache_format == 'dta'){
-		
-		colnames(dat) <- colnames(dat) %>% stringr::str_replace(stringr::fixed('.label'), stringr::fixed('label'))
-		
-		write_dta(dat, path = cache_file)
-		
-		colnames(dat) <- colnames(dat) %>% stringr::str_replace(stringr::fixed('label'), stringr::fixed('.label'))
-		
-	}
-	
-	if(cache_format == 'sav'){
-		
-		write_sav(dat, path = cache_file)
-	
-	}
-	
-	if(cache_format == 'sas7bdat'){
-		
-		colnames(dat) <- colnames(dat) %>% stringr::str_replace(stringr::fixed('.label'), stringr::fixed('label'))
-		
-		write_sas(dat, path = cache_file)
-		
-		colnames(dat) <- colnames(dat) %>% stringr::str_replace(stringr::fixed('label'), stringr::fixed('.label'))
-	
-	}
-	
-	if(!quiet){ message("Table ", id, " cached at ", path.expand(cache_file))}
-	
+  } else if (tolower(time_format) %in% "num") {
+
+    dat$time <- as.numeric(dat$time)
   }
-  
-  if(!back){return(NULL)}
 
-  # process filters
-  if (!identical(filters, "none")){ 
-    
-	filters <- filters_ilostat(filters, names(dat), fixed)
-	  
-    if(!is.null(filters)){
-        
-		dat <- dat %>% filter(!!rlang::parse_expr(filters))
-	  
+  if (tolower(stringr::str_sub(time_format, 1, 4)) %in% "date") {
+
+    if (stringr::str_sub(id, -1, -1) %in% c("Q", "M")) {
+
+      lookup_date <- setNames(
+        ilostat_date_convert[["date"]],
+        ilostat_date_convert$code
+      )
+
+      dat$time <- paste0(
+        stringr::str_sub(dat$time, 1, 4),
+        lookup_date[stringr::str_sub(dat$time, 5, -1)]
+      )
+
+    } else {
+
+      dat$time <- paste0(dat$time, "-01-01")
     }
 
-  }	
-  
-  
-  
- 
-  
+    if (tolower(time_format) == "date_last") {
 
-  # process cmd  
-  if(cmd != 'none'){
-	
-	try(dat <- rlang::eval_tidy(rlang::parse_expr(cmd), data = list(dat = dat)), silent = TRUE)
-	
+      if (stringr::str_sub(id, -1, -1) %in% c("Q", "M")) {
 
-  }	
-  
-	if(length(best_source_vec) == 1 && best_source_vec == 1){
-		dat %>% select(-contains("best_source"))} else {
-		dat
-		}		
-    	   
+        shift <- c(
+          A = 367,
+          Q = 96,
+          M = 32
+        )[stringr::str_sub(id, -1, -1)]
+
+        u <- unique(dat$time)
+
+        lookup_last <- setNames(
+          as.Date(
+            cut(as.Date(u) + shift, "month")
+          ) - 1,
+          u
+        )
+
+        dat$time <- lookup_last[dat$time]
+
+      } else {
+
+        dat$time <- stringr::str_replace(
+          dat$time,
+          "-01-01",
+          "-12-31"
+        )
+      }
+    }
+  }
+
 }
 
+  # ------------------------------------------------------------
+  # 4. REMOTE CACHE WRITING ONLY
+  # ------------------------------------------------------------
 
+  if (backend == "remote" &&
+      cache &&
+      (cache_update || !file.exists(cache_file))) {
 
-get_ilostat_raw <- function(id, 
-                            segment,   
-                            cache_file, 
-                            cache_dir, 
-                            cache_format, 
-                            quiet) {
+    ref_cols <- ilostat_cols_ref[
+      ilostat_cols_ref %in% names(dat)
+    ]
 
-  base <- paste0(ilostat_url(), segment, "/", id, ".rds")	   
+    order_cols <- c(
+      ref_cols,
+      names(dat)[!names(dat) %in% ref_cols]
+    )
 
+    dat <- dat %>%
+      dplyr::select(dplyr::all_of(order_cols))
 
+    if (cache_format == "rds") {
 
-  if (str_sub(ilostat_url(), 1, 5) == "https") {
-    tfile <- cache_file %>%
-      stringr::str_replace(paste0(stringr::fixed('.'), cache_format), ".rds")
+      saveRDS(dat, file = cache_file)
 
-    url <- paste0("https://rplumber.ilo.org/files/", segment, "/", id, ".rds")
-    if(!quiet){message("Trying URL '", url, "'")}
+    } else if (cache_format == "csv") {
 
-    # Build User-Agent with platform + OS
-    ua <- build_user_agent()
+      data.table::fwrite(dat, file = cache_file)
 
-	# need to add : `Accept-Encoding`: br, gzip
+    } else if (cache_format == "dta") {
 
-    # Perform request with User-Agent
-    resp <- request(url) |>
-	  req_headers(`User-Agent` = ua) |>
-      httr2::req_timeout(40) |>  # wait up to 40 seconds
-      req_perform()
+      names(dat) <- stringr::str_replace(
+        names(dat),
+        stringr::fixed(".label"),
+        stringr::fixed("label")
+      )
 
-    dat <- NULL
-    if (resp_status(resp) == 200) {
-      writeBin(resp_body_raw(resp), tfile)
-      dat <- read_rds(tfile) %>%
-        as_tibble() %>%
-        mutate(across(where(is.factor), as.character))
+      haven::write_dta(dat, path = cache_file)
 
-      if (!quiet) message("Cache saved at '", tfile, "'")
+      names(dat) <- stringr::str_replace(
+        names(dat),
+        stringr::fixed("label"),
+        stringr::fixed(".label")
+      )
+
+    } else if (cache_format == "sav") {
+
+      haven::write_sav(dat, path = cache_file)
+
+    } else if (cache_format == "sas7bdat") {
+
+      names(dat) <- stringr::str_replace(
+        names(dat),
+        stringr::fixed(".label"),
+        stringr::fixed("label")
+      )
+
+      haven::write_sas(dat, path = cache_file)
+
+      names(dat) <- stringr::str_replace(
+        names(dat),
+        stringr::fixed("label"),
+        stringr::fixed(".label")
+      )
     }
 
-  } else {
-    dat <- tryCatch(
-      read_rds(base) %>%
-        as_tibble() %>%
-        mutate(across(where(is.factor), as.character)),
-      error = function(e) NULL
+    if (!quiet) {
+      message(
+        "Table ",
+        id,
+        " cached at ",
+        path.expand(cache_file)
+      )
+    }
+  }
+
+  # ------------------------------------------------------------
+  # 5. COMMON POST-PROCESSING
+  # ------------------------------------------------------------
+
+  if (!back) {
+    return(NULL)
+  }
+
+  # Apply user filters after data retrieval and time conversion.
+  if (!identical(filters, "none")) {
+
+    filters_expr <- filters_ilostat(
+      filters,
+      names(dat),
+      fixed
+    )
+
+    if (!is.null(filters_expr)) {
+
+      dat <- dat %>%
+        dplyr::filter(
+          !!rlang::parse_expr(filters_expr)
+        )
+    }
+  }
+
+  # Preserve legacy cmd behavior.
+  if (!identical(cmd, "none")) {
+
+    try(
+      dat <- rlang::eval_tidy(
+        rlang::parse_expr(cmd),
+        data = list(dat = dat)
+      ),
+      silent = TRUE
     )
   }
 
-  # check validity
-  if (!is_tibble(dat)) {
-    stop("Dataset with id = '", id, "' does not exist or is not readable")
-  }
+  # Hide best_source for the default selection.
+  if (length(best_source_vec) == 1L &&
+      best_source_vec == 1) {
 
-	dat
-  
+    dat %>%
+      dplyr::select(
+        -tidyselect::contains("best_source")
+      )
+
+  } else {
+
+    dat
+  }
 }
 
+get_ilostat_raw <- function(id,
+                            segment,
+                            cache_file,
+                            cache_dir,
+                            cache_format,
+                            quiet,
+                            best_source_vec = NULL) {
 
+  backend <- tolower(
+    Sys.getenv("ILOSTAT_BACKEND", unset = "remote")
+  )
+
+  base <- paste0(
+    ilostat_url(),
+    segment,
+    "/",
+    id,
+    ".rds"
+  )
+
+  # ------------------------------------------------------------
+  # REMOTE BACKEND
+  # Preserve existing HTTP retrieval and caching behavior.
+  # ------------------------------------------------------------
+
+  if (backend == "remote") {
+
+    tfile <- cache_file %>%
+      stringr::str_replace(
+        paste0(stringr::fixed("."), cache_format),
+        ".rds"
+      )
+
+    url <- base
+
+    if (!quiet) {
+      message("Trying URL '", url, "'")
+    }
+
+    ua <- build_user_agent()
+
+    resp <- httr2::request(url) |>
+      httr2::req_headers(`User-Agent` = ua) |>
+      httr2::req_timeout(40) |>
+      httr2::req_perform()
+
+    dat <- NULL
+
+    if (httr2::resp_status(resp) == 200) {
+
+      writeBin(
+        httr2::resp_body_raw(resp),
+        tfile
+      )
+
+      dat <- readr::read_rds(tfile) %>%
+        tibble::as_tibble() %>%
+        dplyr::mutate(
+          dplyr::across(
+            where(is.factor),
+            as.character
+          )
+        )
+
+      if (!quiet) {
+        message("Cache saved at '", tfile, "'")
+      }
+    }
+
+    return(dat)
+  }
+
+  # ------------------------------------------------------------
+  # LOCAL BACKEND
+  # Direct RDS access with early best_source filtering.
+  # ------------------------------------------------------------
+
+  if (backend == "local") {
+
+    if (!file.exists(base)) {
+      stop(
+        "Dataset with id = '", id,
+        "' does not exist or is not readable",
+        call. = FALSE
+      )
+    }
+
+    dat <- readr::read_rds(base)
+
+    # Filter before converting the full dataset.
+    if (!is.null(best_source_vec)) {
+
+		if (!"best_source" %in% names(dat)) {
+		  stop(
+			"Dataset '", id, "' is missing the best_source column.",
+			call. = FALSE
+		  )
+		}
+
+		if (data.table::is.data.table(dat)) {
+
+		  keep <- dat[["best_source"]] %in% best_source_vec
+
+		  dat <- dat[keep]
+
+		} else {
+
+		  dat <- dplyr::filter(
+			dat,
+			.data$best_source %in% best_source_vec
+		  )
+		}
+    }
+
+    # Preserve the original time conversion.
+    if ("time" %in% names(dat)) {
+      dat$time <- as.character(dat$time)
+    }
+
+    # Convert only the selected observations.
+    dat <- dat %>%
+      tibble::as_tibble() %>%
+      dplyr::mutate(
+        dplyr::across(
+          where(is.factor),
+          as.character
+        )
+      )
+
+    return(dat)
+  }
+
+  stop(
+    "Invalid ILOSTAT_BACKEND: ", backend,
+    call. = FALSE
+  )
+}
 
 delete_old_cache <- function(cache_dir, new_file_path, quiet) {
   

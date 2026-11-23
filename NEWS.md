@@ -1,3 +1,21 @@
+
+# Rilostat 2.5.2
+
+### Improvements
+- Added configurable remote and local data backends using `ILOSTAT_BACKEND` and `ILOSTAT_DATA_ROOT`.
+- Optimized local RDS retrieval by filtering `best_source` before converting observations to tibbles.
+- Enabled direct local access to dictionaries and tables of contents without additional caching.
+- Preserved disk caching for remote API users.
+- Fixed time conversion when reusing cached datasets.
+- Removed obsolete Plotly mapping and associated examples.
+- Removed unused internal session environment.
+
+### Validation
+- Verified local and remote data retrieval.
+- Validated multilingual dictionaries and labels.
+- Validated quarterly time conversion and remote cache reuse.
+- R CMD check: 0 errors, 0 warnings, 0 notes.
+
 # Rilostat 2.5.1
 
 * restored `get_ilostat_sdmx()` for SDMX-oriented access to ILOSTAT data.

@@ -30,72 +30,142 @@
 #'  head(tmp)
 #' }
 #' @export
-get_ilostat_dic <- function(dic,
-                           lang = getOption("ilostat_lang", "en"),
-                           cache_dir = getOption("ilostat_cache_dir", NULL),
-                           quiet = getOption("ilostat_quiet", TRUE)) {
 
-  dic  <- tolower(dic)
+get_ilostat_dic <- function(
+    dic,
+    lang = getOption("ilostat_lang", "en"),
+    cache_dir = getOption("ilostat_cache_dir", NULL),
+    quiet = getOption("ilostat_quiet", TRUE)) {
+
+  backend <- tolower(
+    Sys.getenv("ILOSTAT_BACKEND", unset = "remote")
+  )
+
+  if (!backend %in% c("remote", "local")) {
+    stop("Invalid ILOSTAT_BACKEND.", call. = FALSE)
+  }
+
+  dic <- tolower(dic)
   lang <- tolower(lang)
 
   dictlang <- paste0(dic, "_", lang)
 
-  # get cache directory
-  if (is.null(cache_dir)){
-    
-	  cache_dir <- file.path(tempdir(), "ilostat")
- 	  
-  } 
-	
-	dir.create(cache_dir, recursive = TRUE, showWarnings = FALSE)
+  # ------------------------------------------------------------
+  # LOCAL BACKEND
+  # Direct RDS access without disk or memory caching.
+  # ------------------------------------------------------------
 
-  # ---- cache file
-  
-  cache_file <- file.path(cache_dir, paste0(dictlang, ".rds"))
+  if (backend == "local") {
 
+    path <- file.path(
+      ilostat_url(),
+      "dic",
+      paste0(dictlang, ".rds")
+    )
 
+    if (!file.exists(path)) {
+      stop(
+        "Dictionary not available: ", dictlang,
+        call. = FALSE
+      )
+    }
 
-  # ---- READ FROM CACHE ----
+    get_dic <- readr::read_rds(path)
+
+    if (!tibble::is_tibble(get_dic)) {
+      stop(
+        "Invalid dictionary: ", dictlang,
+        call. = FALSE
+      )
+    }
+
+    # Preserve the remote output convention.
+    get_dic <- dplyr::select(
+      get_dic,
+      -tidyselect::contains("description")
+    )
+
+    return(get_dic)
+  }
+
+  # ------------------------------------------------------------
+  # REMOTE BACKEND
+  # Preserve existing disk caching behavior.
+  # ------------------------------------------------------------
+
+  if (is.null(cache_dir)) {
+    cache_dir <- file.path(tempdir(), "ilostat")
+  }
+
+  dir.create(
+    cache_dir,
+    recursive = TRUE,
+    showWarnings = FALSE
+  )
+
+  cache_file <- file.path(
+    cache_dir,
+    paste0(dictlang, ".rds")
+  )
+
   if (file.exists(cache_file)) {
 
-    if (!quiet) { message("Reading dictionary from cache: ", cache_file)}
+    if (!quiet) {
+      message("Reading dictionary from cache: ", cache_file)
+    }
 
     get_dic <- readr::read_rds(cache_file)
 
   } else {
 
-    # ---- DOWNLOAD ----
-    url <- paste0(ilostat_url(), "dic/", dictlang, ".rds")
+    url <- paste0(
+      ilostat_url(),
+      "dic/",
+      dictlang,
+      ".rds"
+    )
 
-    if (!quiet) {message("Trying dictionary URL '", url, "'")}
+    if (!quiet) {
+      message("Trying dictionary URL '", url, "'")
+    }
 
     ua <- build_user_agent()
 
-    resp <- request(url) |>
-      req_headers(`User-Agent` = ua) |>
-      req_timeout(30) |>
-      req_perform()
+    resp <- httr2::request(url) |>
+      httr2::req_headers(`User-Agent` = ua) |>
+      httr2::req_timeout(30) |>
+      httr2::req_perform()
 
-    if (resp_status(resp) != 200) {
+    if (httr2::resp_status(resp) != 200) {
       stop("DIC not available '", dictlang, "'")
     }
 
     tmpfile <- tempfile(fileext = ".rds")
     on.exit(unlink(tmpfile), add = TRUE)
 
-    writeBin(resp_body_raw(resp), tmpfile)
+    writeBin(
+      httr2::resp_body_raw(resp),
+      tmpfile
+    )
 
-    get_dic <- read_rds(tmpfile) %>%
-      dplyr::select(-tidyselect::contains("description"))
+    get_dic <- readr::read_rds(tmpfile) %>%
+      dplyr::select(
+        -tidyselect::contains("description")
+      )
 
     if (!tibble::is_tibble(get_dic)) {
-      stop("The dictionary '", dictlang, ".rds' is not a valid tibble")
+      stop(
+        "The dictionary '",
+        dictlang,
+        ".rds' is not a valid tibble"
+      )
     }
 
-    # ---- SAVE TO CACHE ----
     readr::write_rds(get_dic, cache_file)
 
-    if (!quiet) { message("Dictionary cached at: ", cache_file) }
+    if (!quiet) {
+      message("Dictionary cached at: ", cache_file)
+    }
   }
 
   get_dic

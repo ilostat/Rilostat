@@ -76,106 +76,199 @@
 #' }
 #' @export
 
+
 get_ilostat_toc <- function(
-  segment = getOption('ilostat_segment', 'indicator'),
-  lang = getOption('ilostat_lang', 'en'),
-  search = getOption('ilostat_search', 'none'),
-  filters = getOption('ilostat_filter', 'none'),
-  fixed = getOption('ilostat_fixed', TRUE),
-  cache_dir = getOption('ilostat_cache_dir', NULL),
-  cache_update = getOption('ilostat_cache_update', TRUE),
-  quiet = getOption('ilostat_quiet', TRUE)
-) {
+    segment = getOption("ilostat_segment", "indicator"),
+    lang = getOption("ilostat_lang", "en"),
+    search = getOption("ilostat_search", "none"),
+    filters = getOption("ilostat_filter", "none"),
+    fixed = getOption("ilostat_fixed", TRUE),
+    cache_dir = getOption("ilostat_cache_dir", NULL),
+    cache_update = getOption("ilostat_cache_update", TRUE),
+    quiet = getOption("ilostat_quiet", TRUE)) {
 
   segment <- match.arg(segment, c("indicator", "ref_area"))
   lang <- match.arg(lang, c("en", "fr", "es"))
 
-  # get cache directory
-  if (is.null(cache_dir)){
-    
-	  cache_dir <- file.path(tempdir(), "ilostat")
- 	  
-  } 
-	
-	dir.create(cache_dir, recursive = TRUE, showWarnings = FALSE)
-
-  # ---- cache file
-  
-  cache_file <- file.path(
-    cache_dir,
-    paste0("toc_", segment, "_", lang, ".rds")
+  backend <- tolower(
+    Sys.getenv("ILOSTAT_BACKEND", unset = "remote")
   )
 
-  # ---- download if needed
-  if (!file.exists(cache_file) || isTRUE(cache_update)) {
-
-    url <- paste0(ilostat_url(), segment, "/table_of_contents_", lang, ".rds")
-
-    if (!quiet) message("Downloading toc from '", url, "'")
-
-    ua <- build_user_agent()
-
-    resp <- request(url) |>
-      req_headers(`User-Agent` = ua) |>
-      req_timeout(30) |>
-      req_perform()
-
-    if (resp_status(resp) != 200) {
-      stop("TOC not available for segment '", segment, "' and lang '", lang, "'")
-    }
-
-    tmpfile <- tempfile(fileext = ".rds")
-    on.exit(unlink(tmpfile), add = TRUE)
-
-    writeBin(resp_body_raw(resp), tmpfile)
-
-    y <- read_rds(tmpfile)
-
-    dir.create(cache_dir, showWarnings = FALSE, recursive = TRUE)
-    saveRDS(y, cache_file)
-
-  } else {
-
-    if (!quiet) message("Using cached toc: ", cache_file)
-    y <- read_rds(cache_file)
+  if (!backend %in% c("remote", "local")) {
+    stop("Invalid ILOSTAT_BACKEND.", call. = FALSE)
   }
 
-  # ---- safety check
-	if (!tibble::is_tibble(y)) {
-	  stop("Invalid TOC file: ", cache_file)
-	}
+  # ------------------------------------------------------------
+  # LOCAL BACKEND
+  # Direct RDS reading without cache or HTTP.
+  # ------------------------------------------------------------
 
-# ---- search
-if (!identical(search, "none")) {
+  if (backend == "local") {
 
-  y <- y %>%
-    mutate(
-      titles = do.call(paste0, across(c(2, 3, 4, 5, 11, 12, 13, 14)))
+    path <- file.path(
+      ilostat_url(),
+      segment,
+      paste0("table_of_contents_", lang, ".rds")
     )
 
-  titles_vec <- y[["titles"]]
+    if (!file.exists(path)) {
+      stop(
+        "TOC not available for segment '",
+        segment,
+        "' and lang '",
+        lang,
+        "'",
+        call. = FALSE
+      )
+    }
 
-  if (fixed) {
-    keep <- Reduce(`&`, lapply(search, function(s) {
-      stringr::str_detect(titles_vec, stringr::fixed(s))
-    }))
+    y <- readr::read_rds(path)
+
   } else {
-    keep <- Reduce(`&`, lapply(search, function(s) {
-      stringr::str_detect(titles_vec, s)
-    }))
+
+    # ----------------------------------------------------------
+    # REMOTE BACKEND
+    # Existing HTTP and disk-cache behavior.
+    # ----------------------------------------------------------
+
+    if (is.null(cache_dir)) {
+      cache_dir <- file.path(tempdir(), "ilostat")
+    }
+
+    dir.create(
+      cache_dir,
+      recursive = TRUE,
+      showWarnings = FALSE
+    )
+
+    cache_file <- file.path(
+      cache_dir,
+      paste0("toc_", segment, "_", lang, ".rds")
+    )
+
+    if (!file.exists(cache_file) || isTRUE(cache_update)) {
+
+      url <- paste0(
+        ilostat_url(),
+        segment,
+        "/table_of_contents_",
+        lang,
+        ".rds"
+      )
+
+      if (!quiet) {
+        message("Downloading toc from '", url, "'")
+      }
+
+      ua <- build_user_agent()
+
+      resp <- httr2::request(url) |>
+        httr2::req_headers(`User-Agent` = ua) |>
+        httr2::req_timeout(30) |>
+        httr2::req_perform()
+
+      if (httr2::resp_status(resp) != 200) {
+        stop(
+          "TOC not available for segment '",
+          segment,
+          "' and lang '",
+          lang,
+          "'"
+        )
+      }
+
+      tmpfile <- tempfile(fileext = ".rds")
+      on.exit(unlink(tmpfile), add = TRUE)
+
+      writeBin(
+        httr2::resp_body_raw(resp),
+        tmpfile
+      )
+
+      y <- readr::read_rds(tmpfile)
+
+      saveRDS(y, cache_file)
+
+    } else {
+
+      if (!quiet) {
+        message("Using cached toc: ", cache_file)
+      }
+
+      y <- readr::read_rds(cache_file)
+    }
   }
 
-  y <- y[keep, ]
-  y$titles <- NULL
-}
+  # ------------------------------------------------------------
+  # COMMON VALIDATION
+  # ------------------------------------------------------------
 
-  # ---- filters (kept as-is)
+  if (!tibble::is_tibble(y)) {
+    stop("Invalid TOC for segment: ", segment)
+  }
+
+  # ------------------------------------------------------------
+  # COMMON SEARCH
+  # Preserve existing behavior.
+  # ------------------------------------------------------------
+
+  if (!identical(search, "none")) {
+
+    y <- y %>%
+      dplyr::mutate(
+        titles = do.call(
+          paste0,
+          dplyr::across(c(2, 3, 4, 5, 11, 12, 13, 14))
+        )
+      )
+
+    titles_vec <- y[["titles"]]
+
+    if (fixed) {
+
+      keep <- Reduce(
+        `&`,
+        lapply(search, function(s) {
+          stringr::str_detect(
+            titles_vec,
+            stringr::fixed(s)
+          )
+        })
+      )
+
+    } else {
+
+      keep <- Reduce(
+        `&`,
+        lapply(search, function(s) {
+          stringr::str_detect(titles_vec, s)
+        })
+      )
+    }
+
+    y <- y[keep, ]
+    y$titles <- NULL
+  }
+
+  # ------------------------------------------------------------
+  # COMMON FILTERING
+  # Preserve existing behavior.
+  # ------------------------------------------------------------
+
   if (!identical(filters, "none")) {
 
-    filters <- filters_ilostat(filters, names(y), fixed)
+    filters_expr <- filters_ilostat(
+      filters,
+      names(y),
+      fixed
+    )
 
-    if (!is.null(filters)) {
-      y <- filter(y, eval(parse(text = filters)))
+    if (!is.null(filters_expr)) {
+
+      y <- dplyr::filter(
+        y,
+        eval(parse(text = filters_expr))
+      )
     }
   }
 
