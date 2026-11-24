@@ -14,6 +14,7 @@ get_ilostat(
   time_format = getOption("ilostat_time_format", "raw"),
   filters = getOption("ilostat_filter", "none"),
   best_source = getOption("ilostat_best_source", "yes"),
+  latestyear = getOption("ilostat_latestyear", FALSE),
   fixed = getOption("ilostat_fixed", TRUE),
   cache = getOption("ilostat_cache", TRUE),
   cache_update = getOption("ilostat_cache_update", TRUE),
@@ -77,6 +78,15 @@ get_ilostat(
 
   a character; `"yes"` (default) to get secondary source if exist
   `"all"`, `"no"` for secondary only.
+
+- latestyear:
+
+  A logical; if `TRUE`, retain observations from the latest available
+  time period for each combination of reference area and indicator,
+  after applying the requested filters. Defaults to `FALSE`, which
+  returns all available periods. Assumes observations are ordered by
+  descending time. Can also be set using
+  `options(ilostat_latestyear = TRUE)`.
 
 - fixed:
 

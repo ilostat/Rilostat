@@ -139,7 +139,7 @@ toc <- get_ilostat_toc(segment = 'ref_area', lang = 'es', quiet = TRUE)
 
 | id | ref_area | ref_area.label | freq | freq.label | data.start | data.end | last.update | n.records |
 |:---|:---|:---|:---|:---|---:|---:|:---|---:|
-| AFG_A | AFG | Afganistán | A | Anual | 1979 | 2030 | 25/10/2026 21:43:16 | 363687 |
+| AFG_A | AFG | Afganistán | A | Anual | 1979 | 2030 | 25/10/2026 21:43:16 | 360360 |
 | AFG_Q | AFG | Afganistán | Q | Trimestral | 2005 | 2024 | 05/03/2026 17:35:54 | 2903 |
 | AFG_M | AFG | Afganistán | M | Mensual | 2005 | 2025 | 13/02/2026 13:22:29 | 8742 |
 
@@ -185,8 +185,8 @@ toc <- get_ilostat_toc(segment = 'ref_area', search = c('France|Albania', 'Annua
 
 | id | ref_area | ref_area.label | freq | freq.label | data.start | data.end | last.update | n.records |
 |:---|:---|:---|:---|:---|---:|---:|:---|---:|
-| ALB_A | ALB | Albania | A | Annual | 1960 | 2030 | 26/10/2026 18:55:10 | 1271446 |
-| FRA_A | FRA | France | A | Annual | 1955 | 2030 | 08/11/2026 07:44:15 | 2746862 |
+| ALB_A | ALB | Albania | A | Annual | 1960 | 2030 | 23/11/2026 10:58:24 | 1248132 |
+| FRA_A | FRA | France | A | Annual | 1955 | 2030 | 17/11/2026 13:27:01 | 2690000 |
 
 Table 1d. ‘Table of contents by ref_area with search words ’France’ or
 ‘Albania’ and ‘Annual’’ {.table}
@@ -289,7 +289,7 @@ dplyr::count(dat, ref_area)
     ## # A tibble: 2 × 2
     ##   ref_area      n
     ##   <chr>     <int>
-    ## 1 AFG      363687
+    ## 1 AFG      360360
     ## 2 TTO      375148
 
   
@@ -306,10 +306,10 @@ dplyr::count(dat, indicator)
     ## # A tibble: 4 × 2
     ##   indicator            n
     ##   <chr>            <int>
-    ## 1 CPI_NCPD_COI_RT 674371
-    ## 2 CPI_NCYR_COI_RT 768911
-    ## 3 CPI_NWGT_COI_RT  41518
-    ## 4 CPI_XCPI_COI_RT 805651
+    ## 1 CPI_NCPD_COI_RT 677590
+    ## 2 CPI_NCYR_COI_RT 772183
+    ## 3 CPI_NWGT_COI_RT  41662
+    ## 4 CPI_XCPI_COI_RT 809145
 
 ## Time format
 
@@ -664,82 +664,6 @@ text(df$x[ind], df$y[ind], df$geo[ind], adj = c(0.5,-1), cex=1.5)
 ![Different indicators of labour underutilization](g1_tri.png)
 
 Different indicators of labour underutilization
-
-  
-  
-
-> It is also possible to create maps showing how indicators behave
-> across the world at a given point in time (static maps) or even
-> through time (dynamic maps allowing the user to scroll over the
-> available time period).
-
-For instance, below we have built a map to see differences across the
-world in the youth unemployment rate. For this, we have selected data
-from a compilation which is methodologically robust and consistent
-across countries to ensure international comparability: the ILO modelled
-estimates (from November 2017). You can change the legend settings to
-use the colour coding that best suits your data. In our case, the colour
-scale used allows us to quickly see that youth unemployment rates are
-particularly high in Southern and Northern Africa.
-
-``` r
-
-require(Rilostat)
-if(!require(plotly)){install.packages('plotly')}
-if(!require(dplyr)){install.packages('dplyr')}
-if(!require(stringr)){install.packages('stringr')}
-
-dat <- get_ilostat(id = 'UNE_2EAP_SEX_AGE_RT_A', filters = list(
-                                time = '2019', 
-                                sex = 'SEX_T', 
-                                classif1 = 'AGE_YTHADULT_Y15-24'
-                                ), quiet = TRUE) %>% 
-            filter(!str_sub(ref_area,1,1) %in% 'X') %>% 
-            select(ref_area, obs_value) %>% 
-            left_join(  Rilostat:::ilostat_ref_area_mapping %>% 
-                            select(ref_area, ref_area_plotly)%>% 
-                            label_ilostat(code = 'ref_area'), 
-                        by = "ref_area") %>% 
-            filter(!obs_value %in% NA)
-
-    
-            
-dat %>% 
-    plot_geo( 
-            z = ~obs_value, 
-            text = ~ref_area.label, 
-            locations = ~ref_area_plotly
-        ) %>% 
-        add_trace(
-            colors = 'Blues',
-            marker = list(
-                        line = list(
-                            color = toRGB("grey"), 
-                            width = 0.5)
-                    ), 
-            showscale = TRUE
-        ) %>%
-        colorbar(
-            title = '%', 
-            len = 0.5
-        ) %>%
-        layout(
-          title = 'Youth unemployment rate in 2019 (ILO modelled estimates, Nov. 2020)', 
-          geo = list(   
-                    showframe = FALSE,  
-                    showcoastlines = TRUE,
-                    projection = list(type = 'natural earth'), 
-                    showcountries = TRUE, 
-                    resolution = 110) # or 50
-            ) 
-```
-
-  
-
-![Youth unemployment rate in 2019 (ILO modelled estimates,
-Nov. 2020](g1_map.png)
-
-Youth unemployment rate in 2019 (ILO modelled estimates, Nov. 2020
 
   
   
